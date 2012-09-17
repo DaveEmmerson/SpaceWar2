@@ -1,0 +1,6 @@
+C:\Users\Dave\Documents\Visual Studio 2010\Projects\SpaceWar2\SpaceWar2\SpaceWar2\bin\x86\Debug\SpaceWar2.exe
+C:\Users\Dave\Documents\Visual Studio 2010\Projects\SpaceWar2\SpaceWar2\SpaceWar2\bin\x86\Debug\SpaceWar2.pdb
+C:\Users\Dave\Documents\Visual Studio 2010\Projects\SpaceWar2\SpaceWar2\SpaceWar2\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Dave\Documents\Visual Studio 2010\Projects\SpaceWar2\SpaceWar2\SpaceWar2\obj\x86\Debug\SpaceWar2.exe
+C:\Users\Dave\Documents\Visual Studio 2010\Projects\SpaceWar2\SpaceWar2\SpaceWar2\obj\x86\Debug\SpaceWar2.pdb
+C:\Users\Dave\Documents\Visual Studio 2010\Projects\SpaceWar2\SpaceWar2\SpaceWar2\bin\x86\Debug\Content\Segoe UI Mono.xnb
