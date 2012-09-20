@@ -9,6 +9,7 @@ namespace SpaceWar2
 {
     /// <summary>
     /// This is the main type for your game
+    /// Test comment
     /// </summary>
     public class SpaceWar2Game : Microsoft.Xna.Framework.Game
     {
