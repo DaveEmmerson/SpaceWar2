@@ -1,42 +1,33 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 namespace SpaceWar2
 {
 
     class KeyboardHandler
     {
-        private KeyboardState oldKeyboardState;
-        private KeyboardState keyboardState;
+        private KeyboardState _oldKeyboardState;
+        private KeyboardState _keyboardState;
 
         public KeyboardHandler()
         {
-
-            keyboardState = Keyboard.GetState();
-            oldKeyboardState = keyboardState;
-
+            _keyboardState = Keyboard.GetState();
+            _oldKeyboardState = _keyboardState;
         }
 
-        public void UpdateKeyboardState() {
-
-            oldKeyboardState = keyboardState;
-
-            keyboardState = Keyboard.GetState();
-
+        public void UpdateKeyboardState() 
+        {
+            _oldKeyboardState = _keyboardState;
+            _keyboardState = Keyboard.GetState();
         }
 
         public bool IsPressed(Keys key)
         {
-
-            return keyboardState.IsKeyDown(key);
-
+            return _keyboardState.IsKeyDown(key);
         }
 
         public bool IsNewlyPressed(Keys key)
         {
-
-            return keyboardState.IsKeyDown(key) && !oldKeyboardState.IsKeyDown(key);
-
+            return _keyboardState.IsKeyDown(key) && !_oldKeyboardState.IsKeyDown(key);
         }
     }
 }

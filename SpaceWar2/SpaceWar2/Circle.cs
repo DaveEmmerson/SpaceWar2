@@ -20,57 +20,44 @@ namespace SpaceWar2
 
         public uint LineCount { get; set; }
 
-        private VertexPositionColor[] vertices;
+        private VertexPositionColor[] _vertices;
 
         public Circle(GraphicsDeviceManager graphics, Vector2 position, float radius, Color lineColor, uint lineCount)
         {
-
             Graphics = graphics;
-
             Position = position;
-
             Radius = radius;
-
             LineColor = lineColor;
-
             LineCount = lineCount;
 
             CreateVertices();
-
         }
 
         private void CreateVertices()
         {
+            _vertices = new VertexPositionColor[LineCount];
 
-            vertices = new VertexPositionColor[LineCount];
-
-            for (int i = 0; i < LineCount - 1; i++)
+            for (var i = 0; i < LineCount - 1; i++)
             {
-                float angle = (float)(i / (float)(LineCount - 1) * Math.PI * 2);
+                var angle = (float)(i / (float)(LineCount - 1) * Math.PI * 2);
 
-                vertices[i].Position = new Vector3(Position.X + (float)Math.Cos(angle) * Radius, Position.Y + (float)Math.Sin(angle) * Radius, 0);
-                vertices[i].Color = LineColor;
+                _vertices[i].Position = new Vector3(Position.X + (float)Math.Cos(angle) * Radius, Position.Y + (float)Math.Sin(angle) * Radius, 0);
+                _vertices[i].Color = LineColor;
             }
-            vertices[LineCount - 1] = vertices[0];
 
+            _vertices[LineCount - 1] = _vertices[0];
         }
-
-           
-
+        
         protected void DrawLineStrip(VertexPositionColor[] array)
         {
-
-
-            Graphics.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.LineStrip, array, 0, array.Length - 1);
-
+            Graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, array, 0, array.Length - 1);
         }
 
         public virtual void Draw()
         {
             CreateVertices();
 
-            DrawLineStrip(vertices);
-
+            DrawLineStrip(_vertices);
         }
 
         public void CentreToViewport()

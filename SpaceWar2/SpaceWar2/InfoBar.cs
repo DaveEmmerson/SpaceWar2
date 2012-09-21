@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using System.Globalization;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
@@ -7,71 +8,60 @@ namespace SpaceWar2
     class InfoBar
     {
 
-        private SpriteBatch spriteBatch;
+        private readonly SpriteBatch _spriteBatch;
 
-        private SpriteFont font;
+        private SpriteFont _font;
 
-        private Vector2 currentPosition;
+        private Vector2 _currentPosition;
 
         public Vector2 Position { get; set; }
 
         public Color FontColor { get; set; }
         
-
         public InfoBar(SpriteBatch spriteBatch) {
 
-            this.spriteBatch = spriteBatch;
+            _spriteBatch = spriteBatch;
 
             Position = new Vector2(10, 10);
 
             Reset();
 
             FontColor = Color.LightBlue;
-
         }
 
         public void Reset()
         {
-
-            currentPosition = Position;
-
+            _currentPosition = Position;
         }
 
-        public void LoadContent(ContentManager contentManager) {
-
-            font = contentManager.Load<SpriteFont>("Segoe UI Mono");
-
+        public void LoadContent(ContentManager contentManager) 
+        {
+            _font = contentManager.Load<SpriteFont>("Segoe UI Mono");
         }
         
-        public void DrawString(string heading, string value) {
-
-            spriteBatch.Begin();
-
-            spriteBatch.DrawString(font, heading + ": " + value , currentPosition, FontColor);
-
-            spriteBatch.End();
+        public void DrawString(string heading, string value) 
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.DrawString(_font, heading + ": " + value , _currentPosition, FontColor);
+            _spriteBatch.End();
 
             LineBreak();
         }
 
         public void LineBreak()
         {
-            currentPosition += new Vector2(0, font.LineSpacing);
+            _currentPosition += new Vector2(0, _font.LineSpacing);
         }
-
 
         public void DrawShipInfo(Ship circle)
         {
-
-            DrawString(circle.Name + ".Position.X", circle.Position.X.ToString());
-            DrawString(circle.Name + ".Position.Y", circle.Position.Y.ToString());
-            DrawString(circle.Name + ".Shields", circle.Shields.ToString());
-            DrawString(circle.Name + ".Armour", circle.Armour.ToString());
-            DrawString(circle.Name + ".Energy", circle.Energy.ToString());
-
+            DrawString(circle.Name + ".Position.X", circle.Position.X.ToString(CultureInfo.InvariantCulture));
+            DrawString(circle.Name + ".Position.Y", circle.Position.Y.ToString(CultureInfo.InvariantCulture));
+            DrawString(circle.Name + ".Shields", circle.Shields.ToString(CultureInfo.InvariantCulture));
+            DrawString(circle.Name + ".Armour", circle.Armour.ToString(CultureInfo.InvariantCulture));
+            DrawString(circle.Name + ".Energy", circle.Energy.ToString(CultureInfo.InvariantCulture));
 
             LineBreak();
-
         }
     }
 }

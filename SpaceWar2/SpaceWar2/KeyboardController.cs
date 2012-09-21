@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework.Input;
 
 namespace SpaceWar2
 {
     class KeyboardController : IShipController
     {
-
         private readonly IDictionary<Keys, ShipAction> _mappings;
         private readonly KeyboardHandler _keyboardHandler;
 
         public KeyboardController(KeyboardHandler keyboardHandler)
         {
             _keyboardHandler = keyboardHandler;
-
             _mappings = new Dictionary<Keys, ShipAction>();
         }
 
@@ -32,19 +28,14 @@ namespace SpaceWar2
 
         public ShipAction GetAction()
         {
-
-            ShipAction action = ShipAction.None;
+            var action = ShipAction.None;
 
             foreach (var mapping in _mappings)
             {
-
                 if (_keyboardHandler.IsPressed(mapping.Key))
                 {
-
                     action |= mapping.Value;
-
                 }
-
             }
 
             return action;

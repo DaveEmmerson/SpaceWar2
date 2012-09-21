@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -9,118 +6,69 @@ namespace SpaceWar2
 {
     class Ship : Circle
     {
+        const float ThrustPower = 100F;
+        const float ThrustEnergyCost = 0.1F;
+        const float RotationSpeed = 180F;
+        const float MaxShieldLevel = 100F;
+        const float MaxEnergyLevel = 100F;
 
-        const float THRUST_POWER = 100F;
-        const float THRUST_ENERGY_COST = 0.1F;
-        const float ROTATION_SPEED = 180F;
-        const float MAX_SHIELD_LEVEL = 100F;
-        const float MAX_ENERGY_LEVEL = 100F;
-
-        private float shields = MAX_SHIELD_LEVEL;
-        public float Shields {
-
-            get
-            {
-
-                return shields;
-
-            }
+        private float _shields = MaxShieldLevel;
+        
+        public float Shields 
+        {
+            get { return _shields; }
 
             set
             {
-
-                if (value > MAX_SHIELD_LEVEL)
+                if (value > MaxShieldLevel)
                 {
-
-                    shields = MAX_SHIELD_LEVEL;
-
+                    _shields = MaxShieldLevel;
                 }
                 else
                 {
+                    _shields = value;
 
-
-                    shields = value;
-
-                    if (shields < 0)
+                    if (_shields < 0)
                     {
-
-                        Armour += shields;
-                        shields = 0;
-
+                        Armour += _shields;
+                        _shields = 0;
                     }
-
                 }
-
             }
         }
 
         public float ShieldRechargeRate { get; set; }
 
-        private float energy;
-        public float Energy {
-
-            get
-            {
-
-                return energy;
-
-            }
-
-            set
-            {
-
-                if (value > MAX_ENERGY_LEVEL)
-                {
-
-                    energy = MAX_ENERGY_LEVEL;
-
-                }
-                else
-                {
-
-                    energy = value;
-
-                }
-
-            }
+        private float _energy;
+        public float Energy 
+        {
+            get { return _energy; }
+            set { _energy = value > MaxEnergyLevel ? MaxEnergyLevel : value; }
         }
 
         public float EnergyRechargeRate { get; set; }
 
-        private float armour = 100;
+        private float _armour = 100;
         public float Armour
         {
-
-            get
-            {
-
-                return armour;
-
-            }
+            get { return _armour; }
 
             set
             {
-
-                if (armour < 0 && value > armour)
+                if (_armour < 0 && value > _armour)
                 {
-
                     throw new ArgumentException("Ship is already exploding. Can't repair.");
-
                 }
 
-                armour = value;
+                _armour = value;
 
-                if (armour < 0)
+                if (_armour < 0)
                 {
-
-                    exploding = true;
-                    explosionTargetRadius = Radius * EXPLOSION_RADIUS_MULTIPLIER;
-                    explosionRadiusIncrement = (EXPLOSION_RADIUS_MULTIPLIER - 1) * Radius / EXPLOSION_SPEED;
-
+                    _exploding = true;
+                    _explosionTargetRadius = Radius * ExplosionRadiusMultiplier;
+                    _explosionRadiusIncrement = (ExplosionRadiusMultiplier - 1) * Radius / ExplosionSpeed;
                 }
-
             }
-
         }
     
         public string Name { get; set; }
@@ -135,66 +83,51 @@ namespace SpaceWar2
 
         public bool DrawArrows { get; set; }
 
-        private VertexPositionColor[] accelerationArrow;
-        private VertexPositionColor[] velocityArrow;
-        private VertexPositionColor[] rotationArrow;
+        private VertexPositionColor[] _accelerationArrow;
+        private VertexPositionColor[] _velocityArrow;
+        private VertexPositionColor[] _rotationArrow;
 
-        private const float EXPLOSION_RADIUS_MULTIPLIER = 1.4F;
-        private const float EXPLOSION_SPEED = 0.5F;
-        private bool exploding;
-        private bool imploding;
-        private float explosionTargetRadius;
-        private float explosionRadiusIncrement;
+        private const float ExplosionRadiusMultiplier = 1.4F;
+        private const float ExplosionSpeed = 0.5F;
+        private bool _exploding;
+        private bool _imploding;
+        private float _explosionTargetRadius;
+        private float _explosionRadiusIncrement;
 
         public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color lineColor, uint lineCount)
              : base(graphics,position,radius,lineColor,lineCount)
         {
-
             Name = name;
-
             ShieldRechargeRate = 0.1F;
-
             EnergyRechargeRate = 0.01F;
-
             Energy = 100F;
-
             CreateVertices();
-
         }
 
         private void CreateVertices()
         {
-
             if (DrawArrows)
             {
-
-                accelerationArrow = getArrow(Acceleration, Color.LimeGreen);
-
-                velocityArrow = getArrow(Velocity, Color.Linen);
-
-                rotationArrow = getArrow(new Vector2((float)Math.Sin(Rotation), -(float)Math.Cos(Rotation)), Color.Red);
-
+                _accelerationArrow = GetArrow(Acceleration, Color.LimeGreen);
+                _velocityArrow = GetArrow(Velocity, Color.Linen);
+                _rotationArrow = GetArrow(new Vector2((float)Math.Sin(Rotation), -(float)Math.Cos(Rotation)), Color.Red);
             }
-
         }
 
-        private VertexPositionColor[] getArrow(Vector2 vector, Color color)
+        private VertexPositionColor[] GetArrow(Vector2 vector, Color color)
         {
-
-            VertexPositionColor[] arrow = new VertexPositionColor[5];
+            var arrow = new VertexPositionColor[5];
 
             if (vector == Vector2.Zero)
-
+            {
                 return arrow;
-
+            }
             vector.Normalize();
 
-            Vector2 perpendicular = new Vector2(-vector.Y, vector.X);
+            var perpendicular = new Vector2(-vector.Y, vector.X);
 
             float arrowSize = Radius / 4;
             
-            
-
             arrow[0].Position = new Vector3(Position + vector * Radius, 0);
             arrow[0].Color = color;
 
@@ -213,9 +146,7 @@ namespace SpaceWar2
             arrow[4].Position = new Vector3(Position + vector * Radius * 2, 0);
             arrow[4].Color = color;
             
-            
             return arrow;
-
         }
 
         public override void Draw()
@@ -224,12 +155,9 @@ namespace SpaceWar2
 
             if (DrawArrows)
             {
-
-                DrawLineStrip(accelerationArrow);
-                DrawLineStrip(velocityArrow);
-                DrawLineStrip(rotationArrow);
-
-
+                DrawLineStrip(_accelerationArrow);
+                DrawLineStrip(_velocityArrow);
+                DrawLineStrip(_rotationArrow);
             }
 
             base.Draw();
@@ -237,152 +165,109 @@ namespace SpaceWar2
 
         public void Update(GameTime gameTime)
         {
-            
-            float deltaT = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            var deltaT = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (exploding)
+            if (_exploding)
             {
-
-                if (Radius > explosionTargetRadius)
+                if (Radius > _explosionTargetRadius)
                 {
-
-                    exploding = false;
-                    imploding = true;
-
+                    _exploding = false;
+                    _imploding = true;
                 }
 
-                Radius = Radius + explosionRadiusIncrement * deltaT;
+                Radius = Radius + _explosionRadiusIncrement * deltaT;
             }
 
-            else if (imploding)
+            else if (_imploding)
             {
-
-                Radius = Radius - explosionRadiusIncrement * (deltaT + 1 / Radius);
+                Radius = Radius - _explosionRadiusIncrement * (deltaT + 1 / Radius);
 
                 if (Radius <= 0)
                 {
-
-                    imploding = false;
+                    _imploding = false;
                     Expired = true;
-
                 }
-
             }
             else
             {
-
-                if (Shields < MAX_SHIELD_LEVEL)
+                if (Shields < MaxShieldLevel)
                 {
-
-                    float increaseRequired = Math.Min(MAX_SHIELD_LEVEL - Shields,ShieldRechargeRate);
-
-                    
+                    float increaseRequired = Math.Min(MaxShieldLevel - Shields,ShieldRechargeRate);
 
                     if (Energy >= increaseRequired)
                     {
-
                         Shields += increaseRequired;
                         Energy -= increaseRequired;
-
                     }
                     else if (Energy > 0)
                     {
-
                         Shields += Energy;
                         Energy = 0;
-
                     }
-
                 }
 
                 Energy += EnergyRechargeRate;
-
             }
-
 
             if (Controller != null)
             {
-
                 ShipAction action = Controller.GetAction();
 
                 if (action.HasFlag(ShipAction.Thrust))
                 {
-
-                   energyToThrust();
-
+                   EnergyToThrust();
                 }
 
                 if (action.HasFlag(ShipAction.ReverseThrust))
                 {
-
-                    energyToThrust(reverse: true);
-
+                    EnergyToThrust(reverse: true);
                 }
 
                 if (action.HasFlag(ShipAction.TurnLeft))
                 {
-
-                    Rotation -= (float)Math.PI / ROTATION_SPEED;
-
+                    Rotation -= (float)Math.PI / RotationSpeed;
                 }
 
                 if (action.HasFlag(ShipAction.TurnRight))
                 {
-
-                    Rotation += (float)Math.PI / ROTATION_SPEED;
-
+                    Rotation += (float)Math.PI / RotationSpeed;
                 }
-
             }
 
             Velocity += Acceleration * deltaT;
 
             Position = Position + Velocity * deltaT;
-
         }
 
         public void Damage(int amount)
         {
-
             Shields -= amount;
-
         }
 
-        private void energyToThrust(bool reverse = false)
+        private void EnergyToThrust(bool reverse = false)
         {
+            float thrustPower = ThrustPower;
 
-            float thrustPower = THRUST_POWER;
-
-            if (Energy < THRUST_ENERGY_COST)
+            if (Energy < ThrustEnergyCost)
             {
-
-                thrustPower = thrustPower / THRUST_ENERGY_COST * energy;
+                thrustPower = thrustPower / ThrustEnergyCost * _energy;
                 Energy = 0;
-
             }
             else
             {
-
-                Energy -= THRUST_ENERGY_COST;
-
+                Energy -= ThrustEnergyCost;
             }
 
             if (thrustPower > 0)
             {
                 if (reverse)
                 {
-
                     thrustPower *= -1;
-
                 }
 
                 Acceleration += new Vector2(thrustPower * (float)Math.Sin(Rotation),
                                        -thrustPower * (float)Math.Cos(Rotation));
-
             }
-
-
         }
-
     }
 }

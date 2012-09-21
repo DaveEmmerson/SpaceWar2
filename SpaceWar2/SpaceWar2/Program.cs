@@ -1,5 +1,3 @@
-using System;
-
 namespace SpaceWar2
 {
 #if WINDOWS || XBOX
@@ -10,7 +8,7 @@ namespace SpaceWar2
         /// </summary>
         static void Main(string[] args)
         {
-            using (SpaceWar2Game game = new SpaceWar2Game())
+            using (var game = new SpaceWar2Game())
             {
                 game.Run();
             }
