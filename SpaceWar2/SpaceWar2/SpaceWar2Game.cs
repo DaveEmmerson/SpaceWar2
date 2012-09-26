@@ -34,12 +34,13 @@ namespace SpaceWar2
         private readonly Vector2 _initialVelocity;
 
         private readonly KeyboardHandler _keyboardHandler;
-        private GameObjectFactory _gameObjectFactory;
-
+        private readonly GameObjectFactory _gameObjectFactory;
+        
         public SpaceWar2Game()
         {
             _graphics = new GraphicsDeviceManager(this);
             _gameObjectFactory = new GameObjectFactory(_graphics);
+
             Content.RootDirectory = "Content";
 
             _gameObjects = new List<IGameObject>();
@@ -52,6 +53,7 @@ namespace SpaceWar2
 
         private void ResetGame()
         {
+
             _gameObjects.Clear();
 
             var viewport = _graphics.GraphicsDevice.Viewport;
