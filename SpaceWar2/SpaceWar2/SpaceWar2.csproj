@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Circle.cs" />
+    <Compile Include="GameObjectFactory.cs" />
     <Compile Include="IGameObject.cs" />
     <Compile Include="IMassive.cs" />
     <Compile Include="KeyboardController.cs" />

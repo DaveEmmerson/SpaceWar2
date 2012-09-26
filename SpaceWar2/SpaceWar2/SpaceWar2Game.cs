@@ -2,120 +2,78 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using System;
-using System.Linq;
 
 namespace SpaceWar2
 {
-    /// <summary>
-    /// This is the main type for your game
-    /// Test comment
-    /// </summary>
-    public class SpaceWar2Game : Microsoft.Xna.Framework.Game
+    public class SpaceWar2Game : Game
     {
-        const float speed = 10f;
+        const float Speed = 10f;
 
-        private GraphicsDeviceManager graphics;
+        private readonly GraphicsDeviceManager _graphics;
 
-        private bool paused;
+        private bool _paused;
 
-        private Viewport viewport;
-        private float minX;
-        private float minY;
-        private float maxX;
-        private float maxY;
+        private Viewport _viewport;
+        private float _minX;
+        private float _minY;
+        private float _maxX;
+        private float _maxY;
 
-        private SpriteBatch spriteBatch;
-        private BasicEffect basicEffect;
+        private SpriteBatch _spriteBatch;
+        private BasicEffect _basicEffect;
 
-        private List<IGameObject> gameObjects;
+        private readonly List<IGameObject> _gameObjects;
 
-        private InfoBar infoBar;
+        private InfoBar _infoBar;
 
-        private Sun sun;
-        private Ship ship1;
-        private Ship ship2;
+        private Sun _sun;
+        private Ship _ship1;
+        private Ship _ship2;
 
-        private Vector2 initialDistanceVector;
-        private Vector2 initialVelocityVector;
+        private readonly Vector2 _initialDistance;
+        private readonly Vector2 _initialVelocity;
 
-        private KeyboardHandler keyboardHandler;
+        private readonly KeyboardHandler _keyboardHandler;
+        private GameObjectFactory _gameObjectFactory;
 
         public SpaceWar2Game()
         {
-            graphics = new GraphicsDeviceManager(this);
-
+            _graphics = new GraphicsDeviceManager(this);
+            _gameObjectFactory = new GameObjectFactory(_graphics);
             Content.RootDirectory = "Content";
 
-            gameObjects = new List<IGameObject>();
+            _gameObjects = new List<IGameObject>();
 
-            keyboardHandler = new KeyboardHandler();
+            _keyboardHandler = new KeyboardHandler();
 
-            initialDistanceVector = new Vector2(0,100);
-            initialVelocityVector = new Vector2(10f * speed,0);
+            _initialDistance = new Vector2(0,100);
+            _initialVelocity = new Vector2(10f * Speed,0);
         }
 
         private void ResetGame()
         {
+            _gameObjects.Clear();
 
-            sun = new Sun(
+            var viewport = _graphics.GraphicsDevice.Viewport;
+            var sunPosition = new Vector2(viewport.Width / 2f, viewport.Height / 2f);
+            _sun = _gameObjectFactory.CreateSun(sunPosition, Color.White, Speed * Speed);
 
-                graphics    : graphics,
-                position    : new Vector2(200, 200),
-                radius      : 32,
-                lineColor   : Color.White,
-                lineCount   : 32,
-                mass        : speed * speed
+            var controller1 = CreateController1();
+            var ship1Position = _sun.Position + _initialDistance;
+            _ship1 = _gameObjectFactory.CreateShip("ship 1", ship1Position, _initialVelocity, Color.Red, controller1);
 
-            );
-
-            sun.CentreToViewport();
-
-            CreateShipOne();
-
-            CreateShipTwo();
-
-            gameObjects.Clear();
-            gameObjects.Add(sun);
-            gameObjects.Add(ship1);
-            gameObjects.Add(ship2);
-
+            var controller2 = CreateController2();
+            var ship2Position = _sun.Position - _initialDistance;
+            _ship2 = _gameObjectFactory.CreateShip("ship2", ship2Position, -_initialVelocity, Color.Blue, controller2);
+            
+            _gameObjects.Add(_sun);
+            _gameObjects.Add(_ship1);
+            _gameObjects.Add(_ship2);
         }
 
-        private void CreateShipTwo()
+        private IShipController CreateController1()
         {
-
-            var controller = new KeyboardController(keyboardHandler);
-
-            controller.SetMapping(Keys.W, ShipAction.Thrust);
-            controller.SetMapping(Keys.A, ShipAction.TurnLeft);
-            controller.SetMapping(Keys.D, ShipAction.TurnRight);
-            controller.SetMapping(Keys.S, ShipAction.ReverseThrust);
-            controller.SetMapping(Keys.R, ShipAction.FireProjectile);
-
-            ship2 = new Ship(
-
-                name: "ship 2",
-                graphics: graphics,
-                position: sun.Position - initialDistanceVector,
-                radius: 16,
-                lineColor: Color.Blue,
-                lineCount: 16
-
-            )
-            {
-
-                Velocity = -initialVelocityVector,
-                Controller = controller,
-                DrawArrows = true
-            };
-
-
-        }
-
-        private void CreateShipOne()
-        {
-            var controller = new KeyboardController(keyboardHandler);
+            var controller = new KeyboardController(_keyboardHandler);
 
             controller.SetMapping(Keys.Up, ShipAction.Thrust);
             controller.SetMapping(Keys.Left, ShipAction.TurnLeft);
@@ -123,23 +81,21 @@ namespace SpaceWar2
             controller.SetMapping(Keys.Down, ShipAction.ReverseThrust);
             controller.SetMapping(Keys.RightControl, ShipAction.FireProjectile);
 
-            ship1 = new Ship(
-
-                name: "ship 1",
-                graphics: graphics,
-                position: sun.Position + initialDistanceVector,
-                radius: 16,
-                lineColor: Color.Red,
-                lineCount: 16
-
-            )
-            {
-                Velocity = initialVelocityVector,
-                Controller = controller,
-                DrawArrows = true
-            };
+            return controller;
         }
 
+        private IShipController CreateController2()
+        {
+            var controller = new KeyboardController(_keyboardHandler);
+
+            controller.SetMapping(Keys.W, ShipAction.Thrust);
+            controller.SetMapping(Keys.A, ShipAction.TurnLeft);
+            controller.SetMapping(Keys.D, ShipAction.TurnRight);
+            controller.SetMapping(Keys.S, ShipAction.ReverseThrust);
+            controller.SetMapping(Keys.R, ShipAction.FireProjectile);
+
+            return controller;
+        }
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -149,15 +105,15 @@ namespace SpaceWar2
         /// </summary>
         protected override void Initialize()
         {
-            basicEffect = new BasicEffect(graphics.GraphicsDevice);
-            basicEffect.VertexColorEnabled = true;
-            basicEffect.Projection = Matrix.CreateOrthographicOffCenter(
-                0, graphics.GraphicsDevice.Viewport.Width,     // left, right
-                graphics.GraphicsDevice.Viewport.Height, 0,    // bottom, top
-                0,1);                                         // near, far plane
-
+            _basicEffect = new BasicEffect(_graphics.GraphicsDevice)
+            {
+                VertexColorEnabled = true,
+                Projection = Matrix.CreateOrthographicOffCenter(
+                    0, _graphics.GraphicsDevice.Viewport.Width, // left, right
+                    _graphics.GraphicsDevice.Viewport.Height, 0, // bottom, top
+                    0, 1)
+            };
             
-
             ResetGame();
 
             base.Initialize();
@@ -170,18 +126,17 @@ namespace SpaceWar2
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            infoBar = new InfoBar(spriteBatch);
-            infoBar.LoadContent(Content);
+            _infoBar = new InfoBar(_spriteBatch);
+            _infoBar.LoadContent(Content);
 
-            viewport = graphics.GraphicsDevice.Viewport;
+            _viewport = _graphics.GraphicsDevice.Viewport;
 
-            minX = viewport.X;
-            minY = viewport.Y;
-            maxX = viewport.Width;
-            maxY = viewport.Height;
-
+            _minX = _viewport.X;
+            _minY = _viewport.Y;
+            _maxX = _viewport.Width;
+            _maxY = _viewport.Height;
         }
 
         /// <summary>
@@ -200,108 +155,75 @@ namespace SpaceWar2
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            _keyboardHandler.UpdateKeyboardState();
 
-            keyboardHandler.UpdateKeyboardState();
-
-            if (keyboardHandler.IsNewlyPressed(Keys.Space))
+            if (_keyboardHandler.IsNewlyPressed(Keys.Space))
             {
-
-                paused = !paused;
-
+                _paused = !_paused;
             }
 
-            if (keyboardHandler.IsNewlyPressed(Keys.Escape))
+            if (_keyboardHandler.IsNewlyPressed(Keys.Escape))
             {
-
                 ResetGame();
-
             }
 
-            if (keyboardHandler.IsNewlyPressed(Keys.X))
+            if (_keyboardHandler.IsNewlyPressed(Keys.X))
             {
-
-                ship1.Damage(10);
-
+                _ship1.Damage(10);
             }
 
-            if (!paused)
+            if (!_paused)
             {
+                _gameObjects.RemoveAll(obj => obj.Expired);
 
-                gameObjects.RemoveAll(obj => obj.Expired);
-
-                gameObjects.ForEach<IGameObject, Ship>(ship =>
+                _gameObjects.ForEach<IGameObject, Ship>(ship =>
                 {
-
                     ship.Acceleration = Vector2.Zero;
-
-                    applyGravity(ship, sun);
-
+                    ApplyGravity(ship, _sun);
                     ship.Update(gameTime);
-
-                    screenConstraint(ship);
-
+                    ScreenConstraint(ship);
                 });
-
-
-            }
+           }
 
             base.Update(gameTime);
         }
 
-        private void applyGravity(Ship smallObject, IMassive massiveObject)
+        private static void ApplyGravity(Ship smallObject, IMassive massiveObject)
         {
             Vector2 diff = massiveObject.Position - smallObject.Position;
 
             if (diff.Length() > smallObject.Radius + massiveObject.Radius)
             {
-                float d = diff.LengthSquared();
                 diff.Normalize();
-
                 smallObject.Acceleration += diff * massiveObject.Mass / diff.LengthSquared();
-
             }
-
         }
 
-        private void screenConstraint(Ship ship)
+        private void ScreenConstraint(Ship ship)
         {
-
             Vector2 position = ship.Position;
 
-            if (position.X < minX)
+            if (position.X < _minX)
             {
-
-                position.X = maxX + position.X % viewport.Width;
-
+                position.X = _maxX + position.X % _viewport.Width;
             }
 
-            if (position.X > maxX)
+            if (position.X > _maxX)
             {
-
-                position.X = minX - position.X % viewport.Width;
-
+                position.X = _minX - position.X % _viewport.Width;
             }
 
-            if (position.Y < minY)
+            if (position.Y < _minY)
             {
-
-                position.Y = maxY + position.Y % viewport.Height;
-
+                position.Y = _maxY + position.Y % _viewport.Height;
             }
 
-            if (position.Y > maxY)
+            if (position.Y > _maxY)
             {
-
-                position.Y = minY - position.Y % viewport.Height;
-
+                position.Y = _minY - position.Y % _viewport.Height;
             }
 
-            if (position != ship.Position)
-            {
-
-                ship.Position = position;
-            }
-
+            ship.Position = position;
         }
 
 
@@ -313,18 +235,14 @@ namespace SpaceWar2
         {
             GraphicsDevice.Clear(Color.Black);
 
-            basicEffect.CurrentTechnique.Passes[0].Apply();
+            _basicEffect.CurrentTechnique.Passes[0].Apply();
 
-            infoBar.Reset();
-
-
-            gameObjects.ForEach(gameObject => gameObject.Draw());
-
-            gameObjects.ForEach<IGameObject, Ship>(infoBar.DrawShipInfo);            
+            _infoBar.Reset();
+            
+            _gameObjects.ForEach(gameObject => gameObject.Draw());
+            _gameObjects.ForEach<IGameObject, Ship>(_infoBar.DrawShipInfo);            
 
             base.Draw(gameTime);
         }
     }
-
-
 }

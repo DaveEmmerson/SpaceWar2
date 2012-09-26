@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SpaceWar2
 {
     public static class MyExtensions
     {
-        public static void ForEach<B, S>(this List<B> items, Action<S> action)
-            where B : class
-            where S : class,B
+        public static void ForEach<TBase, TSubClass>(this List<TBase> items, Action<TSubClass> action)
+            where TBase : class
+            where TSubClass : class,TBase
         {
-
-            foreach (var item in items.OfType<S>())
+            foreach (var item in items.OfType<TSubClass>())
             {
                 action(item);
             }
