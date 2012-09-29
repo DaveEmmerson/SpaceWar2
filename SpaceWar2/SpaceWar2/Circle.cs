@@ -39,7 +39,7 @@ namespace SpaceWar2
             {
                 var angle = (float)(i / (float)(LineCount - 1) * Math.PI * 2);
 
-                _vertices[i].Position = new Vector3(Position.X + (float)Math.Cos(angle) * Radius, Position.Y + (float)Math.Sin(angle) * Radius, 0);
+                _vertices[i].Position = new Vector3((float)Math.Cos(angle) * Radius, (float)Math.Sin(angle) * Radius, 0);
                 _vertices[i].Color = LineColor;
             }
 
