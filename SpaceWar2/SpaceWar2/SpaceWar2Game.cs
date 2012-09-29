@@ -35,12 +35,14 @@ namespace SpaceWar2
 
         private readonly KeyboardHandler _keyboardHandler;
         private readonly GameObjectFactory _gameObjectFactory;
+        private readonly GravitySimulator _gravitySimulator;
         
         public SpaceWar2Game()
         {
             _graphics = new GraphicsDeviceManager(this);
-            _gameObjectFactory = new GameObjectFactory(_graphics);
-
+            _gravitySimulator = new GravitySimulator();
+            _gameObjectFactory = new GameObjectFactory(_graphics, _gravitySimulator);
+            
             Content.RootDirectory = "Content";
 
             _gameObjects = new List<IGameObject>();
@@ -53,7 +55,6 @@ namespace SpaceWar2
 
         private void ResetGame()
         {
-
             _gameObjects.Clear();
 
             var viewport = _graphics.GraphicsDevice.Viewport;
@@ -185,7 +186,9 @@ namespace SpaceWar2
                     ship.Update(gameTime);
                     ScreenConstraint(ship);
                 });
-           }
+
+                _gravitySimulator.Simulate();
+            }
 
             base.Update(gameTime);
         }
