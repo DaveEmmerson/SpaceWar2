@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 
 namespace SpaceWar2
 {
-    public class GameObjectFactory : Game
+    public class GameObjectFactory
     {
         private readonly GraphicsDeviceManager _graphics;
 
