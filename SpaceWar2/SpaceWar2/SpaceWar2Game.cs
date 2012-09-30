@@ -139,7 +139,7 @@ namespace SpaceWar2
             // Create a new SpriteBatch, which can be used to draw textures.
 
 
-            _effect = Content.Load<Effect>("HLSLTest");
+            _effect = Content.Load<Effect>("Effects/HLSLTest");
 
             _effect.Parameters["View"].SetValue(_view);
             _effect.Parameters["Projection"].SetValue(_projection);
