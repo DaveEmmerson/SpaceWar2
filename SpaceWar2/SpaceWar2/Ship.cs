@@ -128,22 +128,22 @@ namespace SpaceWar2
 
             float arrowSize = Radius / 4;
             
-            arrow[0].Position = new Vector3(Position + vector * Radius, 0);
+            arrow[0].Position = new Vector3(vector * Radius, 0);
             arrow[0].Color = color;
 
-            arrow[1].Position = new Vector3(Position + vector * Radius * 2, 0);
+            arrow[1].Position = new Vector3(vector * Radius * 2, 0);
             arrow[1].Color = color;
 
-            arrow[2].Position = new Vector3(Position + vector * (Radius * 2 - arrowSize) -
+            arrow[2].Position = new Vector3(vector * (Radius * 2 - arrowSize) -
                                             perpendicular * arrowSize, 0);
 
             arrow[2].Color = color;
 
-            arrow[3].Position = new Vector3(Position + vector * (Radius * 2 - arrowSize) -
+            arrow[3].Position = new Vector3(vector * (Radius * 2 - arrowSize) -
                                             -perpendicular * arrowSize, 0);
             arrow[3].Color = color;
 
-            arrow[4].Position = new Vector3(Position + vector * Radius * 2, 0);
+            arrow[4].Position = new Vector3(vector * Radius * 2, 0);
             arrow[4].Color = color;
             
             return arrow;
