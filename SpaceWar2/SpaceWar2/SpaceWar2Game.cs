@@ -60,7 +60,7 @@ namespace SpaceWar2
         {
             _gameObjects.Clear();
 
-            var sunPosition = new Vector2(_viewport.Width/2,_viewport.Height/2);
+            var sunPosition = new Vector2(_viewport.Width/2f,_viewport.Height/2f);
             _sun = _gameObjectFactory.CreateSun(sunPosition, Color.Red, _speed * _speed);
 
             var controller1 = CreateController1();
@@ -191,29 +191,18 @@ namespace SpaceWar2
             {
                 _gameObjects.RemoveAll(obj => obj.Expired);
 
+                _gameObjects.ForEach<IGameObject, Ship>(ship => ship.Acceleration = Vector2.Zero);
+                
+                _gravitySimulator.Simulate();
+                
                 _gameObjects.ForEach<IGameObject, Ship>(ship =>
                 {
-                    ship.Acceleration = Vector2.Zero;
-                    ApplyGravity(ship, _sun);
-                    ship.Update(gameTime);
                     //ScreenConstraint(ship);
+                    ship.Update(gameTime);
                 });
-
-                _gravitySimulator.Simulate();
             }
 
             base.Update(gameTime);
-        }
-
-        private static void ApplyGravity(Ship smallObject, IMassive massiveObject)
-        {
-            Vector2 diff = massiveObject.Position - smallObject.Position;
-
-            if (diff.Length() > smallObject.Radius + massiveObject.Radius)
-            {
-                diff.Normalize();
-                smallObject.Acceleration += diff * massiveObject.Mass / diff.LengthSquared();
-            }
         }
 
         private void ScreenConstraint(Ship ship)
