@@ -44,5 +44,11 @@ namespace SpaceWar2
 
             return acceleration;
         }
+
+        internal void Clear()
+        {
+            _participants.Clear();
+            _sources.Clear();
+        }
     }
 }

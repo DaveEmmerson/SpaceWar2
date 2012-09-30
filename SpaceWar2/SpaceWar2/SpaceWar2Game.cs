@@ -59,6 +59,7 @@ namespace SpaceWar2
         private void ResetGame()
         {
             _gameObjects.Clear();
+            _gravitySimulator.Clear();
 
             var sunPosition = new Vector2(_viewport.Width/2f,_viewport.Height/2f);
             _sun = _gameObjectFactory.CreateSun(sunPosition, Color.Red, _speed * _speed);
