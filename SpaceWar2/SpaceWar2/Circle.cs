@@ -53,7 +53,6 @@ namespace SpaceWar2
 
         public virtual void Draw()
         {
-            CreateVertices();
 
             DrawLineStrip(_vertices);
         }
