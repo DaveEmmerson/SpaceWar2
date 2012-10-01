@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -21,10 +22,7 @@ namespace SpaceWar2
         private SpriteBatch _spriteBatch;
 
         private InfoBar _infoBar;
-
-        //this reference is only used for the apply damage button so can probably go
-        private Ship _ship1;
-
+        
         private readonly Vector2 _initialDistance;
         private readonly Vector2 _initialVelocity;
 
@@ -60,7 +58,7 @@ namespace SpaceWar2
 
             var controller1 = CreateController1();
             var ship1Position = sunPosition + _initialDistance;
-            _ship1 = _gameObjectFactory.CreateShip("ship 1", ship1Position, _initialVelocity, Color.Red, controller1);
+            _gameObjectFactory.CreateShip("ship 1", ship1Position, _initialVelocity, Color.Red, controller1);
 
             var controller2 = CreateController2();
             var ship2Position = sunPosition - _initialDistance;
@@ -180,7 +178,11 @@ namespace SpaceWar2
 
             if (_keyboardHandler.IsNewlyPressed(Keys.X))
             {
-                _ship1.Damage(10);
+                var ship = _gameObjectFactory.GameObjects.OfType<Ship>().SingleOrDefault(x => x.Name == "ship 1");
+                if (ship != null)
+                {
+                    ship.Damage(10);
+                }
             }
 
             if (!_paused)
@@ -194,7 +196,7 @@ namespace SpaceWar2
                 
                 gameObjects.ForEach<IGameObject, Ship>(ship =>
                 {
-                    //ScreenConstraint(ship);
+                    ScreenConstraint(ship);
                     ship.Update(gameTime);
                 });
             }
