@@ -65,6 +65,12 @@ namespace SpaceWar2
             var controller2 = CreateController2();
             var ship2Position = sunPosition - _initialDistance;
             _gameObjectFactory.CreateShip("ship2", ship2Position, -_initialVelocity, Color.Blue, controller2);
+
+            sunPosition = new Vector2(_viewport.Width / 2f + 200, _viewport.Height / 2f);
+            _gameObjectFactory.CreateSun(sunPosition, Color.Orange, _speed * _speed);
+
+            sunPosition = new Vector2(_viewport.Width / 2f - 200, _viewport.Height / 2f);
+            _gameObjectFactory.CreateSun(sunPosition, Color.OrangeRed, _speed * _speed);
         }
 
         private IShipController CreateController1()
@@ -142,7 +148,6 @@ namespace SpaceWar2
 
             _infoBar = new InfoBar(_spriteBatch);
             _infoBar.LoadContent(Content);
-
         }
 
         /// <summary>
