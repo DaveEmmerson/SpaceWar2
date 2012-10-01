@@ -7,7 +7,7 @@ namespace SpaceWar2
 {
     public class SpaceWar2Game : Game
     {
-        private const float _speed = 100f;
+        private const float Speed = 100f;
 
         private readonly GraphicsDeviceManager _graphics;
 
@@ -45,7 +45,7 @@ namespace SpaceWar2
             _keyboardHandler = new KeyboardHandler();
 
             _initialDistance = new Vector2(0,100);
-            _initialVelocity = new Vector2(_speed,0);
+            _initialVelocity = new Vector2(Speed,0);
         }
 
         private void ResetGame()
@@ -54,7 +54,7 @@ namespace SpaceWar2
             _gravitySimulator.Clear();
 
             var sunPosition = new Vector2(_viewport.Width/2f,_viewport.Height/2f);
-            _gameObjectFactory.CreateSun(sunPosition, Color.Red, _speed * _speed);
+            _gameObjectFactory.CreateSun(sunPosition, Color.Red, Speed * Speed);
 
             var controller1 = CreateController1();
             var ship1Position = sunPosition + _initialDistance;
@@ -65,10 +65,10 @@ namespace SpaceWar2
             _gameObjectFactory.CreateShip("ship2", ship2Position, -_initialVelocity, Color.Blue, controller2);
 
             sunPosition = new Vector2(_viewport.Width / 2f + 200, _viewport.Height / 2f);
-            _gameObjectFactory.CreateSun(sunPosition, Color.Orange, _speed * _speed);
+            _gameObjectFactory.CreateSun(sunPosition, Color.Orange, Speed * Speed);
 
             sunPosition = new Vector2(_viewport.Width / 2f - 200, _viewport.Height / 2f);
-            _gameObjectFactory.CreateSun(sunPosition, Color.OrangeRed, _speed * _speed);
+            _gameObjectFactory.CreateSun(sunPosition, Color.OrangeRed, Speed * Speed);
         }
 
         private IShipController CreateController1()
