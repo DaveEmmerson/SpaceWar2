@@ -1,13 +1,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 namespace SpaceWar2
 {
     public class SpaceWar2Game : Game
     {
-        private const float _speed = 10f;
+        private const float _speed = 100f;
 
         private readonly GraphicsDeviceManager _graphics;
 
@@ -21,13 +20,10 @@ namespace SpaceWar2
 
         private SpriteBatch _spriteBatch;
 
-        private readonly List<IGameObject> _gameObjects;
-
         private InfoBar _infoBar;
 
-        private Sun _sun;
+        //this reference is only used for the apply damage button so can probably go
         private Ship _ship1;
-        private Ship _ship2;
 
         private readonly Vector2 _initialDistance;
         private readonly Vector2 _initialVelocity;
@@ -47,34 +43,28 @@ namespace SpaceWar2
             _gameObjectFactory = new GameObjectFactory(_graphics, _gravitySimulator);
             
             Content.RootDirectory = "Content";
-
-            _gameObjects = new List<IGameObject>();
-
+            
             _keyboardHandler = new KeyboardHandler();
 
             _initialDistance = new Vector2(0,100);
-            _initialVelocity = new Vector2(10f * _speed,0);
+            _initialVelocity = new Vector2(_speed,0);
         }
 
         private void ResetGame()
         {
-            _gameObjects.Clear();
+            _gameObjectFactory.DestroyAll(x=>true);
             _gravitySimulator.Clear();
 
             var sunPosition = new Vector2(_viewport.Width/2f,_viewport.Height/2f);
-            _sun = _gameObjectFactory.CreateSun(sunPosition, Color.Red, _speed * _speed);
+            _gameObjectFactory.CreateSun(sunPosition, Color.Red, _speed * _speed);
 
             var controller1 = CreateController1();
-            var ship1Position = _sun.Position + _initialDistance;
+            var ship1Position = sunPosition + _initialDistance;
             _ship1 = _gameObjectFactory.CreateShip("ship 1", ship1Position, _initialVelocity, Color.Red, controller1);
 
             var controller2 = CreateController2();
-            var ship2Position = _sun.Position - _initialDistance;
-            _ship2 = _gameObjectFactory.CreateShip("ship2", ship2Position, -_initialVelocity, Color.Blue, controller2);
-            
-            _gameObjects.Add(_sun);
-            _gameObjects.Add(_ship1);
-            _gameObjects.Add(_ship2);
+            var ship2Position = sunPosition - _initialDistance;
+            _gameObjectFactory.CreateShip("ship2", ship2Position, -_initialVelocity, Color.Blue, controller2);
         }
 
         private IShipController CreateController1()
@@ -190,13 +180,14 @@ namespace SpaceWar2
 
             if (!_paused)
             {
-                _gameObjects.RemoveAll(obj => obj.Expired);
+                _gameObjectFactory.DestroyAll(obj => obj.Expired);
+                var gameObjects = _gameObjectFactory.GameObjects;
 
-                _gameObjects.ForEach<IGameObject, Ship>(ship => ship.Acceleration = Vector2.Zero);
+                gameObjects.ForEach<IGameObject, Ship>(ship => ship.Acceleration = Vector2.Zero);
                 
                 _gravitySimulator.Simulate();
                 
-                _gameObjects.ForEach<IGameObject, Ship>(ship =>
+                gameObjects.ForEach<IGameObject, Ship>(ship =>
                 {
                     //ScreenConstraint(ship);
                     ship.Update(gameTime);
@@ -244,16 +235,18 @@ namespace SpaceWar2
 
             _infoBar.Reset();
             
-            _gameObjects.ForEach(gameObject => {
+            var gameObjects = _gameObjectFactory.GameObjects;
 
+            gameObjects.ForEach<IGameObject, IGameObject>(gameObject =>
+            {
                 _effect.Parameters["World"].SetValue(Matrix.CreateTranslation(new Vector3(gameObject.Position, 0.0f)));
 
                 _effect.CurrentTechnique.Passes[0].Apply();
 
                 gameObject.Draw();
-
             });
-            _gameObjects.ForEach<IGameObject, Ship>(_infoBar.DrawShipInfo);            
+
+            gameObjects.ForEach<IGameObject, Ship>(_infoBar.DrawShipInfo);            
 
             base.Draw(gameTime);
         }

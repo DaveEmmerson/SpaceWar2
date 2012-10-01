@@ -34,7 +34,7 @@ namespace SpaceWar2
 
         private static Vector2 CalculateAccelerationDueToGravity(IMassive source, IGameObject participant)
         {
-            const int gravitationalConstant = -10000;
+            const int gravitationalConstant = -100;
 
             var unitVector = NormalizeVectorBetween(source, participant);
             var diff = (participant.Position - source.Position);
