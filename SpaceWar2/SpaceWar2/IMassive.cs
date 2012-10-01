@@ -1,12 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-
-namespace SpaceWar2
+﻿namespace SpaceWar2
 {
-    interface IMassive
+    interface IMassive : IGameObject
     {
         float Mass { get; set; }
-
-        Vector2 Position { get; set; }
 
         float Radius { get; set; }
     }
