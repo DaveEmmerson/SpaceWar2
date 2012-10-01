@@ -51,7 +51,6 @@ namespace SpaceWar2
         private void ResetGame()
         {
             _gameObjectFactory.DestroyAll(x=>true);
-            _gravitySimulator.Clear();
 
             var sunPosition = new Vector2(_viewport.Width/2f,_viewport.Height/2f);
             _gameObjectFactory.CreateSun(sunPosition, Color.Red, Speed * Speed);
@@ -230,7 +229,6 @@ namespace SpaceWar2
 
             ship.Position = position;
         }
-
 
         /// <summary>
         /// This is called when the game should draw itself.

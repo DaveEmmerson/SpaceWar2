@@ -49,6 +49,7 @@ namespace SpaceWar2
             
             foreach (var item in itemsToDestory)
             {
+                _gravitySimulator.UnRegister(item);
                 GameObjects.Remove(item);
             }
         }

@@ -19,6 +19,12 @@ namespace SpaceWar2
             _participants.Add(participant);
         }
 
+        internal void UnRegister(IGameObject item)
+        {
+            _participants.Remove(item);
+            _sources.Remove(item);
+        }
+
         internal void Simulate()
         {
             //TODO MW should probably either make sources IMassive, or put mass on GameObject.
@@ -54,12 +60,6 @@ namespace SpaceWar2
             Vector2 unitVector = participant.Position - source.Position;
             unitVector.Normalize();
             return unitVector;
-        }
-
-        internal void Clear()
-        {
-            _participants.Clear();
-            _sources.Clear();
         }
     }
 }
