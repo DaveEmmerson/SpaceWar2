@@ -34,15 +34,26 @@ namespace SpaceWar2
 
         private static Vector2 CalculateAccelerationDueToGravity(IMassive source, IGameObject participant)
         {
-            Vector2 diff = source.Position - participant.Position;
+            const int gravitationalConstant = -10000;
 
-            //if (diff.Length() > smallObject.Radius + massiveObject.Radius)
-            //{
-                diff.Normalize();
-                var acceleration = diff * source.Mass / diff.LengthSquared();
-            //}
+            var unitVector = NormalizeVectorBetween(source, participant);
+            var diff = (participant.Position - source.Position);
+            
+            if (diff.Length() > source.Radius)
+            {
+                var lengthSquared = diff.LengthSquared();
 
-            return acceleration;
+                return gravitationalConstant * (source.Mass / lengthSquared) * unitVector;
+            }
+
+            return new Vector2(0f,0f);
+        }
+
+        private static Vector2 NormalizeVectorBetween(IMassive source, IGameObject participant)
+        {
+            Vector2 unitVector = participant.Position - source.Position;
+            unitVector.Normalize();
+            return unitVector;
         }
 
         internal void Clear()
