@@ -36,7 +36,7 @@ namespace SpaceWar2
 
         public void LoadContent(ContentManager contentManager) 
         {
-            _font = contentManager.Load<SpriteFont>("Segoe UI Mono");
+            _font = contentManager.Load<SpriteFont>("Fonts/Segoe UI Mono");
         }
         
         public void DrawString(string heading, string value) 
