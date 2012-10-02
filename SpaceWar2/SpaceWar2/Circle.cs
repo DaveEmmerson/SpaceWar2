@@ -50,15 +50,14 @@ namespace SpaceWar2
             _vertices[LineCount - 1] = _vertices[0];
         }
         
-        protected void DrawLineStrip(VertexPositionColor[] array)
-        {
-            Graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, array, 0, array.Length - 1);
-        }
-
         public virtual void Draw()
         {
-
             DrawLineStrip(_vertices);
+        }
+
+        internal void DrawLineStrip(VertexPositionColor[] array)
+        {
+            Graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, array, 0, array.Length - 1);
         }
     }
 }

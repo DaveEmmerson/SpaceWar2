@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceWar2
 {
-    class Ship : Circle
+    class Ship : IGameObject
     {
         const float ThrustPower = 100F;
         const float ThrustEnergyCost = 0.1F;
@@ -93,14 +93,20 @@ namespace SpaceWar2
         private float _explosionRadiusIncrement;
 
         public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color lineColor, uint lineCount)
-             : base(graphics,position,radius,lineColor,lineCount)
         {
             Name = name;
             ShieldRechargeRate = 0.1F;
             EnergyRechargeRate = 0.01F;
             Energy = 100F;
             CreateVertices();
+
+            Position = position;
+            Radius = radius;
+            
+            Model = new Circle(graphics, position, radius, lineColor, lineCount);
         }
+
+        private Circle Model { get; set; }
 
         private void CreateVertices()
         {
@@ -147,18 +153,24 @@ namespace SpaceWar2
             return arrow;
         }
 
-        public override void Draw()
+        public bool Expired { get; private set; }
+        public Vector2 Position { get; set; }
+        public Vector2 Acceleration { get; set; }
+        public float Mass { get; set; }
+        public float Radius { get; set; }
+
+        public void Draw()
         {
             CreateVertices();
 
             if (DrawArrows)
             {
-                DrawLineStrip(_accelerationArrow);
-                DrawLineStrip(_velocityArrow);
-                DrawLineStrip(_rotationArrow);
+                Model.DrawLineStrip(_accelerationArrow);
+                Model.DrawLineStrip(_velocityArrow);
+                Model.DrawLineStrip(_rotationArrow);
             }
 
-            base.Draw();
+            Model.Draw();
         }
 
         public void Update(GameTime gameTime)
