@@ -4,50 +4,30 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceWar2
 {
-    class Circle : IGameObject
+    class Circle
     {
-        public GraphicsDeviceManager Graphics { get; set; }
-
-        public Vector2 Position { get; set; }
-
-        public bool Expired { get; protected set; }
-
-        public float Mass { get; set; }
-
-        public float Radius { get; set; }
-
-        public Vector2 Acceleration { get; set; }
-
-        public Color LineColor { get; set; }
-
-        public uint LineCount { get; set; }
-
+        private readonly GraphicsDeviceManager _graphics;
         private VertexPositionColor[] _vertices;
 
-        public Circle(GraphicsDeviceManager graphics, Vector2 position, float radius, Color lineColor, uint lineCount)
+        public Circle(GraphicsDeviceManager graphics, float radius, Color lineColor, uint lineCount)
         {
-            Graphics = graphics;
-            Position = position;
-            Radius = radius;
-            LineColor = lineColor;
-            LineCount = lineCount;
-
-            CreateVertices();
+            _graphics = graphics;
+            CreateVertices(radius, lineColor, lineCount);
         }
 
-        private void CreateVertices()
+        private void CreateVertices(float radius, Color lineColor, uint lineCount)
         {
-            _vertices = new VertexPositionColor[LineCount];
+            _vertices = new VertexPositionColor[lineCount];
 
-            for (var i = 0; i < LineCount - 1; i++)
+            for (var i = 0; i < lineCount - 1; i++)
             {
-                var angle = (float)(i / (float)(LineCount - 1) * Math.PI * 2);
+                var angle = (float)(i / (float)(lineCount - 1) * Math.PI * 2);
 
-                _vertices[i].Position = new Vector3((float)Math.Cos(angle) * Radius, (float)Math.Sin(angle) * Radius, 0);
-                _vertices[i].Color = LineColor;
+                _vertices[i].Position = new Vector3((float)Math.Cos(angle) * radius, (float)Math.Sin(angle) * radius, 0);
+                _vertices[i].Color = lineColor;
             }
 
-            _vertices[LineCount - 1] = _vertices[0];
+            _vertices[lineCount - 1] = _vertices[0];
         }
         
         public virtual void Draw()
@@ -57,7 +37,7 @@ namespace SpaceWar2
 
         internal void DrawLineStrip(VertexPositionColor[] array)
         {
-            Graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, array, 0, array.Length - 1);
+            _graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, array, 0, array.Length - 1);
         }
     }
 }

@@ -103,7 +103,7 @@ namespace SpaceWar2
             Position = position;
             Radius = radius;
             
-            Model = new Circle(graphics, position, radius, lineColor, lineCount);
+            Model = new Circle(graphics, radius, lineColor, lineCount);
         }
 
         private Circle Model { get; set; }
