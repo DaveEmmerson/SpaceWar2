@@ -2,7 +2,7 @@
 
 namespace SpaceWar2
 { 
-    class Sun : Circle, IMassive
+    class Sun : Circle, IGameObject
     {
         public float Mass { get; set; }
 

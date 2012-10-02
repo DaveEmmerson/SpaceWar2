@@ -12,6 +12,8 @@ namespace SpaceWar2
 
         public bool Expired { get; protected set; }
 
+        public float Mass { get; set; }
+
         public float Radius { get; set; }
 
         public Color LineColor { get; set; }

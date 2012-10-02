@@ -27,8 +27,7 @@ namespace SpaceWar2
 
         internal void Simulate()
         {
-            //TODO MW should probably either make sources IMassive, or put mass on GameObject.
-            foreach (var source in _sources.OfType<IMassive>())
+            foreach (var source in _sources)
             {
                 //TODO MW similar to the above should make Gameobject have accelertion or make all participants Ships
                 foreach (var participant in _participants.OfType<Ship>())
@@ -38,7 +37,7 @@ namespace SpaceWar2
             }
         }
 
-        private static Vector2 CalculateAccelerationDueToGravity(IMassive source, IGameObject participant)
+        private static Vector2 CalculateAccelerationDueToGravity(IGameObject source, IGameObject participant)
         {
             const int gravitationalConstant = -100;
 
@@ -55,7 +54,7 @@ namespace SpaceWar2
             return new Vector2(0f,0f);
         }
 
-        private static Vector2 NormalizeVectorBetween(IMassive source, IGameObject participant)
+        private static Vector2 NormalizeVectorBetween(IGameObject source, IGameObject participant)
         {
             Vector2 unitVector = participant.Position - source.Position;
             unitVector.Normalize();
