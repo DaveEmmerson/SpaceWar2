@@ -30,7 +30,7 @@ namespace SpaceWar2
             //TODO MW should probably either make sources IMassive, or put mass on GameObject.
             foreach (var source in _sources.OfType<IMassive>())
             {
-                //TODO MW similar to the above should make Gameobject have acceleartion or make all participants Ships
+                //TODO MW similar to the above should make Gameobject have accelertion or make all participants Ships
                 foreach (var participant in _participants.OfType<Ship>())
                 {
                     participant.Acceleration += CalculateAccelerationDueToGravity(source, participant);
