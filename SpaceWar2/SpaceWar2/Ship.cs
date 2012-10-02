@@ -76,9 +76,7 @@ namespace SpaceWar2
         public float Rotation { get; set; }
 
         public Vector2 Velocity { get; set; }
-
-        public Vector2 Acceleration { get; set; }
-
+        
         public IShipController Controller { get; set; }
 
         public bool DrawArrows { get; set; }

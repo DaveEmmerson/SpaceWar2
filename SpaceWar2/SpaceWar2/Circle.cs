@@ -16,6 +16,8 @@ namespace SpaceWar2
 
         public float Radius { get; set; }
 
+        public Vector2 Acceleration { get; set; }
+
         public Color LineColor { get; set; }
 
         public uint LineCount { get; set; }

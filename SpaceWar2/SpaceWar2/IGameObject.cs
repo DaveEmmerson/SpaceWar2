@@ -7,6 +7,8 @@ namespace SpaceWar2
         bool Expired { get; }
 
         Vector2 Position { get; set; }
+
+        Vector2 Acceleration { get; set; }
         float Mass { get; set; }
         float Radius { get; set; }
 

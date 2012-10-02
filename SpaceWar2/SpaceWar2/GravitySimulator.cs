@@ -29,8 +29,7 @@ namespace SpaceWar2
         {
             foreach (var source in _sources)
             {
-                //TODO MW similar to the above should make Gameobject have accelertion or make all participants Ships
-                foreach (var participant in _participants.OfType<Ship>())
+                foreach (var participant in _participants)
                 {
                     participant.Acceleration += CalculateAccelerationDueToGravity(source, participant);
                 }
