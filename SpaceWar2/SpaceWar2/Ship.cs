@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceWar2
 {
@@ -81,16 +81,13 @@ namespace SpaceWar2
 
         public bool DrawArrows { get; set; }
 
-        private VertexPositionColor[] _accelerationArrow;
-        private VertexPositionColor[] _velocityArrow;
-        private VertexPositionColor[] _rotationArrow;
-
         private const float ExplosionRadiusMultiplier = 1.4F;
         private const float ExplosionSpeed = 0.5F;
         private bool _exploding;
         private bool _imploding;
         private float _explosionTargetRadius;
         private float _explosionRadiusIncrement;
+        private readonly GraphicsDeviceManager _graphics;
 
         public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color lineColor, uint lineCount)
         {
@@ -98,59 +95,31 @@ namespace SpaceWar2
             ShieldRechargeRate = 0.1F;
             EnergyRechargeRate = 0.01F;
             Energy = 100F;
-            CreateVertices();
-
+            
             Position = position;
             Radius = radius;
-            
-            Model = new Circle(graphics, radius, lineColor, lineCount);
+            _graphics = graphics;
+            _model = new Circle(graphics, radius, lineColor, lineCount);
+            _arrows = new List<Arrow>();
         }
 
-        private Circle Model { get; set; }
+        private readonly Circle _model;
+        private readonly IList<Arrow> _arrows;
 
         private void CreateVertices()
         {
+            _arrows.Clear();
             if (DrawArrows)
             {
-                _accelerationArrow = GetArrow(Acceleration, Color.LimeGreen);
-                _velocityArrow = GetArrow(Velocity, Color.Linen);
-                _rotationArrow = GetArrow(new Vector2((float)Math.Sin(Rotation), -(float)Math.Cos(Rotation)), Color.Red);
+                var accelerationArrow = new Arrow(_graphics, Acceleration, Color.LimeGreen, Radius);
+                var velocityArrow = new Arrow(_graphics, Velocity, Color.Linen, Radius);
+                var rotationAngle = new Vector2((float) Math.Sin(Rotation), -(float) Math.Cos(Rotation));
+                var rotationArrow = new Arrow(_graphics, rotationAngle, Color.Red, Radius);
+
+                _arrows.Add(accelerationArrow);
+                _arrows.Add(velocityArrow);
+                _arrows.Add(rotationArrow);
             }
-        }
-
-        private VertexPositionColor[] GetArrow(Vector2 vector, Color color)
-        {
-            var arrow = new VertexPositionColor[5];
-
-            if (vector == Vector2.Zero)
-            {
-                return arrow;
-            }
-            vector.Normalize();
-
-            var perpendicular = new Vector2(-vector.Y, vector.X);
-
-            float arrowSize = Radius / 4;
-            
-            arrow[0].Position = new Vector3(vector * Radius, 0);
-            arrow[0].Color = color;
-
-            arrow[1].Position = new Vector3(vector * Radius * 2, 0);
-            arrow[1].Color = color;
-
-            arrow[2].Position = new Vector3(vector * (Radius * 2 - arrowSize) -
-                                            perpendicular * arrowSize, 0);
-
-            arrow[2].Color = color;
-
-            arrow[3].Position = new Vector3(vector * (Radius * 2 - arrowSize) -
-                                            -perpendicular * arrowSize, 0);
-            arrow[3].Color = color;
-
-            arrow[4].Position = new Vector3(vector * Radius * 2, 0);
-            arrow[4].Color = color;
-            
-            return arrow;
         }
 
         public bool Expired { get; private set; }
@@ -163,14 +132,12 @@ namespace SpaceWar2
         {
             CreateVertices();
 
-            if (DrawArrows)
+            foreach (var arrow in _arrows)
             {
-                Model.DrawLineStrip(_accelerationArrow);
-                Model.DrawLineStrip(_velocityArrow);
-                Model.DrawLineStrip(_rotationArrow);
+                arrow.Draw();
             }
 
-            Model.Draw();
+            _model.Draw();
         }
 
         public void Update(GameTime gameTime)
