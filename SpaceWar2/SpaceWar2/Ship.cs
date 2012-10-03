@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace SpaceWar2
 {
-    class Ship : IGameObject
+    class Ship : GameObject
     {
         private const float ThrustPower = 100F;
         private const float ThrustEnergyCost = 0.1F;
@@ -23,21 +23,28 @@ namespace SpaceWar2
         private readonly IList<Arrow> _arrows;
         
         public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color lineColor, uint lineCount)
+            : base (position, radius, 1)
         {
+            _graphics = graphics;
+            _model = new Circle(graphics, radius, lineColor, lineCount);
+            _arrows = new List<Arrow>();
+
             Name = name;
 
             Energy = 100F;
             Armour = 100F;
-
-            Position = position;
-            Radius = radius;
-            _graphics = graphics;
-            _model = new Circle(graphics, radius, lineColor, lineCount);
-            _arrows = new List<Arrow>();
         }
 
+        //Settings
+        public string Name { get; set; }
+        public bool DrawArrows { get; set; }
+        
+        //State
+        public Vector2 Velocity { private get; set; }
+        private float _rotation;
+
         private float _shields = MaxShieldLevel;
-        public float Shields 
+        public float Shields
         {
             get { return _shields; }
 
@@ -61,7 +68,7 @@ namespace SpaceWar2
         }
 
         private float _energy;
-        public float Energy 
+        public float Energy
         {
             get { return _energy; }
             set { _energy = value > MaxEnergyLevel ? MaxEnergyLevel : value; }
@@ -90,26 +97,12 @@ namespace SpaceWar2
             }
         }
 
-        //Settings
-        public string Name { get; set; }
-        public bool DrawArrows { get; set; }
-        
-        //State
-        public Vector2 Velocity { private get; set; }
-        private float _rotation;
         private bool _exploding;
         private bool _imploding;
         private float _explosionTargetRadius;
         private float _explosionRadiusIncrement;
         
-        //IGameObject stuff
-        public bool Expired { get; private set; }
-        public Vector2 Position { get; set; }
-        public Vector2 Acceleration { get; set; }
-        public float Mass { get; set; }
-        public float Radius { get; set; }
-
-        public void Draw()
+        public override void Draw()
         {
             CreateArrows();
 

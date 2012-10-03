@@ -205,7 +205,6 @@ namespace SpaceWar2
 
             }
 
-
             if (!_paused)
             {
                 _gameObjectFactory.DestroyAll(obj => obj.Expired);
