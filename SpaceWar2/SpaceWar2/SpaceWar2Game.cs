@@ -259,7 +259,7 @@ namespace SpaceWar2
         {
             GraphicsDevice.Clear(Color.Black);
 
-            Matrix[] transforms = new Matrix[_model.Bones.Count];
+            var transforms = new Matrix[_model.Bones.Count];
             _model.CopyAbsoluteBoneTransformsTo(transforms);
 
             foreach (ModelMesh modelMesh in _model.Meshes)
