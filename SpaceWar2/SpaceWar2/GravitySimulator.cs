@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace SpaceWar2
 {
-    public class GravitySimulator
+    internal class GravitySimulator
     {
         private readonly IList<IGameObject> _sources = new List<IGameObject>();
         private readonly IList<IGameObject> _participants = new List<IGameObject>();
@@ -39,20 +39,19 @@ namespace SpaceWar2
         {
             const int gravitationalConstant = -100;
 
-            var unitVector = NormalizeVectorBetween(source, participant);
+            var unitVector = DirectionBetween(source, participant);
             var diff = (participant.Position - source.Position);
             
             if (diff.Length() > source.Radius)
             {
                 var lengthSquared = diff.LengthSquared();
-
-                return gravitationalConstant * (source.Mass / lengthSquared) * unitVector;
+                return gravitationalConstant * (source.Mass * participant.Mass / lengthSquared) * unitVector;
             }
 
             return new Vector2(0f,0f);
         }
 
-        private static Vector2 NormalizeVectorBetween(IGameObject source, IGameObject participant)
+        private static Vector2 DirectionBetween(IGameObject source, IGameObject participant)
         {
             Vector2 unitVector = participant.Position - source.Position;
             unitVector.Normalize();

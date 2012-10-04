@@ -23,8 +23,10 @@ namespace SpaceWar2
         internal Sun CreateSun(Vector2 position, Color color, float mass)
         {
             var sun = new Sun(_graphics, position, 25, color, 32, mass);
+            
             _gravitySimulator.RegisterSource(sun);
             _gameObjects.Add(sun);
+          
             return sun;
         }
 

@@ -2,7 +2,6 @@
 
 namespace SpaceWar2
 {
-
     class KeyboardHandler
     {
         private KeyboardState _oldKeyboardState;

@@ -66,12 +66,9 @@ namespace SpaceWar2
 
             if (_effect != null)
             {
-
                 _effect.Parameters["Projection"].SetValue(_projection);
                 _effect.Parameters["View"].SetValue(_view);
-
             }
-
 
             var controller1 = CreateController1();
             var ship1Position = sunPosition + _initialDistance;
@@ -200,9 +197,7 @@ namespace SpaceWar2
 
             if (_keyboardHandler.IsPressed(Keys.T))
             {
-
                 updateCamera(Matrix.CreateTranslation(Vector3.Up));
-
             }
 
             if (!_paused)
@@ -264,10 +259,8 @@ namespace SpaceWar2
 
             foreach (ModelMesh modelMesh in _model.Meshes)
             {
-
                 foreach (BasicEffect effect in modelMesh.Effects)
                 {
-                    
                     effect.EnableDefaultLighting();
                     effect.AmbientLightColor = new Vector3(0.5f, 0.5f, 0.5f);
                     effect.World = transforms[modelMesh.ParentBone.Index];
@@ -276,13 +269,9 @@ namespace SpaceWar2
 
                     effect.View = _view;
                     effect.Projection = _projection;
-
-
-
                 }
 
                 modelMesh.Draw();
-
             }
 
             _infoBar.Reset();
@@ -290,7 +279,6 @@ namespace SpaceWar2
 
             gameObjects.ForEach<IGameObject, IGameObject>(gameObject =>
             {
-
                 _effect.Parameters["World"].SetValue(Matrix.CreateTranslation(new Vector3(gameObject.Position, 0.0f)));
 
                 _effect.CurrentTechnique.Passes[0].Apply();

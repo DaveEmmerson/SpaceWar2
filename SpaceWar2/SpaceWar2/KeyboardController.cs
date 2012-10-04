@@ -28,17 +28,9 @@ namespace SpaceWar2
 
         public ShipAction GetAction()
         {
-            var action = ShipAction.None;
-
-            foreach (var mapping in _mappings)
-            {
-                if (_keyboardHandler.IsPressed(mapping.Key))
-                {
-                    action |= mapping.Value;
-                }
-            }
-
-            return action;
+            return _mappings
+                .Where(mapping => _keyboardHandler.IsPressed(mapping.Key))
+                .Aggregate(ShipAction.None, (current, mapping) => current | mapping.Value);
         }
     }
 }
