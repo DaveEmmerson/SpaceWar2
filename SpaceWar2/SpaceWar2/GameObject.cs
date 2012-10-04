@@ -5,14 +5,14 @@ namespace SpaceWar2
 {
     internal abstract class GameObject : IGameObject
     {
-        private readonly IList<Vector2> _forces;
+        protected readonly IList<Vector2> Forces;
         internal GameObject (Vector2 position, float radius, float mass)
         {
             Position = position;
             Radius = radius;
             Mass = mass;
 
-            _forces = new List<Vector2>();
+            Forces = new List<Vector2>();
         }
 
         public bool Expired { get; protected set; }
@@ -23,12 +23,12 @@ namespace SpaceWar2
         
         public void ApplyForce(Vector2 force)
         {
-            _forces.Add(force);
+            Forces.Add(force);
         }
 
         public void ResolveForces()
         {
-            _forces.Clear();
+            Forces.Clear();
         }
 
         public abstract void Draw();

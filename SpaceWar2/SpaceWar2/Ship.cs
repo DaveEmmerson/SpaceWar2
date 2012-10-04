@@ -112,6 +112,7 @@ namespace SpaceWar2
             }
 
             _model.Draw();
+            ResolveForces();
         }
 
         private void CreateArrows()
@@ -127,6 +128,12 @@ namespace SpaceWar2
                 _arrows.Add(accelerationArrow);
                 _arrows.Add(velocityArrow);
                 _arrows.Add(rotationArrow);
+
+                foreach (var force in Forces)
+                {
+                    var arrow = new Arrow(_graphics, force, Color.LimeGreen, Radius);
+                    _arrows.Add(arrow);
+                }
             }
         }
 
