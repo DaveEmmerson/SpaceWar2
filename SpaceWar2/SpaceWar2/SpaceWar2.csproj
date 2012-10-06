@@ -72,6 +72,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Camera.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="Arrow.cs" />
     <Compile Include="GameObject.cs" />

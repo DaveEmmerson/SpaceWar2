@@ -33,8 +33,8 @@ namespace SpaceWar2
         private Effect _effect;
         private Texture2D _texture;
         private Model _model;
-        private Matrix _view;
-        private Matrix _projection;
+
+        private Camera _camera;
         
         public SpaceWar2Game()
         {
@@ -54,20 +54,16 @@ namespace SpaceWar2
         {
             _gameObjectFactory.DestroyAll(x=>true);
 
-            _projection = Matrix.CreateOrthographicOffCenter(
-                _minX, _maxX,
-                _maxY, _minY,
-                -1000.0f, 1000.0f
-            );
+            _camera.Position = new Vector3(0, 0, 1f);
+            _camera.Target = new Vector3(0, 0, 0);
+
             var sunPosition = new Vector2(_viewport.Width/2f,_viewport.Height/2f);
             _gameObjectFactory.CreateSun(sunPosition, Color.Red, Speed * Speed);
 
-            _view = Matrix.CreateLookAt(new Vector3(0, 0, 100.0f), Vector3.Zero, Vector3.Up);
-
             if (_effect != null)
             {
-                _effect.Parameters["Projection"].SetValue(_projection);
-                _effect.Parameters["View"].SetValue(_view);
+                _effect.Parameters["Projection"].SetValue(_camera.Projection);
+                _effect.Parameters["View"].SetValue(_camera.View);
             }
 
             var controller1 = CreateController1();
@@ -129,6 +125,8 @@ namespace SpaceWar2
             _maxX = _minX + _viewport.Width;
             _maxY = _minY + _viewport.Height;
 
+            _camera = new Camera(new Vector3(0, 0, 1f), Vector3.Zero, _viewport);
+
             ResetGame();
 
             base.Initialize();
@@ -141,11 +139,9 @@ namespace SpaceWar2
         protected override void LoadContent()
         {
             _effect = Content.Load<Effect>("Effects/HLSLTest");
-            _model = Content.Load<Model>("Models/Saucer");
-            _texture = Content.Load<Texture2D>("Textures/Test");
 
-            _effect.Parameters["View"].SetValue(_view);
-            _effect.Parameters["Projection"].SetValue(_projection);
+            _effect.Parameters["View"].SetValue(_camera.View);
+            _effect.Parameters["Projection"].SetValue(_camera.Projection);
 
             _effect.Parameters["AmbientColor"].SetValue(new Vector4(1.0f, 1.0f, 1.0f, 1.0f));
             _effect.Parameters["AmbientProportion"].SetValue(0.5f);
@@ -164,8 +160,6 @@ namespace SpaceWar2
         {
             // TODO: Unload any non ContentManager content here
         }
-
-        private void updateCamera(Matrix updateMatrix) {}
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -197,7 +191,14 @@ namespace SpaceWar2
 
             if (_keyboardHandler.IsPressed(Keys.T))
             {
-                updateCamera(Matrix.CreateTranslation(Vector3.Up));
+                _camera.Pan(Vector3.Forward);
+            }
+
+            if (_keyboardHandler.IsPressed(Keys.Y))
+            {
+
+                _camera.Pan(Vector3.Up);
+
             }
 
             if (!_paused)
@@ -254,36 +255,44 @@ namespace SpaceWar2
         {
             GraphicsDevice.Clear(Color.Black);
 
-            var transforms = new Matrix[_model.Bones.Count];
-            _model.CopyAbsoluteBoneTransformsTo(transforms);
+            //var transforms = new Matrix[_model.Bones.Count];
+            //_model.CopyAbsoluteBoneTransformsTo(transforms);
 
-            foreach (ModelMesh modelMesh in _model.Meshes)
-            {
-                foreach (BasicEffect effect in modelMesh.Effects)
-                {
-                    effect.EnableDefaultLighting();
-                    effect.AmbientLightColor = new Vector3(0.5f, 0.5f, 0.5f);
-                    effect.World = transforms[modelMesh.ParentBone.Index];
-                    effect.TextureEnabled = true;
-                    effect.Texture = _texture;
+            //foreach (ModelMesh modelMesh in _model.Meshes)
+            //{
+            //    foreach (BasicEffect effect in modelMesh.Effects)
+            //    {
+            //        effect.EnableDefaultLighting();
+            //        effect.AmbientLightColor = new Vector3(0.5f, 0.5f, 0.5f);
+            //        effect.World = transforms[modelMesh.ParentBone.Index];
+            //        effect.TextureEnabled = true;
+            //        effect.Texture = _texture;
 
-                    effect.View = _view;
-                    effect.Projection = _projection;
-                }
+            //        effect.View = _camera.View;
+            //        effect.Projection = _camera.Projection;
+            //    }
 
-                modelMesh.Draw();
-            }
+            //    modelMesh.Draw();
+            //}
 
             _infoBar.Reset();
             var gameObjects = _gameObjectFactory.GameObjects;
+
+            _effect.Parameters["View"].SetValue(_camera.View);
+            _effect.Parameters["Projection"].SetValue(_camera.Projection);
 
             gameObjects.ForEach<IGameObject, IGameObject>(gameObject =>
             {
                 _effect.Parameters["World"].SetValue(Matrix.CreateTranslation(new Vector3(gameObject.Position, 0.0f)));
 
-                _effect.CurrentTechnique.Passes[0].Apply();
+                foreach (var pass in _effect.CurrentTechnique.Passes)
+                {
 
-                gameObject.Draw();
+                    pass.Apply();
+
+                    gameObject.Draw();
+
+                }
             });
        
             gameObjects.ForEach<IGameObject, Ship>(_infoBar.DrawShipInfo);            
