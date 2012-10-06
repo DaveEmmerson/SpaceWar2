@@ -51,7 +51,6 @@
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
-<<<<<<< HEAD
   <ItemGroup>
     <Compile Include="Models\Sun.fbx">
       <Name>Sun</Name>
@@ -59,9 +58,7 @@
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
-=======
   <ItemGroup />
->>>>>>> 222f1db14c14d0c7f9a63d8d80bbb28a5fac55e9
   <ItemGroup>
     <Compile Include="Textures\Test.png">
       <Name>Test</Name>
