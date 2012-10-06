@@ -36,7 +36,7 @@ namespace SpaceWar2
             {
                 Velocity = velocity,
                 Controller = controller,
-                DrawArrows = true
+                ShowArrows = true
             };
 
             _gravitySimulator.RegisterParticipant(ship);
