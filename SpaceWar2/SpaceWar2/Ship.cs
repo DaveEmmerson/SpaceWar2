@@ -37,7 +37,7 @@ namespace SpaceWar2
 
         //Settings
         public string Name { get; set; }
-        public bool DrawArrows { get; set; }
+        public bool ShowArrows { get; set; }
         
         //State
         public Vector2 Velocity { private get; set; }
@@ -104,21 +104,15 @@ namespace SpaceWar2
         
         public override void Draw()
         {
-            CreateArrows();
-
-            foreach (var arrow in _arrows)
-            {
-                arrow.Draw();
-            }
-
+            DrawArrows();
             _model.Draw();
             ResolveForces();
         }
 
-        private void CreateArrows()
+        private void DrawArrows()
         {
             _arrows.Clear();
-            if (DrawArrows)
+            if (ShowArrows)
             {
                 var accelerationArrow = new Arrow(_graphics, ResolveForces(), Color.LimeGreen, Radius);
                 var velocityArrow = new Arrow(_graphics, Velocity, Color.Linen, Radius);
@@ -134,6 +128,11 @@ namespace SpaceWar2
                     var arrow = new Arrow(_graphics, force, Color.LimeGreen, Radius);
                     _arrows.Add(arrow);
                 }
+            }
+
+            foreach (var arrow in _arrows)
+            {
+                arrow.Draw();
             }
         }
 
