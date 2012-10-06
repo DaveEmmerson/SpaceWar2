@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 
 namespace SpaceWar2
@@ -26,9 +27,12 @@ namespace SpaceWar2
             Forces.Add(force);
         }
 
-        public void ResolveForces()
+        public Vector2 ResolveForces()
         {
+            var resultantForce = Forces.Aggregate(new Vector2(), (total, current) => total + current);
             Forces.Clear();
+
+            return resultantForce;
         }
 
         public abstract void Draw();

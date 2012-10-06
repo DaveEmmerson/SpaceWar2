@@ -120,7 +120,7 @@ namespace SpaceWar2
             _arrows.Clear();
             if (DrawArrows)
             {
-                var accelerationArrow = new Arrow(_graphics, Acceleration, Color.LimeGreen, Radius);
+                var accelerationArrow = new Arrow(_graphics, ResolveForces(), Color.LimeGreen, Radius);
                 var velocityArrow = new Arrow(_graphics, Velocity, Color.Linen, Radius);
                 var rotationAngle = new Vector2((float)Math.Sin(_rotation), -(float)Math.Cos(_rotation));
                 var rotationArrow = new Arrow(_graphics, rotationAngle, Color.Red, Radius);
@@ -213,7 +213,7 @@ namespace SpaceWar2
                 }
             }
 
-            Velocity += Acceleration * deltaT;
+            Velocity +=  ResolveForces() * deltaT;
 
             Position = Position + Velocity * deltaT;
         }
@@ -239,8 +239,8 @@ namespace SpaceWar2
                     thrustPower *= -1;
                 }
                 
-                Acceleration += new Vector2(thrustPower * (float)Math.Sin(_rotation),
-                                       -thrustPower * (float)Math.Cos(_rotation));
+                var force = new Vector2(thrustPower*(float) Math.Sin(_rotation), -thrustPower*(float) Math.Cos(_rotation));
+                ApplyForce(force);
             }
         }
     }

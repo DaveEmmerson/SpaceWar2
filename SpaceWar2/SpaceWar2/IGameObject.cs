@@ -11,7 +11,7 @@ namespace SpaceWar2
         float Radius { get; set; }
 
         void ApplyForce(Vector2 force);
-        void ResolveForces();
+        Vector2 ResolveForces();
         
         void Draw();
     }
