@@ -30,7 +30,8 @@ namespace SpaceWar2
             {
                 foreach (var participant in _participants)
                 {
-                    participant.Acceleration += CalculateAccelerationDueToGravity(source, participant);
+                    var force = CalculateAccelerationDueToGravity(source, participant);
+                    participant.ApplyForce(force);
                 }
             }
         }

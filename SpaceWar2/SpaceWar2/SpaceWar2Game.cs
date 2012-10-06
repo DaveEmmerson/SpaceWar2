@@ -204,12 +204,10 @@ namespace SpaceWar2
             if (!_paused)
             {
                 _gameObjectFactory.DestroyAll(obj => obj.Expired);
-                var gameObjects = _gameObjectFactory.GameObjects;
 
-                gameObjects.ForEach<IGameObject, Ship>(ship => ship.Acceleration = Vector2.Zero);
-                
                 _gravitySimulator.Simulate();
-                
+
+                var gameObjects = _gameObjectFactory.GameObjects;
                 gameObjects.ForEach<IGameObject, Ship>(ship =>
                 {
                     ScreenConstraint(ship);
