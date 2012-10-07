@@ -49,7 +49,7 @@ namespace DEMW.SpaceWar2.Physics
                 return gravitationalConstant * (source.Mass * participant.Mass / lengthSquared) * unitVector;
             }
 
-            return new Vector2(0f,0f);
+            return Vector2.Zero;
         }
 
         private static Vector2 DirectionBetween(IGameObject source, IGameObject participant)
