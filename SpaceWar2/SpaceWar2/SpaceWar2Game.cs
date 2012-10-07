@@ -20,13 +20,8 @@ namespace DEMW.SpaceWar2
         private float _maxX;
         private float _maxY;
 
-        private SpriteBatch _spriteBatch;
-
         private InfoBar _infoBar;
         
-        private readonly Vector2 _initialDistance;
-        private readonly Vector2 _initialVelocity;
-
         private readonly KeyboardHandler _keyboardHandler;
         private readonly GameObjectFactory _gameObjectFactory;
 		private readonly GravitySimulator _gravitySimulator;
@@ -46,9 +41,6 @@ namespace DEMW.SpaceWar2
             Content.RootDirectory = "Content";
             
             _keyboardHandler = new KeyboardHandler();
-
-            _initialDistance = new Vector2(0,100);
-            _initialVelocity = new Vector2(Speed,0);
         }
 
         private void ResetGame()
@@ -67,13 +59,16 @@ namespace DEMW.SpaceWar2
                 _effect.Parameters["View"].SetValue(_camera.View);
             }
 
+            var initialDistance = new Vector2(0, 100);
+            var initialVelocity = new Vector2(Speed, 0);
+
             var controller1 = CreateController1();
-            var ship1Position = sunPosition + _initialDistance;
-            _gameObjectFactory.CreateShip("ship 1", ship1Position, _initialVelocity, Color.Red, controller1);
+            var ship1Position = sunPosition + initialDistance;
+            _gameObjectFactory.CreateShip("ship 1", ship1Position, initialVelocity, Color.Red, controller1);
 
             var controller2 = CreateController2();
-            var ship2Position = sunPosition - _initialDistance;
-            _gameObjectFactory.CreateShip("ship2", ship2Position, -_initialVelocity, Color.Blue, controller2);
+            var ship2Position = sunPosition - initialDistance;
+            _gameObjectFactory.CreateShip("ship2", ship2Position, -initialVelocity, Color.Blue, controller2);
 
             sunPosition = new Vector2(_viewport.Width / 2f + 200, _viewport.Height / 2f);
             _gameObjectFactory.CreateSun(sunPosition, Color.Orange, Speed * Speed);
@@ -116,9 +111,6 @@ namespace DEMW.SpaceWar2
         /// </summary>
         protected override void Initialize()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-
             _viewport = _graphics.GraphicsDevice.Viewport;
 
             _minX = _viewport.X;
@@ -149,7 +141,8 @@ namespace DEMW.SpaceWar2
 
             _effect.CurrentTechnique = _effect.Techniques["TestTechnique"];
 
-            _infoBar = new InfoBar(_spriteBatch);
+            var spriteBatch = new SpriteBatch(GraphicsDevice);
+            _infoBar = new InfoBar(spriteBatch);
             _infoBar.LoadContent(Content);
         }
 
