@@ -33,7 +33,10 @@ namespace SpaceWar2
                 _forcesHaveBeenResolved = false;
             }
 
-            Forces.Add(force);
+            if (force != Vector2.Zero)
+            {
+                Forces.Add(force);
+            }
         }
 
         public Vector2 ResolveForces()

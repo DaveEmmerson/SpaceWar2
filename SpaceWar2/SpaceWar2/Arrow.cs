@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceWar2
@@ -10,31 +11,35 @@ namespace SpaceWar2
 
         internal Arrow(GraphicsDeviceManager graphics, Vector2 vector, Color color, float radius)
         {
-            _vertices = new VertexPositionColor[5];
             _graphics = graphics;
-
+            _vertices = new VertexPositionColor[6];
+            
             if (vector == Vector2.Zero)
             {
                 return;
             }
+            
+            var length = 3f * (float)Math.Sqrt(vector.Length());
 
             vector.Normalize();
 
-            var perpendicular = new Vector2(-vector.Y, vector.X);
+            var arrowHeadSize = radius / 3f;
+            var perpendicular = new Vector3(-vector.Y, vector.X, 0);
+            var arrowBase = new Vector3(vector * radius, 0);
+            var arrowHead = new Vector3(vector * (radius + length), 0);
+            var arrowPoint = new Vector3(vector*(radius + length + arrowHeadSize), 0);
+            
+            _vertices[0].Position = arrowBase;
+            _vertices[1].Position = arrowHead;
+            _vertices[2].Position = arrowHead - (perpendicular * arrowHeadSize);
+            _vertices[3].Position = arrowPoint;
+            _vertices[4].Position = arrowHead + (perpendicular * arrowHeadSize);
+            _vertices[5].Position = arrowHead;
 
-            float arrowSize = radius / 4f;
-
-            _vertices[0].Position = new Vector3(vector * radius, 0);
-            _vertices[1].Position = new Vector3(vector * radius * 2, 0);
-            _vertices[2].Position = new Vector3(vector * (radius * 2 - arrowSize) - perpendicular * arrowSize, 0);
-            _vertices[3].Position = new Vector3(vector * (radius * 2 - arrowSize) - -perpendicular * arrowSize, 0);
-            _vertices[4].Position = new Vector3(vector * radius * 2, 0);
-
-            _vertices[0].Color = color;
-            _vertices[1].Color = color;
-            _vertices[2].Color = color;
-            _vertices[3].Color = color;
-            _vertices[4].Color = color;
+            for (var i = 0; i <=5; i++)
+            {
+                _vertices[i].Color = color;
+            }
         }
 
         public virtual void Draw()

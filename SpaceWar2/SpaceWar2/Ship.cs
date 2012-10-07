@@ -115,7 +115,7 @@ namespace SpaceWar2
             {
                 var accelerationArrow = new Arrow(_graphics, ResolveForces(), Color.LimeGreen, Radius);
                 var velocityArrow = new Arrow(_graphics, Velocity, Color.Linen, Radius);
-                var rotationAngle = new Vector2((float)Math.Sin(_rotation), -(float)Math.Cos(_rotation));
+                var rotationAngle = new Vector2((float)Math.Sin(_rotation) * Radius * 2, -(float)Math.Cos(_rotation) * Radius * 2);
                 var rotationArrow = new Arrow(_graphics, rotationAngle, Color.Red, Radius);
 
                 _arrows.Add(accelerationArrow);
@@ -124,7 +124,7 @@ namespace SpaceWar2
 
                 foreach (var force in Forces)
                 {
-                    var arrow = new Arrow(_graphics, force, Color.LimeGreen, Radius);
+                    var arrow = new Arrow(_graphics, force, Color.Yellow, Radius);
                     _arrows.Add(arrow);
                 }
             }
@@ -192,12 +192,12 @@ namespace SpaceWar2
 
                 if (action.HasFlag(ShipAction.Thrust))
                 {
-                   EnergyToThrust();
+                   EngageThrusters();
                 }
 
                 if (action.HasFlag(ShipAction.ReverseThrust))
                 {
-                    EnergyToThrust(reverse: true);
+                    EngageThrusters(reverse: true);
                 }
 
                 if (action.HasFlag(ShipAction.TurnLeft))
@@ -212,11 +212,10 @@ namespace SpaceWar2
             }
 
             Velocity +=  ResolveForces() * deltaT;
-
             Position = Position + Velocity * deltaT;
         }
 
-        private void EnergyToThrust(bool reverse = false)
+        private void EngageThrusters(bool reverse = false)
         {
             float thrustPower = ThrustPower;
 
