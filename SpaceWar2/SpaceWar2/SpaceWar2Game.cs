@@ -1,10 +1,10 @@
 using System.Linq;
+using DEMW.SpaceWar2.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SpaceWar2.Physics;
 
-namespace SpaceWar2
+namespace DEMW.SpaceWar2
 {
     public class SpaceWar2Game : Game
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace SpaceWar2
+namespace DEMW.SpaceWar2
 {
     class Ship : GameObject
     {

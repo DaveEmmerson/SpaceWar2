@@ -1,5 +1,6 @@
 ﻿using System;
-namespace SpaceWar2
+
+namespace DEMW.SpaceWar2
 {
     [Flags]
     public enum ShipAction

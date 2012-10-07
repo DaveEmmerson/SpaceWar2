@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace SpaceWar2.Physics
+namespace DEMW.SpaceWar2.Physics
 {
     internal class GravitySimulator
     {

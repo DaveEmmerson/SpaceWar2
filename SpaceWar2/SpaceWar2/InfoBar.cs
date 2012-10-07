@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
-namespace SpaceWar2
+namespace DEMW.SpaceWar2
 {
     class InfoBar
     {

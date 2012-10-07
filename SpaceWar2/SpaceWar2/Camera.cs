@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceWar2
+namespace DEMW.SpaceWar2
 {
     internal class Camera
     {

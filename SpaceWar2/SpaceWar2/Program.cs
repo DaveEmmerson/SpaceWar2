@@ -1,4 +1,4 @@
-namespace SpaceWar2
+namespace DEMW.SpaceWar2
 {
 #if WINDOWS || XBOX
     static class Program

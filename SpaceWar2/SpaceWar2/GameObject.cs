@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 
-namespace SpaceWar2
+namespace DEMW.SpaceWar2
 {
     internal abstract class GameObject : IGameObject
     {
