@@ -15,7 +15,6 @@ namespace DEMW.SpaceWar2
 
         private bool _paused;
 
-        private Viewport _viewport;
         private float _minX;
         private float _minY;
         private float _maxX;
@@ -50,10 +49,7 @@ namespace DEMW.SpaceWar2
 
             _camera.Position = new Vector3(0, 0, 1f);
             _camera.Target = new Vector3(0, 0, 0);
-
-            var sunPosition = new Vector2(_viewport.Width/2f,_viewport.Height/2f);
-            _gameObjectFactory.CreateSun(sunPosition, Color.Red, Speed * Speed);
-
+            
             if (_effect != null)
             {
                 _effect.Parameters["Projection"].SetValue(_camera.Projection);
@@ -64,18 +60,16 @@ namespace DEMW.SpaceWar2
             var initialVelocity = new Vector2(Speed, 0);
 
             var controller1 = CreateController1();
-            var ship1Position = sunPosition + initialDistance;
+            var ship1Position = initialDistance;
             _gameObjectFactory.CreateShip("ship 1", ship1Position, initialVelocity, Color.Red, controller1);
 
             var controller2 = CreateController2();
-            var ship2Position = sunPosition - initialDistance;
+            var ship2Position = -initialDistance;
             _gameObjectFactory.CreateShip("ship2", ship2Position, -initialVelocity, Color.Blue, controller2);
 
-            sunPosition = new Vector2(_viewport.Width / 2f + 200, _viewport.Height / 2f);
-            _gameObjectFactory.CreateSun(sunPosition, Color.Orange, Speed * Speed);
-
-            sunPosition = new Vector2(_viewport.Width / 2f - 200, _viewport.Height / 2f);
-            _gameObjectFactory.CreateSun(sunPosition, Color.OrangeRed, Speed * Speed);
+            _gameObjectFactory.CreateSun(new Vector2(0, 0), Color.Red, Speed * Speed);
+            _gameObjectFactory.CreateSun(new Vector2(200, 0), Color.Orange, Speed * Speed);
+            _gameObjectFactory.CreateSun(new Vector2(-200, 0), Color.OrangeRed, Speed * Speed);
         }
 
         private IShipController CreateController1()
@@ -112,14 +106,12 @@ namespace DEMW.SpaceWar2
         /// </summary>
         protected override void Initialize()
         {
-            _viewport = _graphics.GraphicsDevice.Viewport;
-
-            _minX = _viewport.X;
-            _minY = _viewport.Y;
-            _maxX = _minX + _viewport.Width;
-            _maxY = _minY + _viewport.Height;
-
-            _camera = new Camera(new Vector3(0, 0, 1f), Vector3.Zero, _viewport);
+            _maxX = _graphics.GraphicsDevice.Viewport.Width / 2f;
+            _maxY = _graphics.GraphicsDevice.Viewport.Height / 2f;
+            _minX = - _maxX;
+            _minY = - _maxY;
+            
+            _camera = new Camera(new Vector3(0, 0, -1f), Vector3.Zero);
 
             ResetGame();
 
@@ -219,22 +211,22 @@ namespace DEMW.SpaceWar2
 
             if (position.X < _minX)
             {
-                position.X = _maxX + position.X % _viewport.Width;
+                position.X += _maxX - _minX;
             }
 
             if (position.X > _maxX)
             {
-                position.X = _minX - position.X % _viewport.Width;
+                position.X -= _maxX - _minX;
             }
 
             if (position.Y < _minY)
             {
-                position.Y = _maxY + position.Y % _viewport.Height;
+                position.Y += _maxY - _minY;
             }
 
             if (position.Y > _maxY)
             {
-                position.Y = _minY - position.Y % _viewport.Height;
+                position.Y -= _maxY - _minY;
             }
 
             ship.Position = position;

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Graphics
 {
@@ -11,14 +10,15 @@ namespace DEMW.SpaceWar2.Graphics
         public Matrix View { get { return Matrix.CreateLookAt(Position, Target, Vector3.Up); } }
         public Matrix Projection { get; protected set; }
 
-        public Camera(Vector3 position, Vector3 target, Viewport viewport)
+        public Camera(Vector3 position, Vector3 target)
         {
             Position = position;
             Target = target;
-
+            
+            //TODO MW figure out why the Y axis is flipped
             Projection = Matrix.CreateOrthographicOffCenter(
-                viewport.X, viewport.X + viewport.Width,
-                viewport.Y + viewport.Height, viewport.Y,
+                -400f, 400f,
+                240f, -240f,
                 -1000.0f, 1000.0f
             );
         }
