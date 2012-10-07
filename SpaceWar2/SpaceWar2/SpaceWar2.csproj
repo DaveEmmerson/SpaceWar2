@@ -77,10 +77,10 @@
     <Compile Include="Arrow.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjectFactory.cs" />
-    <Compile Include="GravitySimulator.cs" />
     <Compile Include="IGameObject.cs" />
     <Compile Include="KeyboardController.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Physics\GravitySimulator.cs" />
     <Compile Include="Ship.cs" />
     <Compile Include="ShipAction.cs" />
     <Compile Include="IShipController.cs" />
@@ -129,6 +129,9 @@
       <ProductName>Microsoft XNA Framework Redistributable 4.0</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Graphics\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

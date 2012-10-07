@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using SpaceWar2.Physics;
 
 namespace SpaceWar2
 {

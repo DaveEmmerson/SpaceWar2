@@ -2,6 +2,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SpaceWar2.Physics;
 
 namespace SpaceWar2
 {
