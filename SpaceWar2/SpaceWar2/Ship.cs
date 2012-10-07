@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DEMW.SpaceWar2.Graphics;
 using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2

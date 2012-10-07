@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace DEMW.SpaceWar2
+namespace DEMW.SpaceWar2.Graphics
 {
     class Arrow
     {

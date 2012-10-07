@@ -72,11 +72,11 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Circle.cs" />
-    <Compile Include="Arrow.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjectFactory.cs" />
+    <Compile Include="Graphics\Arrow.cs" />
     <Compile Include="Graphics\Camera.cs" />
+    <Compile Include="Graphics\Circle.cs" />
     <Compile Include="IGameObject.cs" />
     <Compile Include="KeyboardController.cs" />
     <Compile Include="Extensions.cs" />
