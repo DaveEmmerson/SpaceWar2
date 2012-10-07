@@ -135,8 +135,7 @@ namespace DEMW.SpaceWar2
             _effect.CurrentTechnique = _effect.Techniques["TestTechnique"];
 
             var spriteBatch = new SpriteBatch(GraphicsDevice);
-            _infoBar = new InfoBar(spriteBatch);
-            _infoBar.LoadContent(Content);
+            _infoBar = new InfoBar(spriteBatch, Content);
         }
 
         /// <summary>
@@ -260,7 +259,7 @@ namespace DEMW.SpaceWar2
             //    modelMesh.Draw();
             //}
 
-            _infoBar.Reset();
+
             var gameObjects = _gameObjectFactory.GameObjects;
 
             _effect.Parameters["View"].SetValue(_camera.View);
@@ -279,7 +278,8 @@ namespace DEMW.SpaceWar2
 
                 }
             });
-       
+
+            _infoBar.Reset();
             gameObjects.ForEach<IGameObject, Ship>(_infoBar.DrawShipInfo);            
 
             base.Draw(gameTime);

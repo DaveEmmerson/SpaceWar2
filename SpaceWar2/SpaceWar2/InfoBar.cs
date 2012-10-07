@@ -16,10 +16,11 @@ namespace DEMW.SpaceWar2
         public Vector2 Position { get; set; }
 
         public Color FontColor { get; set; }
-        
-        public InfoBar(SpriteBatch spriteBatch) 
+
+        public InfoBar(SpriteBatch spriteBatch, ContentManager contentManager) 
         {
             _spriteBatch = spriteBatch;
+            _font = contentManager.Load<SpriteFont>("Fonts/Segoe UI Mono");
 
             Position = new Vector2(10, 10);
 
@@ -32,19 +33,14 @@ namespace DEMW.SpaceWar2
         {
             _currentPosition = Position;
         }
-
-        public void LoadContent(ContentManager contentManager) 
-        {
-            _font = contentManager.Load<SpriteFont>("Fonts/Segoe UI Mono");
-        }
         
-        public void DrawShipInfo(Ship circle)
+        public void DrawShipInfo(Ship ship)
         {
-            DrawString(circle.Name + ".Position.X", circle.Position.X.ToString(CultureInfo.InvariantCulture));
-            DrawString(circle.Name + ".Position.Y", circle.Position.Y.ToString(CultureInfo.InvariantCulture));
-            DrawString(circle.Name + ".Shields", circle.Shields.ToString(CultureInfo.InvariantCulture));
-            DrawString(circle.Name + ".Armour", circle.Armour.ToString(CultureInfo.InvariantCulture));
-            DrawString(circle.Name + ".Energy", circle.Energy.ToString(CultureInfo.InvariantCulture));
+            DrawString(ship.Name + ".Position.X", ship.Position.X.ToString(CultureInfo.InvariantCulture));
+            DrawString(ship.Name + ".Position.Y", ship.Position.Y.ToString(CultureInfo.InvariantCulture));
+            DrawString(ship.Name + ".Shields", ship.Shields.ToString(CultureInfo.InvariantCulture));
+            DrawString(ship.Name + ".Armour", ship.Armour.ToString(CultureInfo.InvariantCulture));
+            DrawString(ship.Name + ".Energy", ship.Energy.ToString(CultureInfo.InvariantCulture));
 
             LineBreak();
         }
