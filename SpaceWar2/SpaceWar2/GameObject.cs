@@ -7,6 +7,9 @@ namespace SpaceWar2
     internal abstract class GameObject : IGameObject
     {
         protected readonly IList<Vector2> Forces;
+        private bool _forcesHaveBeenResolved;
+        private Vector2 _resultantForce;
+
         internal GameObject (Vector2 position, float radius, float mass)
         {
             Position = position;
@@ -24,15 +27,24 @@ namespace SpaceWar2
         
         public void ApplyForce(Vector2 force)
         {
+            if (_forcesHaveBeenResolved)
+            {
+                Forces.Clear();
+                _forcesHaveBeenResolved = false;
+            }
+
             Forces.Add(force);
         }
 
         public Vector2 ResolveForces()
         {
-            var resultantForce = Forces.Aggregate(new Vector2(), (total, current) => total + current);
-            Forces.Clear();
-
-            return resultantForce;
+            if (_forcesHaveBeenResolved == false)
+            {
+                _forcesHaveBeenResolved = true;
+                _resultantForce = Forces.Aggregate(new Vector2(), (total, current) => total + current);
+            }
+           
+            return _resultantForce;
         }
 
         public abstract void Draw();

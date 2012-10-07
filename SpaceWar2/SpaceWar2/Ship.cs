@@ -106,7 +106,6 @@ namespace SpaceWar2
         {
             DrawArrows();
             _model.Draw();
-            ResolveForces();
         }
 
         private void DrawArrows()
