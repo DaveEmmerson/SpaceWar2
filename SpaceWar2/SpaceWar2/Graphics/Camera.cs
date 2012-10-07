@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace DEMW.SpaceWar2
+namespace DEMW.SpaceWar2.Graphics
 {
     internal class Camera
     {
-
         public Vector3 Position { get; set; }
         public Vector3 Target { get; set; }
 
@@ -14,7 +13,6 @@ namespace DEMW.SpaceWar2
 
         public Camera(Vector3 position, Vector3 target, Viewport viewport)
         {
-
             Position = position;
             Target = target;
 
@@ -23,15 +21,12 @@ namespace DEMW.SpaceWar2
                 viewport.Y + viewport.Height, viewport.Y,
                 -1000.0f, 1000.0f
             );
-
         }
 
-        public void Pan(Vector3 vector) {
-
+        public void Pan(Vector3 vector) 
+        {
             Position += vector;
             Target += vector;
-
         }
-
     }
 }

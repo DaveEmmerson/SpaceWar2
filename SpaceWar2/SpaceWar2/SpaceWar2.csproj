@@ -72,11 +72,11 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Camera.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="Arrow.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjectFactory.cs" />
+    <Compile Include="Graphics\Camera.cs" />
     <Compile Include="IGameObject.cs" />
     <Compile Include="KeyboardController.cs" />
     <Compile Include="Extensions.cs" />
@@ -130,9 +130,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Graphics\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
