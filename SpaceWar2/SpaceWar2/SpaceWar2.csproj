@@ -16,8 +16,8 @@
     <XnaProfile>Reach</XnaProfile>
     <XnaCrossPlatformGroupID>a96ddd12-dab8-4e42-8acf-bb7cbd4d4d44</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>Game.ico</ApplicationIcon>
-    <Thumbnail>GameThumbnail.png</Thumbnail>
+    <ApplicationIcon>.\Resources\Game.ico</ApplicationIcon>
+    <Thumbnail>Resources\GameThumbnail.png</Thumbnail>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -72,6 +72,10 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\IShipController.cs" />
+    <Compile Include="Controls\KeyboardController.cs" />
+    <Compile Include="Controls\KeyboardHandler.cs" />
+    <Compile Include="Controls\ShipAction.cs" />
     <Compile Include="GameObjectFactory.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
@@ -81,19 +85,15 @@
     <Compile Include="Graphics\Camera.cs" />
     <Compile Include="Graphics\Circle.cs" />
     <Compile Include="Graphics\InfoBar.cs" />
-    <Compile Include="KeyboardController.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Physics\GravitySimulator.cs" />
-    <Compile Include="ShipAction.cs" />
-    <Compile Include="IShipController.cs" />
-    <Compile Include="KeyboardHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="SpaceWar2Game.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Game.ico" />
-    <Content Include="GameThumbnail.png">
+    <Content Include="Resources\Game.ico" />
+    <Content Include="Resources\GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace DEMW.SpaceWar2
+﻿namespace DEMW.SpaceWar2.Controls
 {
     interface IShipController
     {

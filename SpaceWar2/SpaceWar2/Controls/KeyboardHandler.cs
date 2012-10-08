@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
-namespace DEMW.SpaceWar2
+namespace DEMW.SpaceWar2.Controls
 {
     class KeyboardHandler
     {
