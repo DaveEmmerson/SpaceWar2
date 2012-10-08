@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DEMW.SpaceWar2
+namespace DEMW.SpaceWar2.Utils
 {
     public static class MyExtensions
     {
