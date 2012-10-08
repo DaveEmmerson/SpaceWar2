@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.Graphics;
+using DEMW.SpaceWar2.Physics;
 using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects
@@ -42,7 +43,6 @@ namespace DEMW.SpaceWar2.GameObjects
         public bool ShowArrows { get; set; }
         
         //State
-        public Vector2 Velocity { private get; set; }
         private float _rotation;
 
         private float _shields = MaxShieldLevel;
@@ -126,7 +126,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
                 foreach (var force in Forces)
                 {
-                    var arrow = new Arrow(_graphics, force, Color.Yellow, Radius);
+                    var arrow = new Arrow(_graphics, force.Vector, Color.Yellow, Radius);
                     _arrows.Add(arrow);
                 }
             }
@@ -238,8 +238,9 @@ namespace DEMW.SpaceWar2.GameObjects
                     thrustPower *= -1;
                 }
                 
+                //TODO MW Maybe this force should be just Vector2.Up * thrustPower and the rotation taken into account later
                 var force = new Vector2(thrustPower*(float) Math.Sin(_rotation), -thrustPower*(float) Math.Cos(_rotation));
-                ApplyForce(force);
+                ApplyForce(new Force(force));
             }
         }
     }

@@ -37,7 +37,7 @@ namespace DEMW.SpaceWar2.Physics
             }
         }
 
-        private static Vector2 CalculateAccelerationDueToGravity(IGameObject source, IGameObject participant)
+        private static Force CalculateAccelerationDueToGravity(IGameObject source, IGameObject participant)
         {
             const int gravitationalConstant = -100;
 
@@ -47,10 +47,10 @@ namespace DEMW.SpaceWar2.Physics
             if (diff.Length() > source.Radius)
             {
                 var lengthSquared = diff.LengthSquared();
-                return gravitationalConstant * (source.Mass * participant.Mass / lengthSquared) * unitVector;
+                return new Force(gravitationalConstant * (source.Mass * participant.Mass / lengthSquared) * unitVector);
             }
 
-            return Vector2.Zero;
+            return new Force(Vector2.Zero);
         }
 
         private static Vector2 DirectionBetween(IGameObject source, IGameObject participant)

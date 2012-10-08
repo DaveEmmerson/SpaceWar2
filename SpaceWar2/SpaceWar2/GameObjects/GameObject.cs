@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using DEMW.SpaceWar2.Physics;
 using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects
 {
     internal abstract class GameObject : IGameObject
     {
-        protected readonly IList<Vector2> Forces;
+        protected readonly IList<Force> Forces;
         private bool _forcesHaveBeenResolved;
         private Vector2 _resultantForce;
 
@@ -16,16 +18,20 @@ namespace DEMW.SpaceWar2.GameObjects
             Radius = radius;
             Mass = mass;
 
-            Forces = new List<Vector2>();
+            Forces = new List<Force>();
         }
 
         public bool Expired { get; protected set; }
+        
         public Vector2 Position { get; set; }
+        public Vector2 Velocity { get; set; }
         public Vector2 Acceleration { get; set; }
+
         public float Mass { get; set; }
         public float Radius { get; set; }
         
-        public void ApplyForce(Vector2 force)
+
+        public void ApplyForce(Force force)
         {
             if (_forcesHaveBeenResolved)
             {
@@ -33,7 +39,7 @@ namespace DEMW.SpaceWar2.GameObjects
                 _forcesHaveBeenResolved = false;
             }
 
-            if (force != Vector2.Zero)
+            if (force.Vector != Vector2.Zero)
             {
                 Forces.Add(force);
             }
@@ -44,7 +50,7 @@ namespace DEMW.SpaceWar2.GameObjects
             if (_forcesHaveBeenResolved == false)
             {
                 _forcesHaveBeenResolved = true;
-                _resultantForce = Forces.Aggregate(new Vector2(), (total, current) => total + current);
+                _resultantForce = Forces.Aggregate(new Vector2(), (total, current) => total + current.Vector);
             }
            
             return _resultantForce;
