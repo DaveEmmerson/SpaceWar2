@@ -1,15 +1,16 @@
 ﻿using System.Globalization;
+using DEMW.SpaceWar2.GameObjects;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
-namespace DEMW.SpaceWar2
+namespace DEMW.SpaceWar2.Graphics
 {
     class InfoBar
     {
         private readonly SpriteBatch _spriteBatch;
 
-        private SpriteFont _font;
+        private readonly SpriteFont _font;
 
         private Vector2 _currentPosition;
 

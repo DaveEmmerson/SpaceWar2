@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace DEMW.SpaceWar2
+namespace DEMW.SpaceWar2.GameObjects
 {
     interface IGameObject
     {

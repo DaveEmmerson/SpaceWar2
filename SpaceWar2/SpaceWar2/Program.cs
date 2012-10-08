@@ -3,7 +3,7 @@ namespace DEMW.SpaceWar2
 #if WINDOWS || XBOX
     static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             using (var game = new SpaceWar2Game())
             {

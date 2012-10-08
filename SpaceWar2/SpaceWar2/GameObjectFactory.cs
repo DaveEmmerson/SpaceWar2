@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Physics;
 using Microsoft.Xna.Framework;
 
