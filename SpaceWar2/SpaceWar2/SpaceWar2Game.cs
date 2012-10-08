@@ -155,9 +155,7 @@ namespace DEMW.SpaceWar2
 
             if (_keyboardHandler.IsPressed(Keys.Y))
             {
-
                 _camera.Pan(Vector3.Up);
-
             }
 
             if (!_paused)
@@ -166,8 +164,7 @@ namespace DEMW.SpaceWar2
 
                 _gravitySimulator.Simulate();
 
-                var gameObjects = _gameObjectFactory.GameObjects;
-                gameObjects.ForEach<IGameObject, Ship>(ship =>
+                _gameObjectFactory.GameObjects.ForEach<IGameObject, Ship>(ship =>
                 {
                     ScreenConstraint(ship);
                     ship.Update(gameTime);
@@ -181,25 +178,10 @@ namespace DEMW.SpaceWar2
         {
             Vector2 position = ship.Position;
 
-            if (position.X < _minX)
-            {
-                position.X += _maxX - _minX;
-            }
-
-            if (position.X > _maxX)
-            {
-                position.X -= _maxX - _minX;
-            }
-
-            if (position.Y < _minY)
-            {
-                position.Y += _maxY - _minY;
-            }
-
-            if (position.Y > _maxY)
-            {
-                position.Y -= _maxY - _minY;
-            }
+            if (position.X < _minX) { position.X += _maxX - _minX; }
+            if (position.X > _maxX) { position.X -= _maxX - _minX; }
+            if (position.Y < _minY) { position.Y += _maxY - _minY; }
+            if (position.Y > _maxY) { position.Y -= _maxY - _minY; }
 
             ship.Position = position;
         }
