@@ -27,10 +27,10 @@ namespace DEMW.SpaceWar2.GameObjects
         public Vector2 Velocity { get; set; }
         public Vector2 Acceleration { get; set; }
 
+        public float Rotation { get; set; }
         public float Mass { get; set; }
         public float Radius { get; set; }
         
-
         public void ApplyForce(Force force)
         {
             if (_forcesHaveBeenResolved)

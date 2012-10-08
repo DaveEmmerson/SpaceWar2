@@ -41,9 +41,6 @@ namespace DEMW.SpaceWar2.GameObjects
         //Settings
         public string Name { get; set; }
         public bool ShowArrows { get; set; }
-        
-        //State
-        private float _rotation;
 
         private float _shields = MaxShieldLevel;
         public float Shields
@@ -117,7 +114,7 @@ namespace DEMW.SpaceWar2.GameObjects
             {
                 var accelerationArrow = new Arrow(_graphics, ResolveForces(), Color.LimeGreen, Radius);
                 var velocityArrow = new Arrow(_graphics, Velocity, Color.Linen, Radius);
-                var rotationAngle = new Vector2((float)Math.Sin(_rotation) * Radius * 2, -(float)Math.Cos(_rotation) * Radius * 2);
+                var rotationAngle = new Vector2((float)Math.Sin(Rotation) * Radius * 2, -(float)Math.Cos(Rotation) * Radius * 2);
                 var rotationArrow = new Arrow(_graphics, rotationAngle, Color.Red, Radius);
 
                 _arrows.Add(accelerationArrow);
@@ -204,12 +201,12 @@ namespace DEMW.SpaceWar2.GameObjects
 
                 if (action.HasFlag(ShipAction.TurnLeft))
                 {
-                    _rotation -= (float)Math.PI / RotationSpeed;
+                    Rotation -= (float)Math.PI / RotationSpeed;
                 }
 
                 if (action.HasFlag(ShipAction.TurnRight))
                 {
-                    _rotation += (float)Math.PI / RotationSpeed;
+                    Rotation += (float)Math.PI / RotationSpeed;
                 }
             }
 
@@ -239,7 +236,7 @@ namespace DEMW.SpaceWar2.GameObjects
                 }
                 
                 //TODO MW Maybe this force should be just Vector2.Up * thrustPower and the rotation taken into account later
-                var force = new Vector2(thrustPower*(float) Math.Sin(_rotation), -thrustPower*(float) Math.Cos(_rotation));
+                var force = new Vector2(thrustPower*(float) Math.Sin(Rotation), -thrustPower*(float) Math.Cos(Rotation));
                 ApplyForce(new Force(force));
             }
         }
