@@ -9,7 +9,6 @@ namespace DEMW.SpaceWar2.GameObjects
 
         Vector2 Position { get; set; }
         Vector2 Velocity { set; }
-        Vector2 Acceleration { get; set; }
         
         float Mass { get; set; }
         float Radius { get; set; }
