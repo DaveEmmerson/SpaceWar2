@@ -15,7 +15,12 @@ namespace DEMW.SpaceWar2
         private const float Speed = 100f;
 
         private readonly GraphicsDeviceManager _graphics;
+        private readonly GameObjectFactory _gameObjectFactory;
+        private readonly GravitySimulator _gravitySimulator;
 
+        private readonly KeyboardHandler _keyboardHandler;
+        private ControllerFactory _controllerFactory;
+		
         private bool _paused;
 
         private float _minX;
@@ -24,17 +29,12 @@ namespace DEMW.SpaceWar2
         private float _maxY;
 
         private InfoBar _infoBar;
-        
-        private readonly KeyboardHandler _keyboardHandler;
-        private readonly GameObjectFactory _gameObjectFactory;
-		private readonly GravitySimulator _gravitySimulator;
-				
+        private Camera _camera;
+        		
         private Effect _effect;
         private Texture2D _texture;
         private Model _model;
 
-        private Camera _camera;
-        
         public SpaceWar2Game()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -44,6 +44,7 @@ namespace DEMW.SpaceWar2
             Content.RootDirectory = "Content";
             
             _keyboardHandler = new KeyboardHandler();
+            _controllerFactory = new ControllerFactory(_keyboardHandler);
         }
 
         private void ResetGame()
@@ -62,43 +63,12 @@ namespace DEMW.SpaceWar2
             var initialDistance = new Vector2(0, 100);
             var initialVelocity = new Vector2(Speed, 0);
 
-            var controller1 = CreateController1();
-            var ship1Position = initialDistance;
-            _gameObjectFactory.CreateShip("ship 1", ship1Position, initialVelocity, Color.Red, controller1);
+            _gameObjectFactory.CreateShip("ship 1", initialDistance, initialVelocity, Color.Red, _controllerFactory.Controller1);
+            _gameObjectFactory.CreateShip("ship 2", -initialDistance, -initialVelocity, Color.Blue, _controllerFactory.Controller2);
 
-            var controller2 = CreateController2();
-            var ship2Position = -initialDistance;
-            _gameObjectFactory.CreateShip("ship2", ship2Position, -initialVelocity, Color.Blue, controller2);
-
-            _gameObjectFactory.CreateSun(new Vector2(0, 0), Color.Red, Speed * Speed);
+            _gameObjectFactory.CreateSun(Vector2.Zero, Color.Red, Speed * Speed);
             _gameObjectFactory.CreateSun(new Vector2(200, 0), Color.Orange, Speed * Speed);
             _gameObjectFactory.CreateSun(new Vector2(-200, 0), Color.OrangeRed, Speed * Speed);
-        }
-
-        private IShipController CreateController1()
-        {
-            var controller = new KeyboardController(_keyboardHandler);
-
-            controller.SetMapping(Keys.Up, ShipAction.Thrust);
-            controller.SetMapping(Keys.Left, ShipAction.TurnLeft);
-            controller.SetMapping(Keys.Right, ShipAction.TurnRight);
-            controller.SetMapping(Keys.Down, ShipAction.ReverseThrust);
-            controller.SetMapping(Keys.RightControl, ShipAction.FireProjectile);
-
-            return controller;
-        }
-
-        private IShipController CreateController2()
-        {
-            var controller = new KeyboardController(_keyboardHandler);
-
-            controller.SetMapping(Keys.W, ShipAction.Thrust);
-            controller.SetMapping(Keys.A, ShipAction.TurnLeft);
-            controller.SetMapping(Keys.D, ShipAction.TurnRight);
-            controller.SetMapping(Keys.S, ShipAction.ReverseThrust);
-            controller.SetMapping(Keys.R, ShipAction.FireProjectile);
-
-            return controller;
         }
 
         /// <summary>
