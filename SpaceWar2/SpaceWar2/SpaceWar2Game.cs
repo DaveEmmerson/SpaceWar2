@@ -19,7 +19,7 @@ namespace DEMW.SpaceWar2
         private readonly GravitySimulator _gravitySimulator;
 
         private readonly KeyboardHandler _keyboardHandler;
-        private ControllerFactory _controllerFactory;
+        private readonly ControllerFactory _controllerFactory;
 		
         private bool _paused;
 

@@ -5,8 +5,7 @@ namespace DEMW.SpaceWar2.Controls
     internal class ControllerFactory
     {
         private readonly KeyboardHandler _keyboardHandler;
-        private KeyboardController _controller2;
-
+        
         internal ControllerFactory(KeyboardHandler keyboardHandler)
         {
             _keyboardHandler = keyboardHandler;
@@ -27,13 +26,13 @@ namespace DEMW.SpaceWar2.Controls
 
         private void CreateController2()
         {
-            _controller2 = new KeyboardController(_keyboardHandler);
+            Controller2 = new KeyboardController(_keyboardHandler);
 
-            _controller2.SetMapping(Keys.W, ShipAction.Thrust);
-            _controller2.SetMapping(Keys.A, ShipAction.TurnLeft);
-            _controller2.SetMapping(Keys.D, ShipAction.TurnRight);
-            _controller2.SetMapping(Keys.S, ShipAction.ReverseThrust);
-            _controller2.SetMapping(Keys.R, ShipAction.FireProjectile);
+            Controller2.SetMapping(Keys.W, ShipAction.Thrust);
+            Controller2.SetMapping(Keys.A, ShipAction.TurnLeft);
+            Controller2.SetMapping(Keys.D, ShipAction.TurnRight);
+            Controller2.SetMapping(Keys.S, ShipAction.ReverseThrust);
+            Controller2.SetMapping(Keys.R, ShipAction.FireProjectile);
         }
 
         internal KeyboardController Controller1 { get; private set; }
