@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DEMW.SpaceWar2.Physics;
 using Microsoft.Xna.Framework;
@@ -23,7 +22,6 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public bool Expired { get; protected set; }
         
-        //TODO MW lock
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
         

@@ -24,6 +24,8 @@ namespace DEMW.SpaceWar2.GameObjects
 
         private readonly Circle _model;
         private readonly IList<Arrow> _arrows;
+        private readonly Thruster _mainThruster;
+        private readonly Thruster _reverseThruster;
         
         public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color lineColor, uint lineCount)
             : base (position, radius, 1)
@@ -36,6 +38,9 @@ namespace DEMW.SpaceWar2.GameObjects
 
             Energy = 100F;
             Armour = 100F;
+
+            _mainThruster = new Thruster(this, Vector2.Zero, new Vector2(0, 100), ThrustEnergyCost);
+            _reverseThruster = new Thruster(this, Vector2.Zero, new Vector2(0, -100), ThrustEnergyCost);
         }
 
         //Settings
@@ -191,12 +196,12 @@ namespace DEMW.SpaceWar2.GameObjects
 
                 if (action.HasFlag(ShipAction.Thrust))
                 {
-                   EngageThrusters();
+                   _mainThruster.Engage();
                 }
 
                 if (action.HasFlag(ShipAction.ReverseThrust))
                 {
-                    EngageThrusters(reverse: true);
+                    _reverseThruster.Engage();
                 }
 
                 if (action.HasFlag(ShipAction.TurnLeft))
@@ -214,31 +219,12 @@ namespace DEMW.SpaceWar2.GameObjects
             Position = Position + Velocity * deltaT;
         }
 
-        private void EngageThrusters(bool reverse = false)
+        public float RequestEnergy(float energyRequest)
         {
-            float thrustPower = ThrustPower;
+            float energyDepletion = Energy < energyRequest ? Energy : energyRequest;
 
-            if (Energy < ThrustEnergyCost)
-            {
-                thrustPower = thrustPower / ThrustEnergyCost * _energy;
-                Energy = 0;
-            }
-            else
-            {
-                Energy -= ThrustEnergyCost;
-            }
-
-            if (thrustPower > 0)
-            {
-                if (reverse)
-                {
-                    thrustPower *= -1;
-                }
-                
-                //TODO MW Maybe this force should be just Vector2.Up * thrustPower and the rotation taken into account later
-                var force = new Vector2(thrustPower*(float) Math.Sin(Rotation), -thrustPower*(float) Math.Cos(Rotation));
-                ApplyForce(new Force(force));
-            }
+            Energy -= energyDepletion;
+            return energyDepletion;
         }
     }
 }

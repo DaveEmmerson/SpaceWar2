@@ -12,7 +12,8 @@ namespace DEMW.SpaceWar2.GameObjects
         
         float Mass { get; set; }
         float Radius { get; set; }
-        
+        float Rotation { get; set; }
+
         void ApplyForce(Force force);
         Vector2 ResolveForces();
         
