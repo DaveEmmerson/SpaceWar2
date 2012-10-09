@@ -39,8 +39,8 @@ namespace DEMW.SpaceWar2.GameObjects
             Energy = 100F;
             Armour = 100F;
 
-            _mainThruster = new Thruster(this, Vector2.Zero, new Vector2(0, 100), ThrustEnergyCost);
-            _reverseThruster = new Thruster(this, Vector2.Zero, new Vector2(0, -100), ThrustEnergyCost);
+            _mainThruster = new Thruster(this, Vector2.Zero, new Vector2(0, -100), ThrustEnergyCost);
+            _reverseThruster = new Thruster(this, Vector2.Zero, new Vector2(0, 100), ThrustEnergyCost);
         }
 
         //Settings
