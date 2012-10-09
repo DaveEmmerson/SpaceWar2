@@ -20,13 +20,10 @@ namespace DEMW.SpaceWar2
 
         private readonly KeyboardHandler _keyboardHandler;
         private readonly ControllerFactory _controllerFactory;
+
+        private readonly ScreenManager _screenManager;
 		
         private bool _paused;
-
-        private float _minX;
-        private float _minY;
-        private float _maxX;
-        private float _maxY;
 
         private InfoBar _infoBar;
         private Camera _camera;
@@ -37,20 +34,21 @@ namespace DEMW.SpaceWar2
         {
             _graphics = new GraphicsDeviceManager(this);
             _gravitySimulator = new GravitySimulator();
-            _gameObjectFactory = new GameObjectFactory(_graphics, _gravitySimulator);
+            _screenManager = new ScreenManager();
+            _gameObjectFactory = new GameObjectFactory(_graphics, _gravitySimulator, _screenManager);
             
             Content.RootDirectory = "Content";
             
             _keyboardHandler = new KeyboardHandler();
             _controllerFactory = new ControllerFactory(_keyboardHandler);
+
         }
 
         private void ResetGame()
         {
             _gameObjectFactory.DestroyAll(x=>true);
 
-            _camera.Position = new Vector3(0, 0, 1f);
-            _camera.Target = new Vector3(0, 0, 0);
+            _camera = new Camera(new Vector3(0, 0, 1f), Vector3.Zero);
             
             if (_effect != null)
             {
@@ -77,12 +75,6 @@ namespace DEMW.SpaceWar2
         /// </summary>
         protected override void Initialize()
         {
-            _maxX = _graphics.GraphicsDevice.Viewport.Width / 2f;
-            _maxY = _graphics.GraphicsDevice.Viewport.Height / 2f;
-            _minX = - _maxX;
-            _minY = - _maxY;
-            
-            _camera = new Camera(new Vector3(0, 0, -1f), Vector3.Zero);
 
             ResetGame();
 
@@ -164,24 +156,15 @@ namespace DEMW.SpaceWar2
 
                 _gameObjectFactory.GameObjects.ForEach<IGameObject, Ship>(ship =>
                 {
-                    ScreenConstraint(ship);
+
                     ship.Update(gameTime);
+
                 });
+
+                _screenManager.Update();
             }
 
             base.Update(gameTime);
-        }
-
-        private void ScreenConstraint(Ship ship)
-        {
-            Vector2 position = ship.Position;
-
-            if (position.X < _minX) { position.X += _maxX - _minX; }
-            if (position.X > _maxX) { position.X -= _maxX - _minX; }
-            if (position.Y < _minY) { position.Y += _maxY - _minY; }
-            if (position.Y > _maxY) { position.Y -= _maxY - _minY; }
-
-            ship.Position = position;
         }
 
         /// <summary>

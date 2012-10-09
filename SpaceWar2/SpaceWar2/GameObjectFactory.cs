@@ -5,6 +5,7 @@ using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Physics;
 using Microsoft.Xna.Framework;
+using DEMW.SpaceWar2.Graphics;
 
 namespace DEMW.SpaceWar2
 {
@@ -13,11 +14,13 @@ namespace DEMW.SpaceWar2
         private readonly IList<IGameObject> _gameObjects;
         private readonly GraphicsDeviceManager _graphics;
         private readonly GravitySimulator _gravitySimulator;
+        private readonly ScreenManager _screenManager;
 
-        public GameObjectFactory(GraphicsDeviceManager graphics, GravitySimulator gravitySimulator)
+        public GameObjectFactory(GraphicsDeviceManager graphics, GravitySimulator gravitySimulator, ScreenManager screenManager)
         {
             _graphics = graphics;
             _gravitySimulator = gravitySimulator;
+            _screenManager = screenManager;
             _gameObjects = new List<IGameObject>();
         }
 
@@ -43,6 +46,7 @@ namespace DEMW.SpaceWar2
             };
 
             _gravitySimulator.RegisterParticipant(ship);
+            _screenManager.Register(ship);
             _gameObjects.Add(ship);
 
             return ship;
@@ -55,6 +59,7 @@ namespace DEMW.SpaceWar2
             foreach (var item in itemsToDestory)
             {
                 _gravitySimulator.UnRegister(item);
+                _screenManager.UnRegister(item);
                 GameObjects.Remove(item);
             }
         }

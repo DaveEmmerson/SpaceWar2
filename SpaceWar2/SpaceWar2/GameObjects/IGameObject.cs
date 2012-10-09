@@ -16,6 +16,8 @@ namespace DEMW.SpaceWar2.GameObjects
 
         void ApplyForce(Force force);
         Vector2 ResolveForces();
+
+        void Teleport(Vector2 destination);
         
         void Draw();
     }
