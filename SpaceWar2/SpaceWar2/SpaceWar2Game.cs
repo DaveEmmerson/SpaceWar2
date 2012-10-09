@@ -32,8 +32,6 @@ namespace DEMW.SpaceWar2
         private Camera _camera;
         		
         private Effect _effect;
-        private Texture2D _texture;
-        private Model _model;
 
         public SpaceWar2Game()
         {
