@@ -29,10 +29,11 @@ namespace DEMW.SpaceWar2.Physics
             }
             
             //TODO Fix this equation so the force is translated to the correct direction
-            var rotation = new Vector2((float)Math.Sin(_ship.Rotation), -(float)Math.Cos(_ship.Rotation));
+            var rotation = Matrix.CreateRotationZ(_ship.Rotation);
+            
             Vector2 thrust = availableEnergy/_thrustEnergyCost * _direction;
 
-            var force = rotation * thrust;
+            var force = Vector2.Transform(thrust, rotation);
             
             _ship.ApplyForce(new Force(force));
         }
