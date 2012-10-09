@@ -48,7 +48,7 @@ namespace DEMW.SpaceWar2
         {
             _gameObjectFactory.DestroyAll(x=>true);
 
-            _camera = new Camera(new Vector3(0, 0, -1f), Vector3.Zero);
+            _camera = new Camera(new Vector3(0, 0, 1f), Vector3.Zero);
             
             if (_effect != null)
             {
