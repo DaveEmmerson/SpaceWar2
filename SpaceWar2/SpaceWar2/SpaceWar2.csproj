@@ -86,6 +86,7 @@
     <Compile Include="Graphics\Camera.cs" />
     <Compile Include="Graphics\Circle.cs" />
     <Compile Include="Graphics\InfoBar.cs" />
+    <Compile Include="Graphics\ScreenManager.cs" />
     <Compile Include="Physics\Force.cs" />
     <Compile Include="Physics\GravitySimulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

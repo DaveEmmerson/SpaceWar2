@@ -56,6 +56,13 @@ namespace DEMW.SpaceWar2.GameObjects
             return _resultantForce;
         }
 
+        public void Teleport(Vector2 destination)
+        {
+
+            Position = destination;
+
+        }
+
         public abstract void Draw();
     }
 }
