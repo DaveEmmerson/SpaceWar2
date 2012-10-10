@@ -175,16 +175,8 @@ namespace DEMW.SpaceWar2.GameObjects
                 {
                     float increaseRequired = Math.Min(MaxShieldLevel - Shields,ShieldRechargeRate);
 
-                    if (Energy >= increaseRequired)
-                    {
-                        Shields += increaseRequired;
-                        Energy -= increaseRequired;
-                    }
-                    else if (Energy > 0)
-                    {
-                        Shields += Energy;
-                        Energy = 0;
-                    }
+                    Shields += RequestEnergy(increaseRequired);
+
                 }
 
                 Energy += EnergyRechargeRate;
