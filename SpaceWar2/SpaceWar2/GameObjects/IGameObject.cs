@@ -7,16 +7,14 @@ namespace DEMW.SpaceWar2.GameObjects
     {
         bool Expired { get; }
 
-        Vector2 Position { get; set; }
-        Vector2 Velocity { set; }
+        Vector2 Position { get; }
         
-        float Mass { get; set; }
-        float Radius { get; set; }
-        float Rotation { get; set; }
+        float Mass { get; }
+        float Radius { get; }
+        float Rotation { get; }
 
         void ApplyForce(Force force);
-        Vector2 ResolveForces();
-
+        
         void Teleport(Vector2 destination);
         
         void Draw();
