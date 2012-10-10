@@ -1,6 +1,7 @@
-﻿using DEMW.SpaceWar2.GameObjects;
+﻿using System.Collections.Generic;
+using DEMW.SpaceWar2.GameObjects;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+
 namespace DEMW.SpaceWar2.Graphics
 {
     internal class ScreenManager
@@ -19,46 +20,36 @@ namespace DEMW.SpaceWar2.Graphics
 
         private readonly IList<IGameObject> _managedObjects;
 
-        internal ScreenManager() {
-
+        internal ScreenManager() 
+        {
             MinX = DefaultMinX;
             MaxX = DefaultMaxX;
             MinY = DefaultMinY;
             MaxY = DefaultMaxY;
 
             _managedObjects = new List<IGameObject>();
-
         }
 
         public void Register(IGameObject managedObject)
         {
-
             _managedObjects.Add(managedObject);
-
         }
 
         public void UnRegister(IGameObject managedObject)
         {
-
             _managedObjects.Remove(managedObject);
-
         }
 
         public void Update()
         {
-
             foreach (var managedObject in _managedObjects)
             {
-
                 Constrain(managedObject);
-
             }
-
         }
 
         private void Constrain(IGameObject gameObject) 
         {
-            
             Vector2 position = gameObject.Position;
 
             if (position.X < MinX) { position.X  = MaxX - (MinX - position.X) % ScreenWidth; }
@@ -68,7 +59,5 @@ namespace DEMW.SpaceWar2.Graphics
 
             gameObject.Teleport(position);
         }
-
-
     }
 }

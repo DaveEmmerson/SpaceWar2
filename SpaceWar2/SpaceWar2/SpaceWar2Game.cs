@@ -117,7 +117,22 @@ namespace DEMW.SpaceWar2
         protected override void Update(GameTime gameTime)
         {
             _keyboardHandler.UpdateKeyboardState();
+            CheckNonGameKeys();
+            CheckDebugKeys();
 
+            if (!_paused)
+            {
+                _gameObjectFactory.DestroyAll(obj => obj.Expired);
+                _gravitySimulator.Simulate();
+                _gameObjectFactory.GameObjects.ForEach<IGameObject, Ship>(ship => ship.Update(gameTime));
+                _screenManager.Update();
+            }
+
+            base.Update(gameTime);
+        }
+
+        private void CheckNonGameKeys()
+        {
             if (_keyboardHandler.IsNewlyPressed(Keys.Space))
             {
                 _paused = !_paused;
@@ -127,7 +142,10 @@ namespace DEMW.SpaceWar2
             {
                 ResetGame();
             }
+        }
 
+        private void CheckDebugKeys()
+        {
             if (_keyboardHandler.IsNewlyPressed(Keys.X))
             {
                 var ship = _gameObjectFactory.GameObjects.OfType<Ship>().SingleOrDefault(x => x.Name == "ship 1");
@@ -146,19 +164,6 @@ namespace DEMW.SpaceWar2
             {
                 _camera.Pan(Vector3.Up);
             }
-
-            if (!_paused)
-            {
-                _gameObjectFactory.DestroyAll(obj => obj.Expired);
-
-                _gravitySimulator.Simulate();
-
-                _gameObjectFactory.GameObjects.ForEach<IGameObject, Ship>(ship => ship.Update(gameTime));
-
-                _screenManager.Update();
-            }
-
-            base.Update(gameTime);
         }
 
         /// <summary>

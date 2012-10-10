@@ -46,7 +46,6 @@ namespace DEMW.SpaceWar2.Graphics
             DrawString(ship.Name + ".Armour", ship.Armour.ToString(CultureInfo.InvariantCulture));
             DrawString(ship.Name + ".Energy", ship.Energy.ToString(CultureInfo.InvariantCulture));
             
-
             LineBreak();
         }
 
