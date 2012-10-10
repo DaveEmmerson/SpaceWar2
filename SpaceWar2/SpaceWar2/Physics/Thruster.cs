@@ -1,5 +1,4 @@
-﻿using System;
-using DEMW.SpaceWar2.GameObjects;
+﻿using DEMW.SpaceWar2.GameObjects;
 using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.Physics

@@ -41,7 +41,6 @@ namespace DEMW.SpaceWar2
             
             _keyboardHandler = new KeyboardHandler();
             _controllerFactory = new ControllerFactory(_keyboardHandler);
-
         }
 
         private void ResetGame()
@@ -61,7 +60,7 @@ namespace DEMW.SpaceWar2
 
             _gameObjectFactory.CreateShip("ship 1", initialDistance, initialVelocity, Color.Red, _controllerFactory.Controller1);
             _gameObjectFactory.CreateShip("ship 2", -initialDistance, -initialVelocity, Color.Blue, _controllerFactory.Controller2);
-
+            
             _gameObjectFactory.CreateSun(Vector2.Zero, Color.Red, Speed * Speed);
             _gameObjectFactory.CreateSun(new Vector2(200, 0), Color.Orange, Speed * Speed);
             _gameObjectFactory.CreateSun(new Vector2(-200, 0), Color.OrangeRed, Speed * Speed);
@@ -154,12 +153,7 @@ namespace DEMW.SpaceWar2
 
                 _gravitySimulator.Simulate();
 
-                _gameObjectFactory.GameObjects.ForEach<IGameObject, Ship>(ship =>
-                {
-
-                    ship.Update(gameTime);
-
-                });
+                _gameObjectFactory.GameObjects.ForEach<IGameObject, Ship>(ship => ship.Update(gameTime));
 
                 _screenManager.Update();
             }

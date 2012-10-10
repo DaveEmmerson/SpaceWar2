@@ -39,9 +39,13 @@ namespace DEMW.SpaceWar2.Graphics
         {
             DrawString(ship.Name + ".Position.X", ship.Position.X.ToString(CultureInfo.InvariantCulture));
             DrawString(ship.Name + ".Position.Y", ship.Position.Y.ToString(CultureInfo.InvariantCulture));
+            DrawString(ship.Name + ".Velocity.X", ship.Velocity.X.ToString(CultureInfo.InvariantCulture));
+            DrawString(ship.Name + ".Velocity.Y", ship.Velocity.Y.ToString(CultureInfo.InvariantCulture));
+
             DrawString(ship.Name + ".Shields", ship.Shields.ToString(CultureInfo.InvariantCulture));
             DrawString(ship.Name + ".Armour", ship.Armour.ToString(CultureInfo.InvariantCulture));
             DrawString(ship.Name + ".Energy", ship.Energy.ToString(CultureInfo.InvariantCulture));
+            
 
             LineBreak();
         }

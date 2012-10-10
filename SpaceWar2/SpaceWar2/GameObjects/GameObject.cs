@@ -50,7 +50,7 @@ namespace DEMW.SpaceWar2.GameObjects
                 _forcesHaveBeenResolved = true;
                 _resultantForce = Forces.Aggregate(Vector2.Zero, (total, current) => total + current.Vector);
             }
-           
+
             return _resultantForce;
         }
 

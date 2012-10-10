@@ -17,7 +17,7 @@ namespace DEMW.SpaceWar2.Graphics
         public float ScreenWidth { get { return MaxX - MinX; } }
         public float ScreenHeight { get { return MaxY - MinY; } }
 
-        private IList<IGameObject> _managedObjects;
+        private readonly IList<IGameObject> _managedObjects;
 
         internal ScreenManager() {
 
@@ -50,14 +50,13 @@ namespace DEMW.SpaceWar2.Graphics
             foreach (var managedObject in _managedObjects)
             {
 
-                constrain(managedObject);
+                Constrain(managedObject);
 
             }
 
         }
 
-        //
-        private void constrain(IGameObject gameObject) 
+        private void Constrain(IGameObject gameObject) 
         {
             
             Vector2 position = gameObject.Position;
