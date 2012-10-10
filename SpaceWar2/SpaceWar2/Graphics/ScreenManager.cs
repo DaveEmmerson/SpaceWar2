@@ -57,7 +57,10 @@ namespace DEMW.SpaceWar2.Graphics
             if (position.Y < MinY) { position.Y = MaxY - (MinY - position.Y) % ScreenHeight; }
             if (position.Y > MaxY) { position.Y = MinY + (position.Y - MaxY) % ScreenHeight; }
 
-            gameObject.Teleport(position);
+            if (position != gameObject.Position)
+            {
+                gameObject.Teleport(position);
+            }
         }
     }
 }
