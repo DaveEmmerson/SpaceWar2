@@ -6,7 +6,7 @@ namespace DEMW.SpaceWar2.Physics
     internal class Thruster
     {
         private readonly Vector2 _direction;
-        private Vector2 _position;
+        private readonly Vector2 _position;
         private readonly Ship _ship;
         private readonly float _thrustEnergyCost;
 
