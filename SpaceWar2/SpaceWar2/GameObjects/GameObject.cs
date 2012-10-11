@@ -57,12 +57,13 @@ namespace DEMW.SpaceWar2.GameObjects
 
         private void ResolveForces()
         {
-            _resultantForce = _queuedforces.Aggregate(Vector2.Zero, (total, current) => total + current.Vector);
-
             Forces.Clear();
+            _resultantForce = Vector2.Zero;
+            
             foreach (var force in _queuedforces)
             {
                 Forces.Add(force);
+                _resultantForce += force.Vector;
             }
 
             _queuedforces.Clear();
