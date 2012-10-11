@@ -7,8 +7,7 @@ namespace DEMW.SpaceWar2.GameObjects
 {
     internal abstract class GameObject : IGameObject
     {
-        protected readonly IList<Force> Forces;
-        private bool _forcesHaveBeenResolved;
+        private readonly IList<Force> _queuedforces;
         private Vector2 _resultantForce;
 
         internal GameObject (Vector2 position, float radius, float mass)
@@ -17,6 +16,7 @@ namespace DEMW.SpaceWar2.GameObjects
             Radius = radius;
             Mass = mass;
 
+            _queuedforces = new List<Force>();
             Forces = new List<Force>();
         }
 
@@ -31,28 +31,18 @@ namespace DEMW.SpaceWar2.GameObjects
         
         public void ApplyForce(Force force)
         {
-            if (_forcesHaveBeenResolved)
-            {
-                Forces.Clear();
-                _forcesHaveBeenResolved = false;
-            }
-
             if (force.Vector != Vector2.Zero)
             {
-                Forces.Add(force);
+                _queuedforces.Add(force);
             }
         }
 
-        public Vector2 ResolveForces()
+        public Vector2 ResolvedForce
         {
-            if (_forcesHaveBeenResolved == false)
-            {
-                _forcesHaveBeenResolved = true;
-                _resultantForce = Forces.Aggregate(Vector2.Zero, (total, current) => total + current.Vector);
-            }
-
-            return _resultantForce;
+            get { return _resultantForce; }
         }
+
+        protected IList<Force> Forces { get; private set; }
 
         public void Teleport(Vector2 destination)
         {
@@ -62,6 +52,20 @@ namespace DEMW.SpaceWar2.GameObjects
         public void Update(GameTime gameTime)
         {
             UpdateInternal(gameTime);
+            ResolveForces();
+        }
+
+        private void ResolveForces()
+        {
+            _resultantForce = _queuedforces.Aggregate(Vector2.Zero, (total, current) => total + current.Vector);
+
+            Forces.Clear();
+            foreach (var force in _queuedforces)
+            {
+                Forces.Add(force);
+            }
+
+            _queuedforces.Clear();
         }
 
         protected abstract void UpdateInternal(GameTime gameTime);
