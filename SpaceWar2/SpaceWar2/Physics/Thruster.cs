@@ -1,6 +1,7 @@
 ﻿using DEMW.SpaceWar2.GameObjects;
 using Microsoft.Xna.Framework;
 
+//TODO consider moving this into a ship component namespace rather than physics
 namespace DEMW.SpaceWar2.Physics
 {
     internal class Thruster

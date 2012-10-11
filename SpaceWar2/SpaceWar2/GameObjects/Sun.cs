@@ -13,6 +13,12 @@ namespace DEMW.SpaceWar2.GameObjects
             Model = new Circle(graphics, radius, lineColor, lineCount);
         }
 
+        protected override void UpdateInternal(GameTime gameTime)
+        {
+            //Todo do anything that the sun might do. 
+            //e.g. spin, emit solar storms, grow, explode
+        }
+
         public override void Draw()
         {
             Model.Draw();

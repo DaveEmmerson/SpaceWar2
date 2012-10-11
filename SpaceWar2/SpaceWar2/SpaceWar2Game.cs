@@ -124,7 +124,7 @@ namespace DEMW.SpaceWar2
             {
                 _gameObjectFactory.DestroyAll(obj => obj.Expired);
                 _gravitySimulator.Simulate();
-                _gameObjectFactory.GameObjects.ForEach<IGameObject, Ship>(ship => ship.Update(gameTime));
+                _gameObjectFactory.GameObjects.ForEach<IGameObject, GameObject>(x => x.Update(gameTime));
                 _screenManager.Update();
             }
 

@@ -56,10 +56,15 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public void Teleport(Vector2 destination)
         {
-
             Position = destination;
-
         }
+
+        public void Update(GameTime gameTime)
+        {
+            UpdateInternal(gameTime);
+        }
+
+        protected abstract void UpdateInternal(GameTime gameTime);
 
         public abstract void Draw();
     }

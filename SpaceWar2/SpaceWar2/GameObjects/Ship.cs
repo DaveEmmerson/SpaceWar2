@@ -116,45 +116,7 @@ namespace DEMW.SpaceWar2.GameObjects
         private float _explosionTargetRadius;
         private float _explosionRadiusIncrement;
 
-        public override void Draw()
-        {
-            DrawArrows();
-            _model.Draw();
-        }
-
-        private void DrawArrows()
-        {
-            _arrows.Clear();
-            if (ShowArrows)
-            {
-                var accelerationArrow = new Arrow(_graphics, Vector2.Zero, ResolveForces(), Color.LimeGreen, Radius);
-                var velocityArrow = new Arrow(_graphics, Vector2.Zero, Velocity, Color.Linen, Radius);
-                var rotationAngle = new Vector2((float)Math.Sin(Rotation) * Radius * 2, -(float)Math.Cos(Rotation) * Radius * 2);
-                var rotationArrow = new Arrow(_graphics, Vector2.Zero, rotationAngle, Color.Red, Radius);
-
-                _arrows.Add(accelerationArrow);
-                _arrows.Add(velocityArrow);
-                _arrows.Add(rotationArrow);
-
-                foreach (var force in Forces)
-                {
-                    var arrow = new Arrow(_graphics, force.Displacement, force.Vector, Color.Yellow, Radius);
-                    _arrows.Add(arrow);
-                }
-            }
-
-            foreach (var arrow in _arrows)
-            {
-                arrow.Draw();
-            }
-        }
-
-        public void Damage(int amount)
-        {
-            Shields -= amount;
-        }
-
-        public void Update(GameTime gameTime)
+        protected override void UpdateInternal(GameTime gameTime)
         {
             var deltaT = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -197,7 +159,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
                 if (action.HasFlag(ShipAction.Thrust))
                 {
-                   _mainThruster.Engage();
+                    _mainThruster.Engage();
                 }
 
                 if (action.HasFlag(ShipAction.ReverseThrust))
@@ -222,6 +184,44 @@ namespace DEMW.SpaceWar2.GameObjects
 
             Velocity +=  ResolveForces() * deltaT;
             Position = Position + Velocity * deltaT;
+        }
+
+        public override void Draw()
+        {
+            DrawArrows();
+            _model.Draw();
+        }
+
+        private void DrawArrows()
+        {
+            _arrows.Clear();
+            if (ShowArrows)
+            {
+                var accelerationArrow = new Arrow(_graphics, Vector2.Zero, ResolveForces(), Color.LimeGreen, Radius);
+                var velocityArrow = new Arrow(_graphics, Vector2.Zero, Velocity, Color.Linen, Radius);
+                var rotationAngle = new Vector2((float)Math.Sin(Rotation) * Radius * 2, -(float)Math.Cos(Rotation) * Radius * 2);
+                var rotationArrow = new Arrow(_graphics, Vector2.Zero, rotationAngle, Color.Red, Radius);
+
+                _arrows.Add(accelerationArrow);
+                _arrows.Add(velocityArrow);
+                _arrows.Add(rotationArrow);
+
+                foreach (var force in Forces)
+                {
+                    var arrow = new Arrow(_graphics, force.Displacement, force.Vector, Color.Yellow, Radius);
+                    _arrows.Add(arrow);
+                }
+            }
+
+            foreach (var arrow in _arrows)
+            {
+                arrow.Draw();
+            }
+        }
+
+        public void Damage(int amount)
+        {
+            Shields -= amount;
         }
 
         public float RequestEnergy(float energyRequest)
