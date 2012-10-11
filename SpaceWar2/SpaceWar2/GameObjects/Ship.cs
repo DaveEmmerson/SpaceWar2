@@ -47,10 +47,10 @@ namespace DEMW.SpaceWar2.GameObjects
             _mainThruster = new Thruster(this, Vector2.Zero, new Vector2(0, -ThrustPower), ThrustEnergyCost);
             _reverseThruster = new Thruster(this, Vector2.Zero, new Vector2(0, ThrustPower), ThrustEnergyCost);
 
-            _frontLeftThruster = new Thruster(this, new Vector2(-10, -10), new Vector2(-10, 0), ThrustEnergyCost);
-            _frontRightThruster = new Thruster(this, new Vector2(10, -10), new Vector2(10, 0), ThrustEnergyCost);
-            _backLeftThruster = new Thruster(this, new Vector2(-10, 10), new Vector2(-10, 0), ThrustEnergyCost);
-            _backRightThruster = new Thruster(this, new Vector2(10, 10), new Vector2(10, 0), ThrustEnergyCost);
+            _frontLeftThruster = new Thruster(this, new Vector2(-10, -10), new Vector2(-10, 0), ThrustEnergyCost / 10);
+            _frontRightThruster = new Thruster(this, new Vector2(10, -10), new Vector2(10, 0), ThrustEnergyCost / 10);
+            _backLeftThruster = new Thruster(this, new Vector2(-10, 10), new Vector2(-10, 0), ThrustEnergyCost / 10);
+            _backRightThruster = new Thruster(this, new Vector2(10, 10), new Vector2(10, 0), ThrustEnergyCost / 10);
         }
 
         //Settings
@@ -127,10 +127,10 @@ namespace DEMW.SpaceWar2.GameObjects
             _arrows.Clear();
             if (ShowArrows)
             {
-                var accelerationArrow = new Arrow(_graphics, ResolveForces(), Color.LimeGreen, Radius, Vector2.Zero);
-                var velocityArrow = new Arrow(_graphics, Velocity, Color.Linen, Radius, Vector2.Zero);
+                var accelerationArrow = new Arrow(_graphics, Vector2.Zero, ResolveForces(), Color.LimeGreen, Radius);
+                var velocityArrow = new Arrow(_graphics, Vector2.Zero, Velocity, Color.Linen, Radius);
                 var rotationAngle = new Vector2((float)Math.Sin(Rotation) * Radius * 2, -(float)Math.Cos(Rotation) * Radius * 2);
-                var rotationArrow = new Arrow(_graphics, rotationAngle, Color.Red, Radius, Vector2.Zero);
+                var rotationArrow = new Arrow(_graphics, Vector2.Zero, rotationAngle, Color.Red, Radius);
 
                 _arrows.Add(accelerationArrow);
                 _arrows.Add(velocityArrow);
@@ -138,7 +138,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
                 foreach (var force in Forces)
                 {
-                    var arrow = new Arrow(_graphics, force.Vector, Color.Yellow, Radius, force.Displacement);
+                    var arrow = new Arrow(_graphics, force.Displacement, force.Vector, Color.Yellow, Radius);
                     _arrows.Add(arrow);
                 }
             }
@@ -186,7 +186,6 @@ namespace DEMW.SpaceWar2.GameObjects
                     float increaseRequired = Math.Min(MaxShieldLevel - Shields,ShieldRechargeRate);
 
                     Shields += RequestEnergy(increaseRequired);
-
                 }
 
                 Energy += EnergyRechargeRate;

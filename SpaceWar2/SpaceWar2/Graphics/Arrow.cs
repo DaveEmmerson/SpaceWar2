@@ -9,25 +9,25 @@ namespace DEMW.SpaceWar2.Graphics
         private readonly GraphicsDeviceManager _graphics;
         private readonly VertexPositionColor[] _vertices;
 
-        internal Arrow(GraphicsDeviceManager graphics, Vector2 vector, Color color, float radius, Vector2 position)
+        internal Arrow(GraphicsDeviceManager graphics, Vector2 position, Vector2 direction, Color color, float radius)
         {
             _graphics = graphics;
             _vertices = new VertexPositionColor[6];
             
-            if (vector == Vector2.Zero)
+            if (direction == Vector2.Zero)
             {
                 return;
             }
             
-            var length = 3f * (float)Math.Sqrt(vector.Length());
+            var length = 3f * (float)Math.Sqrt(direction.Length());
 
-            vector.Normalize();
+            direction.Normalize();
 
             var arrowHeadSize = radius / 3f;
-            var perpendicular = new Vector3(-vector.Y, vector.X, 0);
-            var arrowBase = new Vector3(position + (vector * radius), 0);
-            var arrowHead = new Vector3(position + (vector * (radius + length)), 0);
-            var arrowPoint = new Vector3(position + (vector * (radius + length + arrowHeadSize)), 0);
+            var perpendicular = new Vector3(-direction.Y, direction.X, 0);
+            var arrowBase = new Vector3(position + (direction * radius), 0);
+            var arrowHead = new Vector3(position + (direction * (radius + length)), 0);
+            var arrowPoint = new Vector3(position + (direction * (radius + length + arrowHeadSize)), 0);
             
             _vertices[0].Position = arrowBase;
             _vertices[1].Position = arrowHead;
