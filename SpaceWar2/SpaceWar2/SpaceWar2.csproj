@@ -86,6 +86,7 @@
     <Compile Include="Graphics\Camera.cs" />
     <Compile Include="Graphics\Circle.cs" />
     <Compile Include="Graphics\InfoBar.cs" />
+    <Compile Include="Physics\Universe.cs" />
     <Compile Include="Physics\Thruster.cs" />
     <Compile Include="Graphics\ScreenManager.cs" />
     <Compile Include="Physics\Force.cs" />
