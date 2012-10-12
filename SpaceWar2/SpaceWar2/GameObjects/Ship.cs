@@ -11,7 +11,7 @@ namespace DEMW.SpaceWar2.GameObjects
     {
         private const float ThrustPower = 100F;
         private const float ThrustEnergyCost = 0.1F;
-        private const float RotationSpeed = 180F;
+        private const float RotationSpeed = 2F;
         private const float MaxShieldLevel = 100F;
         private const float MaxEnergyLevel = 100F;
         private const float ExplosionRadiusMultiplier = 1.4F;
@@ -115,6 +115,7 @@ namespace DEMW.SpaceWar2.GameObjects
         private bool _imploding;
         private float _explosionTargetRadius;
         private float _explosionRadiusIncrement;
+        private float _angularVelocityTarget;
 
         protected override void UpdateInternal(GameTime gameTime)
         {
@@ -153,37 +154,64 @@ namespace DEMW.SpaceWar2.GameObjects
                 Energy += EnergyRechargeRate;
             }
 
-            if (Controller != null)
-            {
-                ShipAction action = Controller.GetAction();
+            RespondToInput();
 
-                if (action.HasFlag(ShipAction.Thrust))
-                {
-                    _mainThruster.Engage();
-                }
-
-                if (action.HasFlag(ShipAction.ReverseThrust))
-                {
-                    _reverseThruster.Engage();
-                }
-
-                if (action.HasFlag(ShipAction.TurnLeft))
-                {
-                    _frontRightThruster.Engage();
-                    _backLeftThruster.Engage();
-                    Rotation -= (float)Math.PI / RotationSpeed;
-                }
-
-                if (action.HasFlag(ShipAction.TurnRight))
-                {
-                    _frontLeftThruster.Engage();
-                    _backRightThruster.Engage();
-                    Rotation += (float)Math.PI / RotationSpeed;
-                }
-            }
+            AchieveTargetAngularVelocity(deltaT);
 
             Velocity +=  ResolvedForce * deltaT;
             Position = Position + Velocity * deltaT;
+
+            Rotation += AngularVelocity * deltaT;
+        }
+
+        private void RespondToInput()
+        {
+            if (Controller == null)
+            {
+                return;
+            }
+
+            ShipAction action = Controller.GetAction();
+
+            if (action.HasFlag(ShipAction.Thrust))
+            {
+                _mainThruster.Engage();
+            }
+
+            if (action.HasFlag(ShipAction.ReverseThrust))
+            {
+                _reverseThruster.Engage();
+            }
+
+            _angularVelocityTarget = 0;
+            if (action.HasFlag(ShipAction.TurnLeft))
+            {
+                _angularVelocityTarget -= RotationSpeed;
+            }
+            if (action.HasFlag(ShipAction.TurnRight))
+            {
+                _angularVelocityTarget += RotationSpeed;
+            }
+        }
+
+        private void AchieveTargetAngularVelocity(float deltaT)
+        {
+            if (AngularVelocity < _angularVelocityTarget - 0.1)
+            {
+                _backRightThruster.Engage();
+                _frontLeftThruster.Engage();
+                AngularVelocity += ThrustPower / 10 * deltaT;
+            }
+            else if (AngularVelocity > _angularVelocityTarget + 0.1)
+            {
+                _backLeftThruster.Engage();
+                _frontRightThruster.Engage();
+                AngularVelocity -= ThrustPower / 10 * deltaT;
+            }
+            else
+            {
+                AngularVelocity = _angularVelocityTarget;
+            }
         }
 
         public override void Draw()
