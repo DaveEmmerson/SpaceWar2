@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using DEMW.SpaceWar2.Physics;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.GameObjects
@@ -80,7 +78,5 @@ namespace DEMW.SpaceWar2.GameObjects
         protected abstract void UpdateInternal(GameTime gameTime);
 
         public abstract void Draw();
-
-
     }
 }

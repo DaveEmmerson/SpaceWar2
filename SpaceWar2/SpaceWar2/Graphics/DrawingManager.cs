@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DEMW.SpaceWar2.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,44 +8,36 @@ namespace DEMW.SpaceWar2.Graphics
 {
     internal class DrawingManager
     {
-        private List<IGameObject> drawableObjects;
+        private readonly List<IGameObject> _drawableObjects;
 
         public Camera ActiveCamera { get; set; }
 
-        internal DrawingManager() {
-
-            drawableObjects = new List<IGameObject>();
-
+        internal DrawingManager() 
+        {
+            _drawableObjects = new List<IGameObject>();
         }
 
-        internal void Register(IGameObject gameObject) {
-
-            drawableObjects.Add(gameObject);
-
+        internal void Register(IGameObject gameObject) 
+        {
+            _drawableObjects.Add(gameObject);
         }
 
-        internal void UnRegister(IGameObject gameObject) {
-
-            drawableObjects.Remove(gameObject);
-
+        internal void UnRegister(IGameObject gameObject) 
+        {
+            _drawableObjects.Remove(gameObject);
         }
-
 
         internal void DrawGameObjects()
         {
-
             if (ActiveCamera == null)
             {
-
                 throw new NullReferenceException("No ActiveCamera set on DrawingManager.");
-
             }
 
-            drawableObjects.ForEach(draw);
-
+            _drawableObjects.ForEach(Draw);
         }
 
-        private void draw(IGameObject gameObject)
+        private void Draw(IGameObject gameObject)
         {
             var model = gameObject.Model;
             var transforms = new Matrix[model.Bones.Count];

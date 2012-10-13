@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DEMW.SpaceWar2.Graphics
+﻿namespace DEMW.SpaceWar2.Physics
 {
     internal struct Universe
     {
@@ -23,7 +18,6 @@ namespace DEMW.SpaceWar2.Graphics
             MaxY = maxY;
             MinZ = minZ;
             MaxZ = maxZ;
-
         }
     }
 }
