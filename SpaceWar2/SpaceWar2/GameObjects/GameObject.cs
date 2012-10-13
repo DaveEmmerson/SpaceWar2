@@ -2,6 +2,8 @@
 using System.Linq;
 using DEMW.SpaceWar2.Physics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.GameObjects
 {
@@ -30,6 +32,10 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public float Mass { get; set; }
         public float Radius { get; set; }
+
+        public abstract string ModelPath { get; }
+        public Model Model { get; set; }
+        public Color Color { get; set; }
         
         public void ApplyForce(Force force)
         {
@@ -74,5 +80,7 @@ namespace DEMW.SpaceWar2.GameObjects
         protected abstract void UpdateInternal(GameTime gameTime);
 
         public abstract void Draw();
+
+
     }
 }

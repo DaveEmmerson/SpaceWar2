@@ -22,6 +22,7 @@ namespace DEMW.SpaceWar2
         private readonly ControllerFactory _controllerFactory;
 
         private readonly ScreenManager _screenManager;
+        private readonly DrawingManager _drawingManager;
 		
         private bool _paused;
 
@@ -32,12 +33,12 @@ namespace DEMW.SpaceWar2
 
         public SpaceWar2Game()
         {
-            _graphics = new GraphicsDeviceManager(this);
-            _gravitySimulator = new GravitySimulator();
-            _screenManager = new ScreenManager();
-            _gameObjectFactory = new GameObjectFactory(_graphics, _gravitySimulator, _screenManager);
-            
             Content.RootDirectory = "Content";
+            _graphics = new GraphicsDeviceManager(this);
+            _screenManager = new ScreenManager();
+            _drawingManager = new DrawingManager();
+            _gravitySimulator = new GravitySimulator();
+            _gameObjectFactory = new GameObjectFactory(Content, _graphics, _gravitySimulator, _screenManager, _drawingManager);
             
             _keyboardHandler = new KeyboardHandler();
             _controllerFactory = new ControllerFactory(_keyboardHandler);
@@ -49,6 +50,7 @@ namespace DEMW.SpaceWar2
 
             var universe = new Universe(-400, 400, -240, 240, -1000, 1000);
             _camera = new Camera(new Vector3(0, 0, 1f), Vector3.Zero, universe);
+            _drawingManager.ActiveCamera = _camera;
             
             if (_effect != null)
             {
@@ -175,27 +177,6 @@ namespace DEMW.SpaceWar2
         {
             GraphicsDevice.Clear(Color.Black);
 
-            //var transforms = new Matrix[_model.Bones.Count];
-            //_model.CopyAbsoluteBoneTransformsTo(transforms);
-
-            //foreach (ModelMesh modelMesh in _model.Meshes)
-            //{
-            //    foreach (BasicEffect effect in modelMesh.Effects)
-            //    {
-            //        effect.EnableDefaultLighting();
-            //        effect.AmbientLightColor = new Vector3(0.5f, 0.5f, 0.5f);
-            //        effect.World = transforms[modelMesh.ParentBone.Index];
-            //        effect.TextureEnabled = true;
-            //        effect.Texture = _texture;
-
-            //        effect.View = _camera.View;
-            //        effect.Projection = _camera.Projection;
-            //    }
-
-            //    modelMesh.Draw();
-            //}
-
-
             var gameObjects = _gameObjectFactory.GameObjects;
 
             _effect.Parameters["View"].SetValue(_camera.View);
@@ -214,6 +195,8 @@ namespace DEMW.SpaceWar2
 
                 }
             });
+
+            _drawingManager.DrawGameObjects();
 
             _infoBar.Reset();
             gameObjects.ForEach<IGameObject, Ship>(_infoBar.DrawShipInfo);            

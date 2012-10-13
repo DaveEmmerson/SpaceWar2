@@ -49,6 +49,8 @@
       <Name>Saucer</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
+      <ProcessorParameters_Scale>16</ProcessorParameters_Scale>
+      <ProcessorParameters_RotationZ>180</ProcessorParameters_RotationZ>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -56,9 +58,16 @@
       <Name>Sun</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
+      <ProcessorParameters_Scale>25</ProcessorParameters_Scale>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Models\Arrow.fbx">
+      <Name>Arrow</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Textures\Test.png">
       <Name>Test</Name>

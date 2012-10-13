@@ -21,6 +21,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
         private readonly GraphicsDeviceManager _graphics;
         public IShipController Controller { private get; set; }
+        public override string ModelPath { get { return "Models/Saucer"; } }
 
         private readonly Circle _model;
         private readonly IList<Arrow> _arrows;
@@ -31,18 +32,20 @@ namespace DEMW.SpaceWar2.GameObjects
         private readonly Thruster _backLeftThruster;
         private readonly Thruster _backRightThruster;
 
-        
         public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color lineColor, uint lineCount)
             : base (position, radius, 1)
         {
             _graphics = graphics;
             _model = new Circle(graphics, radius, lineColor, lineCount);
             _arrows = new List<Arrow>();
+            Color = lineColor;
 
             Name = name;
 
             Energy = 100F;
             Armour = 100F;
+
+
 
             _mainThruster = new Thruster(this, Vector2.Zero, new Vector2(0, -ThrustPower), ThrustEnergyCost);
             _reverseThruster = new Thruster(this, Vector2.Zero, new Vector2(0, ThrustPower), ThrustEnergyCost);

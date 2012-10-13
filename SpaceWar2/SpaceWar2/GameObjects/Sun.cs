@@ -5,12 +5,15 @@ namespace DEMW.SpaceWar2.GameObjects
 { 
     class Sun : GameObject
     {
-        Circle Model { get; set; }
+        public override string ModelPath { get { return "Models/Sun"; } }
+        
+        Circle LineModel { get; set; }
         
         public Sun(GraphicsDeviceManager graphics, Vector2 position, float radius, Color lineColor, uint lineCount, float mass)
             : base (position, radius, mass)
         {
-            Model = new Circle(graphics, radius, lineColor, lineCount);
+            LineModel = new Circle(graphics, radius, lineColor, lineCount);
+            Color = lineColor;
         }
 
         protected override void UpdateInternal(GameTime gameTime)
@@ -21,7 +24,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public override void Draw()
         {
-            Model.Draw();
+            LineModel.Draw();
         }
     }
 }
