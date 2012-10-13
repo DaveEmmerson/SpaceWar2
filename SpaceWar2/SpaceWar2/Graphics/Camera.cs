@@ -16,7 +16,6 @@ namespace DEMW.SpaceWar2.Graphics
             Position = position;
             Target = target;
             
-            //TODO MW figure out why the Y axis is flipped
             Projection = Matrix.CreateOrthographicOffCenter(
                 universe.MinX, universe.MaxX,
                 universe.MaxY, universe.MinY,
