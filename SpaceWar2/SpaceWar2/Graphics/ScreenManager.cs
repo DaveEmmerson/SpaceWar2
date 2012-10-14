@@ -9,8 +9,6 @@ namespace DEMW.SpaceWar2.Graphics
     {
         private readonly IList<IGameObject> _managedObjects;
         public Universe Universe { get; set; }
-
-        internal ScreenManager() : this(Universe.GetDefault()) { }
         
         internal ScreenManager(Universe universe = null) 
         {
