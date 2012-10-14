@@ -43,11 +43,16 @@ namespace DEMW.SpaceWar2.Physics
 
             var unitVector = DirectionBetween(source, participant);
             var diff = (participant.Position - source.Position);
-            
-            if (diff.Length() > source.Radius)
+
+            if (diff.Length() > source.Radius + participant.Radius)
             {
                 var lengthSquared = diff.LengthSquared();
                 return new Force(gravitationalConstant * (source.Mass * participant.Mass / lengthSquared) * unitVector);
+            }
+            else
+            {
+                // TODO: Add in a slow down here - viscocity of the source?
+
             }
 
             return new Force(Vector2.Zero);
