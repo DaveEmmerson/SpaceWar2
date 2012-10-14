@@ -16,18 +16,32 @@ namespace DEMW.SpaceWar2.Graphics
         {
             Position = position;
             Target = target;
-            
+            Universe = universe;
+            UpdateProjection();
+        }
+
+        private void UpdateProjection() {
+
             Projection = Matrix.CreateOrthographicOffCenter(
-                universe.MinX, universe.MaxX,
-                universe.MaxY, universe.MinY,
-                universe.MinZ, universe.MaxZ
+                Universe.MinX, Universe.MaxX,
+                Universe.MaxY, Universe.MinY,
+                Universe.MinZ, Universe.MaxZ
             );
+
         }
 
         public void Pan(Vector3 vector) 
         {
             Position += vector;
             Target += vector;
+        }
+
+        public void Zoom(float amount)
+        {
+
+            Universe = Universe.Expand(amount);
+            UpdateProjection();
+
         }
 
         internal static Camera GetDefault()

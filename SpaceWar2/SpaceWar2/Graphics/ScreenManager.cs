@@ -7,25 +7,14 @@ namespace DEMW.SpaceWar2.Graphics
 {
     internal class ScreenManager
     {
-
-        public float MinX { get; set; }
-        public float MaxX { get; set; }
-        public float MinY { get; set; }
-        public float MaxY { get; set; }
-        public float ScreenWidth { get { return MaxX - MinX; } }
-        public float ScreenHeight { get { return MaxY - MinY; } }
-
         private readonly IList<IGameObject> _managedObjects;
+        public Universe Universe { get; set; }
 
         internal ScreenManager() : this(Universe.GetDefault()) { }
         
         internal ScreenManager(Universe universe) 
         {
-            MinX = universe.MinX;
-            MaxX = universe.MaxX;
-            MinY = universe.MinY;
-            MaxY = universe.MaxY;
-
+            Universe = universe;
             _managedObjects = new List<IGameObject>();
         }
 
@@ -49,12 +38,12 @@ namespace DEMW.SpaceWar2.Graphics
 
         private void Constrain(IGameObject gameObject) 
         {
-            Vector2 position = gameObject.Position;
+            var position = gameObject.Position;
 
-            if (position.X < MinX) { position.X  = MaxX - (MinX - position.X) % ScreenWidth; }
-            if (position.X > MaxX) { position.X  = MinX + (position.X - MaxX) % ScreenWidth; }
-            if (position.Y < MinY) { position.Y = MaxY - (MinY - position.Y) % ScreenHeight; }
-            if (position.Y > MaxY) { position.Y = MinY + (position.Y - MaxY) % ScreenHeight; }
+            if (position.X < Universe.MinX) { position.X  = Universe.MaxX - (Universe.MinX - position.X) % Universe.Width; }
+            if (position.X > Universe.MaxX) { position.X  = Universe.MinX + (position.X - Universe.MaxX) % Universe.Width; }
+            if (position.Y < Universe.MinY) { position.Y = Universe.MaxY - (Universe.MinY - position.Y) % Universe.Height; }
+            if (position.Y > Universe.MaxY) { position.Y = Universe.MinY + (position.Y - Universe.MaxY) % Universe.Height; }
 
             if (position != gameObject.Position)
             {

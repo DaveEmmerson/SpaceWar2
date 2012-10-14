@@ -166,6 +166,12 @@ namespace DEMW.SpaceWar2
             {
                 _camera.Pan(Vector3.Up);
             }
+
+            if (_keyboardHandler.IsPressed(Keys.U))
+            {
+                _camera.Zoom(10);
+
+            }
         }
 
         /// <summary>

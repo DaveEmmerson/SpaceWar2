@@ -9,6 +9,26 @@
         internal float MinZ;
         internal float MaxZ;
 
+        public float Width
+        {
+            get
+            {
+                return MaxX - MinX;
+
+            }
+
+        }
+
+        public float Height
+        {
+            get
+            {
+                return MaxY - MinY;
+
+            }
+
+        }
+
         internal Universe(float minX, float maxX, float minY, float maxY, float minZ, float maxZ)
         {
 
@@ -18,6 +38,16 @@
             MaxY = maxY;
             MinZ = minZ;
             MaxZ = maxZ;
+        }
+
+        internal Universe Expand(float amount)
+        {
+            return new Universe(
+                MinX - amount, MaxX + amount,
+                MinY - amount, MaxY + amount,
+                MinZ - amount, MaxZ + amount
+            );
+
         }
 
         internal static Universe GetDefault()
