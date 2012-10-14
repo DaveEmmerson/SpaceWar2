@@ -20,14 +20,13 @@ namespace DEMW.SpaceWar2.Graphics
             UpdateProjection();
         }
 
-        private void UpdateProjection() {
-
+        private void UpdateProjection() 
+        {
             Projection = Matrix.CreateOrthographicOffCenter(
                 Universe.MinX, Universe.MaxX,
                 Universe.MaxY, Universe.MinY,
                 Universe.MinZ, Universe.MaxZ
             );
-
         }
 
         public void Pan(Vector3 vector) 
@@ -38,15 +37,13 @@ namespace DEMW.SpaceWar2.Graphics
 
         public void Zoom(float amount)
         {
-
-            Universe = Universe.Expand(amount);
+            Universe.Expand(amount);
             UpdateProjection();
-
         }
 
-        internal static Camera GetDefault()
+        internal static Camera GetDefault(Universe universe)
         {
-            return new Camera(new Vector3(0, 0, 1), Vector3.Zero, Universe.GetDefault());
+            return new Camera(new Vector3(0, 0, 1), Vector3.Zero, universe);
         }
     }
 }

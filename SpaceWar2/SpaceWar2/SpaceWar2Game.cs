@@ -17,11 +17,11 @@ namespace DEMW.SpaceWar2
         private readonly GraphicsDeviceManager _graphics;
         private readonly GameObjectFactory _gameObjectFactory;
         private readonly GravitySimulator _gravitySimulator;
+        private readonly Universe _universe;
 
         private readonly KeyboardHandler _keyboardHandler;
         private readonly ControllerFactory _controllerFactory;
 
-        private readonly ScreenManager _screenManager;
         private readonly DrawingManager _drawingManager;
 		
         private bool _paused;
@@ -30,15 +30,15 @@ namespace DEMW.SpaceWar2
         private Camera _camera;
         		
         private Effect _effect;
-
+        
         public SpaceWar2Game()
         {
             Content.RootDirectory = "Content";
             _graphics = new GraphicsDeviceManager(this);
-            _screenManager = new ScreenManager();
-            _drawingManager = new DrawingManager();
+            _universe = Universe.GetDefault();
+            _drawingManager = new DrawingManager(_universe);
             _gravitySimulator = new GravitySimulator();
-            _gameObjectFactory = new GameObjectFactory(Content, _graphics, _gravitySimulator, _screenManager, _drawingManager);
+            _gameObjectFactory = new GameObjectFactory(Content, _graphics, _gravitySimulator, _drawingManager, _universe);
             
             _keyboardHandler = new KeyboardHandler();
             _controllerFactory = new ControllerFactory(_keyboardHandler);
@@ -48,7 +48,7 @@ namespace DEMW.SpaceWar2
         {
             _gameObjectFactory.DestroyAll(x=>true);
 
-            _camera = Camera.GetDefault();
+            _camera = Camera.GetDefault(_universe);
             _drawingManager.ActiveCamera = _camera;
             
             if (_effect != null)
@@ -76,7 +76,6 @@ namespace DEMW.SpaceWar2
         /// </summary>
         protected override void Initialize()
         {
-
             ResetGame();
 
             base.Initialize();
@@ -127,7 +126,7 @@ namespace DEMW.SpaceWar2
                 _gameObjectFactory.DestroyAll(obj => obj.Expired);
                 _gravitySimulator.Simulate();
                 _gameObjectFactory.GameObjects.ForEach<IGameObject, GameObject>(x => x.Update(gameTime));
-                _screenManager.Update();
+                _universe.Update();
             }
 
             base.Update(gameTime);
@@ -161,7 +160,7 @@ namespace DEMW.SpaceWar2
             {
                 _camera.Pan(Vector3.Forward);
             }
-
+            
             if (_keyboardHandler.IsPressed(Keys.Y))
             {
                 _camera.Pan(Vector3.Up);
@@ -169,8 +168,12 @@ namespace DEMW.SpaceWar2
 
             if (_keyboardHandler.IsPressed(Keys.U))
             {
-                _camera.Zoom(10);
+                _camera.Zoom(-10);
+            }
 
+            if (_keyboardHandler.IsPressed(Keys.J))
+            {
+                _camera.Zoom(10);
             }
         }
 

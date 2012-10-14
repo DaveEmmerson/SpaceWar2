@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DEMW.SpaceWar2.GameObjects;
+using DEMW.SpaceWar2.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -12,9 +13,9 @@ namespace DEMW.SpaceWar2.Graphics
 
         public Camera ActiveCamera { get; set; }
 
-        internal DrawingManager(Camera camera = null) 
+        internal DrawingManager(Universe universe, Camera camera = null) 
         {
-            ActiveCamera = camera ?? Camera.GetDefault();
+            ActiveCamera = camera ?? Camera.GetDefault(universe);
             _drawableObjects = new List<IGameObject>();
         }
 

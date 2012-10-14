@@ -17,16 +17,16 @@ namespace DEMW.SpaceWar2
         private readonly ContentManager _contentManager;
         private readonly GraphicsDeviceManager _graphics;
         private readonly GravitySimulator _gravitySimulator;
-        private readonly ScreenManager _screenManager;
+        private readonly Universe _universe;
         private readonly DrawingManager _drawingManager;
 
-        public GameObjectFactory(ContentManager contentManager,GraphicsDeviceManager graphics, GravitySimulator gravitySimulator, ScreenManager screenManager, DrawingManager drawingManager)
+        public GameObjectFactory(ContentManager contentManager,GraphicsDeviceManager graphics, GravitySimulator gravitySimulator, DrawingManager drawingManager, Universe universe)
         {
             _contentManager = contentManager;
             _graphics = graphics;
             _gravitySimulator = gravitySimulator;
-            _screenManager = screenManager;
             _drawingManager = drawingManager;
+            _universe = universe;
             _gameObjects = new List<IGameObject>();
         }
 
@@ -55,7 +55,7 @@ namespace DEMW.SpaceWar2
 
             ship.Model = _contentManager.Load<Model>(ship.ModelPath);
             _gravitySimulator.RegisterParticipant(ship);
-            _screenManager.Register(ship);
+            _universe.Register(ship);
             _drawingManager.Register(ship);
             _gameObjects.Add(ship);
 
@@ -69,12 +69,10 @@ namespace DEMW.SpaceWar2
             foreach (var item in itemsToDestory)
             {
                 _gravitySimulator.UnRegister(item);
-                _screenManager.UnRegister(item);
+                _universe.UnRegister(item);
                 _drawingManager.UnRegister(item);
                 GameObjects.Remove(item);
             }
         }
-
-
     }
 }
