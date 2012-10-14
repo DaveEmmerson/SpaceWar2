@@ -48,8 +48,7 @@ namespace DEMW.SpaceWar2
         {
             _gameObjectFactory.DestroyAll(x=>true);
 
-            var universe = Universe.GetDefault();
-            _camera = new Camera(new Vector3(0, 0, 1f), Vector3.Zero, universe);
+            _camera = Camera.GetDefault();
             _drawingManager.ActiveCamera = _camera;
             
             if (_effect != null)

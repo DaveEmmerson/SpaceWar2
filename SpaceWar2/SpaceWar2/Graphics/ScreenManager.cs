@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
 using DEMW.SpaceWar2.GameObjects;
 using Microsoft.Xna.Framework;
+using DEMW.SpaceWar2.Physics;
 
 namespace DEMW.SpaceWar2.Graphics
 {
     internal class ScreenManager
     {
-        public const float DefaultMinX = -400;
-        public const float DefaultMaxX = 400;
-        public const float DefaultMinY = -240;
-        public const float DefaultMaxY = 240;
 
         public float MinX { get; set; }
         public float MaxX { get; set; }
@@ -20,12 +17,14 @@ namespace DEMW.SpaceWar2.Graphics
 
         private readonly IList<IGameObject> _managedObjects;
 
-        internal ScreenManager() 
+        internal ScreenManager() : this(Universe.GetDefault()) { }
+        
+        internal ScreenManager(Universe universe) 
         {
-            MinX = DefaultMinX;
-            MaxX = DefaultMaxX;
-            MinY = DefaultMinY;
-            MaxY = DefaultMaxY;
+            MinX = universe.MinX;
+            MaxX = universe.MaxX;
+            MinY = universe.MinY;
+            MaxY = universe.MaxY;
 
             _managedObjects = new List<IGameObject>();
         }
