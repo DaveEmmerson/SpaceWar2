@@ -159,7 +159,7 @@ namespace DEMW.SpaceWar2.GameObjects
             AchieveTargetAngularVelocity(deltaT);
 
             ResolveForces();
-            Velocity +=  ResolvedForce * deltaT;
+            Velocity += ResolvedForce.Vector * deltaT;
             Position += Velocity * deltaT;
 
             Rotation += AngularVelocity * deltaT;
@@ -225,7 +225,7 @@ namespace DEMW.SpaceWar2.GameObjects
             _arrows.Clear();
             if (ShowArrows)
             {
-                var accelerationArrow = new Arrow(_graphics, Vector2.Zero, ResolvedForce, Color.LimeGreen, Radius);
+                var accelerationArrow = new Arrow(_graphics, ResolvedForce.Displacement, ResolvedForce.Vector, Color.LimeGreen, Radius);
                 var velocityArrow = new Arrow(_graphics, Vector2.Zero, Velocity, Color.Linen, Radius);
                 var rotationAngle = new Vector2((float)Math.Sin(Rotation) * Radius * 2, -(float)Math.Cos(Rotation) * Radius * 2);
                 var rotationArrow = new Arrow(_graphics, Vector2.Zero, rotationAngle, Color.Red, Radius);

@@ -8,7 +8,7 @@ namespace DEMW.SpaceWar2.GameObjects
     internal abstract class GameObject : IGameObject
     {
         private readonly IList<Force> _queuedforces;
-        private Vector2 _resultantForce;
+        private Force _resultantForce;
 
         internal GameObject (Vector2 position, float radius, float mass)
         {
@@ -43,7 +43,7 @@ namespace DEMW.SpaceWar2.GameObjects
             }
         }
 
-        public Vector2 ResolvedForce
+        public Force ResolvedForce
         {
             get { return _resultantForce; }
         }
@@ -63,12 +63,12 @@ namespace DEMW.SpaceWar2.GameObjects
         protected void ResolveForces()
         {
             Forces.Clear();
-            _resultantForce = Vector2.Zero;
+            _resultantForce = new Force(Vector2.Zero, Vector2.Zero);
             
             foreach (var force in _queuedforces)
             {
                 Forces.Add(force);
-                _resultantForce += force.Vector;
+                _resultantForce += force;
             }
 
             _queuedforces.Clear();
