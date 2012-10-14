@@ -23,7 +23,6 @@ namespace DEMW.SpaceWar2.GameObjects
         public IShipController Controller { private get; set; }
         public override string ModelPath { get { return "Models/Saucer"; } }
 
-        private readonly Circle _model;
         private readonly IList<Arrow> _arrows;
         private readonly Thruster _mainThruster;
         private readonly Thruster _reverseThruster;
@@ -32,14 +31,12 @@ namespace DEMW.SpaceWar2.GameObjects
         private readonly Thruster _backLeftThruster;
         private readonly Thruster _backRightThruster;
 
-        public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color lineColor, uint lineCount)
+        public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color color)
             : base (position, radius, 1)
         {
             _graphics = graphics;
-            _model = new Circle(graphics, radius, lineColor, lineCount);
             _arrows = new List<Arrow>();
-            Color = lineColor;
-
+            Color = color;
             Name = name;
 
             Energy = 100F;
@@ -57,7 +54,7 @@ namespace DEMW.SpaceWar2.GameObjects
         }
 
         //Settings
-        public string Name { get; set; }
+        public string Name { get; protected set; }
         public bool ShowArrows { get; set; }
 
         private float _shields = MaxShieldLevel;
@@ -220,7 +217,6 @@ namespace DEMW.SpaceWar2.GameObjects
         public override void Draw()
         {
             DrawArrows();
-            _model.Draw();
         }
 
         private void DrawArrows()

@@ -12,8 +12,11 @@ namespace DEMW.SpaceWar2.Graphics
 
         public Camera ActiveCamera { get; set; }
 
-        internal DrawingManager() 
+        internal DrawingManager() : this(null) { }
+
+        internal DrawingManager(Camera camera) 
         {
+            ActiveCamera = camera == null ? Camera.GetDefault() : camera;
             _drawableObjects = new List<IGameObject>();
         }
 

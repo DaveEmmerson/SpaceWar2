@@ -19,5 +19,10 @@
             MinZ = minZ;
             MaxZ = maxZ;
         }
+
+        internal static Universe GetDefault()
+        {
+            return new Universe(-400, 400, -240, 240, -1000, 1000);
+        }
     }
 }

@@ -29,5 +29,10 @@ namespace DEMW.SpaceWar2.Graphics
             Position += vector;
             Target += vector;
         }
+
+        internal static Camera GetDefault()
+        {
+            return new Camera(new Vector3(0, 0, 1), Vector3.Zero, Universe.GetDefault());
+        }
     }
 }
