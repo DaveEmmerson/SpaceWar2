@@ -158,8 +158,9 @@ namespace DEMW.SpaceWar2.GameObjects
 
             AchieveTargetAngularVelocity(deltaT);
 
+            ResolveForces();
             Velocity +=  ResolvedForce * deltaT;
-            Position = Position + Velocity * deltaT;
+            Position += Velocity * deltaT;
 
             Rotation += AngularVelocity * deltaT;
         }

@@ -1,5 +1,4 @@
-﻿using DEMW.SpaceWar2.Graphics;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects
 { 

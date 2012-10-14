@@ -58,10 +58,9 @@ namespace DEMW.SpaceWar2.GameObjects
         public void Update(GameTime gameTime)
         {
             UpdateInternal(gameTime);
-            ResolveForces();
         }
 
-        private void ResolveForces()
+        protected void ResolveForces()
         {
             Forces.Clear();
             _resultantForce = Vector2.Zero;
