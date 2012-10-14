@@ -12,9 +12,9 @@ namespace DEMW.SpaceWar2.Graphics
 
         internal ScreenManager() : this(Universe.GetDefault()) { }
         
-        internal ScreenManager(Universe universe) 
+        internal ScreenManager(Universe universe = null) 
         {
-            Universe = universe;
+            Universe = universe ?? Universe.GetDefault();
             _managedObjects = new List<IGameObject>();
         }
 

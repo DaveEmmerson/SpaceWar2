@@ -1,6 +1,6 @@
 ﻿namespace DEMW.SpaceWar2.Physics
 {
-    internal struct Universe
+    internal class Universe
     {
         internal float MinX;
         internal float MaxX;
