@@ -8,7 +8,7 @@ namespace DEMW.SpaceWar2.GameObjects
         // It is registered with the DrawingManager by the factory.
         public override string ModelPath { get { return "Models/Sun"; } }
         
-        public Sun(GraphicsDeviceManager graphics, Vector2 position, float radius, Color color, float mass)
+        public Sun(Vector2 position, float radius, Color color, float mass)
             : base (position, radius, mass)
         {
             Color = color;
@@ -24,6 +24,5 @@ namespace DEMW.SpaceWar2.GameObjects
         {
             // TODO: if Matt implements flares or storms, draw them here!
         }
-
     }
 }

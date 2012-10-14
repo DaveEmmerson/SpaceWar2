@@ -43,6 +43,8 @@ namespace DEMW.SpaceWar2.Physics
 
             var unitVector = DirectionBetween(source, participant);
             var diff = (participant.Position - source.Position);
+
+            //TODO remove this when proper collision detection has been implemented
             if (diff.Length() <= source.Radius + participant.Radius)
             {
                 unitVector = Vector2.Negate(unitVector);

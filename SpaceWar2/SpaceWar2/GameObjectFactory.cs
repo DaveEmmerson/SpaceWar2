@@ -34,7 +34,7 @@ namespace DEMW.SpaceWar2
 
         internal Sun CreateSun(Vector2 position, Color color, float mass)
         {
-            var sun = new Sun(_graphics, position, 25, color, mass);
+            var sun = new Sun(position, 25, color, mass);
             sun.Model = _contentManager.Load<Model>(sun.ModelPath);
             
             _gravitySimulator.RegisterSource(sun);
