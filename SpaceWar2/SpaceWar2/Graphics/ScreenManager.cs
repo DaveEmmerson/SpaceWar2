@@ -17,10 +17,10 @@ namespace DEMW.SpaceWar2.Graphics
 
         private readonly IList<IGameObject> _managedObjects;
 
-        internal ScreenManager() : this(Universe.GetDefault()) { }
-        
-        internal ScreenManager(Universe universe) 
+        internal ScreenManager(Universe universe = null) 
         {
+            universe = universe ?? Universe.GetDefault();
+            
             MinX = universe.MinX;
             MaxX = universe.MaxX;
             MinY = universe.MinY;
