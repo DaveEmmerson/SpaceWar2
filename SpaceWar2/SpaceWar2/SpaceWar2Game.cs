@@ -48,7 +48,7 @@ namespace DEMW.SpaceWar2
         {
             _gameObjectFactory.DestroyAll(x=>true);
 
-            _camera = Camera.GetDefault(_universe);
+            _camera = Camera.GetDefault(_universe.CopyDimensions());
             _drawingManager.ActiveCamera = _camera;
             
             if (_effect != null)
@@ -175,6 +175,17 @@ namespace DEMW.SpaceWar2
             {
                 _camera.Zoom(10);
             }
+
+            if (_keyboardHandler.IsPressed(Keys.I))
+            {
+                _universe.Contract(10);
+            }
+
+            if (_keyboardHandler.IsPressed(Keys.K))
+            {
+                _universe.Expand(10);
+            }
+
         }
 
         /// <summary>
@@ -207,7 +218,9 @@ namespace DEMW.SpaceWar2
             _drawingManager.DrawGameObjects();
 
             _infoBar.Reset();
-            gameObjects.ForEach<IGameObject, Ship>(_infoBar.DrawShipInfo);            
+            gameObjects.ForEach<IGameObject, Ship>(_infoBar.DrawShipInfo);
+            
+            _infoBar.DrawString("universe", string.Format("width: {0}, height: {1}",_universe.Width, _universe.Height));
 
             base.Draw(gameTime);
         }

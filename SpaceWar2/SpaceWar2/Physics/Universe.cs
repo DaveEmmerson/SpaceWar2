@@ -19,6 +19,13 @@ namespace DEMW.SpaceWar2.Physics
             _managedObjects = new List<IGameObject>();
         }
 
+        internal Universe CopyDimensions()
+        {
+            var copy = new Universe(MinX, MaxX, MinY, MaxY, MinZ, MaxZ);
+
+            return copy;
+        }
+
         internal static Universe GetDefault()
         {
             return new Universe(-400, 400, -240, 240, -1000, 1000);
@@ -49,6 +56,11 @@ namespace DEMW.SpaceWar2.Physics
             MaxX += horizontalAmount;
             MinY -= verticalAmount;
             MaxY += verticalAmount;
+        }
+
+        internal void Contract(float verticalAmount)
+        {
+            Expand(-verticalAmount);
         }
 
         public void Register(IGameObject managedObject)
