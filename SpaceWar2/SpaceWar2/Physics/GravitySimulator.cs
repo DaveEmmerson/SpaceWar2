@@ -56,7 +56,7 @@ namespace DEMW.SpaceWar2.Physics
 
         private static Vector2 DirectionBetween(IGameObject source, IGameObject participant)
         {
-            Vector2 unitVector = participant.Position - source.Position;
+            var unitVector = participant.Position - source.Position;
             unitVector.Normalize();
             return unitVector;
         }
