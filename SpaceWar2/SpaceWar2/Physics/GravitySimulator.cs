@@ -39,7 +39,7 @@ namespace DEMW.SpaceWar2.Physics
 
         private static Force CalculateAccelerationDueToGravity(IGameObject source, IGameObject participant)
         {
-            const int gravitationalConstant = -100;
+            const int gravitationalConstant = 100;
 
             var unitVector = DirectionBetween(source, participant);
             var diff = (participant.Position - source.Position);
@@ -56,7 +56,7 @@ namespace DEMW.SpaceWar2.Physics
 
         private static Vector2 DirectionBetween(IGameObject source, IGameObject participant)
         {
-            var unitVector = participant.Position - source.Position;
+            var unitVector = source.Position - participant.Position;
             unitVector.Normalize();
             return unitVector;
         }
