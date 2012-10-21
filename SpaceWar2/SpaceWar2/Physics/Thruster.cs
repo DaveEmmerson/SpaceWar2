@@ -33,8 +33,9 @@ namespace DEMW.SpaceWar2.Physics
             Vector2 thrust = availableEnergy/_thrustEnergyCost * _direction;
 
             var force = Vector2.Transform(thrust, rotation);
+            var position = Vector2.Transform(_position, rotation);
             
-            _ship.ApplyForce(new Force(force, _position));
+            _ship.ApplyForce(new Force(force, position));
         }
     }
 }
