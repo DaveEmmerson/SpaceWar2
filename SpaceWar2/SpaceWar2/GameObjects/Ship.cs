@@ -42,8 +42,6 @@ namespace DEMW.SpaceWar2.GameObjects
             Energy = 100F;
             Armour = 100F;
 
-
-
             _mainThruster = new Thruster(this, Vector2.Zero, new Vector2(0, -ThrustPower), ThrustEnergyCost);
             _reverseThruster = new Thruster(this, Vector2.Zero, new Vector2(0, ThrustPower), ThrustEnergyCost);
 
@@ -159,9 +157,12 @@ namespace DEMW.SpaceWar2.GameObjects
             AchieveTargetAngularVelocity(deltaT);
 
             ResolveForces();
-            Velocity += ResolvedForce.Vector * deltaT;
+            var acceleration = (TotalForce.Vector / Mass);
+            Velocity += acceleration * deltaT;
             Position += Velocity * deltaT;
 
+            var angularAcceleration = (TotalMoment / MomentOfInertia);
+            AngularVelocity += angularAcceleration * deltaT;
             Rotation += AngularVelocity * deltaT;
         }
 
@@ -225,7 +226,7 @@ namespace DEMW.SpaceWar2.GameObjects
             _arrows.Clear();
             if (ShowArrows)
             {
-                var accelerationArrow = new Arrow(_graphics, ResolvedForce.Displacement, ResolvedForce.Vector, Color.LimeGreen, Radius);
+                var accelerationArrow = new Arrow(_graphics, TotalForce.Displacement, TotalForce.Vector, Color.LimeGreen, Radius);
                 var velocityArrow = new Arrow(_graphics, Vector2.Zero, Velocity, Color.Linen, Radius);
                 var rotationAngle = new Vector2((float)Math.Sin(Rotation) * Radius * 2, -(float)Math.Cos(Rotation) * Radius * 2);
                 var rotationArrow = new Arrow(_graphics, Vector2.Zero, rotationAngle, Color.Red, Radius);

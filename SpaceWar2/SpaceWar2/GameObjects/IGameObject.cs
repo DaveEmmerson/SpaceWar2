@@ -8,12 +8,14 @@ namespace DEMW.SpaceWar2.GameObjects
     {
         bool Expired { get; }
 
+        float Mass { get; }
         Vector2 Position { get; }
         
-        float Mass { get; }
-        float Radius { get; }
+        float MomentOfInertia { get; }
         float Rotation { get; }
 
+        float Radius { get; }
+        
         string ModelPath { get; }
         Model Model { get; set; }
         Color Color { get; set; }
