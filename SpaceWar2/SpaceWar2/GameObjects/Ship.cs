@@ -200,15 +200,13 @@ namespace DEMW.SpaceWar2.GameObjects
         {
             if (AngularVelocity < _angularVelocityTarget - 0.1)
             {
-                _backRightThruster.Engage();
-                _frontLeftThruster.Engage();
-                AngularVelocity += ThrustPower / 10 * deltaT;
+                _backLeftThruster.Engage();
+                _frontRightThruster.Engage();
             }
             else if (AngularVelocity > _angularVelocityTarget + 0.1)
             {
-                _backLeftThruster.Engage();
-                _frontRightThruster.Engage();
-                AngularVelocity -= ThrustPower / 10 * deltaT;
+                _backRightThruster.Engage();
+                _frontLeftThruster.Engage();
             }
             else
             {
