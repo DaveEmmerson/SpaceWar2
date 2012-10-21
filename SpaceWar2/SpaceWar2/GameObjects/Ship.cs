@@ -36,6 +36,7 @@ namespace DEMW.SpaceWar2.GameObjects
             _arrows = new List<Arrow>();
             Color = color;
             Name = name;
+            Controller = new NullShipController();
 
             Energy = 100F;
             Armour = 100F;
@@ -163,11 +164,6 @@ namespace DEMW.SpaceWar2.GameObjects
 
         private void RespondToInput()
         {
-            if (Controller == null)
-            {
-                return;
-            }
-
             ShipAction action = Controller.GetAction();
 
             if (action.HasFlag(ShipAction.Thrust))

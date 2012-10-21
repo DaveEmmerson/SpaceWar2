@@ -76,6 +76,7 @@
     <Compile Include="Controls\IShipController.cs" />
     <Compile Include="Controls\KeyboardController.cs" />
     <Compile Include="Controls\KeyboardHandler.cs" />
+    <Compile Include="Controls\NullShipController.cs" />
     <Compile Include="Controls\ShipAction.cs" />
     <Compile Include="GameObjectFactory.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
