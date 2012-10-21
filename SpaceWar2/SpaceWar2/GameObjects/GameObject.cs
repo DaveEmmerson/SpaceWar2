@@ -72,18 +72,23 @@ namespace DEMW.SpaceWar2.GameObjects
             {
                 Forces.Add(force);
                 TotalForce += force;
-                AddMomentToTotalMoment(force);
+                TotalMoment += CalculateMoment(force);
             }
 
             _queuedforces.Clear();
         }
 
-        private void AddMomentToTotalMoment(Force force)
+        private float CalculateMoment(Force force)
         {
+            if (force.Displacement == Vector2.Zero)
+            {
+                return 0f;
+            }
+
             var radius = force.Displacement;
             var perpendicularToRadius = new Vector2(-radius.Y, radius.X);
-            var dotProductOfForceAndPerp = Vector2.Dot(perpendicularToRadius, force.Vector);
-            TotalMoment += dotProductOfForceAndPerp;
+            var moment = Vector2.Dot(perpendicularToRadius, force.Vector);
+            return moment;
         }
 
         protected abstract void UpdateInternal(GameTime gameTime);
