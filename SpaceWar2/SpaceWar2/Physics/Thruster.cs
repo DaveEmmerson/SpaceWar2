@@ -28,7 +28,6 @@ namespace DEMW.SpaceWar2.Physics
                 return;
             }
             
-
             Vector2 thrust = availableEnergy/_thrustEnergyCost * _direction;
             
             _ship.ApplyInternalForce(new Force(thrust, _position));

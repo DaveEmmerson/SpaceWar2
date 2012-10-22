@@ -150,7 +150,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
             RespondToInput();
 
-            AchieveTargetAngularVelocity(deltaT);
+            AchieveTargetAngularVelocity();
 
             ResolveForces();
             var acceleration = (TotalForce.Vector / Mass);
@@ -189,7 +189,7 @@ namespace DEMW.SpaceWar2.GameObjects
             }
         }
 
-        private void AchieveTargetAngularVelocity(float deltaT)
+        private void AchieveTargetAngularVelocity()
         {
             if (AngularVelocity < _angularVelocityTarget - 0.1)
             {
