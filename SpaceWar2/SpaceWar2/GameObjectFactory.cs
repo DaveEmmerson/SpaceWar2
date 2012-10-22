@@ -34,9 +34,11 @@ namespace DEMW.SpaceWar2
 
         internal Sun CreateSun(Vector2 position, Color color, float mass)
         {
-            var sun = new Sun(position, 25, color, mass);
-            sun.Model = _contentManager.Load<Model>(sun.ModelPath);
-            
+            var sun = new Sun(position, 25, color, mass)
+            {
+                Model = _contentManager.Load<Model>("Models/Sun")
+            };
+
             _gravitySimulator.RegisterSource(sun);
             _drawingManager.Register(sun);
             _gameObjects.Add(sun);
@@ -50,10 +52,10 @@ namespace DEMW.SpaceWar2
             {
                 Velocity = velocity,
                 Controller = controller,
-                ShowArrows = true
+                ShowArrows = true,
+                Model = _contentManager.Load<Model>("Models/Saucer")
             };
 
-            ship.Model = _contentManager.Load<Model>(ship.ModelPath);
             _gravitySimulator.RegisterParticipant(ship);
             _universe.Register(ship);
             _drawingManager.Register(ship);

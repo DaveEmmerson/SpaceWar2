@@ -9,7 +9,7 @@ namespace DEMW.SpaceWar2.GameObjects
 {
     class Ship : GameObject
     {
-        private const float ThrustPower = 100F;
+        private const float ThrustPower = 50F;
         private const float ThrustEnergyCost = 0.1F;
         private const float RotationSpeed = 2F;
         private const float MaxShieldLevel = 100F;
@@ -21,7 +21,6 @@ namespace DEMW.SpaceWar2.GameObjects
 
         private readonly GraphicsDeviceManager _graphics;
         public IShipController Controller { private get; set; }
-        public override string ModelPath { get { return "Models/Saucer"; } }
 
         private readonly IList<Arrow> _arrows;
         private readonly Thruster _frontLeftThruster;
@@ -41,10 +40,10 @@ namespace DEMW.SpaceWar2.GameObjects
             Energy = 100F;
             Armour = 100F;
 
-            _frontLeftThruster = new Thruster(this, new Vector2(-radius, 0), new Vector2(0, -ThrustPower /2f), ThrustEnergyCost / 10);
-            _frontRightThruster = new Thruster(this, new Vector2(radius, 0), new Vector2(0, -ThrustPower /2f), ThrustEnergyCost / 10);
-            _backLeftThruster = new Thruster(this, new Vector2(-radius, 0), new Vector2(0, ThrustPower / 2f), ThrustEnergyCost / 10);
-            _backRightThruster = new Thruster(this, new Vector2(radius, 0), new Vector2(0, ThrustPower / 2f), ThrustEnergyCost / 10);
+            _frontLeftThruster = new Thruster(this, new Vector2(-radius, 0), new Vector2(0, -ThrustPower), ThrustEnergyCost);
+            _frontRightThruster = new Thruster(this, new Vector2(radius, 0), new Vector2(0, -ThrustPower), ThrustEnergyCost);
+            _backLeftThruster = new Thruster(this, new Vector2(-radius, 0), new Vector2(0, ThrustPower), ThrustEnergyCost);
+            _backRightThruster = new Thruster(this, new Vector2(radius, 0), new Vector2(0, ThrustPower), ThrustEnergyCost);
         }
 
         //Settings

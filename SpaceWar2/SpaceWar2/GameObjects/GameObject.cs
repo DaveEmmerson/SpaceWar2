@@ -34,7 +34,6 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public float Radius { get; set; }
 
-        public abstract string ModelPath { get; }
         public Model Model { get; set; }
         public Color Color { get; set; }
         
