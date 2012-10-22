@@ -4,6 +4,8 @@ namespace DEMW.SpaceWar2.Physics
 {
     internal class Force
     {
+        internal Force() : this(Vector2.Zero, Vector2.Zero) { }
+        
         internal Force(Vector2 force) : this(force, Vector2.Zero) { }
 
         internal Force(Vector2 force, Vector2 displacement)

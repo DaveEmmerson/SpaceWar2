@@ -65,7 +65,7 @@ namespace DEMW.SpaceWar2.GameObjects
         {
             Forces.Clear();
             
-            TotalForce = new Force(Vector2.Zero, Vector2.Zero);
+            TotalForce = new Force();
             TotalMoment = 0f;
 
             foreach (var force in _queuedforces)
