@@ -45,7 +45,7 @@
     <Compile Include="Physics\ForceTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SpaceWar2\SpaceWar2\SpaceWar2.csproj">
+    <ProjectReference Include="..\SpaceWar2\SpaceWar2.csproj">
       <Project>{8595BF4D-D77E-4B0A-9066-2DB01EBB3CD9}</Project>
       <Name>SpaceWar2</Name>
     </ProjectReference>
