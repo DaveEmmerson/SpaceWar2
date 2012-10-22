@@ -21,5 +21,12 @@ namespace DEMW.SpaceWar2.Physics
         {
             return new Force(f1.Vector + f2.Vector, f1.Displacement + f2.Displacement);
         }
+
+        internal void Rotate(float angle)
+        {
+            var rotation = Matrix.CreateRotationZ(angle);
+            Vector = Vector2.Transform(Vector, rotation);
+            Displacement = Vector2.Transform(Displacement, rotation);
+        }
     }
 }

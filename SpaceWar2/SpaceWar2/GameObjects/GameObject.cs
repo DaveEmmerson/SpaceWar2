@@ -38,10 +38,19 @@ namespace DEMW.SpaceWar2.GameObjects
         public Model Model { get; set; }
         public Color Color { get; set; }
         
-        public void ApplyForce(Force force)
+        public void ApplyExternalForce(Force force)
         {
             if (force.Vector != Vector2.Zero)
             {
+                _queuedforces.Add(force);
+            }
+        }
+
+        public void ApplyInternalForce(Force force)
+        {
+            if (force.Vector != Vector2.Zero)
+            {
+                force.Rotate(Rotation);
                 _queuedforces.Add(force);
             }
         }

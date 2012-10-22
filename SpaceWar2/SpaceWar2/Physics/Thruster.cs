@@ -28,14 +28,10 @@ namespace DEMW.SpaceWar2.Physics
                 return;
             }
             
-            var rotation = Matrix.CreateRotationZ(_ship.Rotation);
-            
-            Vector2 thrust = availableEnergy/_thrustEnergyCost * _direction;
 
-            var force = Vector2.Transform(thrust, rotation);
-            var position = Vector2.Transform(_position, rotation);
+            Vector2 thrust = availableEnergy/_thrustEnergyCost * _direction;
             
-            _ship.ApplyForce(new Force(force, position));
+            _ship.ApplyInternalForce(new Force(thrust, _position));
         }
     }
 }

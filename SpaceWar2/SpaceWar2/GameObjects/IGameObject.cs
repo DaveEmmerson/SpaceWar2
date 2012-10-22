@@ -20,7 +20,8 @@ namespace DEMW.SpaceWar2.GameObjects
         Model Model { get; set; }
         Color Color { get; set; }
 
-        void ApplyForce(Force force);
+        void ApplyExternalForce(Force force);
+        void ApplyInternalForce(Force force);
         
         void Teleport(Vector2 destination);
 

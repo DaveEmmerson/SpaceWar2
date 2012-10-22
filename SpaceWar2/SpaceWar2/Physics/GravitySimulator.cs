@@ -32,7 +32,7 @@ namespace DEMW.SpaceWar2.Physics
                 foreach (var participant in _participants)
                 {
                     var force = CalculateAccelerationDueToGravity(source, participant);
-                    participant.ApplyForce(force);
+                    participant.ApplyExternalForce(force);
                 }
             }
         }
