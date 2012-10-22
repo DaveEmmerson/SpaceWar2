@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWar2", "SpaceWar2\SpaceWar2\SpaceWar2.csproj", "{8595BF4D-D77E-4B0A-9066-2DB01EBB3CD9}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "SpaceWar2Content", "SpaceWar2\SpaceWar2Content\SpaceWar2Content.contentproj", "{E7119F13-9692-4D80-A877-420AA7101CD9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWar2Content", "SpaceWar2\SpaceWar2Content\SpaceWar2Content.contentproj", "{E7119F13-9692-4D80-A877-420AA7101CD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWar2Tests", "SpaceWar2Tests\SpaceWar2Tests.csproj", "{5BC5A434-798C-4B10-B4E8-ED39DAEF3497}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8595BF4D-D77E-4B0A-9066-2DB01EBB3CD9} = {8595BF4D-D77E-4B0A-9066-2DB01EBB3CD9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +22,10 @@ Global
 		{8595BF4D-D77E-4B0A-9066-2DB01EBB3CD9}.Release|x86.Build.0 = Release|x86
 		{E7119F13-9692-4D80-A877-420AA7101CD9}.Debug|x86.ActiveCfg = Debug|x86
 		{E7119F13-9692-4D80-A877-420AA7101CD9}.Release|x86.ActiveCfg = Release|x86
+		{5BC5A434-798C-4B10-B4E8-ED39DAEF3497}.Debug|x86.ActiveCfg = Debug|x86
+		{5BC5A434-798C-4B10-B4E8-ED39DAEF3497}.Debug|x86.Build.0 = Debug|x86
+		{5BC5A434-798C-4B10-B4E8-ED39DAEF3497}.Release|x86.ActiveCfg = Release|x86
+		{5BC5A434-798C-4B10-B4E8-ED39DAEF3497}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
