@@ -82,6 +82,8 @@
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\Ship.cs" />
+    <Compile Include="GameObjects\ShipComponents\ThrusterArray.cs" />
+    <Compile Include="GameObjects\ShipComponents\Thruster.cs" />
     <Compile Include="GameObjects\Sun.cs" />
     <Compile Include="Graphics\Arrow.cs" />
     <Compile Include="Graphics\Camera.cs" />
@@ -89,7 +91,6 @@
     <Compile Include="Graphics\DrawingManager.cs" />
     <Compile Include="Graphics\InfoBar.cs" />
     <Compile Include="Physics\Universe.cs" />
-    <Compile Include="Physics\Thruster.cs" />
     <Compile Include="Physics\Force.cs" />
     <Compile Include="Physics\GravitySimulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
