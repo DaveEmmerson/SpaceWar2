@@ -8,8 +8,8 @@
     <ProjectGuid>{5BC5A434-798C-4B10-B4E8-ED39DAEF3497}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SpaceWar2Tests</RootNamespace>
-    <AssemblyName>SpaceWar2Tests</AssemblyName>
+    <RootNamespace>DEMW.SpaceWar2Tests</RootNamespace>
+    <AssemblyName>DEMW.SpaceWar2Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
