@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using DEMW.SpaceWar2.Controls;
+using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Graphics;
-using DEMW.SpaceWar2.Physics;
 using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects
 {
     class Ship : GameObject
     {
-        private const float ThrustPower = 50F;
-        private const float ThrustEnergyCost = 0.1F;
-        private const float RotationSpeed = 2F;
         private const float MaxShieldLevel = 100F;
         private const float MaxEnergyLevel = 100F;
         private const float ExplosionRadiusMultiplier = 1.4F;
@@ -23,10 +20,7 @@ namespace DEMW.SpaceWar2.GameObjects
         public IShipController Controller { private get; set; }
 
         private readonly IList<Arrow> _arrows;
-        private readonly Thruster _frontLeftThruster;
-        private readonly Thruster _frontRightThruster;
-        private readonly Thruster _backLeftThruster;
-        private readonly Thruster _backRightThruster;
+        private readonly ThrusterArray _thrusterArray;
         
         public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color color)
             : base (position, radius, 1)
@@ -40,10 +34,7 @@ namespace DEMW.SpaceWar2.GameObjects
             Energy = 100F;
             Armour = 100F;
 
-            _frontLeftThruster = new Thruster(this, new Vector2(-radius, 0), new Vector2(0, -ThrustPower), ThrustEnergyCost);
-            _frontRightThruster = new Thruster(this, new Vector2(radius, 0), new Vector2(0, -ThrustPower), ThrustEnergyCost);
-            _backLeftThruster = new Thruster(this, new Vector2(-radius, 0), new Vector2(0, ThrustPower), ThrustEnergyCost);
-            _backRightThruster = new Thruster(this, new Vector2(radius, 0), new Vector2(0, ThrustPower), ThrustEnergyCost);
+            _thrusterArray = new ThrusterArray(this);
         }
 
         //Settings
@@ -108,7 +99,6 @@ namespace DEMW.SpaceWar2.GameObjects
         private bool _imploding;
         private float _explosionTargetRadius;
         private float _explosionRadiusIncrement;
-        private float _angularVelocityTarget;
 
         protected override void UpdateInternal(GameTime gameTime)
         {
@@ -147,9 +137,9 @@ namespace DEMW.SpaceWar2.GameObjects
                 Energy += EnergyRechargeRate;
             }
 
-            RespondToInput();
-
-            AchieveTargetAngularVelocity();
+            ShipAction action = Controller.GetAction();
+            _thrusterArray.CalculateThrustPattern(action);
+            _thrusterArray.EngageThrusters();
 
             ResolveForces();
             var acceleration = (TotalForce.Vector / Mass);
@@ -159,51 +149,6 @@ namespace DEMW.SpaceWar2.GameObjects
             var angularAcceleration = (TotalMoment / MomentOfInertia);
             AngularVelocity += angularAcceleration * deltaT;
             Rotation += AngularVelocity * deltaT;
-        }
-
-        private void RespondToInput()
-        {
-            ShipAction action = Controller.GetAction();
-
-            if (action.HasFlag(ShipAction.Thrust))
-            {
-                _frontLeftThruster.Engage();
-                _frontRightThruster.Engage();
-            }
-
-            if (action.HasFlag(ShipAction.ReverseThrust))
-            {
-                _backLeftThruster.Engage();
-                _backRightThruster.Engage();
-            }
-
-            _angularVelocityTarget = 0;
-            if (action.HasFlag(ShipAction.TurnLeft))
-            {
-                _angularVelocityTarget -= RotationSpeed;
-            }
-            if (action.HasFlag(ShipAction.TurnRight))
-            {
-                _angularVelocityTarget += RotationSpeed;
-            }
-        }
-
-        private void AchieveTargetAngularVelocity()
-        {
-            if (AngularVelocity < _angularVelocityTarget - 0.1)
-            {
-                _frontLeftThruster.Engage();
-                _backRightThruster.Engage();
-            }
-            else if (AngularVelocity > _angularVelocityTarget + 0.1)
-            {
-                _frontRightThruster.Engage();
-                _backLeftThruster.Engage();
-            }
-            else
-            {
-                AngularVelocity = _angularVelocityTarget;
-            }
         }
 
         public override void Draw()
