@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects
 {
-    class Ship : GameObject
+    public class Ship : GameObject
     {
         private const float MaxShieldLevel = 100F;
         private const float MaxEnergyLevel = 100F;

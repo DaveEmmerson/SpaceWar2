@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.GameObjects
 {
-    internal abstract class GameObject : IGameObject
+    public abstract class GameObject : IGameObject
     {
         private readonly IList<Force> _queuedforces;
 

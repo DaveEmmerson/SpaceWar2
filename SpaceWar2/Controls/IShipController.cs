@@ -1,6 +1,6 @@
 ﻿namespace DEMW.SpaceWar2.Controls
 {
-    interface IShipController
+    public interface IShipController
     {
         ShipAction GetAction();
     }

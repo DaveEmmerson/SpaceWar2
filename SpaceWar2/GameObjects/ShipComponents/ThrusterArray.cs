@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 {
-    internal class ThrusterArray
+    public class ThrusterArray
     {
         private const float ThrustPower = 50F;
         private const float ThrustEnergyCost = 0.1F;
@@ -18,7 +18,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
         private readonly Thruster _backLeftThruster;
         private readonly Thruster _backRightThruster;
         
-        internal ThrusterArray(Ship ship)
+        public ThrusterArray(Ship ship)
         {
             _ship = ship;
 
