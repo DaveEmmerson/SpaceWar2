@@ -4,28 +4,28 @@ using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.Physics
 {
-    internal class GravitySimulator
+    public class GravitySimulator
     {
         private readonly IList<IGameObject> _sources = new List<IGameObject>();
         private readonly IList<IGameObject> _participants = new List<IGameObject>();
 
-        internal void RegisterSource(IGameObject source)
+        public void RegisterSource(IGameObject source)
         {
             _sources.Add(source);
         }
 
-        internal void RegisterParticipant(IGameObject participant)
+        public void RegisterParticipant(IGameObject participant)
         {
             _participants.Add(participant);
         }
 
-        internal void UnRegister(IGameObject item)
+        public void UnRegister(IGameObject item)
         {
             _participants.Remove(item);
             _sources.Remove(item);
         }
 
-        internal void Simulate()
+        public void Simulate()
         {
             foreach (var source in _sources)
             {
