@@ -81,6 +81,7 @@
     <Compile Include="GameObjectFactory.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
+    <Compile Include="GameObjects\IShip.cs" />
     <Compile Include="GameObjects\Ship.cs" />
     <Compile Include="GameObjects\ShipComponents\ThrusterArray.cs" />
     <Compile Include="GameObjects\ShipComponents\Thruster.cs" />

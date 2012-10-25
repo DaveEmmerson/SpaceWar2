@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.GameObjects
 {
-    interface IGameObject
+    public interface IGameObject
     {
         bool Expired { get; }
 

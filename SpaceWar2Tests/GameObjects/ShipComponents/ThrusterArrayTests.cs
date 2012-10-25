@@ -1,22 +1,26 @@
-﻿using DEMW.SpaceWar2.Controls;
+﻿using System.Linq;
+using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
-using Microsoft.Xna.Framework;
+using DEMW.SpaceWar2.Physics;
 using NUnit.Framework;
+using NSubstitute;
 
 namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
 {
     [TestFixture]
     class ThrustArrayTests
     {
-        private Ship _ship;
+        private IShip _ship;
         private ThrusterArray _thrusterArray;
 
         [SetUp]
         public void Setup()
         {
-            _ship = new Ship("Test ship", null, Vector2.Zero, 10, Color.AliceBlue);
+            _ship = Substitute.For<IShip>();
             _thrusterArray = new ThrusterArray(_ship);
+            _ship.Radius.Returns(10);
+            _ship.AngularVelocity.Returns(0);
         }
 
         [Test]
@@ -24,6 +28,9 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         {
             _thrusterArray.CalculateThrustPattern(ShipAction.None);
 
+            //Assertions
+            _ship.Received().AngularVelocity = 1f;
+            _ship.DidNotReceive().ApplyInternalForce(Arg.Any<Force>());
         }
 
     }
