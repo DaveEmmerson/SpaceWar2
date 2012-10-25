@@ -21,7 +21,7 @@ namespace DEMW.SpaceWar2Tests.Physics
             var downRight = new Vector2(root2over2, root2over2);
             var upRight = new Vector2(root2over2, -root2over2);
             
-            _dispRightVectorUp = new Force(right, up);
+            _dispRightVectorUp = new Force(up, right);
             _noDispVectorRight = new Force(right, Vector2.Zero);
             _dispDiagonalRightDownVectorDiagonalUpRight = new Force(upRight, downRight);
         }
