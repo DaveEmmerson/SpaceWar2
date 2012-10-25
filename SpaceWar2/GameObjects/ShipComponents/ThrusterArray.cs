@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 {
-    internal class ThrusterArray
+    public class ThrusterArray
     {
         private const float ThrustPower = 50F;
         private const float ThrustEnergyCost = 0.1F;
         private const float RotationSpeed = 2F;
 
-        private readonly Ship _ship;
+        private readonly IShip _ship;
 
         private float _angularVelocityTarget;
         
@@ -18,7 +18,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
         private readonly Thruster _backLeftThruster;
         private readonly Thruster _backRightThruster;
         
-        internal ThrusterArray(Ship ship)
+        public ThrusterArray(IShip ship)
         {
             _ship = ship;
 
@@ -62,12 +62,12 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
         //TODO MW make the amonut of thrust proportional to how much thrust is needed.
         private void AchieveTargetAngularVelocity()
         {
-            if (_ship.AngularVelocity < _angularVelocityTarget - 0.1)
+            if (_ship.AngularVelocity < _angularVelocityTarget - 0.1f)
             {
                 _frontLeftThruster.Throttle = 0.25f;
                 _backRightThruster.Throttle = 0.25f;
             }
-            else if (_ship.AngularVelocity > _angularVelocityTarget + 0.1)
+            else if (_ship.AngularVelocity > _angularVelocityTarget + 0.1f)
             {
                 _frontRightThruster.Throttle = 0.25f;
                 _backLeftThruster.Throttle = 0.25f;
