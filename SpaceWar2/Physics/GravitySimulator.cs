@@ -6,6 +6,8 @@ namespace DEMW.SpaceWar2.Physics
 {
     public class GravitySimulator
     {
+        public const int GravitationalConstant = 100;
+
         private readonly IList<IGameObject> _sources = new List<IGameObject>();
         private readonly IList<IGameObject> _participants = new List<IGameObject>();
 
@@ -39,8 +41,6 @@ namespace DEMW.SpaceWar2.Physics
 
         private static Force CalculateAccelerationDueToGravity(IGameObject source, IGameObject participant)
         {
-            const int gravitationalConstant = 100;
-
             var unitVector = DirectionBetween(source, participant);
             var diff = (participant.Position - source.Position);
 
@@ -51,7 +51,7 @@ namespace DEMW.SpaceWar2.Physics
             }
 
             var lengthSquared = diff.LengthSquared();
-            return new Force(gravitationalConstant * (source.Mass * participant.Mass / lengthSquared) * unitVector);
+            return new Force(GravitationalConstant * (source.Mass * participant.Mass / lengthSquared) * unitVector);
         }
 
         private static Vector2 DirectionBetween(IGameObject source, IGameObject participant)

@@ -30,23 +30,40 @@ namespace DEMW.SpaceWar2Tests.Physics
             _participant.Radius.Returns(5f);
             _participant.Position.Returns(new Vector2(50, 50));
             _participant.Mass.Returns(10f);
+
+            _gravitySimulator.RegisterParticipant(_participant);
+            _gravitySimulator.RegisterSource(_source);
         }
 
         [Test]
         public void Simulate_Applies_External_Force_To_Participant_But_Not_To_Source()
         {
-            _gravitySimulator.RegisterParticipant(_participant);
-            _gravitySimulator.RegisterSource(_source);
-
             _gravitySimulator.Simulate();
 
-            _participant.Received().ApplyExternalForce(Arg.Any<Force>());
+            _participant.Received(1).ApplyExternalForce(Arg.Any<Force>());
             _participant.DidNotReceive().ApplyInternalForce(Arg.Any<Force>());
 
             _source.DidNotReceive().ApplyExternalForce(Arg.Any<Force>());
             _source.DidNotReceive().ApplyInternalForce(Arg.Any<Force>());
+        }
 
+        [Test]
+        public void Simulate_Applies_Correct_Force()
+        {
+            var g = GravitySimulator.GravitationalConstant;
 
+            _gravitySimulator.Simulate();
+
+            // This checks that the force is diagonal 'up left', which is correct for
+            // the setup specified in the mocks. The force magnitude I have calculated
+            // manually. Would it be odd to calculate the magnitude based on the mock
+            // values? It seems to just duplicate the code under test!
+            // These comments should have been in a block, lol.
+            _participant.Received(1).ApplyExternalForce(Arg.Is<Force>(
+                force => force.Vector.Length() == g * 0.2 &&
+                         force.Vector.X == force.Vector.Y &&
+                         force.Vector.X < 0
+            ));
         }
 
     }
