@@ -9,11 +9,9 @@ namespace DEMW.SpaceWar2.GameObjects
 {
     public class Ship : GameObject, IShip
     {
-        private const float MaxShieldLevel = 100F;
         private const float MaxEnergyLevel = 100F;
         private const float ExplosionRadiusMultiplier = 1.4F;
         private const float ExplosionSpeed = 0.5F;
-        private const float ShieldRechargeRate = 0.1F;
         private const float EnergyRechargeRate = 0.01F;
 
         private readonly GraphicsDeviceManager _graphics;
@@ -21,6 +19,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
         private readonly IList<Arrow> _arrows;
         private readonly ThrusterArray _thrusterArray;
+        private readonly Shield _shield;
         
         public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color color)
             : base (position, radius, 1)
@@ -33,6 +32,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
             Energy = 100F;
             Armour = 100F;
+            _shield = new Shield(this, 100F, 0.1F);
 
             _thrusterArray = new ThrusterArray(this);
         }
@@ -41,28 +41,9 @@ namespace DEMW.SpaceWar2.GameObjects
         public string Name { get; protected set; }
         public bool ShowArrows { get; set; }
 
-        private float _shields = MaxShieldLevel;
         public float Shields
         {
-            get { return _shields; }
-
-            set
-            {
-                if (value > MaxShieldLevel)
-                {
-                    _shields = MaxShieldLevel;
-                }
-                else
-                {
-                    _shields = value;
-
-                    if (_shields < 0)
-                    {
-                        Armour += _shields;
-                        _shields = 0;
-                    }
-                }
-            }
+            get { return _shield.Level; }
         }
 
         private float _energy;
@@ -127,13 +108,8 @@ namespace DEMW.SpaceWar2.GameObjects
             }
             else
             {
-                if (Shields < MaxShieldLevel)
-                {
-                    float increaseRequired = Math.Min(MaxShieldLevel - Shields,ShieldRechargeRate);
-
-                    Shields += RequestEnergy(increaseRequired);
-                }
-
+                _shield.Recharge(deltaT);
+                
                 Energy += EnergyRechargeRate;
             }
 
@@ -185,7 +161,9 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public void Damage(int amount)
         {
-            Shields -= amount;
+            var damageRemaining = _shield.Damage(amount);
+
+            Armour -= damageRemaining;
         }
 
         public float RequestEnergy(float energyRequest)

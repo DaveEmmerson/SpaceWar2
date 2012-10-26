@@ -50,6 +50,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameObjects\ShipComponents\ShieldTests.cs" />
     <Compile Include="GameObjects\ShipComponents\ThrusterArrayTests.cs" />
     <Compile Include="Physics\GravitySimulatorTests.cs" />
     <Compile Include="Physics\ForceTests.cs" />
