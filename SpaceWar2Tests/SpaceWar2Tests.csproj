@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\KeyboardControllerTests.cs" />
+    <Compile Include="Controls\ShipActionTests.cs" />
     <Compile Include="GameObjects\ShipComponents\ShieldTests.cs" />
     <Compile Include="GameObjects\ShipComponents\ThrusterArrayTests.cs" />
     <Compile Include="Physics\GravitySimulatorTests.cs" />
@@ -61,6 +62,9 @@
       <Project>{8595BF4D-D77E-4B0A-9066-2DB01EBB3CD9}</Project>
       <Name>SpaceWar2</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\NullShipControllerTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

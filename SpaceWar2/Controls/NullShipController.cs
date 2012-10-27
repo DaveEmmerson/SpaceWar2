@@ -1,6 +1,6 @@
 ﻿namespace DEMW.SpaceWar2.Controls
 {
-    class NullShipController : IShipController
+    public class NullShipController : IShipController
     {
         public ShipAction GetAction()
         {

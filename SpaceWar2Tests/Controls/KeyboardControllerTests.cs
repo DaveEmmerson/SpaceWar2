@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DEMW.SpaceWar2Tests.Controls
 {
+    [TestFixture]
     class KeyboardControllerTests
     {
         private IKeyboardHandler _keyboardHandler;
@@ -41,5 +42,15 @@ namespace DEMW.SpaceWar2Tests.Controls
 
             Assert.AreEqual(ShipAction.Thrust | ShipAction.FireProjectile, action, "C key pressed");
         }
+
+        [Test]
+        public void GetAction_Returns_None_When_No_Mapped_Keys_Pressed()
+        {
+            var action = _keyboardController.GetAction();
+
+            Assert.AreEqual(ShipAction.None, action, "No keys pressed.");
+
+        }
+
     }
 }

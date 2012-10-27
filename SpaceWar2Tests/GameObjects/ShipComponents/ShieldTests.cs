@@ -5,6 +5,7 @@ using NSubstitute;
 
 namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
 {
+    [TestFixture]
     class ShieldTests
     {
         private IShip _ship;
