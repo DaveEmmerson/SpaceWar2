@@ -12,7 +12,7 @@ namespace DEMW.SpaceWar2.GameObjects
         private const float MaxEnergyLevel = 100F;
         private const float ExplosionRadiusMultiplier = 1.4F;
         private const float ExplosionSpeed = 0.5F;
-        private const float EnergyRechargeRate = 0.01F;
+        private const float EnergyRechargeRate = 0.001F;
 
         private readonly GraphicsDeviceManager _graphics;
         public IShipController Controller { private get; set; }

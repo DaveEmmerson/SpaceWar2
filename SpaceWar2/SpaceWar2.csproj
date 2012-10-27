@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ControllerFactory.cs" />
+    <Compile Include="Controls\IKeyboardHandler.cs" />
     <Compile Include="Controls\IShipController.cs" />
     <Compile Include="Controls\KeyboardController.cs" />
     <Compile Include="Controls\KeyboardHandler.cs" />

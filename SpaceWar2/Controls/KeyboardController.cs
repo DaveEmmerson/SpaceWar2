@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DEMW.SpaceWar2.Controls
 {
-    class KeyboardController : IShipController
+    public class KeyboardController : IShipController
     {
         private readonly IDictionary<Keys, ShipAction> _mappings;
-        private readonly KeyboardHandler _keyboardHandler;
+        private readonly IKeyboardHandler _keyboardHandler;
 
-        public KeyboardController(KeyboardHandler keyboardHandler)
+        public KeyboardController(IKeyboardHandler keyboardHandler)
         {
             _keyboardHandler = keyboardHandler;
             _mappings = new Dictionary<Keys, ShipAction>();
