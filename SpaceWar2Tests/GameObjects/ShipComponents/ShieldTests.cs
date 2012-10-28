@@ -2,6 +2,7 @@
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using NSubstitute;
 using NUnit.Framework;
+using System;
 
 namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
 {
@@ -42,19 +43,23 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             Assert.AreEqual(0F, damageRemaining);
         }
 
-        //TODO MW What should the behaviour be if you pass in negative damage?
         [Test]
-        public void Damage_does_not_affect_shieldLevel_when_DamageAmount_is_negative()
+        public void Damage_does_not_affect_shieldLevel_when_DamageAmount_is_negative_and_an_exception_is_thrown()
         {
             const float negativeDamage = -10f;
-            var damageRemaining = _shield.Damage(negativeDamage);
+            
+            var damageRemaining = negativeDamage;
+            Assert.Throws<ArgumentException>(()=>
+            {
+                damageRemaining = _shield.Damage(negativeDamage);
+            });
 
             Assert.AreEqual(shieldStartLevel, _shield.Level);
             Assert.AreEqual(negativeDamage, damageRemaining);
         }
 
         [Test]
-        public void Damage_reduces_ShieldLevel_to_zero_and_returns_excess_when_DamageAmound_is_greated_than_SheildLevel()
+        public void Damage_reduces_ShieldLevel_to_zero_and_returns_excess_when_DamageAmound_is_greater_than_SheildLevel()
         {
             const float excessDamage = 50F;
             const float damage = shieldStartLevel + excessDamage;
@@ -66,7 +71,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         }
 
         [Test]
-        public void fully_charged_shield_does_not_call_RequestEnergy_on_ship()
+        public void Recharge_on_fully_charged_shield_does_not_call_RequestEnergy_on_ship()
         {
             const float deltaT = shieldStartLevel / shieldRechargeRate / 10F;
             
@@ -101,6 +106,37 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
 
             Assert.AreEqual(shieldStartLevel, _shield.Level);
             _ship.Received().RequestEnergy(damage);
+        }
+
+        [Test]
+        public void Recharge_has_no_effect_if_no_energy_available()
+        {
+            const float damage = shieldStartLevel / 2F;
+            const float deltaT = shieldStartLevel / shieldRechargeRate;
+
+            _ship.RequestEnergy(Arg.Any<float>()).Returns(0F);
+
+            _shield.Damage(damage);
+
+            _shield.Recharge(deltaT);
+
+            Assert.AreEqual(shieldStartLevel - damage, _shield.Level);
+        }
+
+        [Test]
+        public void Recharge_only_recharges_by_available_energy()
+        {
+            const float damage = shieldStartLevel / 2F;
+            const float deltaT = shieldStartLevel / shieldRechargeRate;
+            const float energyAvailable = shieldStartLevel / 4F;
+
+            _ship.RequestEnergy(Arg.Any<float>()).Returns(energyAvailable);
+
+            _shield.Damage(damage);
+
+            _shield.Recharge(deltaT);
+
+            Assert.AreEqual(shieldStartLevel - damage + energyAvailable, _shield.Level);
         }
     }
 }

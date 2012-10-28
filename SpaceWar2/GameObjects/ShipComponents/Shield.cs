@@ -36,10 +36,9 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 
         public float Damage(float amount)
         {
-            if (amount <= 0)
+            if (amount < 0)
             {
-                //TODO MW What should the behaviour be if you pass in negative damage?
-                return amount;
+                throw new ArgumentException("Damage amount must not be negative.");
             }
 
             Level -= amount;

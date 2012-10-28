@@ -8,13 +8,13 @@ namespace DEMW.SpaceWar2Tests.Controls
     class ShipActionTests
     {
         [Test]
-        public void ShipAction_None_Is_Zero()
+        public void ShipAction_none_is_zero()
         {
             Assert.AreEqual(0, (int)ShipAction.None);
         }
 
         [Test]
-        public void ShipAction_Has_Flags_Attribute()
+        public void ShipAction_has_flags_attribute()
         {
             Assert.IsNotNull(Attribute.GetCustomAttribute(typeof(ShipAction), typeof(FlagsAttribute)));
         }

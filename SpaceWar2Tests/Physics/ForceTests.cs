@@ -27,7 +27,7 @@ namespace DEMW.SpaceWar2Tests.Physics
         }
 
         [Test]
-        public void Offset_Force_Added_To_Self_Gives_Same_Displacement_And_Double_The_Vector()
+        public void Offset_Force_added_to_self_gives_same_Displacement_and_double_the_Vector()
         {
             var result = _dispRightVectorUp + _dispRightVectorUp;
 
@@ -38,7 +38,7 @@ namespace DEMW.SpaceWar2Tests.Physics
         }
 
         [Test]
-        public void Centre_Force_Added_To_Self_Gives_Zero_Displacement_And_Double_The_Vector()
+        public void Centre_Force_added_to_self_gives_zero_Displacement_and_double_the_Vector()
         {
             var result = _noDispVectorRight + _noDispVectorRight;
 
@@ -48,13 +48,13 @@ namespace DEMW.SpaceWar2Tests.Physics
         }
 
         [Test]
-        public void Offset_Force_Added_To_Opposite_Offset_Force_Gives_What()
+        public void Offset_Force_added_to_opposite_offset_Force_gives_what()
         {
             Assert.Fail("I think there is a problem here. How can you combine these two forces?");
         }
 
         [Test]
-        public void Rotate_By_Small_Angle_Does_Not_Affect_Zero_Displacement()
+        public void Rotate_by_small_angle_does_not_affect_zero_Displacement()
         {
             _noDispVectorRight.Rotate(MathHelper.ToRadians(5));
 
@@ -62,7 +62,7 @@ namespace DEMW.SpaceWar2Tests.Physics
         }
 
         [Test]
-        public void Rotate_By_Large_Angle_Does_Not_Affect_Zero_Displacement()
+        public void Rotate_by_large_angle_does_not_affect_zero_Displacement()
         {
             _noDispVectorRight.Rotate(MathHelper.ToRadians(300));
 
@@ -70,7 +70,7 @@ namespace DEMW.SpaceWar2Tests.Physics
         }
 
         [Test]
-        public void Rotate_Calculates_Displacement_And_Vector_Correctly()
+        public void Rotate_calculates_Displacement_and_Vector_correctly()
         {
             _dispRightVectorUp.Rotate(MathHelper.ToRadians(45));
 

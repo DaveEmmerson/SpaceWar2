@@ -7,7 +7,7 @@ namespace DEMW.SpaceWar2Tests.Controls
 	class NullShipControllerTests
 	{
         [Test]
-        public void GetAction_Returns_None()
+        public void GetAction_returns_none()
         {
             var nullController = new NullShipController();
 

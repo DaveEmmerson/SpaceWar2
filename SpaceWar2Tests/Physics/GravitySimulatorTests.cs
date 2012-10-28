@@ -34,7 +34,7 @@ namespace DEMW.SpaceWar2Tests.Physics
         }
 
         [Test]
-        public void Simulate_Applies_External_Force_To_Participant_But_Not_To_Source()
+        public void Simulate_applies_external_Force_to_participant_but_not_to_source()
         {
             _gravitySimulator.Simulate();
 
@@ -46,7 +46,7 @@ namespace DEMW.SpaceWar2Tests.Physics
         }
 
         [Test]
-        public void Simulate_Applies_Correct_Force()
+        public void Simulate_applies_correct_Force()
         {
             const int g = GravitySimulator.GravitationalConstant;
 
