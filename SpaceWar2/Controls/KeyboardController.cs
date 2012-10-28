@@ -17,7 +17,7 @@ namespace DEMW.SpaceWar2.Controls
 
         public void SetMapping(Keys key, ShipAction shipAction)
         {
-            var existingMappings = _mappings.Where(x=> x.Value == shipAction);
+            var existingMappings = _mappings.Where(x=> x.Value == shipAction).ToList();
             foreach (var mapping in existingMappings)
             {
                 _mappings.Remove(mapping.Key);

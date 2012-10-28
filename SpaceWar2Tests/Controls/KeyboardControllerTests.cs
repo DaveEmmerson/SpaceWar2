@@ -58,7 +58,27 @@ namespace DEMW.SpaceWar2Tests.Controls
         {
             var action = _keyboardController.GetAction();
 
-            Assert.AreEqual(ShipAction.None, action, "Unexpected key press was returned");
+            Assert.AreEqual(ShipAction.None, action, "Expected no action.");
+        }
+
+        [Test]
+        public void SetMapping_unbinds_old_key_when_new_binding_is_made()
+        {
+            _keyboardController.SetMapping(Keys.D, ShipAction.Thrust);
+            _keyboardHandler.IsPressed(Keys.A).Returns(true);
+
+            var action = _keyboardController.GetAction();
+            Assert.AreEqual(ShipAction.None, action, "Expected no action.");
+        }
+
+        [Test]
+        public void SetMapping_binds_to_new_key_when_existing_mapping_is_re_bound()
+        {
+            _keyboardController.SetMapping(Keys.D, ShipAction.Thrust);
+            _keyboardHandler.IsPressed(Keys.D).Returns(true);
+
+            var action = _keyboardController.GetAction();
+            Assert.AreEqual(ShipAction.Thrust, action, "Expected action (from 'D' key) was not returned");
         }
     }
 }
