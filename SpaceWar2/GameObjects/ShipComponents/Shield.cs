@@ -1,51 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 {
     public class Shield
     {
-        private IShip _ship;
-        private float _maxLevel;
-        private float _rechargeRate;
-        private float _level;
+        private readonly IShip _ship;
+        private readonly float _maxLevel;
+        private readonly float _rechargeRate;
 
-        public float Level { get { return _level; } }
+        public float Level { get; private set; }
 
         public Shield(IShip ship, float maxLevel, float rechargeRate)
         {
             _ship = ship;
             _maxLevel = maxLevel;
             _rechargeRate = rechargeRate;
-            _level = maxLevel;
+            
+            Level = maxLevel;
         }
 
-        public void Recharge(float deltaT) {
+        public void Recharge(float deltaT) 
+        {
+            //Using this slightly weird logic to avoid (dodgy) == between two floats)
+            if (!(Level < _maxLevel))
+            {
+                return;
+            }
 
             var potentialIncrease = _rechargeRate * deltaT;
 
-            var increaseRequired = Math.Min(_maxLevel - _level, potentialIncrease);
+            var increaseRequired = Math.Min(_maxLevel - Level, potentialIncrease);
 
-            _level = _level + _ship.RequestEnergy(increaseRequired);
+            Level = Level + _ship.RequestEnergy(increaseRequired);
         }
 
         public float Damage(float amount)
         {
-            _level -= amount;
+            Level -= amount;
 
-            if (_level < 0)
+            if (Level < 0)
             {
 
-                var damageRemaining = -_level;
-                _level = 0;
+                var damageRemaining = -Level;
+                Level = 0;
                 return damageRemaining;
 
             }
 
             return 0;
         }
-                
     }
 }

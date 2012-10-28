@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using DEMW.SpaceWar2.GameObjects;
+﻿using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using NSubstitute;
+using NUnit.Framework;
 
 namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
 {
@@ -23,9 +23,9 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         }
 
         [Test]
-        public void Small_Damage_Reduces_Shields_With_No_Damage_Remaining()
+        public void Damage_reduces_shieldLevel_by_DamageAmount_and_returns_zero_when_DamageAmound_is_less_than_shieldLevel()
         {
-            var damage = shieldStartLevel / 10F;
+            const float damage = shieldStartLevel / 10F;
 
             var damageRemaining = _shield.Damage(damage);
 
@@ -34,46 +34,73 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         }
 
         [Test]
-        public void Large_Damage_Reduces_Shields_To_Zero_With_Damage_Remaining()
+        public void Damage_does_not_reduce_shieldLevel_when_DamageAmount_is_zero()
         {
-            var excessDamage = 50F;
-            var damage = shieldStartLevel + excessDamage;
+            var damageRemaining = _shield.Damage(0f);
+
+            Assert.AreEqual(shieldStartLevel, _shield.Level);
+            Assert.AreEqual(0F, damageRemaining);
+        }
+
+        //TODO MW What should the behaviour be if you pass in negative damage?
+        [Test]
+        public void Damage_does_not_affect_shieldLevel_when_DamageAmount_is_negative()
+        {
+            const float negativeDamage = -10f;
+            var damageRemaining = _shield.Damage(negativeDamage);
+
+            Assert.AreEqual(shieldStartLevel, _shield.Level);
+            Assert.AreEqual(negativeDamage, damageRemaining);
+        }
+
+        [Test]
+        public void Damage_reduces_ShieldLevel_to_zero_and_returns_excess_when_DamageAmound_is_greated_than_SheildLevel()
+        {
+            const float excessDamage = 50F;
+            const float damage = shieldStartLevel + excessDamage;
 
             var damageRemaining = _shield.Damage(damage);
 
             Assert.AreEqual(0, _shield.Level);
             Assert.AreEqual(excessDamage, damageRemaining);
-
         }
 
         [Test]
-        public void Damaged_Shield_Recharges_By_Small_Amount_Correctly()
+        public void fully_charged_shield_does_not_call_RequestEnergy_on_ship()
         {
-            var damage = shieldStartLevel / 2F;
-            var deltaT = shieldStartLevel / shieldRechargeRate / 10F;
-
-            _shield.Damage(damage);
-
+            const float deltaT = shieldStartLevel / shieldRechargeRate / 10F;
+            
             _shield.Recharge(deltaT);
 
-            var expectedIncrease = deltaT * shieldRechargeRate;
+            Assert.AreEqual(shieldStartLevel, _shield.Level);
+            _ship.DidNotReceive().RequestEnergy(Arg.Any<float>());
+        }
+
+        [Test]
+        public void Recharge_requests_energy_from_ship_and_increases_SheildLevel_by_factor_of_deltaT_and_RechargeRate()
+        {
+            const float damage = shieldStartLevel / 2F;
+            const float deltaT = shieldStartLevel / shieldRechargeRate / 10F;
+            const float expectedIncrease = deltaT * shieldRechargeRate;
+
+            _shield.Damage(damage);
+            _shield.Recharge(deltaT);
+            
             Assert.AreEqual(shieldStartLevel - damage + expectedIncrease, _shield.Level);
             _ship.Received().RequestEnergy(expectedIncrease);
         }
 
         [Test]
-        public void Damaged_Shield_Recharges_By_Large_Amount_Correctly()
+        public void Recharge_only_requests_what_it_needs_to_reach_maxium_ShieldLevel()
         {
-            var damage = shieldStartLevel / 2F;
-            var deltaT = shieldStartLevel / shieldRechargeRate * 2F;
+            const float damage = shieldStartLevel / 2F;
+            const float deltaT = shieldStartLevel / shieldRechargeRate * 2F;
 
             _shield.Damage(damage);
-
             _shield.Recharge(deltaT);
 
             Assert.AreEqual(shieldStartLevel, _shield.Level);
             _ship.Received().RequestEnergy(damage);
         }
-
     }
 }
