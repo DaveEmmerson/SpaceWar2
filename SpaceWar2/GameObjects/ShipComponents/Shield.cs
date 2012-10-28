@@ -18,7 +18,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
             
             Level = maxLevel;
         }
-
+        
         public void Recharge(float deltaT) 
         {
             //Using this slightly weird logic to avoid (dodgy) == between two floats)

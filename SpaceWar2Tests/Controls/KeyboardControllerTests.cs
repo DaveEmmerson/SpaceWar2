@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using NSubstitute;
-using DEMW.SpaceWar2.Controls;
+﻿using DEMW.SpaceWar2.Controls;
 using Microsoft.Xna.Framework.Input;
+using NSubstitute;
+using NUnit.Framework;
 
 namespace DEMW.SpaceWar2Tests.Controls
 {
@@ -20,27 +20,37 @@ namespace DEMW.SpaceWar2Tests.Controls
             _keyboardController.SetMapping(Keys.A, ShipAction.Thrust);
             _keyboardController.SetMapping(Keys.B, ShipAction.FireProjectile);
             _keyboardController.SetMapping(Keys.C, ShipAction.Thrust | ShipAction.FireProjectile);
-
         }
 
         [Test]
-        public void GetAction_Returns_Correct_Action_Single_Action()
+        public void GetAction_returns_correct_action_when_a_single_key_is_pressed()
         {
             _keyboardHandler.IsPressed(Keys.B).Returns(true);
             
             var action = _keyboardController.GetAction();
 
-            Assert.AreEqual(ShipAction.FireProjectile, action, "B key pressed");
+            Assert.AreEqual(ShipAction.FireProjectile, action, "Expected action (from 'B' key) was not returned");
         }
 
         [Test]
-        public void GetAction_Returns_Correct_Action_Multiple_Action()
+        public void GetAction_returns_correct_actions_when_multiple_keys_are_pressed()
+        {
+            _keyboardHandler.IsPressed(Keys.A).Returns(true);
+            _keyboardHandler.IsPressed(Keys.B).Returns(true);
+
+            var action = _keyboardController.GetAction();
+
+            Assert.AreEqual(ShipAction.Thrust | ShipAction.FireProjectile, action, "Expected actions (from 'A' and 'B' keys) were not returned");
+        }
+
+        [Test]
+        public void GetAction_can_handle_multiple_actions_on_a_single_key()
         {
             _keyboardHandler.IsPressed(Keys.C).Returns(true);
 
             var action = _keyboardController.GetAction();
 
-            Assert.AreEqual(ShipAction.Thrust | ShipAction.FireProjectile, action, "C key pressed");
+            Assert.AreEqual(ShipAction.Thrust | ShipAction.FireProjectile, action, "Expected actions (from 'C' key) were not returned");
         }
 
         [Test]
@@ -48,9 +58,7 @@ namespace DEMW.SpaceWar2Tests.Controls
         {
             var action = _keyboardController.GetAction();
 
-            Assert.AreEqual(ShipAction.None, action, "No keys pressed.");
-
+            Assert.AreEqual(ShipAction.None, action, "Unexpected key press was returned");
         }
-
     }
 }

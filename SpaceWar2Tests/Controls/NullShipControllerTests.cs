@@ -1,6 +1,5 @@
-﻿using NUnit.Framework;
-using DEMW.SpaceWar2.Controls;
-
+﻿using DEMW.SpaceWar2.Controls;
+using NUnit.Framework;
 
 namespace DEMW.SpaceWar2Tests.Controls
 {
