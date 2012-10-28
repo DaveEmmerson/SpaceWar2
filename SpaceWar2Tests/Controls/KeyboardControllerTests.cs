@@ -54,7 +54,7 @@ namespace DEMW.SpaceWar2Tests.Controls
         }
 
         [Test]
-        public void GetAction_Returns_None_When_No_Mapped_Keys_Pressed()
+        public void GetAction_returns_none_when_no_mapped_keys_pressed()
         {
             var action = _keyboardController.GetAction();
 
