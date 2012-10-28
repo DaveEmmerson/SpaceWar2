@@ -1,10 +1,9 @@
-﻿using System.Linq;
-using DEMW.SpaceWar2.Controls;
+﻿using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Physics;
-using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework;
 
 namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
 {

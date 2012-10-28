@@ -1,10 +1,8 @@
-﻿using NUnit.Framework;
+﻿using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Physics;
-using DEMW.SpaceWar2.GameObjects;
-
 using Microsoft.Xna.Framework;
-using System;
 using NSubstitute;
+using NUnit.Framework;
 
 namespace DEMW.SpaceWar2Tests.Physics
 {
@@ -50,7 +48,7 @@ namespace DEMW.SpaceWar2Tests.Physics
         [Test]
         public void Simulate_Applies_Correct_Force()
         {
-            var g = GravitySimulator.GravitationalConstant;
+            const int g = GravitySimulator.GravitationalConstant;
 
             _gravitySimulator.Simulate();
 
