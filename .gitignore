@@ -48,6 +48,7 @@ _ReSharper*
 
 #NCrunch Visual Studio plugin
 *ncrunch*
+*.ncrunchsolution
 
 # Installshield output folder
 [Ee]xpress
