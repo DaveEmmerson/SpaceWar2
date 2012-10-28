@@ -51,27 +51,22 @@ namespace DEMW.SpaceWar2Tests.Physics
         public void Offset_Force_Added_To_Opposite_Offset_Force_Gives_What()
         {
             Assert.Fail("I think there is a problem here. How can you combine these two forces?");
-
         }
 
         [Test]
         public void Rotate_By_Small_Angle_Does_Not_Affect_Zero_Displacement()
         {
-
             _noDispVectorRight.Rotate(MathHelper.ToRadians(5));
 
             Assert.AreEqual(Vector2.Zero, _noDispVectorRight.Displacement);
-
         }
 
         [Test]
         public void Rotate_By_Large_Angle_Does_Not_Affect_Zero_Displacement()
         {
-
             _noDispVectorRight.Rotate(MathHelper.ToRadians(300));
 
             Assert.AreEqual(Vector2.Zero, _noDispVectorRight.Displacement);
-
         }
 
         [Test]
