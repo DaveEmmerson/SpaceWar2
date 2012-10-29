@@ -8,49 +8,44 @@ namespace DEMW.SpaceWar2Tests.Physics
     [TestFixture]
     class ForceTests
     {
+        private Vector2 _right;
+        private Vector2 _up;
         private Force _dispRightVectorUp;
         private Force _noDispVectorRight;
         private Force _dispDiagonalRightDownVectorDiagonalUpRight;
-
+        
         [SetUp]
         public void Setup()
         {
-            var right = new Vector2(1,0);
-            var up = new Vector2(0,-1);
+            _right = new Vector2(1,0);
+            _up = new Vector2(0,-1);
             var root2over2 = (float)Math.Sqrt(2) / 2f;
             var downRight = new Vector2(root2over2, root2over2);
             var upRight = new Vector2(root2over2, -root2over2);
             
-            _dispRightVectorUp = new Force(up, right);
-            _noDispVectorRight = new Force(right, Vector2.Zero);
+            _dispRightVectorUp = new Force(_up, _right);
+            _noDispVectorRight = new Force(_right, Vector2.Zero);
             _dispDiagonalRightDownVectorDiagonalUpRight = new Force(upRight, downRight);
         }
 
         [Test]
-        public void Offset_Force_added_to_self_gives_same_Displacement_and_double_the_Vector()
+        public void AddVector_adds_vector_to_Force_Vector_component()
         {
-            var result = _dispRightVectorUp + _dispRightVectorUp;
+            var force = new Force(_right, Vector2.Zero);
+            force.AddVector(_up);
 
-            Assert.AreEqual(_dispRightVectorUp.Displacement, result.Displacement, "Displacement");
-
-            Assert.AreEqual(_dispRightVectorUp.Vector * 2, result.Vector, "Vector");
-
+            Assert.AreEqual(_right + _up, force.Vector);
+            Assert.AreEqual(Vector2.Zero, force.Displacement);
         }
 
         [Test]
-        public void Centre_Force_added_to_self_gives_zero_Displacement_and_double_the_Vector()
+        public void AddVector_adds_vector_and_does_not_affect_displacement()
         {
-            var result = _noDispVectorRight + _noDispVectorRight;
+            var force = new Force(_right, _up);
+            force.AddVector(_up);
 
-            Assert.AreEqual(Vector2.Zero, result.Displacement, "Displacement");
-
-            Assert.AreEqual(_noDispVectorRight.Vector * 2, result.Vector, "Vector");
-        }
-
-        [Test]
-        public void Offset_Force_added_to_opposite_offset_Force_gives_what()
-        {
-            Assert.Fail("I think there is a problem here. How can you combine these two forces?");
+            Assert.AreEqual(_right + _up, force.Vector);
+            Assert.AreEqual(_up, force.Displacement);
         }
 
         [Test]
@@ -76,7 +71,6 @@ namespace DEMW.SpaceWar2Tests.Physics
 
             Assert.AreEqual(_dispDiagonalRightDownVectorDiagonalUpRight.Displacement, _dispRightVectorUp.Displacement, "Displacement");
             Assert.AreEqual(_dispDiagonalRightDownVectorDiagonalUpRight.Vector, _dispRightVectorUp.Vector, "Vector");
-
         }
 
         [Test]
@@ -87,6 +81,5 @@ namespace DEMW.SpaceWar2Tests.Physics
             Assert.AreEqual(Vector2.Zero, defaultForce.Vector);
             Assert.AreEqual(Vector2.Zero, defaultForce.Displacement);
         }
-
     }
 }

@@ -79,7 +79,7 @@ namespace DEMW.SpaceWar2.GameObjects
             foreach (var force in _queuedforces)
             {
                 Forces.Add(force);
-                TotalForce += force;
+                TotalForce.AddVector(force.Vector);
                 TotalMoment += CalculateMoment(force);
             }
 
