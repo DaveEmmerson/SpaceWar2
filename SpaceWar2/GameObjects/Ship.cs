@@ -9,16 +9,15 @@ namespace DEMW.SpaceWar2.GameObjects
 {
     public class Ship : GameObject, IShip
     {
-        private const float MaxEnergyLevel = 100F;
         private const float ExplosionRadiusMultiplier = 1.4F;
         private const float ExplosionSpeed = 0.5F;
-        private const float EnergyRechargeRate = 0.001F;
 
         private readonly GraphicsDeviceManager _graphics;
         public IShipController Controller { private get; set; }
 
         private readonly IList<Arrow> _arrows;
         private readonly ThrusterArray _thrusterArray;
+        private readonly EnergyStore _energyStore;
         private readonly Shield _shield;
         
         public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color color)
@@ -30,8 +29,8 @@ namespace DEMW.SpaceWar2.GameObjects
             Name = name;
             Controller = new NullShipController();
 
-            Energy = 100F;
             Armour = 100F;
+            _energyStore = new EnergyStore(100F, 0.1F);
             _shield = new Shield(this, 100F, 0.1F);
 
             _thrusterArray = new ThrusterArray(this);
@@ -41,17 +40,8 @@ namespace DEMW.SpaceWar2.GameObjects
         public string Name { get; protected set; }
         public bool ShowArrows { get; set; }
 
-        public float Shields
-        {
-            get { return _shield.Level; }
-        }
-
-        private float _energy;
-        public float Energy
-        {
-            get { return _energy; }
-            set { _energy = value > MaxEnergyLevel ? MaxEnergyLevel : value; }
-        }
+        public float Energy { get { return _energyStore.Level; } }
+        public float Shields { get { return _shield.Level; } }
 
         private float _armour;
         public float Armour
@@ -109,8 +99,8 @@ namespace DEMW.SpaceWar2.GameObjects
             else
             {
                 _shield.Recharge(deltaT);
-                
-                Energy += EnergyRechargeRate;
+
+                _energyStore.Recharge(deltaT);
             }
 
             ShipAction action = Controller.GetAction();
@@ -168,10 +158,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public float RequestEnergy(float energyRequest)
         {
-            float energyDepletion = Energy < energyRequest ? Energy : energyRequest;
-
-            Energy -= energyDepletion;
-            return energyDepletion;
+            return _energyStore.RequestEnergy(energyRequest);
         }
     }
 }
