@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Controls\KeyboardControllerTests.cs" />
     <Compile Include="Controls\ShipActionTests.cs" />
+    <Compile Include="GameObjects\ShipComponents\ThrusterTests.cs" />
     <Compile Include="GameObjects\ShipComponents\ShieldTests.cs" />
     <Compile Include="GameObjects\ShipComponents\ThrusterArrayTests.cs" />
     <Compile Include="Physics\GravitySimulatorTests.cs" />
