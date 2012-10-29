@@ -44,7 +44,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             var energyReceived = _energyStore.RequestEnergy(energyRequired);
 
             Assert.AreEqual(energyReceived, maxLevel, "Energy received did not equal the available energy.");
-            Assert.AreEqual(0F, _energyStore.Level);
+            Assert.AreEqual(0F, _energyStore.Level, "Energy level remaining was not zero.");
         }
 
         [Test]
