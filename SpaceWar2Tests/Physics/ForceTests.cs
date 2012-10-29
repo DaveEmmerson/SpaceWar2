@@ -79,5 +79,14 @@ namespace DEMW.SpaceWar2Tests.Physics
 
         }
 
+        [Test]
+        public void Force_default_constructor_creates_force_with_no_vector_and_no_displacement()
+        {
+            var defaultForce = new Force();
+
+            Assert.AreEqual(Vector2.Zero, defaultForce.Vector);
+            Assert.AreEqual(Vector2.Zero, defaultForce.Displacement);
+        }
+
     }
 }

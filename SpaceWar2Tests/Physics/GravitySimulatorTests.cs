@@ -64,5 +64,32 @@ namespace DEMW.SpaceWar2Tests.Physics
             ));
         }
 
+        [Test]
+        public void UnRegister_removes__source_GameObject_from_GravitySimulator()
+        {
+            _gravitySimulator.UnRegister(_source);
+            _gravitySimulator.Simulate();
+
+            _participant.DidNotReceive().ApplyExternalForce(Arg.Any<Force>());
+            _participant.DidNotReceive().ApplyInternalForce(Arg.Any<Force>());
+
+            _source.DidNotReceive().ApplyExternalForce(Arg.Any<Force>());
+            _source.DidNotReceive().ApplyInternalForce(Arg.Any<Force>());
+        }
+
+        [Test]
+        public void UnRegister_removes_participant_GameObject_from_GravitySimulator()
+        {
+            _gravitySimulator.UnRegister(_participant);
+            _gravitySimulator.Simulate();
+
+            _participant.DidNotReceive().ApplyExternalForce(Arg.Any<Force>());
+            _participant.DidNotReceive().ApplyInternalForce(Arg.Any<Force>());
+
+            _source.DidNotReceive().ApplyExternalForce(Arg.Any<Force>());
+            _source.DidNotReceive().ApplyInternalForce(Arg.Any<Force>());
+        }
+
+
     }
 }
