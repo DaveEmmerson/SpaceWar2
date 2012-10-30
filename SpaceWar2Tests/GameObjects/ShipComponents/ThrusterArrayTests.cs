@@ -27,10 +27,19 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         {
             _thrusterArray.CalculateThrustPattern(ShipAction.None);
 
-            //Assertions
             _ship.Received().AngularVelocity = 0f;
             _ship.DidNotReceive().ApplyInternalForce(Arg.Any<Force>());
         }
+
+        [Test]
+        public void CalculateThrustPattern_does_not_thrust_when_thrust_and_reverse_together()
+        {
+            _thrusterArray.CalculateThrustPattern(ShipAction.Thrust);
+
+            _ship.Received().AngularVelocity = 0f;
+            _ship.DidNotReceive().ApplyInternalForce(Arg.Any<Force>());
+            Assert.Fail();
+        }  
 
     }
 }
