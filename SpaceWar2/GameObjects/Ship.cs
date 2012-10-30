@@ -9,9 +9,6 @@ namespace DEMW.SpaceWar2.GameObjects
 {
     public class Ship : GameObject, IShip
     {
-        private const float ExplosionRadiusMultiplier = 1.4F;
-        private const float ExplosionSpeed = 0.5F;
-
         private readonly GraphicsDeviceManager _graphics;
         public IShipController Controller { private get; set; }
 
@@ -32,7 +29,6 @@ namespace DEMW.SpaceWar2.GameObjects
             Armour = 100F;
             _energyStore = new EnergyStore(100F, 0.1F);
             _shield = new Shield(this, 100F, 0.1F);
-
             _thrusterArray = new ThrusterArray(this);
         }
 
@@ -59,49 +55,17 @@ namespace DEMW.SpaceWar2.GameObjects
 
                 if (_armour < 0)
                 {
-                    _exploding = true;
-                    _explosionTargetRadius = Radius * ExplosionRadiusMultiplier;
-                    _explosionRadiusIncrement = (ExplosionRadiusMultiplier - 1) * Radius / ExplosionSpeed;
+                    Expired = true;
                 }
             }
         }
-
-        private bool _exploding;
-        private bool _imploding;
-        private float _explosionTargetRadius;
-        private float _explosionRadiusIncrement;
 
         protected override void UpdateInternal(GameTime gameTime)
         {
             var deltaT = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (_exploding)
-            {
-                if (Radius > _explosionTargetRadius)
-                {
-                    _exploding = false;
-                    _imploding = true;
-                }
-
-                Radius = Radius + _explosionRadiusIncrement * deltaT;
-            }
-
-            else if (_imploding)
-            {
-                Radius = Radius - _explosionRadiusIncrement * (deltaT + 1 / Radius);
-
-                if (Radius <= 0)
-                {
-                    _imploding = false;
-                    Expired = true;
-                }
-            }
-            else
-            {
-                _shield.Recharge(deltaT);
-
-                _energyStore.Recharge(deltaT);
-            }
+            _shield.Recharge(deltaT);
+            _energyStore.Recharge(deltaT);
 
             ShipAction action = Controller.GetAction();
             _thrusterArray.CalculateThrustPattern(action);
