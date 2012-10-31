@@ -134,7 +134,10 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
         private void ApplyForce(Thruster thruster, float energyScalingFactor)
         {
             var force = thruster.Engage(energyScalingFactor);
-            _ship.ApplyInternalForce(force);
+            if (force.Vector.Length() > 0)
+            {
+                _ship.ApplyInternalForce(force);
+            }
         }
     }
 }
