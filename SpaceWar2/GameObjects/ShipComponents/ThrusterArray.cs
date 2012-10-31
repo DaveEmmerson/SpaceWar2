@@ -3,29 +3,35 @@ using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 {
-    public class ThrusterArray 
+    public class ThrusterArray
     {
-        private const float ThrustPower = 50F;
-        private const float ThrustEnergyCost = 0.1F;
+        public const float ThrustPower = 50F;
+        public const float ThrustEnergyCost = 0.1F;
         private const float RotationSpeed = 2F;
 
         private readonly IShip _ship;
 
         private float _angularVelocityTarget;
-        
+
         private readonly Thruster _frontLeftThruster;
         private readonly Thruster _frontRightThruster;
         private readonly Thruster _backLeftThruster;
         private readonly Thruster _backRightThruster;
-        
+
         public ThrusterArray(IShip ship)
         {
             _ship = ship;
 
-            _frontLeftThruster = new Thruster(new Vector2(-ship.Radius, 0), new Vector2(0, -ThrustPower), ThrustEnergyCost);
-            _frontRightThruster = new Thruster(new Vector2(ship.Radius, 0), new Vector2(0, -ThrustPower), ThrustEnergyCost);
-            _backLeftThruster = new Thruster(new Vector2(-ship.Radius, 0), new Vector2(0, ThrustPower), ThrustEnergyCost);
-            _backRightThruster = new Thruster(new Vector2(ship.Radius, 0), new Vector2(0, ThrustPower), ThrustEnergyCost);
+            var forwardThrust = new Vector2(0, -ThrustPower);
+            var backthrust = new Vector2(0, ThrustPower);
+
+            var leftOfShip = new Vector2(-ship.Radius, 0);
+            var rightOfShip = new Vector2(ship.Radius, 0);
+
+            _frontLeftThruster = new Thruster(leftOfShip, forwardThrust, ThrustEnergyCost);
+            _frontRightThruster = new Thruster(rightOfShip, forwardThrust, ThrustEnergyCost);
+            _backLeftThruster = new Thruster(leftOfShip, backthrust, ThrustEnergyCost);
+            _backRightThruster = new Thruster(rightOfShip, backthrust, ThrustEnergyCost);
         }
 
         public void CalculateThrustPattern(ShipAction action)
@@ -37,7 +43,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 
             GenerateLinearThrust(action);
         }
-       
+
         private void ResetThrusters()
         {
             _frontLeftThruster.Throttle = 0f;
@@ -98,12 +104,12 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
             }
             else if (linearTarget < 0f)
             {
-                _backLeftThruster.Throttle += 0 - linearTarget;
-                _backRightThruster.Throttle += 0 - linearTarget;
+                _backLeftThruster.Throttle += 0f - linearTarget;
+                _backRightThruster.Throttle += 0f - linearTarget;
             }
         }
 
-        internal void EngageThrusters()
+        public void EngageThrusters()
         {
             var energyRequired = _frontRightThruster.EnergyRequired
                                  + _frontLeftThruster.EnergyRequired
@@ -119,10 +125,16 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 
             var energyScalingFactor = availableEnergy/energyRequired;
 
-            _ship.ApplyInternalForce(_frontLeftThruster.Engage(energyScalingFactor));
-            _ship.ApplyInternalForce(_frontRightThruster.Engage(energyScalingFactor));
-            _ship.ApplyInternalForce(_backLeftThruster.Engage(energyScalingFactor));
-            _ship.ApplyInternalForce(_backRightThruster.Engage(energyScalingFactor));
+            ApplyForce(_frontLeftThruster, energyScalingFactor);
+            ApplyForce(_frontRightThruster, energyScalingFactor);
+            ApplyForce(_backLeftThruster, energyScalingFactor);
+            ApplyForce(_backRightThruster, energyScalingFactor);
+        }
+
+        private void ApplyForce(Thruster thruster, float energyScalingFactor)
+        {
+            var force = thruster.Engage(energyScalingFactor);
+            _ship.ApplyInternalForce(force);
         }
     }
 }
