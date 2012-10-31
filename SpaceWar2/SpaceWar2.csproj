@@ -85,6 +85,7 @@
     <Compile Include="GameObjects\IShip.cs" />
     <Compile Include="GameObjects\Ship.cs" />
     <Compile Include="GameObjects\ShipComponents\EnergyStore.cs" />
+    <Compile Include="GameObjects\ShipComponents\Hull.cs" />
     <Compile Include="GameObjects\ShipComponents\Shield.cs" />
     <Compile Include="GameObjects\ShipComponents\ThrusterArray.cs" />
     <Compile Include="GameObjects\ShipComponents\Thruster.cs" />
