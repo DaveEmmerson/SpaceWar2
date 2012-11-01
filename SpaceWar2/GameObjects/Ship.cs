@@ -52,16 +52,9 @@ namespace DEMW.SpaceWar2.GameObjects
             _thrusterArray.CalculateThrustPattern(action);
             _thrusterArray.EngageThrusters();
 
-            ResolveForces();
-            var acceleration = (TotalForce.Vector / Mass);
-            Velocity += acceleration * deltaT;
-            Position += Velocity * deltaT;
-
-            var angularAcceleration = (TotalMoment / MomentOfInertia);
-            AngularVelocity += angularAcceleration * deltaT;
-            Rotation += AngularVelocity * deltaT;
+            SimulateDynamics(deltaT);
         }
-
+        
         public override void Draw()
         {
             DrawArrows();

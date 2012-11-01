@@ -69,7 +69,20 @@ namespace DEMW.SpaceWar2.GameObjects
             UpdateInternal(gameTime);
         }
 
-        protected void ResolveForces()
+        protected void SimulateDynamics(float deltaT)
+        {
+            ResolveForces();
+
+            var acceleration = (TotalForce.Vector / Mass);
+            Velocity += acceleration * deltaT;
+            Position += Velocity * deltaT;
+
+            var angularAcceleration = (TotalMoment / MomentOfInertia);
+            AngularVelocity += angularAcceleration * deltaT;
+            Rotation += AngularVelocity * deltaT;
+        }
+
+        private void ResolveForces()
         {
             Forces.Clear();
             
