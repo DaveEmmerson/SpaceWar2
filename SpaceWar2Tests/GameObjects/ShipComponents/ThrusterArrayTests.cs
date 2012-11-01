@@ -109,6 +109,23 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         }
 
         [Test]
+        public void EngageThrusters_applies_suitable_forces_when_forward_and_right_pressed()
+        {
+            _ship.RequestEnergy(0.05f).Returns(0.05f);
+            _thrusterArray.CalculateThrustPattern(ShipAction.Thrust | ShipAction.TurnRight);
+            _thrusterArray.EngageThrusters();
+
+            var forwardVectorLeft = new Vector2(0f, -ThrusterArray.ThrustPower * 0.5f);
+            var forwardVectorRight = new Vector2(0f, -ThrusterArray.ThrustPower);
+
+            _ship.Received(3).ApplyInternalForce(Arg.Any<Force>());
+            _ship.Received().ApplyInternalForce(
+                Arg.Is<Force>(x => x.Displacement == _leftThrusterPosition && x.Vector == forwardVectorLeft));
+            _ship.Received().ApplyInternalForce(
+                Arg.Is<Force>(x => x.Displacement == _rightThrusterPosition && x.Vector == forwardVectorRight));
+        }
+
+        [Test]
         public void EngageThrusters_applies_suitable_rotational_forces_when_left_pressed()
         {
             _ship.RequestEnergy(0.05f).Returns(0.05f);
@@ -152,8 +169,5 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             _ship.Received().AngularVelocity = 0f;
             _ship.DidNotReceive().ApplyInternalForce(Arg.Any<Force>());
         }
-        
-        //TODO Add tests for thrusting and turning together
-
     }
 }
