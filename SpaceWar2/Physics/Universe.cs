@@ -3,11 +3,11 @@ using DEMW.SpaceWar2.GameObjects;
 
 namespace DEMW.SpaceWar2.Physics
 {
-    internal class Universe
+    public class Universe
     {
         private readonly IList<IGameObject> _managedObjects;
         
-        internal Universe(float minX, float maxX, float minY, float maxY, float minZ, float maxZ)
+        public Universe(float minX, float maxX, float minY, float maxY, float minZ, float maxZ)
         {
             MinX = minX;
             MaxX = maxX;
@@ -26,17 +26,17 @@ namespace DEMW.SpaceWar2.Physics
             return copy;
         }
 
-        internal static Universe GetDefault()
+        public static Universe GetDefault()
         {
             return new Universe(-400, 400, -240, 240, -1000, 1000);
         }
 
-        internal float MinX { get; set; }
-        internal float MaxX { get; set; }
-        internal float MinY { get; set; }
-        internal float MaxY { get; set; }
-        internal float MinZ { get; set; }
-        internal float MaxZ { get; set; }
+        public float MinX { get; private set; }
+        public float MaxX { get; private set; }
+        public float MinY { get; private set; }
+        public float MaxY { get; private set; }
+        public float MinZ { get; private set; }
+        public float MaxZ { get; private set; }
 
         public float Width
         {
