@@ -6,7 +6,7 @@ namespace DEMW.SpaceWar2.GameObjects
 {
     public interface IGameObject
     {
-        bool Expired { get; set; }
+        bool Expired { get; }
 
         float Mass { get; }
         Vector2 Position { get; }

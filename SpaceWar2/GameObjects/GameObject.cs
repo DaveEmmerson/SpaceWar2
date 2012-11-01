@@ -22,7 +22,7 @@ namespace DEMW.SpaceWar2.GameObjects
             Forces = new List<Force>();
         }
 
-        public bool Expired { get; set; }
+        public bool Expired { get; protected set; }
 
         public float Mass { get; set; }
         public Vector2 Position { get; set; }

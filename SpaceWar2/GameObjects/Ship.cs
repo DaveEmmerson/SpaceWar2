@@ -16,6 +16,7 @@ namespace DEMW.SpaceWar2.GameObjects
         private readonly ThrusterArray _thrusterArray;
         private readonly EnergyStore _energyStore;
         private readonly Shield _shield;
+        private readonly Hull _hull;
         
         public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color color)
             : base (position, radius, 1)
@@ -26,9 +27,9 @@ namespace DEMW.SpaceWar2.GameObjects
             Name = name;
             Controller = new NullShipController();
 
-            Armour = 100F;
             _energyStore = new EnergyStore(100F, 0.1F);
             _shield = new Shield(this, 100F, 0.1F);
+            _hull = new Hull(this, 100F);
             _thrusterArray = new ThrusterArray(this);
         }
 
@@ -38,27 +39,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public float Energy { get { return _energyStore.Level; } }
         public float Shields { get { return _shield.Level; } }
-
-        private float _armour;
-        public float Armour
-        {
-            get { return _armour; }
-
-            set
-            {
-                if (_armour < 0 && value > _armour)
-                {
-                    throw new ArgumentException("Ship is already exploding. Can't repair.");
-                }
-
-                _armour = value;
-
-                if (_armour < 0)
-                {
-                    Expired = true;
-                }
-            }
-        }
+        public float Armour { get { return _hull.Level; } }       
 
         protected override void UpdateInternal(GameTime gameTime)
         {
@@ -117,7 +98,15 @@ namespace DEMW.SpaceWar2.GameObjects
         {
             var damageRemaining = _shield.Damage(amount);
 
-            Armour -= damageRemaining;
+            if (damageRemaining > 0F)
+            {
+                _hull.Damage(damageRemaining);
+
+                if (_hull.Level == 0F)
+                {
+                    Expired = true;
+                }
+            }
         }
 
         public float RequestEnergy(float energyRequest)

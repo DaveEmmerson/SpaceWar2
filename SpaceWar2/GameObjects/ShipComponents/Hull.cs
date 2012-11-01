@@ -34,10 +34,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
             if (Level < 0)
             {
                 Level = 0;
-                _ship.Expired = true;
-
             }
-
         }
     }
 }

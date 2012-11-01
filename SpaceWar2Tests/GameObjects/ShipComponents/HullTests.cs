@@ -59,16 +59,13 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         }
 
         [Test]
-        public void Damage_only_reduces_Level_as_far_as_zero_and_sets_Expired()
+        public void Damage_only_reduces_Level_as_far_as_zero()
         {
             const float damageRequired = maxLevel * 2F;
 
             _hull.Damage(damageRequired);
 
             Assert.AreEqual(0F, _hull.Level);
-
-            _ship.Received(1).Expired = true;
-
         }
 
         [Test]
