@@ -5,14 +5,12 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
     public class Hull
     {
         private readonly IGameObject _ship;
-        private readonly float _maxLevel;
 
         public float Level { get; private set; }
 
         public Hull(IGameObject ship, float maxLevel)
         {
             _ship = ship;
-            _maxLevel = maxLevel;
 
             Level = maxLevel;
         }

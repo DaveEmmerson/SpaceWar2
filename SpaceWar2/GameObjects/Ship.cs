@@ -95,7 +95,7 @@ namespace DEMW.SpaceWar2.GameObjects
             {
                 _hull.Damage(damageRemaining);
 
-                if (_hull.Level == 0F)
+                if (_hull.Level <= 0F)
                 {
                     Expired = true;
                 }

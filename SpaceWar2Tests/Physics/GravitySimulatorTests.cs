@@ -56,7 +56,6 @@ namespace DEMW.SpaceWar2Tests.Physics
             // the setup specified in the mocks. The force magnitude I have calculated
             // manually. Would it be odd to calculate the magnitude based on the mock
             // values? It seems to just duplicate the code under test!
-            // These comments should have been in a block, lol.
             _participant.Received(1).ApplyExternalForce(Arg.Is<Force>(
                 force => force.Vector.Length() == g * 0.2 &&
                          force.Vector.X == force.Vector.Y &&

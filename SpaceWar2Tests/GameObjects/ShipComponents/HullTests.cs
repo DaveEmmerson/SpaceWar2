@@ -71,14 +71,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         [Test]
         public void Damage_throws_exception_if_passed_negative_parameter()
         {
-
-            Assert.Throws<ArgumentException>(() =>
-            {
-
-                _hull.Damage(-10F);
-
-            });
-
+            Assert.Throws<ArgumentException>(() => _hull.Damage(-10F));
         }
     }
 }

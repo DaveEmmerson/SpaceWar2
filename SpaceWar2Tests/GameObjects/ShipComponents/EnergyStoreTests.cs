@@ -52,7 +52,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         {
             const float energyRequired = 50F;
 
-            var discardedEnergy = _energyStore.RequestEnergy(maxLevel);
+            _energyStore.RequestEnergy(maxLevel);
 
             var energyReceived = _energyStore.RequestEnergy(energyRequired);
 
@@ -72,14 +72,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         [Test]
         public void Request_energy_with_negative_argument_throws_exception()
         {
-            var energyReceived = 0F;
-
-            Assert.Throws<ArgumentException>(() =>
-            {
-
-                energyReceived = _energyStore.RequestEnergy(-10F);
-
-            });
+            Assert.Throws<ArgumentException>(() => _energyStore.RequestEnergy(-10F));
 
             Assert.AreEqual(maxLevel, _energyStore.Level);
         }
@@ -90,7 +83,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             const float deltaT = 25F / rechargeRate;
             const float energyToDiscard = 50F;
 
-            var discardedEnergy = _energyStore.RequestEnergy(energyToDiscard);
+            _energyStore.RequestEnergy(energyToDiscard);
 
             _energyStore.Recharge(deltaT);
 
@@ -103,7 +96,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             const float deltaT = 75F / rechargeRate;
             const float energyToDiscard = 50F;
 
-            var discardedEnergy = _energyStore.RequestEnergy(energyToDiscard);
+            _energyStore.RequestEnergy(energyToDiscard);
 
             _energyStore.Recharge(deltaT);
 
@@ -115,7 +108,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         {
             const float energyToDiscard = 50F;
 
-            var discardedEnergy = _energyStore.RequestEnergy(energyToDiscard);
+            _energyStore.RequestEnergy(energyToDiscard);
 
             _energyStore.Recharge(0F);
 
@@ -125,13 +118,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         [Test]
         public void Recharge_with_negative_parameter_throws_exception()
         {
-            Assert.Throws<ArgumentException>(() =>
-            {
-
-                _energyStore.Recharge(-10F);
-
-            });
+            Assert.Throws<ArgumentException>(() => _energyStore.Recharge(-10F));
         }
-
     }
 }
