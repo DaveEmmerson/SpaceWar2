@@ -2,7 +2,7 @@
 
 namespace DEMW.SpaceWar2.GameObjects
 { 
-    class Sun : GameObject
+    public class Sun : GameObject
     {      
         public Sun(Vector2 position, float radius, Color color, float mass)
             : base (position, radius, mass)

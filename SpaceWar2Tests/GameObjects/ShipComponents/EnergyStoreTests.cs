@@ -21,7 +21,6 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         public void Level_is_maximum_initially()
         {
             Assert.AreEqual(maxLevel, _energyStore.Level);
-
         }
 
         [Test]
@@ -33,7 +32,6 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
 
             Assert.AreEqual(energyRequired, energyReceived, "Energy received did not equal energy requested.");
             Assert.AreEqual(maxLevel - energyReceived, _energyStore.Level, "Energy level was not reduced by energy received.");
-
         }
 
         [Test]

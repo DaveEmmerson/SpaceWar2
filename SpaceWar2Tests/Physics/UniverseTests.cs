@@ -9,12 +9,6 @@ namespace DEMW.SpaceWar2Tests.Physics
     [TestFixture]
     class UniverseTests
     {
-        
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void Universe_creates_universe_and_initialises_the_dimension_properties()
         {
