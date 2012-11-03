@@ -89,6 +89,7 @@ namespace DEMW.SpaceWar2Tests.Physics
             Assert.AreEqual(1000f, defaultUniverse.MaxZ);
         }
 
+        [Test]
         public void Update_constrains_registered_objects_to_the_dimensions_of_the_universe()
         {
             var universe = new Universe(-600f, 600f, -400f, 400f, -100f, 100f);
