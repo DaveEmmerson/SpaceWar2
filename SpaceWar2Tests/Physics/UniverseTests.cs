@@ -89,17 +89,22 @@ namespace DEMW.SpaceWar2Tests.Physics
             Assert.AreEqual(1000f, defaultUniverse.MaxZ);
         }
 
-        [Test]
         public void Update_constrains_registered_objects_to_the_dimensions_of_the_universe()
         {
             var universe = new Universe(-600f, 600f, -400f, 400f, -100f, 100f);
             var gameObject1 = Substitute.For<IGameObject>();
             var gameObject2 = Substitute.For<IGameObject>();
+            var gameObject3 = Substitute.For<IGameObject>();
+            var gameObject4 = Substitute.For<IGameObject>();
             gameObject1.Position.Returns(new Vector2(universe.MinX - 10f, 0f));
             gameObject2.Position.Returns(new Vector2(universe.MaxX - 10f, universe.MaxY + 10f));
+            gameObject3.Position.Returns(new Vector2(universe.MaxX + 10f, universe.MaxY - 10f));
+            gameObject4.Position.Returns(new Vector2(universe.MinX - universe.Width - 20f, universe.MinY + universe.Height / 2));
 
             universe.Register(gameObject1);
             universe.Register(gameObject2);
+            universe.Register(gameObject3);
+            universe.Register(gameObject4);
 
             universe.Update();
 
@@ -108,6 +113,13 @@ namespace DEMW.SpaceWar2Tests.Physics
 
             var expectedPosition2 = new Vector2(universe.MaxX - 10f, universe.MinY + 10f);
             gameObject2.Received().Teleport(Arg.Is(expectedPosition2));
+
+            var expectedPosition3 = new Vector2(universe.MinX + 10f, universe.MaxY - 10f);
+            gameObject3.Received().Teleport(Arg.Is(expectedPosition3));
+
+            var expectedPosition4 = new Vector2(universe.MaxX - 20f, universe.MinY + universe.Height / 2);
+            gameObject4.Received().Teleport(Arg.Is(expectedPosition4));
+
         }
 
         [Test]
