@@ -50,6 +50,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ControllerFactoryTests.cs" />
     <Compile Include="Controls\KeyboardControllerTests.cs" />
     <Compile Include="Controls\ShipActionTests.cs" />
     <Compile Include="GameObjects\ShipTests.cs" />
