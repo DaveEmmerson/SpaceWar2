@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>Summary - Coverage Report</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="report.css" />
+<script type="text/javascript">
+/* <![CDATA[ */
+document.getElementsByClassName = function(cl) {
+  var retnode = [];
+  var myclass = new RegExp('\\b'+cl+'\\b');
+  var elem = this.getElementsByTagName('*');
+  for (var i = 0; i < elem.length; i++) {
+    var classes = elem[i].className;
+    if (myclass.test(classes)) {
+      retnode.push(elem[i]);
+    }
+  }
+  return retnode;
+}; 
+
+function getSiblingNode(element) {
+    do {
+        element = element.nextSibling;
+    } while (element && element.nodeType != 1);
+    return element;
+}
+
+function toggleAssemblyDetails() {
+  var popup = getSiblingNode(this); 
+  if (popup.style.display == 'block') { 
+    popup.style.display = 'none'; 
+  }
+  else {
+    var popups = document.getElementsByClassName('detailspopup');
+    for (var i = 0, j = popups.length; i < j; i++) { 
+      popups[i].style.display = 'none';
+    }
+    popup.style.display = 'block'; 
+  }
+  return false;
+}
+
+function collapseAllClasses() {
+  var classRows = document.getElementsByClassName('classrow');
+  for (var i = 0, j = classRows.length; i < j; i++) {
+    classRows[i].style.display = 'none';
+  }
+  var expandedRows = document.getElementsByClassName('expanded');
+  for (var i = 0, j = expandedRows.length; i < j; i++) {
+    expandedRows[i].className = 'collapsed';
+  }
+  return false;
+}
+
+function expandAllClasses() {
+  var classRows = document.getElementsByClassName('classrow');
+  for (var i = 0, j = classRows.length; i < j; i++) {
+    classRows[i].style.display = '';
+  }
+  var collapsedRows = document.getElementsByClassName('collapsed');
+  for (var i = 0, j = collapsedRows.length; i < j; i++) {
+    collapsedRows[i].className = 'expanded';
+  }
+  return false;
+}
+
+function toggleClassesInAssembly() {
+  var assemblyRow = this.parentNode.parentNode;
+  assemblyRow.className = assemblyRow.className == 'collapsed' ? 'expanded' : 'collapsed';
+  var classRow = getSiblingNode(assemblyRow);
+  while (classRow && classRow.className == 'classrow') {
+    classRow.style.display = classRow.style.display == 'none' ? '' : 'none';
+    classRow = getSiblingNode(classRow);
+  }
+  return false;
+}
+
+function init() {
+  var toggleAssemblyDetailsLinks = document.getElementsByClassName('toggleAssemblyDetails');
+  for (var i = 0, j = toggleAssemblyDetailsLinks.length; i < j; i++) {
+    toggleAssemblyDetailsLinks[i].onclick = toggleAssemblyDetails;
+  }
+
+  document.getElementById('collapseAllClasses').onclick = collapseAllClasses;
+  document.getElementById('expandAllClasses').onclick = expandAllClasses;
+
+  var toggleClassesInAssemblyLinks = document.getElementsByClassName('toggleClassesInAssembly');
+  for (var i = 0, j = toggleClassesInAssemblyLinks.length; i < j; i++) {
+    toggleClassesInAssemblyLinks[i].onclick = toggleClassesInAssembly;
+  }
+}
+
+window.onload = init;
+/* ]]> */
+</script>
+</head><body><div class="container">
+<h1>Summary</h1>
+<table class="overview">
+<colgroup>
+<col width="130" />
+<col />
+</colgroup>
+<tr><th>Generated on:</th><td>03/11/2012 - 13:29:01</td></tr>
+<tr><th>Parser:</th><td>OpenCoverParser</td></tr>
+<tr><th>Assemblies:</th><td>2</td></tr>
+<tr><th>Files:</th><td>36</td></tr>
+<tr><th>Coverage:</th><td>61.3%</td></tr>
+<tr><th>Covered lines:</th><td>830</td></tr>
+<tr><th>Coverable lines:</th><td>1353</td></tr>
+<tr><th>Total lines:</th><td>2679</td></tr>
+</table>
+<h1>Assemblies</h1>
+<p class="toggleClasses"><a id="collapseAllClasses" href="#">Collapse all assemblies</a> | <a id="expandAllClasses" href="#">Expand all assemblies</a></p>
+<table class="overview">
+<colgroup>
+<col />
+<col width="60" />
+<col width="105" />
+</colgroup>
+<tr class="expanded"><th><a href="#" class="toggleClassesInAssembly" title="Collapse/Expand assembly"> </a> DEMW.SpaceWar2 <a href="#" class="toggleAssemblyDetails" title="Show details of assembly">Details</a>
+<div class="detailspopup">
+<table class="overview">
+<colgroup>
+<col width="130" />
+<col />
+</colgroup>
+<tr><th>Classes:</th><td>24</td></tr><tr><th>Coverage:</th><td>40.2%</td></tr><tr><th>Covered lines:</th><td>333</td></tr><tr><th>Coverable lines:</th><td>828</td></tr><tr><th>Total lines:</th><td>1547</td></tr></table>
+</div>
+</th><th title="LineCoverage">40.2%</th><td><table class="coverage"><tr><td class="green" style="width: 40px;">&nbsp;</td><td class="red" style="width: 60px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Controls.ControllerFactory.htm">DEMW.SpaceWar2.Controls.ControllerFactory</a></td><td title="LineCoverage">0%</td><td><table class="coverage"><tr><td class="red" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Controls.KeyboardController.htm">DEMW.SpaceWar2.Controls.KeyboardController</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Controls.KeyboardHandler.htm">DEMW.SpaceWar2.Controls.KeyboardHandler</a></td><td title="LineCoverage">0%</td><td><table class="coverage"><tr><td class="red" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Controls.NullShipController.htm">DEMW.SpaceWar2.Controls.NullShipController</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.GameObjectFactory.htm">DEMW.SpaceWar2.GameObjectFactory</a></td><td title="LineCoverage">0%</td><td><table class="coverage"><tr><td class="red" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.GameObjects.GameObject.htm">DEMW.SpaceWar2.GameObjects.GameObject</a></td><td title="LineCoverage">25.3%</td><td><table class="coverage"><tr><td class="green" style="width: 25px;">&nbsp;</td><td class="red" style="width: 75px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.GameObjects.Ship.htm">DEMW.SpaceWar2.GameObjects.Ship</a></td><td title="LineCoverage">0%</td><td><table class="coverage"><tr><td class="red" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.GameObjects.ShipComponents.EnergyStore.htm">DEMW.SpaceWar2.GameObjects.ShipComponents.EnergyStore</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.GameObjects.ShipComponents.Hull.htm">DEMW.SpaceWar2.GameObjects.ShipComponents.Hull</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.GameObjects.ShipComponents.Shield.htm">DEMW.SpaceWar2.GameObjects.ShipComponents.Shield</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.GameObjects.ShipComponents.Thruster.htm">DEMW.SpaceWar2.GameObjects.ShipComponents.Thruster</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.GameObjects.ShipComponents.ThrusterArray.htm">DEMW.SpaceWar2.GameObjects.ShipComponents.ThrusterArray</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.GameObjects.Sun.htm">DEMW.SpaceWar2.GameObjects.Sun</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Graphics.Arrow.htm">DEMW.SpaceWar2.Graphics.Arrow</a></td><td title="LineCoverage">0%</td><td><table class="coverage"><tr><td class="red" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Graphics.Camera.htm">DEMW.SpaceWar2.Graphics.Camera</a></td><td title="LineCoverage">0%</td><td><table class="coverage"><tr><td class="red" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Graphics.Circle.htm">DEMW.SpaceWar2.Graphics.Circle</a></td><td title="LineCoverage">0%</td><td><table class="coverage"><tr><td class="red" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Graphics.DrawingManager.htm">DEMW.SpaceWar2.Graphics.DrawingManager</a></td><td title="LineCoverage">0%</td><td><table class="coverage"><tr><td class="red" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Graphics.InfoBar.htm">DEMW.SpaceWar2.Graphics.InfoBar</a></td><td title="LineCoverage">0%</td><td><table class="coverage"><tr><td class="red" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Physics.Force.htm">DEMW.SpaceWar2.Physics.Force</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Physics.GravitySimulator.htm">DEMW.SpaceWar2.Physics.GravitySimulator</a></td><td title="LineCoverage">91.8%</td><td><table class="coverage"><tr><td class="green" style="width: 92px;">&nbsp;</td><td class="red" style="width: 8px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Physics.Universe.htm">DEMW.SpaceWar2.Physics.Universe</a></td><td title="LineCoverage">75.8%</td><td><table class="coverage"><tr><td class="green" style="width: 76px;">&nbsp;</td><td class="red" style="width: 24px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Program.htm">DEMW.SpaceWar2.Program</a></td><td title="LineCoverage">0%</td><td><table class="coverage"><tr><td class="red" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.SpaceWar2Game.htm">DEMW.SpaceWar2.SpaceWar2Game</a></td><td title="LineCoverage">0%</td><td><table class="coverage"><tr><td class="red" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2_DEMW.SpaceWar2.Utils.MyExtensions.htm">DEMW.SpaceWar2.Utils.MyExtensions</a></td><td title="LineCoverage">0%</td><td><table class="coverage"><tr><td class="red" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="expanded"><th><a href="#" class="toggleClassesInAssembly" title="Collapse/Expand assembly"> </a> DEMW.SpaceWar2Tests <a href="#" class="toggleAssemblyDetails" title="Show details of assembly">Details</a>
+<div class="detailspopup">
+<table class="overview">
+<colgroup>
+<col width="130" />
+<col />
+</colgroup>
+<tr><th>Classes:</th><td>13</td></tr><tr><th>Coverage:</th><td>94.6%</td></tr><tr><th>Covered lines:</th><td>497</td></tr><tr><th>Coverable lines:</th><td>525</td></tr><tr><th>Total lines:</th><td>1132</td></tr></table>
+</div>
+</th><th title="LineCoverage">94.6%</th><td><table class="coverage"><tr><td class="green" style="width: 95px;">&nbsp;</td><td class="red" style="width: 5px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.Controls.KeyboardControllerTests.htm">DEMW.SpaceWar2Tests.Controls.KeyboardControllerTests</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.Controls.NullShipControllerTests.htm">DEMW.SpaceWar2Tests.Controls.NullShipControllerTests</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.Controls.ShipActionTests.htm">DEMW.SpaceWar2Tests.Controls.ShipActionTests</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.GameObjects.ShipComponents.EnergyStoreTests.htm">DEMW.SpaceWar2Tests.GameObjects.ShipComponents.EnergyStoreTests</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.GameObjects.ShipComponents.HullTests.htm">DEMW.SpaceWar2Tests.GameObjects.ShipComponents.HullTests</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ShieldTests.htm">DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ShieldTests</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.htm">DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests</a></td><td title="LineCoverage">96.7%</td><td><table class="coverage"><tr><td class="green" style="width: 97px;">&nbsp;</td><td class="red" style="width: 3px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrusterTests.htm">DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrusterTests</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.GameObjects.ShipTests.htm">DEMW.SpaceWar2Tests.GameObjects.ShipTests</a></td><td title="MethodCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.GameObjects.SunTests.htm">DEMW.SpaceWar2Tests.GameObjects.SunTests</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.Physics.ForceTests.htm">DEMW.SpaceWar2Tests.Physics.ForceTests</a></td><td title="LineCoverage">100%</td><td><table class="coverage"><tr><td class="green" style="width: 103px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.Physics.GravitySimulatorTests.htm">DEMW.SpaceWar2Tests.Physics.GravitySimulatorTests</a></td><td title="LineCoverage">97.5%</td><td><table class="coverage"><tr><td class="green" style="width: 98px;">&nbsp;</td><td class="red" style="width: 2px;">&nbsp;</td></tr></table></td></tr>
+<tr class="classrow"><td><a href="DEMW.SpaceWar2Tests_DEMW.SpaceWar2Tests.Physics.UniverseTests.htm">DEMW.SpaceWar2Tests.Physics.UniverseTests</a></td><td title="LineCoverage">72%</td><td><table class="coverage"><tr><td class="green" style="width: 72px;">&nbsp;</td><td class="red" style="width: 28px;">&nbsp;</td></tr></table></td></tr>
+</table>
+<div class="footer">Generated by: ReportGenerator 1.6.1.0<br />03/11/2012 - 13:29:02<br /><a href="http://www.palmmedia.de">www.palmmedia.de</a></div></div></body></html>
