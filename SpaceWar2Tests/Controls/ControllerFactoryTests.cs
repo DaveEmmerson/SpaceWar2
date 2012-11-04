@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DEMW.SpaceWar2Tests.Controls
 {
+    [TestFixture]
     class ControllerFactoryTests
     {
         private IKeyboardHandler _keyboardHandler;
