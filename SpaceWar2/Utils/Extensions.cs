@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DEMW.SpaceWar2.Utils
 {
-    public static class MyExtensions
+    public static class Extensions
     {
         public static void ForEach<TBase, TSubClass>(this IList<TBase> items, Action<TSubClass> action)
             where TBase : class
