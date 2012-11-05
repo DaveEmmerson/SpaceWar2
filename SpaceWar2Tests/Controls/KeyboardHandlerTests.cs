@@ -24,25 +24,23 @@ namespace DEMW.SpaceWar2Tests.Controls
         [TestCase(Keys.A)]
         [TestCase(Keys.Up)]
         [TestCase(Keys.Space)]
-        public void IsPressed_returns_correct_value(Keys key)
+        public void IsPressed_returns_correct_value_even_if_repeatedly_called(Keys key)
         {
-            Assert.That(!_keyboardHandler.IsPressed(key));
             _keyboard.GetState().Returns(new KeyboardState(key));
             _keyboardHandler.UpdateKeyboardState();
-            Assert.That(_keyboardHandler.IsPressed(key));
+            Assert.That(_keyboardHandler.IsPressed(key) && _keyboardHandler.IsPressed(key));
         }
 
         [TestCase(Keys.B)]
         [TestCase(Keys.Down)]
         [TestCase(Keys.Enter)]
-        public void IsNewlyPressed_returns_correct_value(Keys key)
+        public void IsNewlyPressed_returns_correct_value_even_if_repeatedly_called(Keys key)
         {
-            Assert.That(!_keyboardHandler.IsPressed(key));
             _keyboard.GetState().Returns(new KeyboardState(key));
             _keyboardHandler.UpdateKeyboardState();
-            Assert.That(_keyboardHandler.IsNewlyPressed(key));
+            Assert.That(_keyboardHandler.IsNewlyPressed(key) && _keyboardHandler.IsNewlyPressed(key));
             _keyboardHandler.UpdateKeyboardState();
-            Assert.That(!_keyboardHandler.IsNewlyPressed(key));
+            Assert.That(!_keyboardHandler.IsNewlyPressed(key)); // the key is still pressed; the handler is still returning the key. It is not newly presssed though, as there has been an update.
         }
     }
 }
