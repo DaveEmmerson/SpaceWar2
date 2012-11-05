@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Graphics
 {
-    internal class DrawingManager
+    public class DrawingManager
     {
         private readonly List<IGameObject> _drawableObjects;
 

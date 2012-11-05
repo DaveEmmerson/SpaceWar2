@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2
 {
-    internal class GameObjectFactory
+    public class GameObjectFactory
     {
         private readonly IList<IGameObject> _gameObjects;
         private readonly ContentManager _contentManager;
@@ -32,7 +32,7 @@ namespace DEMW.SpaceWar2
 
         public IList<IGameObject> GameObjects { get { return _gameObjects; } }
 
-        internal Sun CreateSun(Vector2 position, Color color, float mass)
+        public Sun CreateSun(Vector2 position, Color color, float mass)
         {
             var sun = new Sun(position, 25, color, mass)
             {
@@ -46,7 +46,7 @@ namespace DEMW.SpaceWar2
             return sun;
         }
 
-        internal Ship CreateShip(string name, Vector2 position, Vector2 velocity, Color color, IShipController controller)
+        public Ship CreateShip(string name, Vector2 position, Vector2 velocity, Color color, IShipController controller)
         {
             var ship = new Ship(name, _graphics, position, 16, color)
             {
@@ -64,7 +64,7 @@ namespace DEMW.SpaceWar2
             return ship;
         }
 
-        internal void DestroyAll(Predicate<IGameObject> match)
+        public void DestroyAll(Predicate<IGameObject> match)
         {
             var itemsToDestory = GameObjects.Where(x => match(x)).ToList();
             
