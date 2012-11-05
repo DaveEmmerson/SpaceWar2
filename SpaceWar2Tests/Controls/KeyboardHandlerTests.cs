@@ -18,7 +18,7 @@ namespace DEMW.SpaceWar2Tests.Controls
 
             _keyboard.GetState().Returns(new KeyboardState());
 
-            _keyboardHandler = new KeyboardHandler() { Keyboard = _keyboard };
+            _keyboardHandler = new KeyboardHandler(_keyboard);
         }
 
         [TestCase(Keys.A)]
@@ -28,6 +28,7 @@ namespace DEMW.SpaceWar2Tests.Controls
         {
             _keyboard.GetState().Returns(new KeyboardState(key));
             _keyboardHandler.UpdateKeyboardState();
+            _keyboard.Received(2).GetState(); // constructor plus one update keyboard state
             Assert.That(_keyboardHandler.IsPressed(key) && _keyboardHandler.IsPressed(key));
         }
 
@@ -40,6 +41,7 @@ namespace DEMW.SpaceWar2Tests.Controls
             _keyboardHandler.UpdateKeyboardState();
             Assert.That(_keyboardHandler.IsNewlyPressed(key) && _keyboardHandler.IsNewlyPressed(key));
             _keyboardHandler.UpdateKeyboardState();
+            _keyboard.Received(3).GetState(); // constructor plus two update keyboard states 
             Assert.That(!_keyboardHandler.IsNewlyPressed(key)); // the key is still pressed; the handler is still returning the key. It is not newly presssed though, as there has been an update.
         }
     }

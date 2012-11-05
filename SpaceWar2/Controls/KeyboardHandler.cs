@@ -4,22 +4,22 @@ namespace DEMW.SpaceWar2.Controls
 {
     public class KeyboardHandler : IKeyboardHandler
     {
-        public IKeyboard Keyboard { get; set; }
-        
+        private IKeyboard _keyboard;
         private KeyboardState _oldKeyboardState;
         private KeyboardState _keyboardState;
 
-        public KeyboardHandler()
+        public KeyboardHandler() : this(null) { }
+        public KeyboardHandler(IKeyboard keyboard)
         {
-            Keyboard = new KeyboardWrapper();
-            _keyboardState = Keyboard.GetState();
+            _keyboard = keyboard ?? new KeyboardWrapper();
+            _keyboardState = _keyboard.GetState();
             _oldKeyboardState = _keyboardState;
         }
 
         public void UpdateKeyboardState() 
         {
             _oldKeyboardState = _keyboardState;
-            _keyboardState = Keyboard.GetState();
+            _keyboardState = _keyboard.GetState();
         }
 
         public bool IsPressed(Keys key)
