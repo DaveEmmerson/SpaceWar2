@@ -51,7 +51,7 @@ namespace DEMW.SpaceWar2.Physics
             }
 
             var lengthSquared = diff.LengthSquared();
-            return new Force(GravitationalConstant * (source.Mass * participant.Mass / lengthSquared) * unitVector);
+            return new Force(GravitationalConstant * source.Mass * participant.Mass / lengthSquared * unitVector);
         }
 
         private static Vector2 DirectionBetween(IGameObject source, IGameObject participant)
