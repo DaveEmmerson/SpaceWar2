@@ -46,7 +46,7 @@ namespace DEMW.SpaceWar2Tests.Physics
         }
 
         [Test]
-        public void Simulate_applies_correct_Force()
+        public void Simulate_applies_correct_Force_for_non_collision_case()
         {
             const int g = GravitySimulator.GravitationalConstant;
 
@@ -61,6 +61,23 @@ namespace DEMW.SpaceWar2Tests.Physics
                          force.Vector.X == force.Vector.Y &&
                          force.Vector.X < 0
             ));
+        }
+
+        [Test]
+        public void Simulate_applies_correct_Force_for_collision_case()
+        {
+            const int g = GravitySimulator.GravitationalConstant;
+
+            _participant.Radius.Returns(100);
+            _gravitySimulator.Simulate();
+
+            // This checks that the force is diagonal 'down right', which is correct for
+            // The force magnitude I have calculated manually.
+            _participant.Received(1).ApplyExternalForce(Arg.Is<Force>(
+                force => force.Vector.Length() == g * 0.2 &&
+                         force.Vector.X == force.Vector.Y &&
+                         force.Vector.X > 0
+           ));
         }
 
         [Test]
