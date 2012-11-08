@@ -48,7 +48,7 @@ namespace DEMW.SpaceWar2Tests.Utils
 
             _action.Received(1).Invoke(t1);
             _action.Received(1).Invoke(t2);
-            _action.DidNotReceive().Invoke(Arg.Is<TestSubClass>((x) => !x.Equals(t1) && !x.Equals(t2))); // Is this the correct way to do this?
+            _action.DidNotReceive().Invoke(Arg.Is<TestSubClass>((x) => !x.Equals(t1) && !x.Equals(t2)));
         }            
 
     }
