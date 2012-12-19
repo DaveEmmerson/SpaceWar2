@@ -74,12 +74,14 @@ namespace DEMW.SpaceWar2.GameObjects
             ResolveForces();
 
             var acceleration = (TotalForce.Vector / Mass);
-            Velocity += acceleration * deltaT;
+            Velocity += acceleration * (deltaT / 2f);
             Position += Velocity * deltaT;
+            Velocity += acceleration * (deltaT / 2f);
 
             var angularAcceleration = (TotalMoment / MomentOfInertia);
-            AngularVelocity += angularAcceleration * deltaT;
+            AngularVelocity += angularAcceleration * (deltaT / 2f);
             Rotation += AngularVelocity * deltaT;
+            AngularVelocity += angularAcceleration * (deltaT / 2f);
         }
 
         private void ResolveForces()
