@@ -19,7 +19,7 @@ namespace DEMW.SpaceWar2.Graphics
             _drawableObjects = new List<IGameObject>();
         }
 
-        internal void Register(IGameObject gameObject) 
+        public void Register(IGameObject gameObject) 
         {
             _drawableObjects.Add(gameObject);
         }
