@@ -40,7 +40,7 @@ namespace DEMW.SpaceWar2
             _gravitySimulator = new GravitySimulator();
             _gameObjectFactory = new GameObjectFactory(Content, _graphics, _gravitySimulator, _drawingManager, _universe);
             
-            _keyboardHandler = new KeyboardHandler();
+            _keyboardHandler = new KeyboardHandler(new KeyboardWrapper());
             _controllerFactory = new ControllerFactory(_keyboardHandler);
         }
 

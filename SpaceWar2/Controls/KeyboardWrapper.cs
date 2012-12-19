@@ -7,7 +7,6 @@ namespace DEMW.SpaceWar2.Controls
         public KeyboardState GetState()
         {
             return Keyboard.GetState();
-
         }
     }
 }

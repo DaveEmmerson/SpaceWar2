@@ -8,10 +8,9 @@ namespace DEMW.SpaceWar2.Controls
         private KeyboardState _oldKeyboardState;
         private KeyboardState _keyboardState;
 
-        public KeyboardHandler() : this(null) { }
         public KeyboardHandler(IKeyboard keyboard)
         {
-            _keyboard = keyboard ?? new KeyboardWrapper();
+            _keyboard = keyboard;
             _keyboardState = _keyboard.GetState();
             _oldKeyboardState = _keyboardState;
         }
