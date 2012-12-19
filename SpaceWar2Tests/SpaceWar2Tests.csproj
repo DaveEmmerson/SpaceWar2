@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ControllerFactoryTests.cs" />
+    <Compile Include="Controls\KeyboardWrapperTests.cs" />
     <Compile Include="Controls\KeyboardControllerTests.cs" />
     <Compile Include="Controls\KeyboardHandlerTests.cs" />
     <Compile Include="Controls\ShipActionTests.cs" />
