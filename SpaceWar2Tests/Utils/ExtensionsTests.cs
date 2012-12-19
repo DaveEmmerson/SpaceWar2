@@ -1,15 +1,15 @@
-﻿using NUnit.Framework;
-using DEMW.SpaceWar2.Utils;
+﻿using System;
 using System.Collections.Generic;
+using DEMW.SpaceWar2.Utils;
 using NSubstitute;
-using System;
+using NUnit.Framework;
 
 namespace DEMW.SpaceWar2Tests.Utils
 {
     class TestBaseClass { }
     class TestSubClass : TestBaseClass { }
     class OtherSubClass : TestBaseClass { }
-
+        
     [TestFixture]
     class ExtensionsTests
     {
@@ -21,7 +21,6 @@ namespace DEMW.SpaceWar2Tests.Utils
         {
             _list = new List<TestBaseClass>();
             _action = Substitute.For<Action<TestSubClass>>();
-
         }
 
         [Test]
@@ -48,8 +47,7 @@ namespace DEMW.SpaceWar2Tests.Utils
 
             _action.Received(1).Invoke(t1);
             _action.Received(1).Invoke(t2);
-            _action.DidNotReceive().Invoke(Arg.Is<TestSubClass>((x) => !x.Equals(t1) && !x.Equals(t2)));
-        }            
-
+            _action.DidNotReceive().Invoke(Arg.Is<TestSubClass>(x => !x.Equals(t1) && !x.Equals(t2)));
+        }
     }
 }
