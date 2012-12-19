@@ -4,7 +4,7 @@ namespace DEMW.SpaceWar2.Controls
 {
     public class KeyboardHandler : IKeyboardHandler
     {
-        private IKeyboard _keyboard;
+        private readonly IKeyboard _keyboard;
         private KeyboardState _oldKeyboardState;
         private KeyboardState _keyboardState;
 
