@@ -24,7 +24,7 @@ namespace DEMW.SpaceWar2.Graphics
             _drawableObjects.Add(gameObject);
         }
 
-        internal void UnRegister(IGameObject gameObject) 
+        public void UnRegister(IGameObject gameObject) 
         {
             _drawableObjects.Remove(gameObject);
         }
