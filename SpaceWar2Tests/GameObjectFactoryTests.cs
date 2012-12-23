@@ -7,7 +7,6 @@ using DEMW.SpaceWar2.Graphics;
 using DEMW.SpaceWar2.Physics;
 using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using NSubstitute;
 using NUnit.Framework;

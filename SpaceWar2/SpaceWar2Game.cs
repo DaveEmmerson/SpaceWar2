@@ -35,7 +35,6 @@ namespace DEMW.SpaceWar2
 
         public SpaceWar2Game()
         {
-            _contentManager.RootDirectory = "Content";
             _contentManager = new ContentManagerWrapper(Content);
             _graphics = new GraphicsDeviceManager(this);
             _universe = Universe.GetDefault();
@@ -46,6 +45,8 @@ namespace DEMW.SpaceWar2
             
             _keyboardHandler = new KeyboardHandler(new KeyboardWrapper());
             _controllerFactory = new ControllerFactory(_keyboardHandler);
+
+            _contentManager.RootDirectory = "Content";
         }
 
         private void ResetGame()
@@ -91,7 +92,7 @@ namespace DEMW.SpaceWar2
         /// </summary>
         protected override void LoadContent()
         {
-            _effect = Content.Load<Effect>("Effects/HLSLTest");
+            _effect = _contentManager.Load<Effect>("Effects/HLSLTest");
 
             _effect.Parameters["View"].SetValue(_camera.View);
             _effect.Parameters["Projection"].SetValue(_camera.Projection);
@@ -102,7 +103,7 @@ namespace DEMW.SpaceWar2
             _effect.CurrentTechnique = _effect.Techniques["TestTechnique"];
 
             var spriteBatch = new SpriteBatch(GraphicsDevice);
-            _infoBar = new InfoBar(spriteBatch, Content);
+            _infoBar = new InfoBar(spriteBatch, _contentManager);
         }
 
         /// <summary>

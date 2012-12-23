@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using DEMW.SpaceWar2.GameObjects;
+using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 
 namespace DEMW.SpaceWar2.Graphics
 {
@@ -18,7 +18,7 @@ namespace DEMW.SpaceWar2.Graphics
 
         public Color FontColor { get; set; }
 
-        public InfoBar(SpriteBatch spriteBatch, ContentManager contentManager) 
+        public InfoBar(SpriteBatch spriteBatch, IContentManager contentManager) 
         {
             _spriteBatch = spriteBatch;
             _font = contentManager.Load<SpriteFont>("Fonts/Segoe UI Mono");
