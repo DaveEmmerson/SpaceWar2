@@ -1,4 +1,5 @@
 ﻿using DEMW.SpaceWar2.Controls;
+using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework.Input;
 using NSubstitute;
 using NUnit.Framework;

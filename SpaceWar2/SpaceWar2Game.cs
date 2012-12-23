@@ -4,6 +4,7 @@ using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Graphics;
 using DEMW.SpaceWar2.Physics;
 using DEMW.SpaceWar2.Utils;
+using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -14,11 +15,12 @@ namespace DEMW.SpaceWar2
     {
         private const float Speed = 100f;
 
+        private readonly IContentManager _contentManager;
         private readonly GraphicsDeviceManager _graphics;
         private readonly GameObjectFactory _gameObjectFactory;
         private readonly GravitySimulator _gravitySimulator;
         private readonly Universe _universe;
-
+        
         private readonly KeyboardHandler _keyboardHandler;
         private readonly ControllerFactory _controllerFactory;
 
@@ -30,15 +32,17 @@ namespace DEMW.SpaceWar2
         private Camera _camera;
         		
         private Effect _effect;
-        
+
         public SpaceWar2Game()
         {
-            Content.RootDirectory = "Content";
+            _contentManager.RootDirectory = "Content";
+            _contentManager = new ContentManagerWrapper(Content);
             _graphics = new GraphicsDeviceManager(this);
             _universe = Universe.GetDefault();
             _drawingManager = new DrawingManager(_universe);
             _gravitySimulator = new GravitySimulator();
-            _gameObjectFactory = new GameObjectFactory(Content, _graphics, _gravitySimulator, _drawingManager, _universe);
+            
+            _gameObjectFactory = new GameObjectFactory(_contentManager, _graphics, _gravitySimulator, _drawingManager, _universe);
             
             _keyboardHandler = new KeyboardHandler(new KeyboardWrapper());
             _controllerFactory = new ControllerFactory(_keyboardHandler);

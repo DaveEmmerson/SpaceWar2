@@ -5,8 +5,8 @@ using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Graphics;
 using DEMW.SpaceWar2.Physics;
+using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2
@@ -14,13 +14,13 @@ namespace DEMW.SpaceWar2
     public class GameObjectFactory
     {
         private readonly IList<IGameObject> _gameObjects;
-        private readonly ContentManager _contentManager;
+        private readonly IContentManager _contentManager;
         private readonly GraphicsDeviceManager _graphics;
         private readonly GravitySimulator _gravitySimulator;
         private readonly Universe _universe;
         private readonly DrawingManager _drawingManager;
 
-        public GameObjectFactory(ContentManager contentManager,GraphicsDeviceManager graphics, GravitySimulator gravitySimulator, DrawingManager drawingManager, Universe universe)
+        public GameObjectFactory(IContentManager contentManager,GraphicsDeviceManager graphics, GravitySimulator gravitySimulator, DrawingManager drawingManager, Universe universe)
         {
             _contentManager = contentManager;
             _graphics = graphics;

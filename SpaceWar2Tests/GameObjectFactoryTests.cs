@@ -5,6 +5,7 @@ using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Graphics;
 using DEMW.SpaceWar2.Physics;
+using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,7 +18,7 @@ namespace DEMW.SpaceWar2Tests
     class GameObjectFactoryTests
     {
         private GameObjectFactory _gameObjectFactory;
-        private ContentManager _contentManager;
+        private IContentManager _contentManager;
         private GraphicsDeviceManager _graphicsDeviceManager;
         private GravitySimulator _gravitySimulator;
         private DrawingManager _drawingManager;
@@ -26,7 +27,7 @@ namespace DEMW.SpaceWar2Tests
         [SetUp]
         public void SetUp()
         {
-            _contentManager = Substitute.For<ContentManager>();
+            _contentManager = Substitute.For<IContentManager>();
             _graphicsDeviceManager = Substitute.For<GraphicsDeviceManager>();
             _gravitySimulator = Substitute.For<GravitySimulator>();
             _drawingManager = Substitute.For<DrawingManager>();

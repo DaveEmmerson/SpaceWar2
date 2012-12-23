@@ -73,12 +73,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ControllerFactory.cs" />
-    <Compile Include="Controls\IKeyboard.cs" />
+    <Compile Include="Utils\XnaWrappers\IKeyboard.cs" />
     <Compile Include="Controls\IKeyboardHandler.cs" />
     <Compile Include="Controls\IShipController.cs" />
     <Compile Include="Controls\KeyboardController.cs" />
     <Compile Include="Controls\KeyboardHandler.cs" />
-    <Compile Include="Controls\KeyboardWrapper.cs" />
+    <Compile Include="Utils\XnaWrappers\KeyboardWrapper.cs" />
     <Compile Include="Controls\NullShipController.cs" />
     <Compile Include="Controls\ShipAction.cs" />
     <Compile Include="GameObjectFactory.cs" />
@@ -102,6 +102,8 @@
     <Compile Include="Physics\GravitySimulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Utils\XnaWrappers\ContentManagerWrapper.cs" />
+    <Compile Include="Utils\XnaWrappers\IContentManager.cs" />
     <Compile Include="SpaceWar2Game.cs" />
     <Compile Include="Utils\Extensions.cs" />
   </ItemGroup>

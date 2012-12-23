@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using DEMW.SpaceWar2.Utils.XnaWrappers;
+using Microsoft.Xna.Framework.Input;
 
 namespace DEMW.SpaceWar2.Controls
 {
