@@ -7,15 +7,15 @@ namespace DEMW.SpaceWar2Tests.Controls
     [TestFixture]
     class KeyboardWrapperTests
     {
+        private KeyboardState x;
         //Bit of a noddy test, but at least it causes this code to be executed.
         [Test]
-        public void IsPressed_returns_correct_value_even_if_repeatedly_called(Keys key)
+        public void GetState_returns_does_not_throw_exception()
         {
             var _keyboardWrapper = new KeyboardWrapper();
 
-            var state = _keyboardWrapper.GetState();
-
-            Assert.IsNotNull(state);
+            Assert.DoesNotThrow(() => x = _keyboardWrapper.GetState());
         }
+
     }
 }
