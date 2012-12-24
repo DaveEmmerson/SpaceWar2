@@ -3,7 +3,6 @@ using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Physics;
 using DEMW.SpaceWar2Tests.TestUtils;
-using DEMW.SpaceWar2Tests.Utils;
 using Microsoft.Xna.Framework;
 using NSubstitute;
 using NUnit.Framework;
@@ -67,13 +66,13 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             _thrusterArray.EngageThrusters();
 
             var forwardVector = new Vector2(0f, -ThrusterArray.ThrustPower);
+            var expectedForceLeft = new Force(forwardVector, _leftThrusterPosition);
+            var expectedForceRight = new Force(forwardVector, _rightThrusterPosition);
 
             _ship.Received().AngularVelocity = 0f;
             _ship.Received(2).ApplyInternalForce(Arg.Any<Force>());
-            _ship.Received().ApplyInternalForce(
-                Arg.Is<Force>(x => x.Displacement == _leftThrusterPosition && x.Vector == forwardVector));
-            _ship.Received().ApplyInternalForce(
-                Arg.Is<Force>(x => x.Displacement == _rightThrusterPosition && x.Vector == forwardVector));
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceLeft)));
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceRight)));
         }
 
         [Test]
@@ -83,14 +82,14 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             _thrusterArray.CalculateThrustPattern(ShipAction.ReverseThrust);
             _thrusterArray.EngageThrusters();
 
-            var forwardVector = new Vector2(0f, ThrusterArray.ThrustPower);
+            var backwardVector = new Vector2(0f, ThrusterArray.ThrustPower);
+            var expectedForceLeft = new Force(backwardVector, _leftThrusterPosition);
+            var expectedForceRight = new Force(backwardVector, _rightThrusterPosition);
 
             _ship.Received().AngularVelocity = 0f;
             _ship.Received(2).ApplyInternalForce(Arg.Any<Force>());
-            _ship.Received().ApplyInternalForce(
-                Arg.Is<Force>(x => x.Displacement == _leftThrusterPosition && x.Vector == forwardVector));
-            _ship.Received().ApplyInternalForce(
-                Arg.Is<Force>(x => x.Displacement == _rightThrusterPosition && x.Vector == forwardVector));
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceLeft)));
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceRight)));
         }
 
         [Test]
@@ -102,12 +101,12 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
 
             var forwardVector = new Vector2(0f, -ThrusterArray.ThrustPower * 0.25f);
             var backwardVector = new Vector2(0f, ThrusterArray.ThrustPower * 0.25f);
+            var expectedForceLeft = new Force(forwardVector, _leftThrusterPosition);
+            var expectedForceRight = new Force(backwardVector, _rightThrusterPosition);
 
             _ship.Received(2).ApplyInternalForce(Arg.Any<Force>());
-            _ship.Received().ApplyInternalForce(
-                Arg.Is<Force>(x => x.Displacement == _leftThrusterPosition && x.Vector == forwardVector));
-            _ship.Received().ApplyInternalForce(
-                Arg.Is<Force>(x => x.Displacement == _rightThrusterPosition && x.Vector == backwardVector));
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceLeft)));
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceRight)));
         }
 
         [Test]
@@ -121,7 +120,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             var expectedForceFrontRight = new Force(new Vector2(0f, -ThrusterArray.ThrustPower), _rightThrusterPosition);
             var expectedForceRearRight = new Force(new Vector2(0f, ThrusterArray.ThrustPower / 4f), _rightThrusterPosition);
             
-            _ship.Received(1).RequestEnergy(Arg.Is<float>(x => x.MatchFloat(0.225f)));
+            _ship.Received(1).RequestEnergy(Arg.Is<float>(x => x.Matches(0.225f)));
             _ship.Received(3).ApplyInternalForce(Arg.Any<Force>());
             _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceFrontLeft)));
             _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceFrontRight)));
@@ -135,14 +134,14 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             _thrusterArray.CalculateThrustPattern(ShipAction.TurnLeft);
             _thrusterArray.EngageThrusters();
 
-            var forwardVector = new Vector2(0f, -ThrusterArray.ThrustPower * 0.25f);
             var backwardVector = new Vector2(0f, ThrusterArray.ThrustPower * 0.25f);
+            var forwardVector = new Vector2(0f, -ThrusterArray.ThrustPower * 0.25f);
+            var expectedForceLeft = new Force(backwardVector, _leftThrusterPosition);
+            var expectedForceRight = new Force(forwardVector, _rightThrusterPosition);
 
             _ship.Received(2).ApplyInternalForce(Arg.Any<Force>());
-            _ship.Received().ApplyInternalForce(
-                Arg.Is<Force>(x => x.Displacement == _leftThrusterPosition && x.Vector == backwardVector));
-            _ship.Received().ApplyInternalForce(
-                Arg.Is<Force>(x => x.Displacement == _rightThrusterPosition && x.Vector == forwardVector));
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceLeft)));
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceRight)));
         }
 
         [Test]
@@ -153,13 +152,13 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             _thrusterArray.EngageThrusters();
 
             var forwardVector = new Vector2(0f, -ThrusterArray.ThrustPower * 0.5f);
-
+            var expectedForceLeft = new Force(forwardVector, _leftThrusterPosition);
+            var expectedForceRight = new Force(forwardVector, _rightThrusterPosition);
+            
             _ship.Received().AngularVelocity = 0f;
             _ship.Received(2).ApplyInternalForce(Arg.Any<Force>());
-            _ship.Received().ApplyInternalForce(
-                Arg.Is<Force>(x => x.Displacement == _leftThrusterPosition && x.Vector == forwardVector));
-            _ship.Received().ApplyInternalForce(
-                Arg.Is<Force>(x => x.Displacement == _rightThrusterPosition && x.Vector == forwardVector));
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceLeft)));
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceRight)));
         }
 
         [Test]

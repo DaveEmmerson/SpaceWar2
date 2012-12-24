@@ -136,9 +136,14 @@
       <ModuleName>nunit.core.interfaces</ModuleName>
       <Classes />
     </Module>
-    <Module skippedDueTo="Filter" hash="0D-1C-F8-08-23-AA-57-5A-71-69-ED-78-4D-FB-67-6E-F5-78-D8-BB">
+    <Module skippedDueTo="Filter" hash="AC-69-70-DD-64-E6-FD-E5-4A-4E-D3-40-F0-A1-16-2D-22-A1-9C-2C">
       <FullName>C:\Users\Matt\Documents\GitHub\SpaceWar2\SpaceWar2Tests\bin\Debug\DEMW.SpaceWar2Tests.dll</FullName>
       <ModuleName>DEMW.SpaceWar2Tests</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="58-95-C1-AF-C4-E5-C6-BB-F3-54-7A-B0-3C-B7-C6-29-C9-42-CA-D4">
+      <FullName>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll</FullName>
+      <ModuleName>System.Core</ModuleName>
       <Classes />
     </Module>
     <Module skippedDueTo="MissingPdb" hash="8D-AA-FD-2B-9E-44-F0-B4-6B-2D-C6-BA-46-07-EF-15-59-64-DB-0E">
@@ -492,28 +497,28 @@
               <Name>Microsoft.Xna.Framework.Vector2 DEMW.SpaceWar2.Physics.Force::get_Vector()</Name>
               <SequencePoints />
               <BranchPoints />
-              <MethodPoint vc="86" uspid="127" ordinal="0" offset="0" />
+              <MethodPoint vc="108" uspid="127" ordinal="0" offset="0" />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="0" branchCoverage="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
               <MetadataToken>100663326</MetadataToken>
               <Name>System.Void DEMW.SpaceWar2.Physics.Force::set_Vector(Microsoft.Xna.Framework.Vector2)</Name>
               <SequencePoints />
               <BranchPoints />
-              <MethodPoint vc="66" uspid="128" ordinal="0" offset="0" />
+              <MethodPoint vc="78" uspid="128" ordinal="0" offset="0" />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="0" branchCoverage="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
               <MetadataToken>100663327</MetadataToken>
               <Name>Microsoft.Xna.Framework.Vector2 DEMW.SpaceWar2.Physics.Force::get_Displacement()</Name>
               <SequencePoints />
               <BranchPoints />
-              <MethodPoint vc="51" uspid="129" ordinal="0" offset="0" />
+              <MethodPoint vc="94" uspid="129" ordinal="0" offset="0" />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="0" branchCoverage="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
               <MetadataToken>100663328</MetadataToken>
               <Name>System.Void DEMW.SpaceWar2.Physics.Force::set_Displacement(Microsoft.Xna.Framework.Vector2)</Name>
               <SequencePoints />
               <BranchPoints />
-              <MethodPoint vc="64" uspid="130" ordinal="0" offset="0" />
+              <MethodPoint vc="76" uspid="130" ordinal="0" offset="0" />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="100" branchCoverage="100" isConstructor="true" isStatic="false" isGetter="false" isSetter="false">
               <MetadataToken>100663322</MetadataToken>
@@ -532,26 +537,26 @@
               <Name>System.Void DEMW.SpaceWar2.Physics.Force::.ctor(Microsoft.Xna.Framework.Vector2)</Name>
               <FileRef uid="5" />
               <SequencePoints>
-                <SequencePoint vc="3" uspid="134" ordinal="0" offset="0" sl="9" sc="9" el="9" ec="64" />
-                <SequencePoint vc="3" uspid="135" ordinal="1" offset="13" sl="9" sc="65" el="9" ec="66" />
-                <SequencePoint vc="3" uspid="136" ordinal="2" offset="14" sl="9" sc="67" el="9" ec="68" />
+                <SequencePoint vc="5" uspid="134" ordinal="0" offset="0" sl="9" sc="9" el="9" ec="64" />
+                <SequencePoint vc="5" uspid="135" ordinal="1" offset="13" sl="9" sc="65" el="9" ec="66" />
+                <SequencePoint vc="5" uspid="136" ordinal="2" offset="14" sl="9" sc="67" el="9" ec="68" />
               </SequencePoints>
               <BranchPoints />
-              <MethodPoint xsi:type="SequencePoint" vc="3" uspid="134" ordinal="0" offset="0" sl="9" sc="9" el="9" ec="64" />
+              <MethodPoint xsi:type="SequencePoint" vc="5" uspid="134" ordinal="0" offset="0" sl="9" sc="9" el="9" ec="64" />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="100" branchCoverage="100" isConstructor="true" isStatic="false" isGetter="false" isSetter="false">
               <MetadataToken>100663324</MetadataToken>
               <Name>System.Void DEMW.SpaceWar2.Physics.Force::.ctor(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)</Name>
               <FileRef uid="5" />
               <SequencePoints>
-                <SequencePoint vc="61" uspid="137" ordinal="0" offset="0" sl="11" sc="9" el="11" ec="58" />
-                <SequencePoint vc="61" uspid="138" ordinal="1" offset="7" sl="12" sc="9" el="12" ec="10" />
-                <SequencePoint vc="61" uspid="139" ordinal="2" offset="8" sl="13" sc="13" el="13" ec="28" />
-                <SequencePoint vc="61" uspid="140" ordinal="3" offset="16" sl="14" sc="13" el="14" ec="41" />
-                <SequencePoint vc="61" uspid="141" ordinal="4" offset="24" sl="15" sc="9" el="15" ec="10" />
+                <SequencePoint vc="73" uspid="137" ordinal="0" offset="0" sl="11" sc="9" el="11" ec="58" />
+                <SequencePoint vc="73" uspid="138" ordinal="1" offset="7" sl="12" sc="9" el="12" ec="10" />
+                <SequencePoint vc="73" uspid="139" ordinal="2" offset="8" sl="13" sc="13" el="13" ec="28" />
+                <SequencePoint vc="73" uspid="140" ordinal="3" offset="16" sl="14" sc="13" el="14" ec="41" />
+                <SequencePoint vc="73" uspid="141" ordinal="4" offset="24" sl="15" sc="9" el="15" ec="10" />
               </SequencePoints>
               <BranchPoints />
-              <MethodPoint xsi:type="SequencePoint" vc="61" uspid="137" ordinal="0" offset="0" sl="11" sc="9" el="11" ec="58" />
+              <MethodPoint xsi:type="SequencePoint" vc="73" uspid="137" ordinal="0" offset="0" sl="11" sc="9" el="11" ec="58" />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="100" branchCoverage="100" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
               <MetadataToken>100663329</MetadataToken>
@@ -3077,11 +3082,6 @@
     <Module skippedDueTo="Filter" hash="19-F9-AF-B7-D9-81-83-9A-D8-4B-FE-05-2D-45-99-EC-98-7C-D2-5F">
       <FullName>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ServiceModel\v4.0_4.0.0.0__b77a5c561934e089\System.ServiceModel.dll</FullName>
       <ModuleName>System.ServiceModel</ModuleName>
-      <Classes />
-    </Module>
-    <Module skippedDueTo="Filter" hash="58-95-C1-AF-C4-E5-C6-BB-F3-54-7A-B0-3C-B7-C6-29-C9-42-CA-D4">
-      <FullName>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll</FullName>
-      <ModuleName>System.Core</ModuleName>
       <Classes />
     </Module>
     <Module skippedDueTo="MissingPdb" hash="">
