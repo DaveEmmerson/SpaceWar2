@@ -67,6 +67,7 @@
     <Compile Include="Physics\GravitySimulatorTests.cs" />
     <Compile Include="Physics\ForceTests.cs" />
     <Compile Include="Utils\ExtensionsTests.cs" />
+    <Compile Include="Utils\Comparison.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SpaceWar2\SpaceWar2.csproj">

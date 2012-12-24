@@ -1,8 +1,9 @@
-﻿using System;
-using DEMW.SpaceWar2.Controls;
+﻿using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Physics;
+using DEMW.SpaceWar2Tests.TestUtils;
+using DEMW.SpaceWar2Tests.Utils;
 using Microsoft.Xna.Framework;
 using NSubstitute;
 using NUnit.Framework;
@@ -120,28 +121,11 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             var expectedForceFrontRight = new Force(new Vector2(0f, -ThrusterArray.ThrustPower), _rightThrusterPosition);
             var expectedForceRearRight = new Force(new Vector2(0f, ThrusterArray.ThrustPower / 4f), _rightThrusterPosition);
             
-            _ship.Received(1).RequestEnergy(Arg.Is<float>(x => MatchFloat(0.225f, x)));
+            _ship.Received(1).RequestEnergy(Arg.Is<float>(x => x.MatchFloat(0.225f)));
             _ship.Received(3).ApplyInternalForce(Arg.Any<Force>());
-            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => MatchForce(expectedForceFrontLeft, x)));
-            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => MatchForce(expectedForceFrontRight, x)));
-            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => MatchForce(expectedForceRearRight, x)));
-        }
-
-        private static bool MatchForce(Force expectedForce, Force actualForce)
-        {
-            return MatchFloat(expectedForce.Displacement.X, actualForce.Displacement.X) &&
-                   MatchFloat(expectedForce.Displacement.Y, actualForce.Displacement.Y) &&
-                   MatchFloat(expectedForce.Vector.X, actualForce.Vector.X) &&
-                   MatchFloat(expectedForce.Vector.Y, actualForce.Vector.Y);
-        }
-
-        //TODO MW this should probably go in a test utils class cause so we test float equality
-        private static bool MatchFloat(float expected, float actual)
-        {
-            const float EPSILON = 0.00001f;
-
-            bool matchFloat = Math.Abs(expected - actual) < EPSILON;
-            return matchFloat;
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceFrontLeft)));
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceFrontRight)));
+            _ship.Received().ApplyInternalForce(Arg.Is<Force>(x => x.Matches(expectedForceRearRight)));
         }
 
         [Test]
