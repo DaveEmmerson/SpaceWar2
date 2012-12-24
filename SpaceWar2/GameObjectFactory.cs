@@ -15,12 +15,12 @@ namespace DEMW.SpaceWar2
     {
         private readonly IList<IGameObject> _gameObjects;
         private readonly IContentManager _contentManager;
-        private readonly GraphicsDeviceManager _graphics;
+        private readonly IGraphicsDeviceManager _graphics;
         private readonly GravitySimulator _gravitySimulator;
-        private readonly Universe _universe;
-        private readonly DrawingManager _drawingManager;
+        private readonly IUniverse _universe;
+        private readonly IDrawingManager _drawingManager;
 
-        public GameObjectFactory(IContentManager contentManager,GraphicsDeviceManager graphics, GravitySimulator gravitySimulator, DrawingManager drawingManager, Universe universe)
+        public GameObjectFactory(IContentManager contentManager, IGraphicsDeviceManager graphics, GravitySimulator gravitySimulator, IDrawingManager drawingManager, IUniverse universe)
         {
             _contentManager = contentManager;
             _graphics = graphics;

@@ -16,15 +16,15 @@ namespace DEMW.SpaceWar2
         private const float Speed = 100f;
 
         private readonly IContentManager _contentManager;
-        private readonly GraphicsDeviceManager _graphics;
+        private readonly IGraphicsDeviceManager _graphics;
         private readonly GameObjectFactory _gameObjectFactory;
         private readonly GravitySimulator _gravitySimulator;
-        private readonly Universe _universe;
+        private readonly IUniverse _universe;
         
         private readonly KeyboardHandler _keyboardHandler;
         private readonly ControllerFactory _controllerFactory;
 
-        private readonly DrawingManager _drawingManager;
+        private readonly IDrawingManager _drawingManager;
 		
         private bool _paused;
 
@@ -35,7 +35,7 @@ namespace DEMW.SpaceWar2
 
         public SpaceWar2Game()
         {
-            _contentManager = new ContentManagerWrapper(Content);
+            _contentManager = new ContentManagerWrapper(Content.ServiceProvider, "Content");
             _graphics = new GraphicsDeviceManager(this);
             _universe = Universe.GetDefault();
             _drawingManager = new DrawingManager(_universe);
@@ -45,8 +45,6 @@ namespace DEMW.SpaceWar2
             
             _keyboardHandler = new KeyboardHandler(new KeyboardWrapper());
             _controllerFactory = new ControllerFactory(_keyboardHandler);
-
-            _contentManager.RootDirectory = "Content";
         }
 
         private void ResetGame()

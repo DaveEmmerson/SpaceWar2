@@ -18,19 +18,19 @@ namespace DEMW.SpaceWar2Tests
     {
         private GameObjectFactory _gameObjectFactory;
         private IContentManager _contentManager;
-        private GraphicsDeviceManager _graphicsDeviceManager;
+        private IGraphicsDeviceManager _graphicsDeviceManager;
         private GravitySimulator _gravitySimulator;
-        private DrawingManager _drawingManager;
-        private Universe _universe;
+        private IDrawingManager _drawingManager;
+        private IUniverse _universe;
 
         [SetUp]
         public void SetUp()
         {
             _contentManager = Substitute.For<IContentManager>();
-            _graphicsDeviceManager = Substitute.For<GraphicsDeviceManager>();
+            _graphicsDeviceManager = Substitute.For<IGraphicsDeviceManager>();
             _gravitySimulator = Substitute.For<GravitySimulator>();
-            _drawingManager = Substitute.For<DrawingManager>();
-            _universe = Substitute.For<Universe>();
+            _drawingManager = Substitute.For<IDrawingManager>();
+            _universe = Substitute.For<IUniverse>();
             _gameObjectFactory = new GameObjectFactory(_contentManager, _graphicsDeviceManager, _gravitySimulator, _drawingManager, _universe);
         }
 

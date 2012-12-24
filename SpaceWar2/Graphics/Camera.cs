@@ -7,12 +7,12 @@ namespace DEMW.SpaceWar2.Graphics
     {
         public Vector3 Position { get; set; }
         public Vector3 Target { get; set; }
-        public Universe Universe { get; set; }
+        public IUniverse Universe { get; set; }
 
         public Matrix View { get { return Matrix.CreateLookAt(Position, Target, Vector3.Up); } }
         public Matrix Projection { get; protected set; }
 
-        public Camera(Vector3 position, Vector3 target, Universe universe)
+        public Camera(Vector3 position, Vector3 target, IUniverse universe)
         {
             Position = position;
             Target = target;
@@ -41,7 +41,7 @@ namespace DEMW.SpaceWar2.Graphics
             UpdateProjection();
         }
 
-        internal static Camera GetDefault(Universe universe)
+        internal static Camera GetDefault(IUniverse universe)
         {
             return new Camera(new Vector3(0, 0, 1), Vector3.Zero, universe);
         }

@@ -7,13 +7,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Graphics
 {
-    public class DrawingManager
+    public class DrawingManager : IDrawingManager
     {
         private readonly List<IGameObject> _drawableObjects;
 
         public Camera ActiveCamera { get; set; }
 
-        internal DrawingManager(Universe universe, Camera camera = null) 
+        internal DrawingManager(IUniverse universe, Camera camera = null) 
         {
             ActiveCamera = camera ?? Camera.GetDefault(universe);
             _drawableObjects = new List<IGameObject>();
@@ -29,7 +29,7 @@ namespace DEMW.SpaceWar2.Graphics
             _drawableObjects.Remove(gameObject);
         }
 
-        internal void DrawGameObjects()
+        public void DrawGameObjects()
         {
             if (ActiveCamera == null)
             {
@@ -63,7 +63,6 @@ namespace DEMW.SpaceWar2.Graphics
 
                 modelMesh.Draw();
             }
-
         }
     }
 }

@@ -9,9 +9,9 @@ namespace DEMW.SpaceWar2.Graphics
         private readonly GraphicsDeviceManager _graphics;
         private readonly VertexPositionColor[] _vertices;
 
-        internal Arrow(GraphicsDeviceManager graphics, Vector2 position, Vector2 direction, Color color, float radius)
+        internal Arrow(IGraphicsDeviceManager graphics, Vector2 position, Vector2 direction, Color color, float radius)
         {
-            _graphics = graphics;
+            _graphics = graphics as GraphicsDeviceManager;
             _vertices = new VertexPositionColor[6];
             
             if (direction == Vector2.Zero)

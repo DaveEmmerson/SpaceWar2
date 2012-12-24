@@ -73,6 +73,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ControllerFactory.cs" />
+    <Compile Include="Graphics\IDrawingManager.cs" />
+    <Compile Include="Physics\IUniverse.cs" />
     <Compile Include="Utils\XnaWrappers\IKeyboard.cs" />
     <Compile Include="Controls\IKeyboardHandler.cs" />
     <Compile Include="Controls\IShipController.cs" />

@@ -3,7 +3,7 @@ using DEMW.SpaceWar2.GameObjects;
 
 namespace DEMW.SpaceWar2.Physics
 {
-    public class Universe
+    public class Universe : IUniverse
     {
         private readonly IList<IGameObject> _managedObjects;
         
@@ -19,13 +19,13 @@ namespace DEMW.SpaceWar2.Physics
             _managedObjects = new List<IGameObject>();
         }
 
-        public Universe CopyDimensions()
+        public IUniverse CopyDimensions()
         {
             var copy = new Universe(MinX, MaxX, MinY, MaxY, MinZ, MaxZ);
             return copy;
         }
 
-        public static Universe GetDefault()
+        public static IUniverse GetDefault()
         {
             return new Universe(-400, 400, -240, 240, -1000, 1000);
         }

@@ -9,9 +9,9 @@ namespace DEMW.SpaceWar2.Graphics
         private readonly GraphicsDeviceManager _graphics;
         private VertexPositionColor[] _vertices;
 
-        public Circle(GraphicsDeviceManager graphics, float radius, Color lineColor, uint lineCount)
+        public Circle(IGraphicsDeviceManager graphics, float radius, Color lineColor, uint lineCount)
         {
-            _graphics = graphics;
+            _graphics = graphics as GraphicsDeviceManager;
             CreateVertices(radius, lineColor, lineCount);
         }
 

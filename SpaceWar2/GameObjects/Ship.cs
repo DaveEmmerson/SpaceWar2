@@ -9,7 +9,7 @@ namespace DEMW.SpaceWar2.GameObjects
 {
     public class Ship : GameObject, IShip
     {
-        private readonly GraphicsDeviceManager _graphics;
+        private readonly IGraphicsDeviceManager _graphics;
         public IShipController Controller { private get; set; }
 
         private readonly IList<Arrow> _arrows;
@@ -18,7 +18,7 @@ namespace DEMW.SpaceWar2.GameObjects
         private readonly Shield _shield;
         private readonly Hull _hull;
         
-        public Ship(string name, GraphicsDeviceManager graphics, Vector2 position, float radius, Color color)
+        public Ship(string name, IGraphicsDeviceManager graphics, Vector2 position, float radius, Color color)
             : base (position, radius, 1)
         {
             _graphics = graphics;
