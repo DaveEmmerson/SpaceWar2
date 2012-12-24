@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using DEMW.SpaceWar2.Controls;
-using NSubstitute;
+﻿using DEMW.SpaceWar2.Controls;
 using Microsoft.Xna.Framework.Input;
+using NSubstitute;
+using NUnit.Framework;
 
 namespace DEMW.SpaceWar2Tests.Controls
 {

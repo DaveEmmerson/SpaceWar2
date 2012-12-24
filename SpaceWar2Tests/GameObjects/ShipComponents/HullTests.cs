@@ -1,8 +1,8 @@
-﻿using DEMW.SpaceWar2.GameObjects.ShipComponents;
-using NUnit.Framework;
-using NSubstitute;
+﻿using System;
 using DEMW.SpaceWar2.GameObjects;
-using System;
+using DEMW.SpaceWar2.GameObjects.ShipComponents;
+using NSubstitute;
+using NUnit.Framework;
 
 namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
 {
