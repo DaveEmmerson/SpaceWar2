@@ -34,18 +34,6 @@ namespace DEMW.SpaceWar2Tests
             _gameObjectFactory = new GameObjectFactory(_contentManager, _graphicsDeviceManager, _gravitySimulator, _drawingManager, _universe);
         }
 
-        //TODO MW should probably be null argument exception instead
-        [Test]
-        public void Constructor_throws_null_reference_exception_if_any_argument_is_null()
-        {
-            Assert.Throws<NullReferenceException>(()=> _gameObjectFactory = new GameObjectFactory(null, null, null, null, null));
-            Assert.Throws<NullReferenceException>(() => _gameObjectFactory = new GameObjectFactory(null, _graphicsDeviceManager, _gravitySimulator, _drawingManager, _universe));
-            Assert.Throws<NullReferenceException>(() => _gameObjectFactory = new GameObjectFactory(_contentManager, null, _gravitySimulator, _drawingManager, _universe));
-            Assert.Throws<NullReferenceException>(() => _gameObjectFactory = new GameObjectFactory(_contentManager, _graphicsDeviceManager, null, _drawingManager, _universe));
-            Assert.Throws<NullReferenceException>(() => _gameObjectFactory = new GameObjectFactory(_contentManager, _graphicsDeviceManager, _gravitySimulator, null, _universe));
-            Assert.Throws<NullReferenceException>(() => _gameObjectFactory = new GameObjectFactory(_contentManager, _graphicsDeviceManager, _gravitySimulator, _drawingManager, null));
-        }
-
         [Test]
         public void GameObjects_is_initially_empty()
         {
@@ -141,7 +129,7 @@ namespace DEMW.SpaceWar2Tests
             
             _gameObjectFactory.DestroyAll(x => x is Ship);
 
-            Assert.AreEqual(1, _gameObjectFactory.GameObjects);
+            Assert.AreEqual(1, _gameObjectFactory.GameObjects.Count);
 
             _gravitySimulator.Received(1).UnRegister(ship);
             _universe.Received(1).UnRegister(ship);

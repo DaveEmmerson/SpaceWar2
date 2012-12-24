@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Utils.XnaWrappers;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Graphics
 {
