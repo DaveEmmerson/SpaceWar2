@@ -26,7 +26,7 @@ namespace DEMW.SpaceWar2Tests.Utils
         [Test]
         public void ForEach_runs_without_exception_on_empty_list()
         {
-            _list.ForEach<TestBaseClass, TestSubClass>(_action);
+            _list.ForEach(_action);
             _action.DidNotReceive().Invoke(Arg.Any<TestSubClass>());
         }
 
@@ -43,7 +43,7 @@ namespace DEMW.SpaceWar2Tests.Utils
             _list.Add(new TestBaseClass());
             _list.Add(t2);
 
-            _list.ForEach<TestBaseClass, TestSubClass>(_action);
+            _list.ForEach(_action);
 
             _action.Received(1).Invoke(t1);
             _action.Received(1).Invoke(t2);

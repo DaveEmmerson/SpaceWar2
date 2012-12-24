@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using DEMW.SpaceWar2;
 using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects;
@@ -45,7 +44,7 @@ namespace DEMW.SpaceWar2Tests
         {
             var position = new Vector2(100, 200);
             var color = Color.Orange;
-            var mass = 20;
+            const int mass = 20;
          
             var sun = _gameObjectFactory.CreateSun(position, color, mass);
 

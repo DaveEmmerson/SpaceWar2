@@ -2,7 +2,6 @@
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Physics;
 using DEMW.SpaceWar2Tests.TestUtils;
-using DEMW.SpaceWar2Tests.Utils;
 using Microsoft.Xna.Framework;
 using NSubstitute;
 using NUnit.Framework;

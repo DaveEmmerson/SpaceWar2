@@ -51,11 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ControllerFactoryTests.cs" />
-    <Compile Include="Controls\KeyboardWrapperTests.cs" />
     <Compile Include="Controls\KeyboardControllerTests.cs" />
     <Compile Include="Controls\KeyboardHandlerTests.cs" />
     <Compile Include="Controls\ShipActionTests.cs" />
     <Compile Include="GameObjectFactoryTests.cs" />
+    <Compile Include="GameObjects\GameObjectTests.cs" />
     <Compile Include="GameObjects\ShipTests.cs" />
     <Compile Include="GameObjects\SunTests.cs" />
     <Compile Include="GameObjects\ShipComponents\EnergyStoreTests.cs" />
