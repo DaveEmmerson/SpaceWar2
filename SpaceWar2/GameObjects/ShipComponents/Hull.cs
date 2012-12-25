@@ -2,7 +2,7 @@
 
 namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 {
-    public class Hull
+    public class Hull : IHull
     {
         private readonly IGameObject _ship;
 

@@ -2,7 +2,7 @@
 
 namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 {    
-    public class EnergyStore
+    public class EnergyStore : IEnergyStore
     {
         public float Level { get; private set; }
 

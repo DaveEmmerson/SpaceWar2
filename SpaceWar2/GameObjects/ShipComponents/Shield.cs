@@ -2,7 +2,7 @@
 
 namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 {
-    public class Shield
+    public class Shield : IShield
     {
         private readonly IShip _ship;
         private readonly float _maxLevel;
