@@ -9,31 +9,33 @@ namespace DEMW.SpaceWar2.GameObjects
 {
     public class Ship : GameObject, IShip
     {
-        private readonly IGraphicsDeviceManager _graphics;
         public IShipController Controller { private get; set; }
 
+        private readonly IEnergyStore _energyStore;
+        private readonly IShield _shield;
+        private readonly IHull _hull;
+        private readonly IThrusterArray _thrusterArray;
+
+        private readonly IGraphicsDeviceManager _graphics;
         private readonly IList<Arrow> _arrows;
-        private readonly ThrusterArray _thrusterArray;
-        private readonly EnergyStore _energyStore;
-        private readonly Shield _shield;
-        private readonly Hull _hull;
-        
-        public Ship(string name, IGraphicsDeviceManager graphics, Vector2 position, float radius, Color color)
+
+        public Ship(string name, Vector2 position, float radius, Color color, IGraphicsDeviceManager graphics, IShipComponentFactory shipComponentFactory)
             : base (position, radius, 1)
         {
-            _graphics = graphics;
-            _arrows = new List<Arrow>();
-            Color = color;
             Name = name;
+            Color = color;
+            
             Controller = new NullShipController();
 
-            _energyStore = new EnergyStore(100F, 0.1F);
-            _shield = new Shield(this, 100F, 0.1F);
-            _hull = new Hull(this, 100F);
-            _thrusterArray = new ThrusterArray(this);
+            _energyStore = shipComponentFactory.CreateEnergyStore();
+            _shield = shipComponentFactory.CreateSheild(this);
+            _hull = shipComponentFactory.CreateHull(this);
+            _thrusterArray = shipComponentFactory.CreateThrusterArray(this);
+
+            _graphics = graphics;
+            _arrows = new List<Arrow>();
         }
 
-        //Settings
         public string Name { get; protected set; }
         public bool ShowArrows { get; set; }
 
@@ -51,6 +53,26 @@ namespace DEMW.SpaceWar2.GameObjects
             _thrusterArray.EngageThrusters();
         }
         
+        public void Damage(int amount)
+        {
+            var damageRemaining = _shield.Damage(amount);
+
+            if (damageRemaining > 0F)
+            {
+                _hull.Damage(damageRemaining);
+
+                if (_hull.Level <= 0F)
+                {
+                    Expired = true;
+                }
+            }
+        }
+
+        public float RequestEnergy(float energyRequest)
+        {
+            return _energyStore.RequestEnergy(energyRequest);
+        }
+
         public override void Draw()
         {
             DrawArrows();
@@ -81,26 +103,6 @@ namespace DEMW.SpaceWar2.GameObjects
             {
                 arrow.Draw();
             }
-        }
-
-        public void Damage(int amount)
-        {
-            var damageRemaining = _shield.Damage(amount);
-
-            if (damageRemaining > 0F)
-            {
-                _hull.Damage(damageRemaining);
-
-                if (_hull.Level <= 0F)
-                {
-                    Expired = true;
-                }
-            }
-        }
-
-        public float RequestEnergy(float energyRequest)
-        {
-            return _energyStore.RequestEnergy(energyRequest);
         }
     }
 }
