@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Physics;
 using DEMW.SpaceWar2Tests.TestUtils;
@@ -13,7 +14,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects
     {
         private TestGameObject _gameObject;
         private Vector2 _position;
-        
+        private GameTime _gameTime;
+
         private class TestGameObject : GameObject
         {
             public TestGameObject(Vector2 position, float radius, float mass) : base(position, radius, mass)
@@ -34,6 +36,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
         {
             _position = new Vector2(12f, 5.5f);
             _gameObject = new TestGameObject(_position, 30f, 200f);
+            _gameTime = new GameTime(new TimeSpan(10000000), new TimeSpan(200000));
         }
 
         [Test]
@@ -149,14 +152,30 @@ namespace DEMW.SpaceWar2Tests.GameObjects
         }
         
         [Test]
-        public void ApplyExternalForce_does_nothing_when_zero_force_is_added()
+        public void ApplyExternalForce_does_nothing_when_zero_force_is_specified()
         {
             var force = new Force(Vector2.Zero, Vector2.One);
 
             _gameObject.ApplyExternalForce(force);
-            _gameObject.Update(new GameTime(new TimeSpan(10000000), new TimeSpan(200000)));
+            _gameObject.Update(_gameTime);
            
             Assert.IsEmpty(_gameObject.Forces);
+        }
+
+        [Test]
+        public void ApplyExternalForce_adds_force_when_non_zero_force_is_specified()
+        {
+            var force = new Force(new Vector2(10f, 0f));
+
+            _gameObject.ApplyExternalForce(force);
+            _gameObject.Update(_gameTime);
+
+            Assert.AreEqual(1, _gameObject.Forces.Count());
+            var actualForce = _gameObject.Forces.First();
+            Assert.IsTrue(actualForce.Matches(force));
+            Assert.IsTrue(_gameObject.TotalForce.Matches(force));
+
+            Assert.AreEqual(0f, _gameObject.TotalMoment);
         }
 
         [Test]
@@ -165,15 +184,130 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             var force = new Force(Vector2.Zero, Vector2.One);
 
             _gameObject.ApplyInternalForce(force);
-            _gameObject.Update(new GameTime(new TimeSpan(10000000), new TimeSpan(200000)));
+            _gameObject.Update(_gameTime);
 
             Assert.IsEmpty(_gameObject.Forces);
         }
 
-        //TODO Test accelerations work as expected with forces applied
+        [Test]
+        public void ApplyInternalForce_adds_force_relative_to_objects_rotation_when_non_zero_force_is_specified()
+        {
+            var force = new Force(new Vector2(10f, 0f));
+            _gameObject.Rotation = MathHelper.Pi/2;
 
-        //TODO Test AddInternal adds force and takes into account rotation
-        //Todo Test addexternal just adds the force.
+            _gameObject.ApplyInternalForce(force);
+            _gameObject.Update(_gameTime);
+
+            Assert.AreEqual(1, _gameObject.Forces.Count());
+            var expectedForce = new Force(new Vector2(0f, 10f));
+            var actualForce = _gameObject.Forces.First();
+            Assert.IsTrue(actualForce.Matches(expectedForce));
+            Assert.IsTrue(_gameObject.TotalForce.Matches(force));
+
+            Assert.AreEqual(0f, _gameObject.TotalMoment);
+        }
+
+        [Test]
+        public void Update_resolves_multiple_forces_into_TotalForce()
+        {
+            var force1 = new Force(new Vector2(1f, 0f));
+            var force2 = new Force(new Vector2(2f, 4f));
+            var force3 = new Force(new Vector2(0f, 8f));
+
+            _gameObject.ApplyExternalForce(force1);
+            _gameObject.ApplyExternalForce(force2);
+            _gameObject.ApplyExternalForce(force3);
+            _gameObject.Update(_gameTime);
+
+            Assert.AreEqual(3, _gameObject.Forces.Count());
+
+            var actualForce1 = _gameObject.Forces.ElementAt(0);
+            var actualForce2 = _gameObject.Forces.ElementAt(1);
+            var actualForce3 = _gameObject.Forces.ElementAt(2);
+
+            Assert.IsTrue(actualForce1.Matches(force1));
+            Assert.IsTrue(actualForce2.Matches(force2));
+            Assert.IsTrue(actualForce3.Matches(force3));
+
+            var expectedTotalForce = new Force(new Vector2(3f, 12f));
+            Assert.IsTrue(_gameObject.TotalForce.Matches(expectedTotalForce));
+
+            Assert.AreEqual(0f, _gameObject.TotalMoment);
+        }
+
+        [Test]
+        public void Update_calculates_zero_moment_for_parallel_force_offset_from_centre_of_object()
+        {
+            var force = new Force(new Vector2(10f, 0f), new Vector2(1f, 0f));
+
+            _gameObject.ApplyExternalForce(force);
+            _gameObject.Update(_gameTime);
+
+            Assert.AreEqual(0f, _gameObject.TotalMoment);
+        }
+
+        [Test]
+        public void Update_calculates_moment_for_perpendicular_force_offset_from_centre_of_object()
+        {
+            var force = new Force(new Vector2(10f, 0f), new Vector2(0f, 1f));
+
+            _gameObject.ApplyExternalForce(force);
+            _gameObject.Update(_gameTime);
+
+            Assert.AreEqual(-10f, _gameObject.TotalMoment);
+        }
+
+        [Test]
+        public void Update_calculates_moment_for_non_perpendicular_force_offset_from_centre_of_object()
+        {
+            var force = new Force(new Vector2(6f, -2f), new Vector2(0f, -1f));
+
+            _gameObject.ApplyExternalForce(force);
+            _gameObject.Update(_gameTime);
+
+            Assert.AreEqual(6f, _gameObject.TotalMoment);
+        }
+
+        [Test]
+        public void Update_aggregates_mulitple_moments_together()
+        {
+            var force1 = new Force(new Vector2(10f, 0f), new Vector2(0f, 1f));
+            var force2 = new Force(new Vector2(6f, -2f), new Vector2(0f, -1f));
+
+            _gameObject.ApplyExternalForce(force1);
+            _gameObject.ApplyExternalForce(force2);
+            _gameObject.Update(_gameTime);
+
+            Assert.AreEqual(-4f, _gameObject.TotalMoment);
+        }
+
+        [Test]
+        public void Update_calculates_acceleration_from_force_and_causes_Velocity_and_Position_to_be_updated()
+        {
+            _gameObject.Velocity = new Vector2(0f, 0f);
+            _gameObject.Position = new Vector2(2f, 2f);
+
+            var force = new Force(new Vector2(10f, 0f));
+            _gameObject.ApplyExternalForce(force);
+            _gameObject.Update(_gameTime);
+
+            Assert.IsTrue(_gameObject.Velocity.Matches(new Vector2(0.001f, 0f)));
+            Assert.IsTrue(_gameObject.Position.Matches(new Vector2(2.00001f, 2.00f)));
+        }
+
+        [Test]
+        public void Update_calculates_angularAcceleration_from_force_and_causes_AngularVelocity_and_Rotation_to_be_updated()
+        {
+            _gameObject.AngularVelocity = 0f;
+            _gameObject.Rotation = 3f;
+
+            var force = new Force(new Vector2(100f, 0f), new Vector2(0f, -20f));
+            _gameObject.ApplyExternalForce(force);
+            _gameObject.Update(_gameTime);
+
+            Assert.AreEqual(0.000555555569f, _gameObject.AngularVelocity);
+            Assert.AreEqual(3.00000548f, _gameObject.Rotation);
+        }
 
         [Test]
         public void Teleport_updates_the_position_to_the_specified_location()
@@ -183,6 +317,5 @@ namespace DEMW.SpaceWar2Tests.GameObjects
 
             Assert.AreEqual(destination, _gameObject.Position);
         }
-
     }
 }

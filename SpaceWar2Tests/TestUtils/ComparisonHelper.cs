@@ -1,5 +1,6 @@
 using System;
 using DEMW.SpaceWar2.Physics;
+using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2Tests.TestUtils
 {
@@ -7,10 +8,14 @@ namespace DEMW.SpaceWar2Tests.TestUtils
     {
         public static bool Matches(this Force expectedForce, Force actualForce)
         {
-            return Matches(expectedForce.Displacement.X, actualForce.Displacement.X) &&
-                   Matches(expectedForce.Displacement.Y, actualForce.Displacement.Y) &&
-                   Matches(expectedForce.Vector.X, actualForce.Vector.X) &&
-                   Matches(expectedForce.Vector.Y, actualForce.Vector.Y);
+            return Matches(expectedForce.Displacement, actualForce.Displacement) &&
+                   Matches(expectedForce.Vector, actualForce.Vector);
+        }
+
+        public static bool Matches(this Vector2 expectedVector, Vector2 actualVector)
+        {
+            return Matches(expectedVector.X, actualVector.X) &&
+                   Matches(expectedVector.Y, actualVector.Y);
         }
 
         public static bool Matches(this float actual, float expected)
