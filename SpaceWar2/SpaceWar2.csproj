@@ -73,6 +73,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ControllerFactory.cs" />
+    <Compile Include="GameObjects\IShipComponentFactory.cs" />
+    <Compile Include="GameObjects\ShipComponentFactory.cs" />
+    <Compile Include="GameObjects\ShipComponents\IEnergyStore.cs" />
+    <Compile Include="GameObjects\ShipComponents\IHull.cs" />
+    <Compile Include="GameObjects\ShipComponents\IShield.cs" />
+    <Compile Include="GameObjects\ShipComponents\IThrusterArray.cs" />
     <Compile Include="Graphics\IDrawingManager.cs" />
     <Compile Include="Physics\IUniverse.cs" />
     <Compile Include="Utils\XnaWrappers\IKeyboard.cs" />

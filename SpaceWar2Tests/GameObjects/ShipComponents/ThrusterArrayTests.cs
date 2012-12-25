@@ -16,7 +16,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         private ThrusterArray _thrusterArray;
         private Vector2 _leftThrusterPosition;
         private Vector2 _rightThrusterPosition;
-
+        private const float ThrustPower = ThrusterArray.ThrustPower;
+        
         [SetUp]
         public void Setup()
         {
@@ -65,7 +66,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             _thrusterArray.CalculateThrustPattern(ShipAction.Thrust);
             _thrusterArray.EngageThrusters();
 
-            var forwardVector = new Vector2(0f, -ThrusterArray.ThrustPower);
+            var forwardVector = new Vector2(0f, -ThrustPower);
             var expectedForceLeft = new Force(forwardVector, _leftThrusterPosition);
             var expectedForceRight = new Force(forwardVector, _rightThrusterPosition);
 
@@ -82,7 +83,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             _thrusterArray.CalculateThrustPattern(ShipAction.ReverseThrust);
             _thrusterArray.EngageThrusters();
 
-            var backwardVector = new Vector2(0f, ThrusterArray.ThrustPower);
+            var backwardVector = new Vector2(0f, ThrustPower);
             var expectedForceLeft = new Force(backwardVector, _leftThrusterPosition);
             var expectedForceRight = new Force(backwardVector, _rightThrusterPosition);
 
@@ -99,8 +100,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             _thrusterArray.CalculateThrustPattern(ShipAction.TurnRight);
             _thrusterArray.EngageThrusters();
 
-            var forwardVector = new Vector2(0f, -ThrusterArray.ThrustPower * 0.25f);
-            var backwardVector = new Vector2(0f, ThrusterArray.ThrustPower * 0.25f);
+            var forwardVector = new Vector2(0f, -ThrustPower * 0.25f);
+            var backwardVector = new Vector2(0f, ThrustPower * 0.25f);
             var expectedForceLeft = new Force(forwardVector, _leftThrusterPosition);
             var expectedForceRight = new Force(backwardVector, _rightThrusterPosition);
 
@@ -116,9 +117,9 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             _thrusterArray.CalculateThrustPattern(ShipAction.Thrust | ShipAction.TurnRight);
             _thrusterArray.EngageThrusters();
 
-            var expectedForceFrontLeft = new Force(new Vector2(0f, -ThrusterArray.ThrustPower), _leftThrusterPosition);
-            var expectedForceFrontRight = new Force(new Vector2(0f, -ThrusterArray.ThrustPower), _rightThrusterPosition);
-            var expectedForceRearRight = new Force(new Vector2(0f, ThrusterArray.ThrustPower / 4f), _rightThrusterPosition);
+            var expectedForceFrontLeft = new Force(new Vector2(0f, -ThrustPower), _leftThrusterPosition);
+            var expectedForceFrontRight = new Force(new Vector2(0f, -ThrustPower), _rightThrusterPosition);
+            var expectedForceRearRight = new Force(new Vector2(0f, ThrustPower / 4f), _rightThrusterPosition);
             
             _ship.Received(1).RequestEnergy(Arg.Is<float>(x => x.Matches(0.225f)));
             _ship.Received(3).ApplyInternalForce(Arg.Any<Force>());
@@ -134,8 +135,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             _thrusterArray.CalculateThrustPattern(ShipAction.TurnLeft);
             _thrusterArray.EngageThrusters();
 
-            var backwardVector = new Vector2(0f, ThrusterArray.ThrustPower * 0.25f);
-            var forwardVector = new Vector2(0f, -ThrusterArray.ThrustPower * 0.25f);
+            var backwardVector = new Vector2(0f, ThrustPower * 0.25f);
+            var forwardVector = new Vector2(0f, -ThrustPower * 0.25f);
             var expectedForceLeft = new Force(backwardVector, _leftThrusterPosition);
             var expectedForceRight = new Force(forwardVector, _rightThrusterPosition);
 
@@ -151,7 +152,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
             _thrusterArray.CalculateThrustPattern(ShipAction.Thrust);
             _thrusterArray.EngageThrusters();
 
-            var forwardVector = new Vector2(0f, -ThrusterArray.ThrustPower * 0.5f);
+            var forwardVector = new Vector2(0f, -ThrustPower * 0.5f);
             var expectedForceLeft = new Force(forwardVector, _leftThrusterPosition);
             var expectedForceRight = new Force(forwardVector, _rightThrusterPosition);
             

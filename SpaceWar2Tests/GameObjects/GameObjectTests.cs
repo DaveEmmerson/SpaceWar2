@@ -60,6 +60,9 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             Assert.AreEqual(0f, _gameObject.TotalMoment);
         
             Assert.IsEmpty(_gameObject.Forces);
+
+            //Just to get 100% coverage
+            _gameObject.Draw();
         }
 
         [Test]
