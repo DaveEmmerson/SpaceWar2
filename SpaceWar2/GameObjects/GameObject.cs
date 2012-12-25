@@ -9,7 +9,7 @@ namespace DEMW.SpaceWar2.GameObjects
     {
         private readonly IList<Force> _queuedforces;
 
-        internal GameObject (Vector2 position, float radius, float mass)
+        protected GameObject (Vector2 position, float radius, float mass)
         {
             Position = position;
             Radius = radius;
@@ -20,6 +20,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
             _queuedforces = new List<Force>();
             Forces = new List<Force>();
+            TotalForce = new Force();
         }
 
         public bool Expired { get; protected set; }
@@ -33,10 +34,14 @@ namespace DEMW.SpaceWar2.GameObjects
         public float AngularVelocity { get; set; }
 
         public float Radius { get; set; }
-
         public Model Model { get; set; }
         public Color Color { get; set; }
         
+        public Force TotalForce { get; private set; }
+        public float TotalMoment { get; private set; }
+        
+        protected IList<Force> Forces { get; private set; }
+
         public void ApplyExternalForce(Force force)
         {
             if (force.Vector != Vector2.Zero)
@@ -54,11 +59,6 @@ namespace DEMW.SpaceWar2.GameObjects
             }
         }
 
-        public Force TotalForce { get; private set; }
-        public float TotalMoment { get; private set; }
-        
-        protected IList<Force> Forces { get; private set; }
-
         public void Teleport(Vector2 destination)
         {
             Position = destination;
@@ -66,28 +66,25 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public void Update(GameTime gameTime)
         {
-            UpdateInternal(gameTime);
+            var deltaT = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            UpdateInternal(deltaT);
+            SimulateDynamics(deltaT);
         }
 
+        protected abstract void UpdateInternal(float deltaT);
+
+        public abstract void Draw();
+        
         protected void SimulateDynamics(float deltaT)
         {
             ResolveForces();
-
-            var acceleration = (TotalForce.Vector / Mass);
-            Velocity += acceleration * (deltaT / 2f);
-            Position += Velocity * deltaT;
-            Velocity += acceleration * (deltaT / 2f);
-
-            var angularAcceleration = (TotalMoment / MomentOfInertia);
-            AngularVelocity += angularAcceleration * (deltaT / 2f);
-            Rotation += AngularVelocity * deltaT;
-            AngularVelocity += angularAcceleration * (deltaT / 2f);
+            CalculateVelocitiesAndPositions(deltaT);
         }
 
         private void ResolveForces()
         {
             Forces.Clear();
-            
             TotalForce = new Force();
             TotalMoment = 0f;
 
@@ -101,7 +98,7 @@ namespace DEMW.SpaceWar2.GameObjects
             _queuedforces.Clear();
         }
 
-        private float CalculateMoment(Force force)
+        private static float CalculateMoment(Force force)
         {
             if (force.Displacement == Vector2.Zero)
             {
@@ -114,8 +111,17 @@ namespace DEMW.SpaceWar2.GameObjects
             return moment;
         }
 
-        protected abstract void UpdateInternal(GameTime gameTime);
+        private void CalculateVelocitiesAndPositions(float deltaT)
+        {
+            var acceleration = (TotalForce.Vector / Mass);
+            Velocity += acceleration * (deltaT / 2f);
+            Position += Velocity * deltaT;
+            Velocity += acceleration * (deltaT / 2f);
 
-        public abstract void Draw();
+            var angularAcceleration = (TotalMoment / MomentOfInertia);
+            AngularVelocity += angularAcceleration * (deltaT / 2f);
+            Rotation += AngularVelocity * deltaT;
+            AngularVelocity += angularAcceleration * (deltaT / 2f);
+        }
     }
 }
