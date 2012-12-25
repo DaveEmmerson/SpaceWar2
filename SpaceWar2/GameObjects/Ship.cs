@@ -41,18 +41,14 @@ namespace DEMW.SpaceWar2.GameObjects
         public float Shields { get { return _shield.Level; } }
         public float Armour { get { return _hull.Level; } }       
 
-        protected override void UpdateInternal(GameTime gameTime)
+        protected override void UpdateInternal(float deltaT)
         {
-            var deltaT = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             _shield.Recharge(deltaT);
             _energyStore.Recharge(deltaT);
 
             ShipAction action = Controller.GetAction();
             _thrusterArray.CalculateThrustPattern(action);
             _thrusterArray.EngageThrusters();
-
-            SimulateDynamics(deltaT);
         }
         
         public override void Draw()

@@ -10,7 +10,7 @@ namespace DEMW.SpaceWar2.GameObjects
             Color = color;
         }
 
-        protected override void UpdateInternal(GameTime gameTime)
+        protected override void UpdateInternal(float deltaT)
         {
             //Todo do anything that the sun might do. 
             //e.g. spin, emit solar storms, grow, explode
