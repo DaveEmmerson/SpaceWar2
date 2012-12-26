@@ -48,7 +48,6 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             Assert.AreEqual(_position, _gameObject.Position);
             Assert.AreEqual(new Vector2(0f, 0f), _gameObject.Velocity);
             
-            Assert.AreEqual(72000f, _gameObject.MomentOfInertia);
             Assert.AreEqual(0f, _gameObject.Rotation);
             Assert.AreEqual(0f, _gameObject.AngularVelocity);
 
@@ -87,14 +86,6 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _gameObject.Velocity = new Vector2(5f, 10f);
 
             Assert.AreEqual(new Vector2(5f, 10f), _gameObject.Velocity);
-        }
-
-        [Test]
-        public void MomentOfInertia_can_be_set()
-        {
-            _gameObject.MomentOfInertia = 300f;
-
-            Assert.AreEqual(300f, _gameObject.MomentOfInertia);
         }
 
         [Test]

@@ -42,7 +42,7 @@ namespace DEMW.SpaceWar2.Graphics
             }
         }
 
-        public virtual void Draw()
+        public void Draw()
         {
             DrawLineStrip(_vertices);
         }

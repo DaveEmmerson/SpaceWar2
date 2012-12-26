@@ -30,7 +30,7 @@ namespace DEMW.SpaceWar2.Graphics
             _vertices[lineCount - 1] = _vertices[0];
         }
         
-        public virtual void Draw()
+        public void Draw()
         {
             DrawLineStrip(_vertices);
         }

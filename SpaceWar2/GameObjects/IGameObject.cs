@@ -11,13 +11,12 @@ namespace DEMW.SpaceWar2.GameObjects
         float Mass { get; }
         Vector2 Position { get; }
         
-        float MomentOfInertia { get; }
         float Rotation { get; }
 
         float Radius { get; }
         
-        Model Model { get; set; }
-        Color Color { get; set; }
+        Model Model { get; }
+        Color Color { get; }
 
         void ApplyExternalForce(Force force);
         void ApplyInternalForce(Force force);

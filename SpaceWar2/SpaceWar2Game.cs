@@ -22,7 +22,7 @@ namespace DEMW.SpaceWar2
         private readonly IUniverse _universe;
         private readonly IShipComponentFactory _shipComponentFactory;
         
-        private readonly KeyboardHandler _keyboardHandler;
+        private readonly IKeyboardHandler _keyboardHandler;
         private readonly ControllerFactory _controllerFactory;
 
         private readonly IDrawingManager _drawingManager;
@@ -39,7 +39,7 @@ namespace DEMW.SpaceWar2
             _contentManager = new ContentManagerWrapper(Content.ServiceProvider, "Content");
             _graphics = new GraphicsDeviceManager(this);
             _universe = Universe.GetDefault();
-            _drawingManager = new DrawingManager(_universe);
+            _drawingManager = new DrawingManager();
             _gravitySimulator = new GravitySimulator();
             _shipComponentFactory = new ShipComponentFactory();
             
@@ -53,8 +53,8 @@ namespace DEMW.SpaceWar2
         {
             _gameObjectFactory.DestroyAll(x=>true);
 
-            _camera = Camera.GetDefault(_universe.CopyDimensions());
-            _drawingManager.ActiveCamera = _camera;
+            _drawingManager.ResetCamera(_universe);
+            _camera = _drawingManager.ActiveCamera;
             
             if (_effect != null)
             {

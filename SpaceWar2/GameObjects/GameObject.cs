@@ -29,7 +29,7 @@ namespace DEMW.SpaceWar2.GameObjects
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
 
-        public float MomentOfInertia { get; set; }
+        private float MomentOfInertia { get; set; }
         public float Rotation { get; set; }
         public float AngularVelocity { get; set; }
 
@@ -76,7 +76,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public abstract void Draw();
         
-        protected void SimulateDynamics(float deltaT)
+        private void SimulateDynamics(float deltaT)
         {
             ResolveForces();
             CalculateVelocitiesAndPositions(deltaT);

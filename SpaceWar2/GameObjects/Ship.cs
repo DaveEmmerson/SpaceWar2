@@ -36,8 +36,8 @@ namespace DEMW.SpaceWar2.GameObjects
             _arrows = new List<Arrow>();
         }
 
-        public string Name { get; protected set; }
-        public bool ShowArrows { get; set; }
+        public string Name { get; private set; }
+        public bool ShowArrows { private get; set; }
 
         public float Energy { get { return _energyStore.Level; } }
         public float Shields { get { return _shield.Level; } }

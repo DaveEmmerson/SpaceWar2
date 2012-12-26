@@ -11,11 +11,10 @@ namespace DEMW.SpaceWar2.Graphics
     {
         private readonly List<IGameObject> _drawableObjects;
 
-        public Camera ActiveCamera { get; set; }
+        public Camera ActiveCamera { get; private set; }
 
-        internal DrawingManager(IUniverse universe, Camera camera = null) 
+        internal DrawingManager() 
         {
-            ActiveCamera = camera ?? Camera.GetDefault(universe);
             _drawableObjects = new List<IGameObject>();
         }
 
@@ -63,6 +62,11 @@ namespace DEMW.SpaceWar2.Graphics
 
                 modelMesh.Draw();
             }
+        }
+
+        public void ResetCamera(IUniverse universe)
+        {
+            ActiveCamera = Camera.GetDefault(universe.CopyDimensions());
         }
     }
 }

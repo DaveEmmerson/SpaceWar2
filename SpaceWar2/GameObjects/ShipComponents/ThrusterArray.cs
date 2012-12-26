@@ -6,7 +6,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
     public class ThrusterArray : IThrusterArray
     {
         public const float ThrustPower = 50F;
-        public const float ThrustEnergyCost = 0.1F;
+        private const float ThrustEnergyCost = 0.1F;
         private const float RotationSpeed = 2F;
 
         private readonly IShip _ship;
