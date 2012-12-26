@@ -55,6 +55,7 @@
     <Compile Include="Controls\KeyboardHandlerTests.cs" />
     <Compile Include="Controls\ShipActionTests.cs" />
     <Compile Include="GameObjectFactoryTests.cs" />
+    <Compile Include="GameObjects\ShipComponentFactoryTests.cs" />
     <Compile Include="GameObjects\GameObjectTests.cs" />
     <Compile Include="GameObjects\ShipTests.cs" />
     <Compile Include="GameObjects\SunTests.cs" />

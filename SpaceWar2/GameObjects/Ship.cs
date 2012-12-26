@@ -28,7 +28,7 @@ namespace DEMW.SpaceWar2.GameObjects
             Controller = new NullShipController();
 
             _energyStore = shipComponentFactory.CreateEnergyStore();
-            _shield = shipComponentFactory.CreateSheild(this);
+            _shield = shipComponentFactory.CreateShield(this);
             _hull = shipComponentFactory.CreateHull(this);
             _thrusterArray = shipComponentFactory.CreateThrusterArray(this);
 

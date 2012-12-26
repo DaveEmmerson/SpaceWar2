@@ -35,7 +35,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _controller = Substitute.For<IShipController>();
 
             _shipComponentFactory.CreateEnergyStore().ReturnsForAnyArgs(_energyStore);
-            _shipComponentFactory.CreateSheild(Arg.Any<IShip>()).Returns(_shield);
+            _shipComponentFactory.CreateShield(Arg.Any<IShip>()).Returns(_shield);
             _shipComponentFactory.CreateHull(Arg.Any<IShip>()).Returns(_hull);
             _shipComponentFactory.CreateThrusterArray(Arg.Any<IShip>()).Returns(_thrusterArray);
 
@@ -57,7 +57,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             Assert.AreEqual(1f, _ship.Mass);
 
             _shipComponentFactory.Received(1).CreateEnergyStore();
-            _shipComponentFactory.Received(1).CreateSheild(_ship);
+            _shipComponentFactory.Received(1).CreateShield(_ship);
             _shipComponentFactory.Received(1).CreateHull(_ship);
             _shipComponentFactory.Received(1).CreateThrusterArray(_ship);
         }

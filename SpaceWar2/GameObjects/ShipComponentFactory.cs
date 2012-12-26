@@ -4,12 +4,13 @@ namespace DEMW.SpaceWar2.GameObjects
 {
     public class ShipComponentFactory : IShipComponentFactory
     {
+        //Todo consider parameterizing these methods rather than just returning defaults
         public IEnergyStore CreateEnergyStore()
         {
-            return new EnergyStore(100F, 0.1F);
+            return new EnergyStore(100F, 1F);
         }
 
-        public IShield CreateSheild(IShip ship)
+        public IShield CreateShield(IShip ship)
         {
             return new Shield(ship, 100F, 0.1F);
         }
