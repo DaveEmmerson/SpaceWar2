@@ -20,6 +20,7 @@ namespace DEMW.SpaceWar2
         private readonly GameObjectFactory _gameObjectFactory;
         private readonly GravitySimulator _gravitySimulator;
         private readonly IUniverse _universe;
+        private readonly IShipComponentFactory _shipComponentFactory;
         
         private readonly KeyboardHandler _keyboardHandler;
         private readonly ControllerFactory _controllerFactory;
@@ -32,7 +33,7 @@ namespace DEMW.SpaceWar2
         private Camera _camera;
         		
         private Effect _effect;
-
+        
         public SpaceWar2Game()
         {
             _contentManager = new ContentManagerWrapper(Content.ServiceProvider, "Content");
@@ -40,8 +41,9 @@ namespace DEMW.SpaceWar2
             _universe = Universe.GetDefault();
             _drawingManager = new DrawingManager(_universe);
             _gravitySimulator = new GravitySimulator();
+            _shipComponentFactory = new ShipComponentFactory();
             
-            _gameObjectFactory = new GameObjectFactory(_contentManager, _graphics, _gravitySimulator, _drawingManager, _universe);
+            _gameObjectFactory = new GameObjectFactory(_contentManager, _graphics, _gravitySimulator, _drawingManager, _universe, _shipComponentFactory);
             
             _keyboardHandler = new KeyboardHandler(new KeyboardWrapper());
             _controllerFactory = new ControllerFactory(_keyboardHandler);
@@ -155,7 +157,7 @@ namespace DEMW.SpaceWar2
                 var ship = _gameObjectFactory.GameObjects.OfType<Ship>().SingleOrDefault(x => x.Name == "ship 1");
                 if (ship != null)
                 {
-                    ship.Damage(10);
+                    ship.Damage(10f);
                 }
             }
 

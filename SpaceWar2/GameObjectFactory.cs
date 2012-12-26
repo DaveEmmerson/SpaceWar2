@@ -21,7 +21,7 @@ namespace DEMW.SpaceWar2
         private readonly IDrawingManager _drawingManager;
         private readonly IShipComponentFactory _shipComponentFactory;
 
-        public GameObjectFactory(IContentManager contentManager, IGraphicsDeviceManager graphics, GravitySimulator gravitySimulator, IDrawingManager drawingManager, IUniverse universe)
+        public GameObjectFactory(IContentManager contentManager, IGraphicsDeviceManager graphics, GravitySimulator gravitySimulator, IDrawingManager drawingManager, IUniverse universe, IShipComponentFactory shipComponentFactory)
         {
             _contentManager = contentManager;
             _graphics = graphics;
@@ -29,7 +29,7 @@ namespace DEMW.SpaceWar2
             _drawingManager = drawingManager;
             _universe = universe;
 
-            _shipComponentFactory = new ShipComponentFactory();
+            _shipComponentFactory = shipComponentFactory;
             _gameObjects = new List<IGameObject>();
         }
 

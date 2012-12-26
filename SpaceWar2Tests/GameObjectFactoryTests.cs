@@ -21,6 +21,7 @@ namespace DEMW.SpaceWar2Tests
         private GravitySimulator _gravitySimulator;
         private IDrawingManager _drawingManager;
         private IUniverse _universe;
+        private IShipComponentFactory _shipComponentFactory;
 
         [SetUp]
         public void SetUp()
@@ -30,7 +31,9 @@ namespace DEMW.SpaceWar2Tests
             _gravitySimulator = Substitute.For<GravitySimulator>();
             _drawingManager = Substitute.For<IDrawingManager>();
             _universe = Substitute.For<IUniverse>();
-            _gameObjectFactory = new GameObjectFactory(_contentManager, _graphicsDeviceManager, _gravitySimulator, _drawingManager, _universe);
+            _shipComponentFactory = Substitute.For<IShipComponentFactory>();
+            
+            _gameObjectFactory = new GameObjectFactory(_contentManager, _graphicsDeviceManager, _gravitySimulator, _drawingManager, _universe, _shipComponentFactory);
         }
 
         [Test]

@@ -53,7 +53,7 @@ namespace DEMW.SpaceWar2.GameObjects
             _thrusterArray.EngageThrusters();
         }
         
-        public void Damage(int amount)
+        public void Damage(float amount)
         {
             var damageRemaining = _shield.Damage(amount);
 
