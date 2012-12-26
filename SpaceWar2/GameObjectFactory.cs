@@ -15,16 +15,16 @@ namespace DEMW.SpaceWar2
     {
         private readonly IList<IGameObject> _gameObjects;
         private readonly IContentManager _contentManager;
-        private readonly IGraphicsDeviceManager _graphics;
+        private readonly IGraphicsFactory _graphicsFactory;
         private readonly GravitySimulator _gravitySimulator;
         private readonly IUniverse _universe;
         private readonly IDrawingManager _drawingManager;
         private readonly IShipComponentFactory _shipComponentFactory;
 
-        public GameObjectFactory(IContentManager contentManager, IGraphicsDeviceManager graphics, GravitySimulator gravitySimulator, IDrawingManager drawingManager, IUniverse universe, IShipComponentFactory shipComponentFactory)
+        public GameObjectFactory(IContentManager contentManager, IGraphicsFactory graphicsFactory, GravitySimulator gravitySimulator, IDrawingManager drawingManager, IUniverse universe, IShipComponentFactory shipComponentFactory)
         {
             _contentManager = contentManager;
-            _graphics = graphics;
+            _graphicsFactory = graphicsFactory;
             _gravitySimulator = gravitySimulator;
             _drawingManager = drawingManager;
             _universe = universe;
@@ -51,7 +51,7 @@ namespace DEMW.SpaceWar2
 
         public Ship CreateShip(string name, Vector2 position, Vector2 velocity, Color color, IShipController controller)
         {
-            var ship = new Ship(name, position, 16, color, _graphics, _shipComponentFactory)
+            var ship = new Ship(name, position, 16, color, _graphicsFactory, _shipComponentFactory)
             {
                 Velocity = velocity,
                 Controller = controller,

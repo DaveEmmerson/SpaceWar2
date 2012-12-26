@@ -2,6 +2,7 @@
 using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
+using DEMW.SpaceWar2.Graphics;
 using Microsoft.Xna.Framework;
 using NSubstitute;
 using NUnit.Framework;
@@ -11,7 +12,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
     [TestFixture]
     internal class ShipTests
     {
-        private IGraphicsDeviceManager _graphics;
+        private IGraphicsFactory _graphicsFactory;
         private IShipComponentFactory _shipComponentFactory;
         private IEnergyStore _energyStore;
         private IShield _shield;
@@ -25,7 +26,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
         [SetUp]
         public void SetUp()
         {
-            _graphics = Substitute.For<IGraphicsDeviceManager>();
+            _graphicsFactory = Substitute.For<IGraphicsFactory>();
             _shipComponentFactory = Substitute.For<IShipComponentFactory>();
 
             _energyStore = Substitute.For<IEnergyStore>();
@@ -40,7 +41,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _shipComponentFactory.CreateThrusterArray(Arg.Any<IShip>()).Returns(_thrusterArray);
 
             _position = new Vector2(12f, 5.5f);
-            _ship = new Ship("TestShip", _position, 16f, Color.Goldenrod, _graphics, _shipComponentFactory)
+            _ship = new Ship("TestShip", _position, 16f, Color.Goldenrod, _graphicsFactory, _shipComponentFactory)
             {
                 Controller = _controller
             };

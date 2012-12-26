@@ -16,10 +16,10 @@ namespace DEMW.SpaceWar2.GameObjects
         private readonly IHull _hull;
         private readonly IThrusterArray _thrusterArray;
 
-        private readonly IGraphicsDeviceManager _graphics;
+        private readonly IGraphicsFactory _graphicsFactory;
         private readonly IList<Arrow> _arrows;
 
-        public Ship(string name, Vector2 position, float radius, Color color, IGraphicsDeviceManager graphics, IShipComponentFactory shipComponentFactory)
+        public Ship(string name, Vector2 position, float radius, Color color, IGraphicsFactory graphicsFactory, IShipComponentFactory shipComponentFactory)
             : base (position, radius, 1)
         {
             Name = name;
@@ -32,7 +32,7 @@ namespace DEMW.SpaceWar2.GameObjects
             _hull = shipComponentFactory.CreateHull(this);
             _thrusterArray = shipComponentFactory.CreateThrusterArray(this);
 
-            _graphics = graphics;
+            _graphicsFactory = graphicsFactory;
             _arrows = new List<Arrow>();
         }
 
@@ -83,10 +83,11 @@ namespace DEMW.SpaceWar2.GameObjects
             _arrows.Clear();
             if (ShowArrows)
             {
-                var accelerationArrow = new Arrow(_graphics, TotalForce.Displacement, TotalForce.Vector, Color.LimeGreen, Radius);
-                var velocityArrow = new Arrow(_graphics, Vector2.Zero, Velocity, Color.Linen, Radius);
+                var accelerationArrow = _graphicsFactory.CreateArrow(TotalForce.Displacement, TotalForce.Vector, Color.LimeGreen, Radius);
+                var velocityArrow = _graphicsFactory.CreateArrow(Vector2.Zero, Velocity, Color.Linen, Radius);
+                
                 var rotationAngle = new Vector2((float)Math.Sin(Rotation) * Radius * 2, -(float)Math.Cos(Rotation) * Radius * 2);
-                var rotationArrow = new Arrow(_graphics, Vector2.Zero, rotationAngle, Color.Red, Radius);
+                var rotationArrow = _graphicsFactory.CreateArrow(Vector2.Zero, rotationAngle, Color.Red, Radius);
 
                 _arrows.Add(accelerationArrow);
                 _arrows.Add(velocityArrow);
@@ -94,7 +95,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
                 foreach (var force in Forces)
                 {
-                    var arrow = new Arrow(_graphics, force.Displacement, force.Vector, Color.Yellow, Radius);
+                    var arrow = _graphicsFactory.CreateArrow(force.Displacement, force.Vector, Color.Yellow, Radius);
                     _arrows.Add(arrow);
                 }
             }

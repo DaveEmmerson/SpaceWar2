@@ -21,6 +21,7 @@ namespace DEMW.SpaceWar2
         private readonly GravitySimulator _gravitySimulator;
         private readonly IUniverse _universe;
         private readonly IShipComponentFactory _shipComponentFactory;
+        private readonly IGraphicsFactory _graphicsFactory;
         
         private readonly IKeyboardHandler _keyboardHandler;
         private readonly ControllerFactory _controllerFactory;
@@ -42,8 +43,9 @@ namespace DEMW.SpaceWar2
             _drawingManager = new DrawingManager();
             _gravitySimulator = new GravitySimulator();
             _shipComponentFactory = new ShipComponentFactory();
-            
-            _gameObjectFactory = new GameObjectFactory(_contentManager, _graphics, _gravitySimulator, _drawingManager, _universe, _shipComponentFactory);
+            _graphicsFactory = new GraphicsFactory(_graphics);
+
+            _gameObjectFactory = new GameObjectFactory(_contentManager, _graphicsFactory, _gravitySimulator, _drawingManager, _universe, _shipComponentFactory);
             
             _keyboardHandler = new KeyboardHandler(new KeyboardWrapper());
             _controllerFactory = new ControllerFactory(_keyboardHandler);
