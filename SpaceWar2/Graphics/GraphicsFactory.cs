@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using DEMW.SpaceWar2.Physics;
+using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.Graphics
 {
@@ -21,14 +23,18 @@ namespace DEMW.SpaceWar2.Graphics
             return new Arrow(_graphics, Vector2.Zero, direction, Color.Linen, radius);
         }
 
-        public Arrow CreateRotationArrow(Vector2 direction, float radius)
+        public Arrow CreateRotationArrow(float rotation, float radius)
         {
-            return new Arrow(_graphics, Vector2.Zero, direction, Color.Red, radius);
+            var x = (float)Math.Sin(rotation) * radius * 2;
+            var y = -(float)Math.Cos(rotation) * radius * 2;
+
+            var rotationAngle = new Vector2(x, y);
+            return new Arrow(_graphics, Vector2.Zero, rotationAngle, Color.Linen, radius);
         }
 
-        public Arrow CreateForceArrow(Vector2 position, Vector2 direction, float radius)
+        public Arrow CreateForceArrow(Force force, float radius)
         {
-            return new Arrow(_graphics, position, direction, Color.Yellow, radius);
+            return new Arrow(_graphics, force.Displacement, force.Vector, Color.Yellow, radius);
         }
     }
 }
