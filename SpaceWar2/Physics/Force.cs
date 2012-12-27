@@ -23,10 +23,5 @@ namespace DEMW.SpaceWar2.Physics
             Vector = Vector2.Transform(Vector, rotation);
             Displacement = Vector2.Transform(Displacement, rotation);
         }
-
-        public void AddVector(Vector2 vector)
-        {
-            Vector += vector;
-        }
     }
 }

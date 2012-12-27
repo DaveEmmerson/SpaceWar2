@@ -29,26 +29,6 @@ namespace DEMW.SpaceWar2Tests.Physics
         }
 
         [Test]
-        public void AddVector_adds_vector_to_Force_Vector_component()
-        {
-            var force = new Force(_right, Vector2.Zero);
-            force.AddVector(_up);
-
-            Assert.AreEqual(_right + _up, force.Vector);
-            Assert.AreEqual(Vector2.Zero, force.Displacement);
-        }
-
-        [Test]
-        public void AddVector_adds_vector_and_does_not_affect_displacement()
-        {
-            var force = new Force(_right, _up);
-            force.AddVector(_up);
-
-            Assert.AreEqual(_right + _up, force.Vector);
-            Assert.AreEqual(_up, force.Displacement);
-        }
-
-        [Test]
         public void Rotate_by_small_angle_does_not_affect_zero_Displacement()
         {
             _noDispVectorRight.Rotate(MathHelper.ToRadians(5));
