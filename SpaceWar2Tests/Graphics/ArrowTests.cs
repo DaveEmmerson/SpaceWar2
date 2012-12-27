@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DEMW.SpaceWar2.Graphics;
 using DEMW.SpaceWar2Tests.TestUtils;
 using Microsoft.Xna.Framework;
@@ -96,7 +97,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
         }
 
         [Test]
-        public void CreateArrow_returns_arrow_that_starts_in_the_specified_position()
+        public void CreateArrow_returns_arrow_that_starts_at_specified_radius()
         {
             var position = Vector2.Zero;
             var direction = new Vector2(1f, 5f);
@@ -119,9 +120,9 @@ namespace DEMW.SpaceWar2Tests.Graphics
         }
 
         [Test]
-        public void CreateArrow_returns_arrow_with_correct_length()
+        public void CreateArrow_returns_arrow_that_starts_in_the_specified_position()
         {
-            var position = Vector2.Zero;
+            var position = new Vector2(3f, 7f);
             var direction = new Vector2(1f, 5f);
             var color = Color.HotPink;
             const float radius = 13f;
@@ -139,6 +140,28 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var expectedPosition = position + (direction * radius);
 
             Assert.IsTrue(actualPosition.Matches(expectedPosition));
+        }
+
+        [Test]
+        public void CreateArrow_returns_arrow_with_correct_length()
+        {
+            var position = Vector2.Zero;
+            var direction = new Vector2(1f, 5f);
+            var color = Color.HotPink;
+            const float radius = 13f;
+
+            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, color, radius);
+            var arrowObject = (Arrow)arrow;
+
+            var x0 = arrowObject.Verticies[0].Position.X;
+            var y0 = arrowObject.Verticies[0].Position.Y;
+            var x3 = arrowObject.Verticies[3].Position.X;
+            var y3 = arrowObject.Verticies[3].Position.Y;
+            var actualLength = new Vector2(x3-x0, y3-y0).Length();
+
+            var expectedLength = (radius / 3f) + (3f * (float)Math.Sqrt(direction.Length()));
+
+            Assert.AreEqual(expectedLength, actualLength);
         }
     }
 
