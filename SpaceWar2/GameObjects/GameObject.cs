@@ -20,7 +20,6 @@ namespace DEMW.SpaceWar2.GameObjects
 
             _queuedforces = new List<Force>();
             Forces = new List<Force>();
-            TotalForce = new Force();
         }
 
         public bool Expired { get; protected set; }
@@ -37,13 +36,15 @@ namespace DEMW.SpaceWar2.GameObjects
         public Model Model { get; set; }
         public Color Color { get; set; }
         
-        public Force TotalForce { get; private set; }
+        public Vector2 TotalForce { get; private set; }
         public float TotalMoment { get; private set; }
         
         protected IList<Force> Forces { get; private set; }
 
         public void ApplyExternalForce(Force force)
         {
+            //TODO note that this method and the one below do not copy force, so any changes 
+            //to force outside this class will not be without side effects
             if (force.Vector != Vector2.Zero)
             {
                 _queuedforces.Add(force);
@@ -54,6 +55,7 @@ namespace DEMW.SpaceWar2.GameObjects
         {
             if (force.Vector != Vector2.Zero)
             {
+                //TODO Should we make a copy of force here instead of changing the original force?
                 force.Rotate(Rotation);
                 _queuedforces.Add(force);
             }
@@ -85,13 +87,13 @@ namespace DEMW.SpaceWar2.GameObjects
         private void ResolveForces()
         {
             Forces.Clear();
-            TotalForce = new Force();
+            TotalForce = Vector2.Zero;
             TotalMoment = 0f;
 
             foreach (var force in _queuedforces)
             {
                 Forces.Add(force);
-                TotalForce.AddVector(force.Vector);
+                TotalForce += force.Vector;
                 TotalMoment += CalculateMoment(force);
             }
 
@@ -113,7 +115,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
         private void CalculateVelocitiesAndPositions(float deltaT)
         {
-            var acceleration = (TotalForce.Vector / Mass);
+            var acceleration = (TotalForce / Mass);
             Velocity += acceleration * (deltaT / 2f);
             Position += Velocity * deltaT;
             Velocity += acceleration * (deltaT / 2f);

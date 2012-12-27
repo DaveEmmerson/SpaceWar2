@@ -83,11 +83,11 @@ namespace DEMW.SpaceWar2.GameObjects
             _arrows.Clear();
             if (ShowArrows)
             {
-                var accelerationArrow = _graphicsFactory.CreateAccelerationArrow(TotalForce.Displacement, TotalForce.Vector, Radius);
-                var velocityArrow = _graphicsFactory.CreateVelocityArrow(Vector2.Zero, Velocity, Radius);
+                var accelerationArrow = _graphicsFactory.CreateAccelerationArrow(TotalForce, Radius);
+                var velocityArrow = _graphicsFactory.CreateVelocityArrow(Velocity, Radius);
                 
                 var rotationAngle = new Vector2((float)Math.Sin(Rotation) * Radius * 2, -(float)Math.Cos(Rotation) * Radius * 2);
-                var rotationArrow = _graphicsFactory.CreateRotationArrow(Vector2.Zero, rotationAngle, Radius);
+                var rotationArrow = _graphicsFactory.CreateRotationArrow(rotationAngle, Radius);
 
                 _arrows.Add(accelerationArrow);
                 _arrows.Add(velocityArrow);

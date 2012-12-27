@@ -55,7 +55,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             Assert.IsNull(_gameObject.Model);
             Assert.AreEqual(Color.Transparent, _gameObject.Color);
 
-            Assert.That(_gameObject.TotalForce.Matches(new Force()));
+            Assert.That(_gameObject.TotalForce.Matches(Vector2.Zero));
             Assert.AreEqual(0f, _gameObject.TotalMoment);
         
             Assert.IsEmpty(_gameObject.Forces);
@@ -159,7 +159,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects
         [Test]
         public void ApplyExternalForce_adds_force_when_non_zero_force_is_specified()
         {
-            var force = new Force(new Vector2(10f, 0f));
+            var direction = new Vector2(10f, 0f);
+            var force = new Force(direction);
 
             _gameObject.ApplyExternalForce(force);
             _gameObject.Update(_gameTime);
@@ -167,7 +168,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             Assert.AreEqual(1, _gameObject.Forces.Count());
             var actualForce = _gameObject.Forces.First();
             Assert.IsTrue(actualForce.Matches(force));
-            Assert.IsTrue(_gameObject.TotalForce.Matches(force));
+            Assert.IsTrue(_gameObject.TotalForce.Matches(direction));
 
             Assert.AreEqual(0f, _gameObject.TotalMoment);
         }
@@ -196,7 +197,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             var expectedForce = new Force(new Vector2(0f, 10f));
             var actualForce = _gameObject.Forces.First();
             Assert.IsTrue(actualForce.Matches(expectedForce));
-            Assert.IsTrue(_gameObject.TotalForce.Matches(force));
+            Assert.IsTrue(_gameObject.TotalForce.Matches(expectedForce.Vector));
 
             Assert.AreEqual(0f, _gameObject.TotalMoment);
         }
@@ -223,7 +224,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             Assert.IsTrue(actualForce2.Matches(force2));
             Assert.IsTrue(actualForce3.Matches(force3));
 
-            var expectedTotalForce = new Force(new Vector2(3f, 12f));
+            var expectedTotalForce = new Vector2(3f, 12f);
             Assert.IsTrue(_gameObject.TotalForce.Matches(expectedTotalForce));
 
             Assert.AreEqual(0f, _gameObject.TotalMoment);
