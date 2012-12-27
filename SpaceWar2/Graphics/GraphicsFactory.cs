@@ -11,9 +11,24 @@ namespace DEMW.SpaceWar2.Graphics
             _graphics = graphics as GraphicsDeviceManager;
         }
 
-        public Arrow CreateArrow(Vector2 position, Vector2 direction, Color color, float radius)
+        public Arrow CreateAccelerationArrow(Vector2 position, Vector2 direction, float radius)
         {
-            return new Arrow(_graphics, position, direction, color, radius);
+            return new Arrow(_graphics, position, direction, Color.LimeGreen, radius);
+        }
+
+        public Arrow CreateVelocityArrow(Vector2 position, Vector2 direction, float radius)
+        {
+            return new Arrow(_graphics, position, direction, Color.Linen, radius);
+        }
+
+        public Arrow CreateRotationArrow(Vector2 position, Vector2 direction, float radius)
+        {
+            return new Arrow(_graphics, position, direction, Color.Red, radius);
+        }
+
+        public Arrow CreateForceArrow(Vector2 position, Vector2 direction, float radius)
+        {
+            return new Arrow(_graphics, position, direction, Color.Yellow, radius);
         }
     }
 }

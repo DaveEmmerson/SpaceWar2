@@ -4,6 +4,9 @@ namespace DEMW.SpaceWar2.Graphics
 {
     public interface IGraphicsFactory
     {
-        Arrow CreateArrow(Vector2 position, Vector2 direction, Color color, float radius);
+        Arrow CreateAccelerationArrow(Vector2 position, Vector2 direction, float radius);
+        Arrow CreateVelocityArrow(Vector2 position, Vector2 direction, float radius);
+        Arrow CreateRotationArrow(Vector2 position, Vector2 direction, float radius);
+        Arrow CreateForceArrow(Vector2 position, Vector2 direction, float radius);
     }
 }
