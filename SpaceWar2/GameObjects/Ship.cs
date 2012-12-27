@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Graphics;
@@ -81,21 +82,23 @@ namespace DEMW.SpaceWar2.GameObjects
         private void DrawArrows()
         {
             _arrows.Clear();
-            if (ShowArrows)
+            
+            if (!ShowArrows)
             {
-                var accelerationArrow = _graphicsFactory.CreateAccelerationArrow(TotalForce, Radius);
-                var velocityArrow = _graphicsFactory.CreateVelocityArrow(Velocity, Radius);
-                var rotationArrow = _graphicsFactory.CreateRotationArrow(Rotation, Radius);
+                return;
+            }
 
-                _arrows.Add(accelerationArrow);
-                _arrows.Add(velocityArrow);
-                _arrows.Add(rotationArrow);
+            var accelerationArrow = _graphicsFactory.CreateAccelerationArrow(TotalForce, Radius);
+            var velocityArrow = _graphicsFactory.CreateVelocityArrow(Velocity, Radius);
+            var rotationArrow = _graphicsFactory.CreateRotationArrow(Rotation, Radius);
 
-                foreach (var force in Forces)
-                {
-                    var arrow = _graphicsFactory.CreateForceArrow(force, Radius);
-                    _arrows.Add(arrow);
-                }
+            _arrows.Add(accelerationArrow);
+            _arrows.Add(velocityArrow);
+            _arrows.Add(rotationArrow);
+
+            foreach (var arrow in Forces.Select(force => _graphicsFactory.CreateForceArrow(force, Radius)))
+            {
+                _arrows.Add(arrow);
             }
 
             foreach (var arrow in _arrows)
