@@ -136,7 +136,7 @@
       <ModuleName>nunit.core.interfaces</ModuleName>
       <Classes />
     </Module>
-    <Module hash="8A-70-F6-A1-03-38-CB-78-C1-81-5E-8B-70-F6-19-D1-BF-B4-2B-D5">
+    <Module hash="C0-63-DA-1A-36-B5-D5-CD-F7-41-2F-C0-83-29-35-A6-A7-E0-26-70">
       <FullName>C:\Users\Matt\Documents\GitHub\SpaceWar2\SpaceWar2Tests\bin\Debug\DEMW.SpaceWar2Tests.dll</FullName>
       <ModuleName>DEMW.SpaceWar2Tests</ModuleName>
       <Files>
@@ -3006,7 +3006,7 @@
       <ModuleName>Microsoft.Xna.Framework</ModuleName>
       <Classes />
     </Module>
-    <Module skippedDueTo="Filter" hash="C9-9B-AF-1C-6F-38-95-54-3F-F9-40-3C-9E-0D-D1-83-3A-96-73-34">
+    <Module skippedDueTo="Filter" hash="1F-B2-F3-76-35-C5-28-6D-7D-C6-C6-E7-D5-D8-04-87-04-F9-E3-D9">
       <FullName>C:\Users\Matt\Documents\GitHub\SpaceWar2\SpaceWar2Tests\bin\Debug\DEMW.SpaceWar2.exe</FullName>
       <ModuleName>DEMW.SpaceWar2</ModuleName>
       <Classes />
