@@ -10,7 +10,7 @@ namespace DEMW.SpaceWar2.Graphics
         public IUniverse Universe { get; set; }
 
         public Matrix View { get { return Matrix.CreateLookAt(Position, Target, Vector3.Up); } }
-        public Matrix Projection { get; protected set; }
+        public Matrix Projection { get; private set; }
 
         public Camera(Vector3 position, Vector3 target, IUniverse universe)
         {

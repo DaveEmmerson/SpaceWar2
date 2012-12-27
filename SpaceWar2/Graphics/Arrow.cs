@@ -44,12 +44,7 @@ namespace DEMW.SpaceWar2.Graphics
 
         public void Draw()
         {
-            DrawLineStrip(_vertices);
-        }
-
-        internal void DrawLineStrip(VertexPositionColor[] array)
-        {
-            _graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, array, 0, array.Length - 1);
+            _graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, _vertices, 0, _vertices.Length - 1);
         }
     }
 }

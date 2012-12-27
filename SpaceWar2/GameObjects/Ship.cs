@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
