@@ -108,3 +108,6 @@ deploy/*
 
 *.svn
 .svn
+
+Coverage Report/
+TestResult.xml
