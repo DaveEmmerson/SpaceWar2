@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Users\Matt\Documents\GitHub\SpaceWar2\SpaceWar2Tests\bin\Debug\DEMW.SpaceWar2Tests.dll" total="129" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-12-25" time="01:27:17">
-  <environment nunit-version="2.6.2.12296" clr-version="2.0.50727.6387" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Users\Matt\Documents\GitHub\SpaceWar2" machine-name="NINJAWARRIOR" user="Matt" user-domain="NINJAWARRIOR" />
+<test-results name="C:\Users\Matt\Documents\GitHub\SpaceWar2\SpaceWar2Tests\bin\Debug\DEMW.SpaceWar2Tests.dll" total="142" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-12-27" time="01:36:25">
+  <environment nunit-version="2.6.2.12296" clr-version="2.0.50727.6400" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Users\Matt\Documents\GitHub\SpaceWar2" machine-name="NINJAWARRIOR" user="Matt" user-domain="NINJAWARRIOR" />
   <culture-info current-culture="en-GB" current-uiculture="en-GB" />
-  <test-suite type="Assembly" name="C:\Users\Matt\Documents\GitHub\SpaceWar2\SpaceWar2Tests\bin\Debug\DEMW.SpaceWar2Tests.dll" executed="True" result="Success" success="True" time="1.466" asserts="0">
+  <test-suite type="Assembly" name="C:\Users\Matt\Documents\GitHub\SpaceWar2\SpaceWar2Tests\bin\Debug\DEMW.SpaceWar2Tests.dll" executed="True" result="Success" success="True" time="1.544" asserts="0">
     <results>
-      <test-suite type="Namespace" name="DEMW" executed="True" result="Success" success="True" time="1.451" asserts="0">
+      <test-suite type="Namespace" name="DEMW" executed="True" result="Success" success="True" time="1.529" asserts="0">
         <results>
-          <test-suite type="Namespace" name="SpaceWar2Tests" executed="True" result="Success" success="True" time="1.451" asserts="0">
+          <test-suite type="Namespace" name="SpaceWar2Tests" executed="True" result="Success" success="True" time="1.529" asserts="0">
             <results>
-              <test-suite type="Namespace" name="Controls" executed="True" result="Success" success="True" time="0.686" asserts="0">
+              <test-suite type="Namespace" name="Controls" executed="True" result="Success" success="True" time="0.655" asserts="0">
                 <results>
-                  <test-suite type="TestFixture" name="ControllerFactoryTests" executed="True" result="Success" success="True" time="0.562" asserts="0">
+                  <test-suite type="TestFixture" name="ControllerFactoryTests" executed="True" result="Success" success="True" time="0.577" asserts="0">
                     <results>
-                      <test-suite type="ParameterizedTest" name="Both_default_controller_properties_return_an_appropriate_controller" executed="True" result="Success" success="True" time="0.530" asserts="0">
+                      <test-suite type="ParameterizedTest" name="Both_default_controller_properties_return_an_appropriate_controller" executed="True" result="Success" success="True" time="0.546" asserts="0">
                         <results>
-                          <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(A,None,TurnLeft)" executed="True" result="Success" success="True" time="0.499" asserts="2" />
-                          <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(D,None,TurnRight)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                          <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(W,None,Thrust)" executed="True" result="Success" success="True" time="0.515" asserts="2" />
+                          <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(S,None,ReverseThrust)" executed="True" result="Success" success="True" time="0.016" asserts="2" />
                           <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(R,None,FireProjectile)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(Left,TurnLeft,None)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(Right,TurnRight,None)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                          <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(S,None,ReverseThrust)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(Down,ReverseThrust,None)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(RightControl,FireProjectile,None)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                          <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(W,None,Thrust)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(Up,Thrust,None)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                          <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(A,None,TurnLeft)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                          <test-case name="DEMW.SpaceWar2Tests.Controls.ControllerFactoryTests.Both_default_controller_properties_return_an_appropriate_controller(D,None,TurnRight)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                         </results>
                       </test-suite>
                     </results>
                   </test-suite>
-                  <test-suite type="TestFixture" name="KeyboardControllerTests" executed="True" result="Success" success="True" time="0.062" asserts="0">
+                  <test-suite type="TestFixture" name="KeyboardControllerTests" executed="True" result="Success" success="True" time="0.016" asserts="0">
                     <results>
                       <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardControllerTests.GetAction_can_handle_multiple_actions_on_a_single_key" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                       <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardControllerTests.GetAction_returns_correct_action_when_a_single_key_is_pressed" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                       <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardControllerTests.GetAction_returns_correct_actions_when_multiple_keys_are_pressed" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                      <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardControllerTests.GetAction_returns_none_when_no_mapped_keys_pressed" executed="True" result="Success" success="True" time="0.016" asserts="1" />
-                      <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardControllerTests.SetMapping_binds_to_new_key_when_existing_mapping_is_re_bound" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                      <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardControllerTests.GetAction_returns_none_when_no_mapped_keys_pressed" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                      <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardControllerTests.SetMapping_binds_to_new_key_when_existing_mapping_is_re_bound" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                       <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardControllerTests.SetMapping_unbinds_old_key_when_new_binding_is_made" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                     </results>
                   </test-suite>
                   <test-suite type="TestFixture" name="KeyboardHandlerTests" executed="True" result="Success" success="True" time="0.047" asserts="0">
                     <results>
-                      <test-suite type="ParameterizedTest" name="IsNewlyPressed_returns_correct_value_even_if_repeatedly_called" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                      <test-suite type="ParameterizedTest" name="IsNewlyPressed_returns_correct_value_even_if_repeatedly_called" executed="True" result="Success" success="True" time="0.031" asserts="0">
                         <results>
-                          <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardHandlerTests.IsNewlyPressed_returns_correct_value_even_if_repeatedly_called(Enter)" executed="True" result="Success" success="True" time="0.016" asserts="3" />
-                          <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardHandlerTests.IsNewlyPressed_returns_correct_value_even_if_repeatedly_called(Down)" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+                          <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardHandlerTests.IsNewlyPressed_returns_correct_value_even_if_repeatedly_called(Enter)" executed="True" result="Success" success="True" time="0.031" asserts="3" />
                           <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardHandlerTests.IsNewlyPressed_returns_correct_value_even_if_repeatedly_called(B)" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+                          <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardHandlerTests.IsNewlyPressed_returns_correct_value_even_if_repeatedly_called(Down)" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                         </results>
                       </test-suite>
                       <test-suite type="ParameterizedTest" name="IsPressed_returns_correct_value_even_if_repeatedly_called" executed="True" result="Success" success="True" time="0.016" asserts="0">
                         <results>
                           <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardHandlerTests.IsPressed_returns_correct_value_even_if_repeatedly_called(Up)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                          <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardHandlerTests.IsPressed_returns_correct_value_even_if_repeatedly_called(A)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardHandlerTests.IsPressed_returns_correct_value_even_if_repeatedly_called(Space)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                          <test-case name="DEMW.SpaceWar2Tests.Controls.KeyboardHandlerTests.IsPressed_returns_correct_value_even_if_repeatedly_called(A)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                         </results>
                       </test-suite>
                     </results>
@@ -70,32 +70,31 @@
                   </test-suite>
                 </results>
               </test-suite>
-              <test-suite type="TestFixture" name="GameObjectFactoryTests" executed="True" result="Success" success="True" time="0.125" asserts="0">
+              <test-suite type="TestFixture" name="GameObjectFactoryTests" executed="True" result="Success" success="True" time="0.156" asserts="0">
                 <results>
-                  <test-case name="DEMW.SpaceWar2Tests.GameObjectFactoryTests.CreateShip_creates_a_Ship_with_the_specified_properties_and_adds_it_to_GameObjects" executed="True" result="Success" success="True" time="0.109" asserts="8" />
+                  <test-case name="DEMW.SpaceWar2Tests.GameObjectFactoryTests.CreateShip_creates_a_Ship_with_the_specified_properties_and_adds_it_to_GameObjects" executed="True" result="Success" success="True" time="0.140" asserts="8" />
                   <test-case name="DEMW.SpaceWar2Tests.GameObjectFactoryTests.CreateShip_registers_newly_created_ship_with_managers_and_simulators" executed="True" result="Success" success="True" time="0.000" asserts="0" />
                   <test-case name="DEMW.SpaceWar2Tests.GameObjectFactoryTests.CreateSun_creates_a_Sun_with_the_specified_properties_and_adds_it_to_GameObjects" executed="True" result="Success" success="True" time="0.000" asserts="7" />
-                  <test-case name="DEMW.SpaceWar2Tests.GameObjectFactoryTests.CreateSun_registers_newly_created_sun_with_managers_and_simulators" executed="True" result="Success" success="True" time="0.000" asserts="0" />
-                  <test-case name="DEMW.SpaceWar2Tests.GameObjectFactoryTests.DestroyAll_removes_all_objects_from_GameObjects" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                  <test-case name="DEMW.SpaceWar2Tests.GameObjectFactoryTests.CreateSun_registers_newly_created_sun_with_managers_and_simulators" executed="True" result="Success" success="True" time="0.016" asserts="0" />
+                  <test-case name="DEMW.SpaceWar2Tests.GameObjectFactoryTests.DestroyAll_removes_all_objects_from_GameObjects" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                   <test-case name="DEMW.SpaceWar2Tests.GameObjectFactoryTests.DestroyAll_removes_only_the_objects_that_match_the_provided_predicate" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                   <test-case name="DEMW.SpaceWar2Tests.GameObjectFactoryTests.GameObjects_is_initially_empty" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                 </results>
               </test-suite>
-              <test-suite type="Namespace" name="GameObjects" executed="True" result="Success" success="True" time="0.468" asserts="0">
+              <test-suite type="Namespace" name="GameObjects" executed="True" result="Success" success="True" time="0.546" asserts="0">
                 <results>
                   <test-suite type="TestFixture" name="GameObjectTests" executed="True" result="Success" success="True" time="0.047" asserts="0">
                     <results>
                       <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.AngularVelocity_can_be_set" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.ApplyExternalForce_adds_force_when_non_zero_force_is_specified" executed="True" result="Success" success="True" time="0.000" asserts="4" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.ApplyExternalForce_adds_force_when_non_zero_force_is_specified" executed="True" result="Success" success="True" time="0.016" asserts="4" />
                       <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.ApplyExternalForce_does_nothing_when_zero_force_is_specified" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.ApplyInternalForce_adds_force_relative_to_objects_rotation_when_non_zero_force_is_specified" executed="True" result="Success" success="True" time="0.016" asserts="4" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.ApplyInternalForce_adds_force_relative_to_objects_rotation_when_non_zero_force_is_specified" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                       <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.ApplyInternalForce_does_nothing_when_zero_force_is_added" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                       <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.Color_can_be_set" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.GameObject_can_be_created_and_its_properties_are_set_in_the_constructor" executed="True" result="Success" success="True" time="0.000" asserts="13" />
-                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.Mass_can_be_set" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.MomentOfInertia_can_be_set" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.GameObject_can_be_created_and_its_properties_are_set_in_the_constructor" executed="True" result="Success" success="True" time="0.000" asserts="12" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.Mass_can_be_set" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                       <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.Position_can_be_set" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.Radius_can_be_set" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.Radius_can_be_set" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                       <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.Rotation_can_be_set" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                       <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.Teleport_updates_the_position_to_the_specified_location" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                       <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.Update_aggregates_mulitple_moments_together" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -110,9 +109,17 @@
                       <test-case name="DEMW.SpaceWar2Tests.GameObjects.GameObjectTests.Velocity_can_be_set" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                     </results>
                   </test-suite>
-                  <test-suite type="Namespace" name="ShipComponents" executed="True" result="Success" success="True" time="0.374" asserts="0">
+                  <test-suite type="TestFixture" name="ShipComponentFactoryTests" executed="True" result="Success" success="True" time="0.031" asserts="0">
                     <results>
-                      <test-suite type="TestFixture" name="EnergyStoreTests" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponentFactoryTests.CreateEnergyStore_creates_an_EnergyStore" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponentFactoryTests.CreateHull_creates_a_Hull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponentFactoryTests.CreateShield_creates_a_Shield" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponentFactoryTests.CreateThrusterArray_creates_a_ThrusterArray" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="Namespace" name="ShipComponents" executed="True" result="Success" success="True" time="0.359" asserts="0">
+                    <results>
+                      <test-suite type="TestFixture" name="EnergyStoreTests" executed="True" result="Success" success="True" time="0.031" asserts="0">
                         <results>
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.EnergyStoreTests.Level_is_maximum_initially" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.EnergyStoreTests.Recharge_increases_level_by_recharge_rate_deltaT" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -122,11 +129,11 @@
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.EnergyStoreTests.Request_energy_with_negative_argument_throws_exception" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.EnergyStoreTests.Request_energy_with_no_energy_available_returns_zero_and_level_remains_zero" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.EnergyStoreTests.Request_energy_with_only_partial_energy_available_returns_all_available_and_level_reduces_to_zero" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.EnergyStoreTests.Request_energy_with_sufficient_energy_returns_correct_amount_and_reduces_level" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.EnergyStoreTests.Request_energy_with_sufficient_energy_returns_correct_amount_and_reduces_level" executed="True" result="Success" success="True" time="0.016" asserts="2" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.EnergyStoreTests.Request_energy_with_zero_argument_returns_zero_and_does_not_change_level" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="HullTests" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                      <test-suite type="TestFixture" name="HullTests" executed="True" result="Success" success="True" time="0.016" asserts="0">
                         <results>
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.HullTests.Damage_does_nothing_if_passed_zero" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.HullTests.Damage_has_no_effect_if_associated_game_object_is_Expired" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -136,13 +143,13 @@
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.HullTests.Initial_Level_is_maxLevel" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="ShieldTests" executed="True" result="Success" success="True" time="0.047" asserts="0">
+                      <test-suite type="TestFixture" name="ShieldTests" executed="True" result="Success" success="True" time="0.031" asserts="0">
                         <results>
-                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ShieldTests.Damage_does_not_affect_shieldLevel_when_DamageAmount_is_negative_and_an_exception_is_thrown" executed="True" result="Success" success="True" time="0.031" asserts="3" />
+                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ShieldTests.Damage_does_not_affect_shieldLevel_when_DamageAmount_is_negative_and_an_exception_is_thrown" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ShieldTests.Damage_does_not_reduce_shieldLevel_when_DamageAmount_is_zero" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ShieldTests.Damage_reduces_shieldLevel_by_DamageAmount_and_returns_zero_when_DamageAmound_is_less_than_shieldLevel" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ShieldTests.Damage_reduces_ShieldLevel_to_zero_and_returns_excess_when_DamageAmound_is_greater_than_SheildLevel" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ShieldTests.Recharge_has_no_effect_if_no_energy_available" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ShieldTests.Recharge_has_no_effect_if_no_energy_available" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ShieldTests.Recharge_on_fully_charged_shield_does_not_call_RequestEnergy_on_ship" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ShieldTests.Recharge_only_recharges_by_available_energy" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ShieldTests.Recharge_only_requests_what_it_needs_to_reach_maxium_ShieldLevel" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -151,16 +158,16 @@
                       </test-suite>
                       <test-suite type="TestFixture" name="ThrustArrayTests" executed="True" result="Success" success="True" time="0.203" asserts="0">
                         <results>
-                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_applies_backwards_force_when_ReverseThrust_pressed" executed="True" result="Success" success="True" time="0.156" asserts="0" />
+                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_applies_backwards_force_when_ReverseThrust_pressed" executed="True" result="Success" success="True" time="0.140" asserts="0" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_applies_forward_force_when_Thrust_pressed" executed="True" result="Success" success="True" time="0.000" asserts="0" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_applies_suitable_forces_when_forward_and_right_pressed" executed="True" result="Success" success="True" time="0.016" asserts="0" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_applies_suitable_rotational_forces_when_left_pressed" executed="True" result="Success" success="True" time="0.000" asserts="0" />
-                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_applies_suitable_rotational_forces_when_right_pressed" executed="True" result="Success" success="True" time="0.016" asserts="0" />
+                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_applies_suitable_rotational_forces_when_right_pressed" executed="True" result="Success" success="True" time="0.000" asserts="0" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_does_not_thrust_when_called_with_no_ShipActions" executed="True" result="Success" success="True" time="0.000" asserts="0" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_does_not_thrust_when_left_and_right_together" executed="True" result="Success" success="True" time="0.000" asserts="0" />
                           <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_does_not_thrust_when_no_power_is_available" executed="True" result="Success" success="True" time="0.000" asserts="0" />
-                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_does_not_thrust_when_thrust_and_reverse_together" executed="True" result="Success" success="True" time="0.016" asserts="0" />
-                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_scales_back_all_thrusters_evenly_when_under_powered" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_does_not_thrust_when_thrust_and_reverse_together" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                          <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipComponents.ThrustArrayTests.EngageThrusters_scales_back_all_thrusters_evenly_when_under_powered" executed="True" result="Success" success="True" time="0.016" asserts="0" />
                         </results>
                       </test-suite>
                       <test-suite type="TestFixture" name="ThrusterTests" executed="True" result="Success" success="True" time="0.078" asserts="0">
@@ -181,8 +188,23 @@
                       </test-suite>
                     </results>
                   </test-suite>
-                  <test-suite type="TestFixture" name="ShipTests" executed="True" result="Inconclusive" success="False" time="0.000" asserts="0" />
-                  <test-suite type="TestFixture" name="SunTests" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                  <test-suite type="TestFixture" name="ShipTests" executed="True" result="Success" success="True" time="0.062" asserts="0">
+                    <results>
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipTests.Armour_returns_Level_from_Hull" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipTests.Damage_passes_on_damage_to_hull_if_sheilds_return_a_value" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipTests.Damage_passes_on_damage_to_shields" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipTests.Damage_will_expire_the_ship_if_hull_Level_less_than_zero" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipTests.Draw_creates_arrows_for_each_force_and_draws_them_when_ShowArrows_is_True" executed="True" result="Success" success="True" time="0.016" asserts="0" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipTests.Draw_creates_three_arrows_and_draws_them_when_ShowArrows_is_True" executed="True" result="Success" success="True" time="0.016" asserts="0" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipTests.Draw_does_not_do_much_if_ShowArrows_is_False" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipTests.Energy_returns_Level_from_EnergyStore" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipTests.RequestEnergy_passes_on_request_to_EnergyStore" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipTests.Shields_returns_Level_from_Shield" executed="True" result="Success" success="True" time="0.016" asserts="2" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipTests.Ship_can_be_created_and_its_properties_are_set_in_the_constructor" executed="True" result="Success" success="True" time="0.000" asserts="5" />
+                      <test-case name="DEMW.SpaceWar2Tests.GameObjects.ShipTests.Update_calls_relevant_methods_on_components" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="SunTests" executed="True" result="Success" success="True" time="0.016" asserts="0">
                     <results>
                       <test-case name="DEMW.SpaceWar2Tests.GameObjects.SunTests.Draw_does_nothing" executed="True" result="Success" success="True" time="0.000" asserts="0" />
                       <test-case name="DEMW.SpaceWar2Tests.GameObjects.SunTests.Sun_can_be_created_and_its_properties_are_set_in_the_constructor" executed="True" result="Success" success="True" time="0.000" asserts="4" />
@@ -191,34 +213,32 @@
                   </test-suite>
                 </results>
               </test-suite>
-              <test-suite type="Namespace" name="Physics" executed="True" result="Success" success="True" time="0.062" asserts="0">
+              <test-suite type="Namespace" name="Physics" executed="True" result="Success" success="True" time="0.078" asserts="0">
                 <results>
-                  <test-suite type="TestFixture" name="ForceTests" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                  <test-suite type="TestFixture" name="ForceTests" executed="True" result="Success" success="True" time="0.016" asserts="0">
                     <results>
-                      <test-case name="DEMW.SpaceWar2Tests.Physics.ForceTests.AddVector_adds_vector_and_does_not_affect_displacement" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                      <test-case name="DEMW.SpaceWar2Tests.Physics.ForceTests.AddVector_adds_vector_to_Force_Vector_component" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                       <test-case name="DEMW.SpaceWar2Tests.Physics.ForceTests.Force_default_constructor_creates_force_with_no_vector_and_no_displacement" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                       <test-case name="DEMW.SpaceWar2Tests.Physics.ForceTests.Rotate_by_large_angle_does_not_affect_zero_Displacement" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                       <test-case name="DEMW.SpaceWar2Tests.Physics.ForceTests.Rotate_by_small_angle_does_not_affect_zero_Displacement" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                       <test-case name="DEMW.SpaceWar2Tests.Physics.ForceTests.Rotate_calculates_Displacement_and_Vector_correctly" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                     </results>
                   </test-suite>
-                  <test-suite type="TestFixture" name="GravitySimulatorTests" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                  <test-suite type="TestFixture" name="GravitySimulatorTests" executed="True" result="Success" success="True" time="0.031" asserts="0">
                     <results>
-                      <test-case name="DEMW.SpaceWar2Tests.Physics.GravitySimulatorTests.Simulate_applies_correct_Force_for_collision_case" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                      <test-case name="DEMW.SpaceWar2Tests.Physics.GravitySimulatorTests.Simulate_applies_correct_Force_for_collision_case" executed="True" result="Success" success="True" time="0.016" asserts="0" />
                       <test-case name="DEMW.SpaceWar2Tests.Physics.GravitySimulatorTests.Simulate_applies_correct_Force_for_non_collision_case" executed="True" result="Success" success="True" time="0.000" asserts="0" />
-                      <test-case name="DEMW.SpaceWar2Tests.Physics.GravitySimulatorTests.Simulate_applies_external_Force_to_participant_but_not_to_source" executed="True" result="Success" success="True" time="0.016" asserts="0" />
+                      <test-case name="DEMW.SpaceWar2Tests.Physics.GravitySimulatorTests.Simulate_applies_external_Force_to_participant_but_not_to_source" executed="True" result="Success" success="True" time="0.000" asserts="0" />
                       <test-case name="DEMW.SpaceWar2Tests.Physics.GravitySimulatorTests.UnRegister_removes_participant_GameObject_from_GravitySimulator" executed="True" result="Success" success="True" time="0.000" asserts="0" />
-                      <test-case name="DEMW.SpaceWar2Tests.Physics.GravitySimulatorTests.UnRegister_removes_source_GameObject_from_GravitySimulator" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                      <test-case name="DEMW.SpaceWar2Tests.Physics.GravitySimulatorTests.UnRegister_removes_source_GameObject_from_GravitySimulator" executed="True" result="Success" success="True" time="0.016" asserts="0" />
                     </results>
                   </test-suite>
-                  <test-suite type="TestFixture" name="UniverseTests" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                  <test-suite type="TestFixture" name="UniverseTests" executed="True" result="Success" success="True" time="0.031" asserts="0">
                     <results>
                       <test-suite type="ParameterizedTest" name="Contract_decreases_size_of_Universe_vertically_by_amount_and_maintains_horizontal_proportion" executed="True" result="Success" success="True" time="0.000" asserts="0">
                         <results>
+                          <test-case name="DEMW.SpaceWar2Tests.Physics.UniverseTests.Contract_decreases_size_of_Universe_vertically_by_amount_and_maintains_horizontal_proportion(100)" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                           <test-case name="DEMW.SpaceWar2Tests.Physics.UniverseTests.Contract_decreases_size_of_Universe_vertically_by_amount_and_maintains_horizontal_proportion(-50)" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                           <test-case name="DEMW.SpaceWar2Tests.Physics.UniverseTests.Contract_decreases_size_of_Universe_vertically_by_amount_and_maintains_horizontal_proportion(0)" executed="True" result="Success" success="True" time="0.000" asserts="6" />
-                          <test-case name="DEMW.SpaceWar2Tests.Physics.UniverseTests.Contract_decreases_size_of_Universe_vertically_by_amount_and_maintains_horizontal_proportion(100)" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                         </results>
                       </test-suite>
                       <test-case name="DEMW.SpaceWar2Tests.Physics.UniverseTests.CopyDimensions_creates_new_Universe_with_the_same_dimensions" executed="True" result="Success" success="True" time="0.000" asserts="7" />
@@ -232,7 +252,7 @@
                       <test-case name="DEMW.SpaceWar2Tests.Physics.UniverseTests.GetDefault_creates_a_new_Universe_with_default_dimensions" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                       <test-case name="DEMW.SpaceWar2Tests.Physics.UniverseTests.Universe_creates_universe_and_initialises_the_dimension_properties" executed="True" result="Success" success="True" time="0.000" asserts="8" />
                       <test-case name="DEMW.SpaceWar2Tests.Physics.UniverseTests.UnRegister_removes_registered_object" executed="True" result="Success" success="True" time="0.000" asserts="0" />
-                      <test-case name="DEMW.SpaceWar2Tests.Physics.UniverseTests.Update_constrains_registered_objects_to_the_dimensions_of_the_universe" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                      <test-case name="DEMW.SpaceWar2Tests.Physics.UniverseTests.Update_constrains_registered_objects_to_the_dimensions_of_the_universe" executed="True" result="Success" success="True" time="0.016" asserts="0" />
                     </results>
                   </test-suite>
                 </results>
