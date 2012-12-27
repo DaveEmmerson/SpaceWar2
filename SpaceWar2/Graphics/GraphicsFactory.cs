@@ -13,17 +13,17 @@ namespace DEMW.SpaceWar2.Graphics
             _graphics = graphics as GraphicsDeviceManager;
         }
 
-        public Arrow CreateAccelerationArrow(Vector2 acceleration, float radius)
+        public IArrow CreateAccelerationArrow(Vector2 acceleration, float radius)
         {
             return new Arrow(_graphics, Vector2.Zero, acceleration, Color.LimeGreen, radius);
         }
 
-        public Arrow CreateVelocityArrow(Vector2 direction, float radius)
+        public IArrow CreateVelocityArrow(Vector2 direction, float radius)
         {
             return new Arrow(_graphics, Vector2.Zero, direction, Color.Linen, radius);
         }
 
-        public Arrow CreateRotationArrow(float rotation, float radius)
+        public IArrow CreateRotationArrow(float rotation, float radius)
         {
             var x = (float)Math.Sin(rotation) * radius * 2;
             var y = -(float)Math.Cos(rotation) * radius * 2;
@@ -32,7 +32,7 @@ namespace DEMW.SpaceWar2.Graphics
             return new Arrow(_graphics, Vector2.Zero, rotationAngle, Color.Linen, radius);
         }
 
-        public Arrow CreateForceArrow(Force force, float radius)
+        public IArrow CreateForceArrow(Force force, float radius)
         {
             return new Arrow(_graphics, force.Displacement, force.Vector, Color.Yellow, radius);
         }

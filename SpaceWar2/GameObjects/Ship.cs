@@ -17,7 +17,7 @@ namespace DEMW.SpaceWar2.GameObjects
         private readonly IThrusterArray _thrusterArray;
 
         private readonly IGraphicsFactory _graphicsFactory;
-        private readonly IList<Arrow> _arrows;
+        private readonly IList<IArrow> _arrows;
 
         public Ship(string name, Vector2 position, float radius, Color color, IGraphicsFactory graphicsFactory, IShipComponentFactory shipComponentFactory)
             : base (position, radius, 1)
@@ -33,7 +33,7 @@ namespace DEMW.SpaceWar2.GameObjects
             _thrusterArray = shipComponentFactory.CreateThrusterArray(this);
 
             _graphicsFactory = graphicsFactory;
-            _arrows = new List<Arrow>();
+            _arrows = new List<IArrow>();
         }
 
         public string Name { get; private set; }

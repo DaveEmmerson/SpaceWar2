@@ -3,6 +3,7 @@ using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Graphics;
+using DEMW.SpaceWar2.Physics;
 using Microsoft.Xna.Framework;
 using NSubstitute;
 using NUnit.Framework;
@@ -22,6 +23,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
 
         private Vector2 _position;
         private Ship _ship;
+        private const float _radius = 16f;
 
         [SetUp]
         public void SetUp()
@@ -41,7 +43,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _shipComponentFactory.CreateThrusterArray(Arg.Any<IShip>()).Returns(_thrusterArray);
 
             _position = new Vector2(12f, 5.5f);
-            _ship = new Ship("TestShip", _position, 16f, Color.Goldenrod, _graphicsFactory, _shipComponentFactory)
+            _ship = new Ship("TestShip", _position, _radius, Color.Goldenrod, _graphicsFactory, _shipComponentFactory)
             {
                 Controller = _controller
             };
@@ -54,7 +56,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             Assert.AreEqual(Color.Goldenrod, _ship.Color);
 
             Assert.AreEqual(_position, _ship.Position);
-            Assert.AreEqual(16f, _ship.Radius);
+            Assert.AreEqual(_radius, _ship.Radius);
             Assert.AreEqual(1f, _ship.Mass);
 
             _shipComponentFactory.Received(1).CreateEnergyStore();
@@ -146,6 +148,80 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _ship.RequestEnergy(13f);
 
             _energyStore.Received(1).RequestEnergy(13f);
+        }
+
+        [Test]
+        public void Draw_does_not_do_much_if_ShowArrows_is_False()
+        {
+            _ship.ShowArrows = false;
+            _ship.Draw();
+
+            _graphicsFactory.DidNotReceiveWithAnyArgs().CreateAccelerationArrow(Arg.Any<Vector2>(), Arg.Any<float>());
+            _graphicsFactory.DidNotReceiveWithAnyArgs().CreateVelocityArrow(Arg.Any<Vector2>(), Arg.Any<float>());
+            _graphicsFactory.DidNotReceiveWithAnyArgs().CreateRotationArrow(Arg.Any<float>(), Arg.Any<float>());
+            _graphicsFactory.DidNotReceiveWithAnyArgs().CreateForceArrow(Arg.Any<Force>(), Arg.Any<float>());
+        }
+
+        [Test]
+        public void Draw_creates_three_arrows_and_draws_them_when_ShowArrows_is_True()
+        {
+            var accelerationArrow = Substitute.For<IArrow>();
+            var velocityArrow = Substitute.For<IArrow>();
+            var rotationArrow = Substitute.For<IArrow>();
+            _graphicsFactory.CreateAccelerationArrow(Arg.Any<Vector2>(), Arg.Any<float>()).Returns(accelerationArrow);
+            _graphicsFactory.CreateVelocityArrow(Arg.Any<Vector2>(), Arg.Any<float>()).Returns(velocityArrow);
+            _graphicsFactory.CreateRotationArrow(Arg.Any<float>(), Arg.Any<float>()).Returns(rotationArrow);
+            
+            _ship.ShowArrows = true;
+            _ship.Velocity = new Vector2(1f, 1f);
+            _ship.Rotation = 1f;
+            _ship.Draw();
+
+            _graphicsFactory.Received(1).CreateAccelerationArrow(new Vector2(0f, 0f), _radius);
+            _graphicsFactory.Received(1).CreateVelocityArrow(new Vector2(1f, 1f), _radius);
+            _graphicsFactory.Received(1).CreateRotationArrow(1f, _radius);
+            _graphicsFactory.DidNotReceiveWithAnyArgs().CreateForceArrow(Arg.Any<Force>(), Arg.Any<float>());
+
+            accelerationArrow.Received(1).Draw();
+            velocityArrow.Received(1).Draw();
+            rotationArrow.Received(1).Draw();
+        }
+
+        [Test]
+        public void Draw_creates_arrows_for_each_force_and_draws_them_when_ShowArrows_is_True()
+        {
+            var accelerationArrow = Substitute.For<IArrow>();
+            var velocityArrow = Substitute.For<IArrow>();
+            var rotationArrow = Substitute.For<IArrow>();
+            var force1Arrow = Substitute.For<IArrow>();
+            var force2Arrow = Substitute.For<IArrow>();
+
+            var force1 = new Force(new Vector2(2.5f, 0.1f), new Vector2(0f,0f));
+            var force2 = new Force(new Vector2(0.1f, 9.9f), new Vector2(-1f,-1f));
+
+            _graphicsFactory.CreateAccelerationArrow(Arg.Any<Vector2>(), Arg.Any<float>()).Returns(accelerationArrow);
+            _graphicsFactory.CreateVelocityArrow(Arg.Any<Vector2>(), Arg.Any<float>()).Returns(velocityArrow);
+            _graphicsFactory.CreateRotationArrow(Arg.Any<float>(), Arg.Any<float>()).Returns(rotationArrow);
+            _graphicsFactory.CreateForceArrow(force1, Arg.Any<float>()).Returns(force1Arrow);
+            _graphicsFactory.CreateForceArrow(force2, Arg.Any<float>()).Returns(force2Arrow);
+            
+            _ship.ShowArrows = true;
+            _ship.ApplyInternalForce(force1);
+            _ship.ApplyExternalForce(force2);
+            _ship.Update(new GameTime());
+            _ship.Draw();
+
+            _graphicsFactory.Received(1).CreateAccelerationArrow(new Vector2(2.6f, 10.0f), _radius);
+            _graphicsFactory.Received(1).CreateVelocityArrow(new Vector2(0f, 0f), _radius);
+            _graphicsFactory.Received(1).CreateRotationArrow(0f, _radius);
+            _graphicsFactory.Received(1).CreateForceArrow(force1, _radius);
+            _graphicsFactory.Received(1).CreateForceArrow(force2, _radius);
+
+            accelerationArrow.Received(1).Draw();
+            velocityArrow.Received(1).Draw();
+            rotationArrow.Received(1).Draw();
+            force1Arrow.Received(1).Draw();
+            force2Arrow.Received(1).Draw();
         }
     }
 }

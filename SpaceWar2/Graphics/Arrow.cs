@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Graphics
 {
-    public class Arrow
+    public class Arrow : IArrow
     {
         private readonly GraphicsDeviceManager _graphics;
         private readonly VertexPositionColor[] _vertices;
