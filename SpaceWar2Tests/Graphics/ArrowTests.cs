@@ -57,15 +57,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, color, radius);
 
-            Assert.IsNotNull(arrow);
-            var arrowObject = (Arrow)arrow;
-
-            Assert.AreEqual(Color.Transparent, arrowObject.Verticies[0].Color);
-            Assert.AreEqual(color, arrowObject.Verticies[1].Color);
-            Assert.AreEqual(color, arrowObject.Verticies[2].Color);
-            Assert.AreEqual(color, arrowObject.Verticies[3].Color);
-            Assert.AreEqual(color, arrowObject.Verticies[4].Color);
-            Assert.AreEqual(color, arrowObject.Verticies[5].Color);
+            ArrowUtils.CheckColour(arrow, color);
         }
 
         [Test]

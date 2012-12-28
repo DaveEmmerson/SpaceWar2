@@ -29,6 +29,8 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var accelerationArrow = _graphicsFactory.CreateAccelerationArrow(acceleration, radius);
 
             Assert.AreEqual(12.2442112f, ArrowUtils.GetArrowLength(accelerationArrow));
+
+            ArrowUtils.CheckColour(accelerationArrow, Color.LimeGreen);
         }
 
         [Test]
@@ -40,6 +42,8 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var velocityArrow = _graphicsFactory.CreateVelocityArrow(velocity, radius);
 
             Assert.AreEqual(11.0f, ArrowUtils.GetArrowLength(velocityArrow));
+
+            ArrowUtils.CheckColour(velocityArrow, Color.Linen);
         }
 
         [Test]
@@ -51,6 +55,8 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var rotationArrow = _graphicsFactory.CreateRotationArrow(rotation, radius);
 
             Assert.AreEqual(21.4316788f, ArrowUtils.GetArrowLength(rotationArrow));
+
+            ArrowUtils.CheckColour(rotationArrow, Color.Red);
         }
 
         [Test]
@@ -62,6 +68,8 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var forceArrow = _graphicsFactory.CreateForceArrow(force, radius);
 
             Assert.AreEqual(9.48604584f, ArrowUtils.GetArrowLength(forceArrow));
+
+            ArrowUtils.CheckColour(forceArrow, Color.Yellow);
         }
     }
 }
