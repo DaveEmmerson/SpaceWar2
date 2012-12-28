@@ -127,6 +127,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             Assert.IsFalse(_ship.Expired);
             _shield.Received(1).Damage(10f);
             _hull.Received(1).Damage(6f);
+            var temp = _hull.Received(1).Level;
+            Assert.AreEqual(0f, temp); //pointless test but keeps compiler and resharper happy
         }
 
         [Test]
@@ -140,6 +142,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             Assert.IsTrue(_ship.Expired);
             _shield.Received(1).Damage(10f);
             _hull.Received(1).Damage(6f);
+            var temp = _hull.Received(1).Level;
+            Assert.AreEqual(0f, temp); //pointless test but keeps compiler and resharper happy
         }
 
         [Test]
@@ -151,7 +155,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
         }
 
         [Test]
-        public void Draw_does_not_do_much_if_ShowArrows_is_False()
+        public void Draw_does_nothing_if_ShowArrows_is_False()
         {
             _ship.ShowArrows = false;
             _ship.Draw();
