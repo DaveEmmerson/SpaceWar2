@@ -28,7 +28,7 @@ namespace DEMW.SpaceWar2.Graphics
             var vector = Vector2.UnitY * radius * 2f;
             var rotationAngle = vector.Rotate(rotation);
 
-            return Arrow.CreateArrow(_graphics, Vector2.Zero, rotationAngle, Color.Linen, radius);
+            return Arrow.CreateArrow(_graphics, Vector2.Zero, rotationAngle, Color.Red, radius);
         }
 
         public IArrow CreateForceArrow(Force force, float radius)
