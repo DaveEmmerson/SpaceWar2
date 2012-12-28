@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWar2Tests", "SpaceWar2Tests\SpaceWar2Tests.csproj", "{5BC5A434-798C-4B10-B4E8-ED39DAEF3497}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8595BF4D-D77E-4B0A-9066-2DB01EBB3CD9} = {8595BF4D-D77E-4B0A-9066-2DB01EBB3CD9}
@@ -13,6 +13,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F0CD17E-DACB-4B4E-B506-3035BF1D3410}"
 	ProjectSection(SolutionItems) = preProject
 		Readme.txt = Readme.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B5FAD68D-FA8C-4049-B044-B7264750C26C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
 Global
