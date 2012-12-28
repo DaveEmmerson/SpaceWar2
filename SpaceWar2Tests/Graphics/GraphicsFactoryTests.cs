@@ -1,5 +1,6 @@
 ﻿using DEMW.SpaceWar2.Graphics;
 using DEMW.SpaceWar2.Physics;
+using DEMW.SpaceWar2.Utils;
 using DEMW.SpaceWar2Tests.TestUtils;
 using Microsoft.Xna.Framework;
 using NSubstitute;
@@ -28,8 +29,12 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             var accelerationArrow = _graphicsFactory.CreateAccelerationArrow(acceleration, radius);
 
-            Assert.AreEqual(12.2442112f, ArrowUtils.GetArrowLength(accelerationArrow));
-
+            var actualDirection = ArrowUtils.GetDirection(accelerationArrow);
+            var expectedDirection = acceleration;
+            expectedDirection.Normalize();
+            
+            Assert.AreEqual(12.2442112f, ArrowUtils.GetLength(accelerationArrow));
+            actualDirection.AssertAreEqualWithinTolerance(expectedDirection, 0.000001f);
             ArrowUtils.CheckColour(accelerationArrow, Color.LimeGreen);
         }
 
@@ -41,8 +46,12 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             var velocityArrow = _graphicsFactory.CreateVelocityArrow(velocity, radius);
 
-            Assert.AreEqual(11.0f, ArrowUtils.GetArrowLength(velocityArrow));
+            var actualDirection = ArrowUtils.GetDirection(velocityArrow);
+            var expectedDirection = velocity;
+            expectedDirection.Normalize();
 
+            Assert.AreEqual(11.0f, ArrowUtils.GetLength(velocityArrow));
+            actualDirection.AssertAreEqualWithinTolerance(expectedDirection);
             ArrowUtils.CheckColour(velocityArrow, Color.Linen);
         }
 
@@ -53,9 +62,11 @@ namespace DEMW.SpaceWar2Tests.Graphics
             const float radius = 15f;
 
             var rotationArrow = _graphicsFactory.CreateRotationArrow(rotation, radius);
+            var expectedDirection = new Vector2(0f, -1f).Rotate(1.2f);
+            var actualDirection = ArrowUtils.GetDirection(rotationArrow);
 
-            Assert.AreEqual(21.4316788f, ArrowUtils.GetArrowLength(rotationArrow));
-
+            Assert.AreEqual(21.4316788f, ArrowUtils.GetLength(rotationArrow), 0.00001f);
+            actualDirection.AssertAreEqualWithinTolerance(expectedDirection, 0.0000001f);
             ArrowUtils.CheckColour(rotationArrow, Color.Red);
         }
 
@@ -67,8 +78,12 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             var forceArrow = _graphicsFactory.CreateForceArrow(force, radius);
 
-            Assert.AreEqual(9.48604584f, ArrowUtils.GetArrowLength(forceArrow));
+            var actualDirection = ArrowUtils.GetDirection(forceArrow);
+            var expectedDirection = force.Vector;
+            expectedDirection.Normalize();
 
+            Assert.AreEqual(9.48604584f, ArrowUtils.GetLength(forceArrow));
+            actualDirection.AssertAreEqualWithinTolerance(expectedDirection);
             ArrowUtils.CheckColour(forceArrow, Color.Yellow);
         }
     }

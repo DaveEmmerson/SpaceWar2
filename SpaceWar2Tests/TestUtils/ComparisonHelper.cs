@@ -34,5 +34,11 @@ namespace DEMW.SpaceWar2Tests.TestUtils
             Assert.AreEqual(expectedVector.X, actualVector.X);
             Assert.AreEqual(expectedVector.Y, actualVector.Y);
         }
+
+        public static void AssertAreEqualWithinTolerance(this Vector2 actualVector, Vector2 expectedVector, float delta)
+        {
+            Assert.AreEqual(expectedVector.X, actualVector.X, delta);
+            Assert.AreEqual(expectedVector.Y, actualVector.Y, delta);
+        }
     }
 }

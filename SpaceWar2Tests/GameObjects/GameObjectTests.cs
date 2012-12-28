@@ -55,7 +55,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             Assert.IsNull(_gameObject.Model);
             Assert.AreEqual(Color.Transparent, _gameObject.Color);
 
-            Assert.That(_gameObject.TotalForce.Matches(Vector2.Zero));
+            _gameObject.TotalForce.AssertAreEqualWithinTolerance(Vector2.Zero);
             Assert.AreEqual(0f, _gameObject.TotalMoment);
         
             Assert.IsEmpty(_gameObject.Forces);
@@ -167,8 +167,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects
 
             Assert.AreEqual(1, _gameObject.Forces.Count());
             var actualForce = _gameObject.Forces.First();
-            Assert.IsTrue(actualForce.Matches(force));
-            Assert.IsTrue(_gameObject.TotalForce.Matches(direction));
+            actualForce.AssertAreEqualWithinTolerance(force);
+            _gameObject.TotalForce.AssertAreEqualWithinTolerance(direction);
 
             Assert.AreEqual(0f, _gameObject.TotalMoment);
         }
@@ -194,10 +194,10 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _gameObject.Update(_gameTime);
 
             Assert.AreEqual(1, _gameObject.Forces.Count());
-            var expectedForce = new Force(new Vector2(0f, 10f));
+            var expectedForce = new Force(new Vector2(-4.37113897E-07f, 10f));
             var actualForce = _gameObject.Forces.First();
-            Assert.IsTrue(actualForce.Matches(expectedForce));
-            Assert.IsTrue(_gameObject.TotalForce.Matches(expectedForce.Vector));
+            actualForce.AssertAreEqualWithinTolerance(expectedForce);
+            _gameObject.TotalForce.AssertAreEqualWithinTolerance(expectedForce.Vector);
 
             Assert.AreEqual(0f, _gameObject.TotalMoment);
         }
@@ -220,12 +220,12 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             var actualForce2 = _gameObject.Forces.ElementAt(1);
             var actualForce3 = _gameObject.Forces.ElementAt(2);
 
-            Assert.IsTrue(actualForce1.Matches(force1));
-            Assert.IsTrue(actualForce2.Matches(force2));
-            Assert.IsTrue(actualForce3.Matches(force3));
+            actualForce1.AssertAreEqualWithinTolerance(force1);
+            actualForce2.AssertAreEqualWithinTolerance(force2);
+            actualForce3.AssertAreEqualWithinTolerance(force3);
 
             var expectedTotalForce = new Vector2(3f, 12f);
-            Assert.IsTrue(_gameObject.TotalForce.Matches(expectedTotalForce));
+            _gameObject.TotalForce.AssertAreEqualWithinTolerance(expectedTotalForce);
 
             Assert.AreEqual(0f, _gameObject.TotalMoment);
         }
@@ -286,8 +286,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _gameObject.ApplyExternalForce(force);
             _gameObject.Update(_gameTime);
 
-            Assert.IsTrue(_gameObject.Velocity.Matches(new Vector2(0.001f, 0f)));
-            Assert.IsTrue(_gameObject.Position.Matches(new Vector2(2.00001f, 2.00f)));
+            _gameObject.Velocity.AssertAreEqualWithinTolerance(new Vector2(0.001f, 0f));
+            _gameObject.Position.AssertAreEqualWithinTolerance(new Vector2(2.00001f, 2.00f));
         }
 
         [Test]

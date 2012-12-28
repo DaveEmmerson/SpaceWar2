@@ -22,5 +22,10 @@ namespace DEMW.SpaceWar2.Utils
             var rotationMatrix = Matrix.CreateRotationZ(rotation);
             return Vector2.Transform(vector, rotationMatrix);
         }
+
+        public static Vector2 DiscardZComponent(this Vector3 vector)
+        {
+            return new Vector2(vector.X, vector.Y);
+        }
     }
 }

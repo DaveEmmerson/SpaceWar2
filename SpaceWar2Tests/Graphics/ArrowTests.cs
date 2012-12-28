@@ -70,18 +70,10 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, expectedDirection, color, radius);
 
-            Assert.IsNotNull(arrow);
-            var arrowObject = (Arrow)arrow;
+            var actualDirection = ArrowUtils.GetDirection(arrow);
 
-            var x0 = arrowObject.Verticies[0].Position.X;
-            var y0 = arrowObject.Verticies[0].Position.Y;
-            var x1 = arrowObject.Verticies[1].Position.X;
-            var y1 = arrowObject.Verticies[1].Position.Y;
-
-            var actualDirection = new Vector2(x1 - x0, y1 - y0);
             expectedDirection.Normalize();
-            actualDirection.Normalize();
-            Assert.IsTrue(actualDirection.Matches(expectedDirection));
+            actualDirection.AssertAreEqualWithinTolerance(expectedDirection, 0.000001f);
         }
 
         [Test]
@@ -103,8 +95,8 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             direction.Normalize();
             var expectedPosition = position + (direction*radius);
-            
-            Assert.IsTrue(actualPosition.Matches(expectedPosition));
+
+            actualPosition.AssertAreEqualWithinTolerance(expectedPosition);
         }
 
         [Test]
@@ -127,7 +119,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             direction.Normalize();
             var expectedPosition = position + (direction * radius);
 
-            Assert.IsTrue(actualPosition.Matches(expectedPosition));
+            actualPosition.AssertAreEqualWithinTolerance(expectedPosition);
         }
 
         [Test]
@@ -139,13 +131,11 @@ namespace DEMW.SpaceWar2Tests.Graphics
             const float radius = 13f;
 
             var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, color, radius);
-            var actualLength = ArrowUtils.GetArrowLength(arrow);
+            var actualLength = ArrowUtils.GetLength(arrow);
 
             var expectedLength = (radius / 3f) + (3f * (float)Math.Sqrt(direction.Length()));
 
             Assert.AreEqual(expectedLength, actualLength);
         }
     }
-
-    //todo put all these methods into utility class for getting arrow properties (reverse engineering arrows properites from their verticies
 }
