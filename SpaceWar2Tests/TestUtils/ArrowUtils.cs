@@ -1,12 +1,13 @@
 using DEMW.SpaceWar2.Graphics;
+using DEMW.SpaceWar2.Utils;
 using Microsoft.Xna.Framework;
 using NUnit.Framework;
 
 namespace DEMW.SpaceWar2Tests.TestUtils
 {
-    static internal class ArrowUtils
+    internal static class ArrowUtils
     {
-        public static float GetArrowLength(IArrow arrow)
+        public static float GetLength(IArrow arrow)
         {
             var arrowObject = (Arrow) arrow;
             var x0 = arrowObject.Verticies[0].Position.X;
@@ -27,6 +28,16 @@ namespace DEMW.SpaceWar2Tests.TestUtils
             Assert.AreEqual(color, arrowObject.Verticies[3].Color);
             Assert.AreEqual(color, arrowObject.Verticies[4].Color);
             Assert.AreEqual(color, arrowObject.Verticies[5].Color);
+        }
+
+        public static Vector2 GetDirection(IArrow arrow)
+        {
+            var arrowObject = (Arrow) arrow;
+
+            var actualDirection = arrowObject.Verticies[1].Position - arrowObject.Verticies[0].Position;
+            actualDirection.Normalize();
+            
+            return actualDirection.DiscardZComponent();
         }
     }
 }
