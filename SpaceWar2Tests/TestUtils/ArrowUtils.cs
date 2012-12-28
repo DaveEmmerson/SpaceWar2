@@ -10,12 +10,13 @@ namespace DEMW.SpaceWar2Tests.TestUtils
         public static float GetLength(IArrow arrow)
         {
             var arrowObject = (Arrow) arrow;
+
             var x0 = arrowObject.Verticies[0].Position.X;
             var y0 = arrowObject.Verticies[0].Position.Y;
             var x3 = arrowObject.Verticies[3].Position.X;
             var y3 = arrowObject.Verticies[3].Position.Y;
-            var actualLength = new Vector2(x3 - x0, y3 - y0).Length();
-            return actualLength;
+
+            return new Vector2(x3 - x0, y3 - y0).Length();
         }
 
         public static void CheckColour(IArrow arrow, Color color)
@@ -28,6 +29,13 @@ namespace DEMW.SpaceWar2Tests.TestUtils
             Assert.AreEqual(color, arrowObject.Verticies[3].Color);
             Assert.AreEqual(color, arrowObject.Verticies[4].Color);
             Assert.AreEqual(color, arrowObject.Verticies[5].Color);
+        }
+
+        public static Vector2 GetPosition(IArrow arrow)
+        {
+            var arrowObject = (Arrow)arrow;
+
+            return new Vector2(arrowObject.Verticies[0].Position.X, arrowObject.Verticies[0].Position.Y);
         }
 
         public static Vector2 GetDirection(IArrow arrow)

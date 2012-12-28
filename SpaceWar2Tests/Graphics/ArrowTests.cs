@@ -10,8 +10,11 @@ namespace DEMW.SpaceWar2Tests.Graphics
     [TestFixture]
     internal class ArrowTests
     {
-        private IGraphicsDeviceManager _graphicsDeviceManager;
+        private readonly Color _color = Color.HotPink;
+        private const float Radius = 13f;
 
+        private IGraphicsDeviceManager _graphicsDeviceManager;
+        
         [SetUp]
         public void SetUp()
         {
@@ -23,10 +26,8 @@ namespace DEMW.SpaceWar2Tests.Graphics
         {
             var position = Vector2.Zero;
             var direction = Vector2.Zero;
-            var color = Color.HotPink;
-            const float radius = 13f;
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, color, radius);
+            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, _color, Radius);
 
             Assert.IsNull(arrow);
         }
@@ -36,10 +37,8 @@ namespace DEMW.SpaceWar2Tests.Graphics
         {
             var position = Vector2.Zero;
             var direction = new Vector2(1f, 5f);
-            var color = Color.HotPink;
-            const float radius = 13f;
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, color, radius);
+            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, _color, Radius);
 
             Assert.IsNotNull(arrow);
             var arrowObject = (Arrow) arrow;
@@ -52,12 +51,10 @@ namespace DEMW.SpaceWar2Tests.Graphics
         {
             var position = Vector2.Zero;
             var direction = new Vector2(1f, 5f);
-            var color = Color.HotPink;
-            const float radius = 13f;
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, color, radius);
+            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, _color, Radius);
 
-            ArrowUtils.CheckColour(arrow, color);
+            ArrowUtils.CheckColour(arrow, _color);
         }
 
         [Test]
@@ -65,13 +62,10 @@ namespace DEMW.SpaceWar2Tests.Graphics
         {
             var position = Vector2.Zero;
             var expectedDirection = new Vector2(1f, 5f);
-            var color = Color.HotPink;
-            const float radius = 13f;
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, expectedDirection, color, radius);
+            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, expectedDirection, _color, Radius);
 
             var actualDirection = ArrowUtils.GetDirection(arrow);
-
             expectedDirection.Normalize();
             actualDirection.AssertAreEqualWithinTolerance(expectedDirection, 0.000001f);
         }
@@ -81,20 +75,12 @@ namespace DEMW.SpaceWar2Tests.Graphics
         {
             var position = Vector2.Zero;
             var direction = new Vector2(1f, 5f);
-            var color = Color.HotPink;
-            const float radius = 13f;
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, color, radius);
+            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, _color, Radius);
 
-            Assert.IsNotNull(arrow);
-            var arrowObject = (Arrow)arrow;
-
-            var x0 = arrowObject.Verticies[0].Position.X;
-            var y0 = arrowObject.Verticies[0].Position.Y;
-            var actualPosition = new Vector2(x0, y0);
-
+            var actualPosition = ArrowUtils.GetPosition(arrow);
             direction.Normalize();
-            var expectedPosition = position + (direction*radius);
+            var expectedPosition = position + (direction*Radius);
 
             actualPosition.AssertAreEqualWithinTolerance(expectedPosition);
         }
@@ -104,20 +90,12 @@ namespace DEMW.SpaceWar2Tests.Graphics
         {
             var position = new Vector2(3f, 7f);
             var direction = new Vector2(1f, 5f);
-            var color = Color.HotPink;
-            const float radius = 13f;
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, color, radius);
+            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, _color, Radius);
 
-            Assert.IsNotNull(arrow);
-            var arrowObject = (Arrow)arrow;
-
-            var x0 = arrowObject.Verticies[0].Position.X;
-            var y0 = arrowObject.Verticies[0].Position.Y;
-            var actualPosition = new Vector2(x0, y0);
-
+            var actualPosition = ArrowUtils.GetPosition(arrow);
             direction.Normalize();
-            var expectedPosition = position + (direction * radius);
+            var expectedPosition = position + (direction * Radius);
 
             actualPosition.AssertAreEqualWithinTolerance(expectedPosition);
         }
@@ -127,14 +105,11 @@ namespace DEMW.SpaceWar2Tests.Graphics
         {
             var position = Vector2.Zero;
             var direction = new Vector2(1f, 5f);
-            var color = Color.HotPink;
-            const float radius = 13f;
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, color, radius);
+            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, _color, Radius);
+
+            var expectedLength = (Radius / 3f) + (3f * (float)Math.Sqrt(direction.Length()));
             var actualLength = ArrowUtils.GetLength(arrow);
-
-            var expectedLength = (radius / 3f) + (3f * (float)Math.Sqrt(direction.Length()));
-
             Assert.AreEqual(expectedLength, actualLength);
         }
     }
