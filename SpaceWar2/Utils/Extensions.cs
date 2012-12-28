@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.Utils
 {
@@ -14,6 +15,12 @@ namespace DEMW.SpaceWar2.Utils
             {
                 action(item);
             }
+        }
+
+        public static Vector2 Rotate(this Vector2 vector, float rotation)
+        {
+            var rotationMatrix = Matrix.CreateRotationZ(rotation);
+            return Vector2.Transform(vector, rotationMatrix);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace DEMW.SpaceWar2.Graphics
             _vertices[4].Position = arrowHead + (perpendicular * arrowHeadSize);
             _vertices[5].Position = arrowHead;
 
-            for (var i = 0; i <=5; i++)
+            for (var i = 1; i <=5; i++)
             {
                 _vertices[i].Color = color;
             }

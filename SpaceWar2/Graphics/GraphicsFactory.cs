@@ -1,5 +1,5 @@
-﻿using System;
-using DEMW.SpaceWar2.Physics;
+﻿using DEMW.SpaceWar2.Physics;
+using DEMW.SpaceWar2.Utils;
 using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.Graphics
@@ -25,10 +25,9 @@ namespace DEMW.SpaceWar2.Graphics
 
         public IArrow CreateRotationArrow(float rotation, float radius)
         {
-            var x = (float)Math.Sin(rotation) * radius * 2;
-            var y = -(float)Math.Cos(rotation) * radius * 2;
+            var vector = Vector2.UnitY * radius * 2f;
+            var rotationAngle = vector.Rotate(rotation);
 
-            var rotationAngle = new Vector2(x, y);
             return Arrow.CreateArrow(_graphics, Vector2.Zero, rotationAngle, Color.Linen, radius);
         }
 

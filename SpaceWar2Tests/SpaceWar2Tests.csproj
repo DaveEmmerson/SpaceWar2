@@ -69,6 +69,7 @@
     <Compile Include="Physics\UniverseTests.cs" />
     <Compile Include="Physics\GravitySimulatorTests.cs" />
     <Compile Include="Physics\ForceTests.cs" />
+    <Compile Include="TestUtils\ArrowUtils.cs" />
     <Compile Include="TestUtils\ComparisonHelper.cs" />
     <Compile Include="Utils\ExtensionsTests.cs" />
   </ItemGroup>
