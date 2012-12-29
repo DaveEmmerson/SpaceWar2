@@ -74,7 +74,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var expectedPosition = new Vector2(13.9805861f, -5.43536568f);
 
             Assert.AreEqual(21.4316788f, ArrowUtils.GetLength(rotationArrow), 0.00001f);
-            actualPosition.AssertAreEqualWithinTolerance(expectedPosition);
+            actualPosition.AssertAreEqualWithinTolerance(expectedPosition, 0.000001f);
             actualDirection.AssertAreEqualWithinTolerance(expectedDirection, 0.0000001f);
             ArrowUtils.CheckColour(rotationArrow, Color.Red);
         }

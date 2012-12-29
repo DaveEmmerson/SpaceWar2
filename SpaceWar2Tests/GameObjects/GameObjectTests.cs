@@ -287,7 +287,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _gameObject.ApplyExternalForce(force);
             _gameObject.Update(_gameTime);
 
-            _gameObject.Velocity.AssertAreEqualWithinTolerance(new Vector2(0.001f, 0f));
+            _gameObject.Velocity.AssertAreEqualWithinTolerance(new Vector2(0.001f, 0f), 0.0000001f);
             _gameObject.Position.AssertAreEqualWithinTolerance(new Vector2(2.00001f, 2.00f));
         }
 
