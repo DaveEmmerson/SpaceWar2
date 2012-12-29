@@ -1,4 +1,5 @@
 ﻿using System;
+using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -6,10 +7,9 @@ namespace DEMW.SpaceWar2.Graphics
 {
     public class Arrow : IArrow
     {
-        private readonly GraphicsDeviceManager _graphics;
         private readonly VertexPositionColor[] _vertices;
 
-        public static IArrow CreateArrow(IGraphicsDeviceManager graphics, Vector2 position, Vector2 direction, Color color, float radius)
+        public static IArrow CreateArrow(Vector2 position, Vector2 direction, Color color, float radius)
         {
             if (direction == Vector2.Zero)
             {
@@ -17,12 +17,11 @@ namespace DEMW.SpaceWar2.Graphics
                 return null;
             }
 
-            return new Arrow(graphics, position, direction, color, radius);
+            return new Arrow(position, direction, color, radius);
         }
-        
-        private Arrow(IGraphicsDeviceManager graphics, Vector2 position, Vector2 direction, Color color, float radius)
+
+        private Arrow(Vector2 position, Vector2 direction, Color color, float radius)
         {
-            _graphics = graphics as GraphicsDeviceManager;
             _vertices = new VertexPositionColor[6];
             
             var length = 3f * (float)Math.Sqrt(direction.Length());
@@ -49,9 +48,9 @@ namespace DEMW.SpaceWar2.Graphics
             _vertices[0].Color = Color.Transparent;
         }
 
-        public void Draw()
+        public void Draw(IGraphicsDevice graphicsDevice)
         {
-            _graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, _vertices, 0, _vertices.Length - 1);
+            graphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, _vertices, 0, _vertices.Length - 1);
         }
 
         public VertexPositionColor[] Verticies

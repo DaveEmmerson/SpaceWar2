@@ -16,7 +16,7 @@ namespace DEMW.SpaceWar2
         private const float Speed = 100f;
 
         private readonly IContentManager _contentManager;
-        private readonly IGraphicsDeviceManager _graphics;
+        private readonly IGraphicsDevice _graphicsDevice;
         private readonly GameObjectFactory _gameObjectFactory;
         private readonly GravitySimulator _gravitySimulator;
         private readonly IUniverse _universe;
@@ -38,12 +38,14 @@ namespace DEMW.SpaceWar2
         public SpaceWar2Game()
         {
             _contentManager = new ContentManagerWrapper(Content.ServiceProvider, "Content");
-            _graphics = new GraphicsDeviceManager(this);
+            var graphicsDeviceManager = new GraphicsDeviceManager(this);
+            _graphicsDevice = new GraphicsDeviceWrapper(graphicsDeviceManager);
+
             _universe = Universe.GetDefault();
             _drawingManager = new DrawingManager();
             _gravitySimulator = new GravitySimulator();
             _shipComponentFactory = new ShipComponentFactory();
-            _graphicsFactory = new GraphicsFactory(_graphics);
+            _graphicsFactory = new GraphicsFactory();
 
             _gameObjectFactory = new GameObjectFactory(_contentManager, _graphicsFactory, _gravitySimulator, _drawingManager, _universe, _shipComponentFactory);
             
@@ -214,11 +216,8 @@ namespace DEMW.SpaceWar2
 
                 foreach (var pass in _effect.CurrentTechnique.Passes)
                 {
-
                     pass.Apply();
-
-                    gameObject.Draw();
-
+                    gameObject.Draw(_graphicsDevice);
                 }
             });
 

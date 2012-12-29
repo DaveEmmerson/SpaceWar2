@@ -82,6 +82,8 @@
     <Compile Include="Graphics\IDrawingManager.cs" />
     <Compile Include="Graphics\IGraphicsFactory.cs" />
     <Compile Include="Physics\IUniverse.cs" />
+    <Compile Include="Utils\XnaWrappers\IGraphicsDevice.cs" />
+    <Compile Include="Utils\XnaWrappers\GraphicsDeviceWrapper.cs" />
     <Compile Include="Utils\XnaWrappers\IKeyboard.cs" />
     <Compile Include="Controls\IKeyboardHandler.cs" />
     <Compile Include="Controls\IShipController.cs" />

@@ -3,7 +3,6 @@ using DEMW.SpaceWar2.Physics;
 using DEMW.SpaceWar2.Utils;
 using DEMW.SpaceWar2Tests.TestUtils;
 using Microsoft.Xna.Framework;
-using NSubstitute;
 using NUnit.Framework;
 
 namespace DEMW.SpaceWar2Tests.Graphics
@@ -11,14 +10,12 @@ namespace DEMW.SpaceWar2Tests.Graphics
     [TestFixture]
     internal class GraphicsFactoryTests
     {
-        private IGraphicsDeviceManager _graphicsDeviceManager;
         private GraphicsFactory _graphicsFactory;
 
         [SetUp]
         public void SetUp()
         {
-            _graphicsDeviceManager = Substitute.For<IGraphicsDeviceManager>();
-            _graphicsFactory = new GraphicsFactory(_graphicsDeviceManager);
+            _graphicsFactory = new GraphicsFactory();
         }
 
         [Test]

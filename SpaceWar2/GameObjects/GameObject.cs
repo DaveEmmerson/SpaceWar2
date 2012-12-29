@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DEMW.SpaceWar2.Physics;
+using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -76,7 +77,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
         protected abstract void UpdateInternal(float deltaT);
 
-        public abstract void Draw();
+        public abstract void Draw(IGraphicsDevice graphicsDevice = null);
         
         private void SimulateDynamics(float deltaT)
         {

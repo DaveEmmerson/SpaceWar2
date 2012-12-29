@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Physics;
+using DEMW.SpaceWar2.Utils.XnaWrappers;
 using DEMW.SpaceWar2Tests.TestUtils;
 using Microsoft.Xna.Framework;
 using NUnit.Framework;
@@ -23,7 +24,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             }
 
             protected override void UpdateInternal(float deltaT) { }
-            public override void Draw() { }
+            public override void Draw(IGraphicsDevice graphicsDevice = null) { }
 
             public new IEnumerable<Force> Forces
             {

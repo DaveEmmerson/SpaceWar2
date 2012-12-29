@@ -1,7 +1,9 @@
 ﻿using System;
 using DEMW.SpaceWar2.Graphics;
+using DEMW.SpaceWar2.Utils.XnaWrappers;
 using DEMW.SpaceWar2Tests.TestUtils;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -13,12 +15,12 @@ namespace DEMW.SpaceWar2Tests.Graphics
         private readonly Color _color = Color.HotPink;
         private const float Radius = 13f;
 
-        private IGraphicsDeviceManager _graphicsDeviceManager;
+        private IGraphicsDevice _graphicsDevice;
         
         [SetUp]
         public void SetUp()
         {
-            _graphicsDeviceManager = Substitute.For<IGraphicsDeviceManager>();
+            _graphicsDevice = Substitute.For<IGraphicsDevice>();
         }
 
         [Test]
@@ -27,7 +29,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var position = Vector2.Zero;
             var direction = Vector2.Zero;
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, _color, Radius);
+            var arrow = Arrow.CreateArrow(position, direction, _color, Radius);
 
             Assert.IsNull(arrow);
         }
@@ -38,7 +40,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var position = Vector2.Zero;
             var direction = new Vector2(1f, 5f);
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, _color, Radius);
+            var arrow = Arrow.CreateArrow(position, direction, _color, Radius);
 
             Assert.IsNotNull(arrow);
             var arrowObject = (Arrow) arrow;
@@ -52,7 +54,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var position = Vector2.Zero;
             var direction = new Vector2(1f, 5f);
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, _color, Radius);
+            var arrow = Arrow.CreateArrow(position, direction, _color, Radius);
 
             ArrowUtils.CheckColour(arrow, _color);
         }
@@ -63,7 +65,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var position = Vector2.Zero;
             var expectedDirection = new Vector2(1f, 5f);
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, expectedDirection, _color, Radius);
+            var arrow = Arrow.CreateArrow(position, expectedDirection, _color, Radius);
 
             var actualDirection = ArrowUtils.GetDirection(arrow);
             expectedDirection.Normalize();
@@ -76,7 +78,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var position = Vector2.Zero;
             var direction = new Vector2(1f, 5f);
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, _color, Radius);
+            var arrow = Arrow.CreateArrow(position, direction, _color, Radius);
 
             var actualPosition = ArrowUtils.GetPosition(arrow);
             direction.Normalize();
@@ -91,7 +93,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var position = new Vector2(3f, 7f);
             var direction = new Vector2(1f, 5f);
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, _color, Radius);
+            var arrow = Arrow.CreateArrow(position, direction, _color, Radius);
 
             var actualPosition = ArrowUtils.GetPosition(arrow);
             direction.Normalize();
@@ -106,11 +108,23 @@ namespace DEMW.SpaceWar2Tests.Graphics
             var position = Vector2.Zero;
             var direction = new Vector2(1f, 5f);
 
-            var arrow = Arrow.CreateArrow(_graphicsDeviceManager, position, direction, _color, Radius);
+            var arrow = Arrow.CreateArrow(position, direction, _color, Radius);
 
             var expectedLength = (Radius / 3f) + (3f * (float)Math.Sqrt(direction.Length()));
             var actualLength = ArrowUtils.GetLength(arrow);
             Assert.AreEqual(expectedLength, actualLength);
+        }
+
+        [Test]
+        public void Draw_calls_DrawUserPrimatives_on_supplied_IGraphicsDevice()
+        {
+            var position = Vector2.Zero;
+            var direction = Vector2.UnitX;
+            var arrow = Arrow.CreateArrow(position, direction, _color, Radius);
+
+            arrow.Draw(_graphicsDevice);
+
+            _graphicsDevice.Received(1).DrawUserPrimitives(PrimitiveType.LineStrip, ((Arrow)arrow).Verticies, 0, 5);
         }
     }
 }

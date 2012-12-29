@@ -1,4 +1,5 @@
 ﻿using DEMW.SpaceWar2.Physics;
+using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -23,6 +24,6 @@ namespace DEMW.SpaceWar2.GameObjects
         
         void Teleport(Vector2 destination);
 
-        void Draw();
+        void Draw(IGraphicsDevice graphicsDevice = null);
     }
 }

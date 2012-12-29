@@ -3,6 +3,7 @@ using System.Linq;
 using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Graphics;
+using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects
@@ -73,12 +74,12 @@ namespace DEMW.SpaceWar2.GameObjects
             return _energyStore.RequestEnergy(energyRequest);
         }
 
-        public override void Draw()
+        public override void Draw(IGraphicsDevice graphicsDevice = null)
         {
-            DrawArrows();
+            DrawArrows(graphicsDevice);
         }
 
-        private void DrawArrows()
+        private void DrawArrows(IGraphicsDevice graphicsDevice)
         {
             _arrows.Clear();
             
@@ -102,7 +103,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
             foreach (var arrow in _arrows)
             {
-                arrow.Draw();
+                arrow.Draw(graphicsDevice);
             }
         }
     }

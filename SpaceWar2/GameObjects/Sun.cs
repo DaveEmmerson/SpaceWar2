@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DEMW.SpaceWar2.Utils.XnaWrappers;
+using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects
 { 
@@ -16,7 +17,7 @@ namespace DEMW.SpaceWar2.GameObjects
             //e.g. spin, emit solar storms, grow, explode
         }
 
-        public override void Draw()
+        public override void Draw(IGraphicsDevice graphicsDevice = null)
         {
             // TODO: if Matt implements flares or storms, draw them here!
         }
