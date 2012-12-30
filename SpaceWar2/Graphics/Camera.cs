@@ -9,8 +9,10 @@ namespace DEMW.SpaceWar2.Graphics
         public Vector3 Target { get; set; }
         public IUniverse Universe { get; set; }
 
-        public Matrix View { get { return Matrix.CreateLookAt(Position, Target, Vector3.Up); } }
-        public Matrix Projection { get; private set; }
+        internal static Camera GetDefault(IUniverse universe)
+        {
+            return new Camera(new Vector3(0, 0, 1), Vector3.Zero, universe);
+        }
 
         public Camera(Vector3 position, Vector3 target, IUniverse universe)
         {
@@ -20,14 +22,8 @@ namespace DEMW.SpaceWar2.Graphics
             UpdateProjection();
         }
 
-        private void UpdateProjection() 
-        {
-            Projection = Matrix.CreateOrthographicOffCenter(
-                Universe.MinX, Universe.MaxX,
-                Universe.MaxY, Universe.MinY,
-                Universe.MinZ, Universe.MaxZ
-            );
-        }
+        public Matrix View { get { return Matrix.CreateLookAt(Position, Target, Vector3.Up); } }
+        public Matrix Projection { get; private set; }
 
         public void Pan(Vector3 vector) 
         {
@@ -41,9 +37,13 @@ namespace DEMW.SpaceWar2.Graphics
             UpdateProjection();
         }
 
-        internal static Camera GetDefault(IUniverse universe)
+        private void UpdateProjection()
         {
-            return new Camera(new Vector3(0, 0, 1), Vector3.Zero, universe);
+            Projection = Matrix.CreateOrthographicOffCenter(
+                Universe.MinX, Universe.MaxX,
+                Universe.MaxY, Universe.MinY,
+                Universe.MinZ, Universe.MaxZ
+            );
         }
     }
 }
