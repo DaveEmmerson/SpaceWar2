@@ -13,8 +13,7 @@ namespace DEMW.SpaceWar2.Graphics
         {
             if (direction == Vector2.Zero)
             {
-                //TODO Could use the null object pattern
-                return null;
+                return new NullArrow();
             }
 
             return new Arrow(position, direction, color, radius);

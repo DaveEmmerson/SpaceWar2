@@ -24,14 +24,14 @@ namespace DEMW.SpaceWar2Tests.Graphics
         }
 
         [Test]
-        public void CreateArrow_returns_null_if_direction_is_zero_vector()
+        public void CreateArrow_returns_NullArrow_if_direction_is_zero_vector()
         {
             var position = Vector2.Zero;
             var direction = Vector2.Zero;
 
             var arrow = Arrow.CreateArrow(position, direction, _color, Radius);
 
-            Assert.IsNull(arrow);
+            Assert.IsInstanceOf<NullArrow>(arrow);
         }
 
         [Test]
