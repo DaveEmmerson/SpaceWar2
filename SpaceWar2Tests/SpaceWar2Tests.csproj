@@ -66,6 +66,7 @@
     <Compile Include="GameObjects\ShipComponents\ShieldTests.cs" />
     <Compile Include="GameObjects\ShipComponents\ThrusterArrayTests.cs" />
     <Compile Include="Graphics\ArrowTests.cs" />
+    <Compile Include="Graphics\CameraTests.cs" />
     <Compile Include="Graphics\NullArrowTest.cs" />
     <Compile Include="Graphics\GraphicsFactoryTests.cs" />
     <Compile Include="Physics\VolumeTests.cs" />

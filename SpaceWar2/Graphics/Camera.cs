@@ -10,26 +10,23 @@ namespace DEMW.SpaceWar2.Graphics
         private readonly Volume _volume;
 
         public Camera(Volume volume)
-            : this(new Vector3(0, 0, 1), Vector3.Zero, volume)
         {
-        }
-
-        private Camera(Vector3 position, Vector3 target, Volume volume)
-        {
-            _position = position;
-            _target = target;
+            _position = new Vector3(0, 0, 1);
+            _target = Vector3.Zero;
             _volume = volume;
 
+            UpdateView();
             UpdateProjection();
         }
 
-        public Matrix View { get { return Matrix.CreateLookAt(_position, _target, Vector3.Up); } }
+        public Matrix View { get; private set; }
         public Matrix Projection { get; private set; }
 
         public void Pan(Vector3 vector) 
         {
             _position += vector;
             _target += vector;
+            UpdateView();
         }
 
         public void Zoom(float amount)
@@ -38,13 +35,18 @@ namespace DEMW.SpaceWar2.Graphics
             UpdateProjection();
         }
 
+        private void UpdateView()
+        {
+            View = Matrix.CreateLookAt(_position, _target, Vector3.Up);
+        }
+
         private void UpdateProjection()
         {
             Projection = Matrix.CreateOrthographicOffCenter(
                 _volume.MinX, _volume.MaxX,
                 _volume.MaxY, _volume.MinY,
                 _volume.MinZ, _volume.MaxZ
-            );
+                );
         }
     }
 }
