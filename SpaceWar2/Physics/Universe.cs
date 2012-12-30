@@ -19,12 +19,6 @@ namespace DEMW.SpaceWar2.Physics
             _managedObjects = new List<IGameObject>();
         }
 
-        public IUniverse CopyDimensions()
-        {
-            var copy = new Universe(MinX, MaxX, MinY, MaxY, MinZ, MaxZ);
-            return copy;
-        }
-
         public static IUniverse GetDefault()
         {
             return new Universe(-400, 400, -240, 240, -1000, 1000);

@@ -26,21 +26,6 @@ namespace DEMW.SpaceWar2Tests.Physics
         }
 
         [Test]
-        public void CopyDimensions_creates_new_Universe_with_the_same_dimensions()
-        {
-            var universe = new Universe(-600f, 600f, -400f, 400f, -100f, 100f);
-            var copy = universe.CopyDimensions();
-
-            Assert.AreNotSame(universe, copy);
-            Assert.AreEqual(universe.MinX, copy.MinX);
-            Assert.AreEqual(universe.MaxX, copy.MaxX);
-            Assert.AreEqual(universe.MinY, copy.MinY);
-            Assert.AreEqual(universe.MaxY, copy.MaxY);
-            Assert.AreEqual(universe.MinZ, copy.MinZ);
-            Assert.AreEqual(universe.MaxZ, copy.MaxZ);
-        }
-
-        [Test]
         public void GetDefault_creates_a_new_Universe_with_default_dimensions()
         {
             var defaultUniverse = Universe.GetDefault();

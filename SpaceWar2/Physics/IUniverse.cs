@@ -4,7 +4,6 @@ namespace DEMW.SpaceWar2.Physics
 {
     public interface IUniverse
     {
-        IUniverse CopyDimensions();
         float MinX { get; }
         float MaxX { get; }
         float MinY { get; }
