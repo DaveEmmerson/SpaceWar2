@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Graphics;
@@ -105,6 +107,39 @@ namespace DEMW.SpaceWar2.GameObjects
             {
                 arrow.Draw(graphicsDevice);
             }
+        }
+
+        public string DebugDetails
+        {
+            get
+            {
+                var stringBuilder = new StringBuilder();
+
+                AppendLine(stringBuilder, "{0}.Position.X: {1}", Position.X.ToString(CultureInfo.InvariantCulture));
+                AppendLine(stringBuilder, "{0}.Position.Y: {1}", Position.Y.ToString(CultureInfo.InvariantCulture));
+                AppendLine(stringBuilder, "{0}.Velocity.X: {1}", Velocity.X.ToString(CultureInfo.InvariantCulture));
+                AppendLine(stringBuilder, "{0}.Velocity.Y: {1}", Velocity.Y.ToString(CultureInfo.InvariantCulture));
+                stringBuilder.AppendLine();
+                AppendLine(stringBuilder, "{0}.Rotation: {1}", Rotation.ToString(CultureInfo.InvariantCulture));
+                AppendLine(stringBuilder, "{0}.AngularVelocity: {1}", AngularVelocity.ToString(CultureInfo.InvariantCulture));
+                stringBuilder.AppendLine();
+                AppendLine(stringBuilder, "{0}.Shields: {1}", Shields.ToString(CultureInfo.InvariantCulture));
+                AppendLine(stringBuilder, "{0}.Armour: {1}", Armour.ToString(CultureInfo.InvariantCulture));
+                AppendLine(stringBuilder, "{0}.Energy: {1}", Energy.ToString(CultureInfo.InvariantCulture));
+
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine();
+
+                return stringBuilder.ToString();
+            }
+        }
+
+        private void AppendLine(StringBuilder stringBuilder, string formatString, string value)
+        {
+            stringBuilder.AppendFormat(formatString, Name, value);
+            stringBuilder.AppendLine();
         }
     }
 }

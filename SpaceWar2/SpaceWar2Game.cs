@@ -71,7 +71,7 @@ namespace DEMW.SpaceWar2
 
             _gameObjectFactory.CreateShip("ship 1", initialDistance, initialVelocity, Color.Red, _controllerFactory.Controller1);
             _gameObjectFactory.CreateShip("ship 2", -initialDistance, -initialVelocity, Color.Blue, _controllerFactory.Controller2);
-            
+
             _gameObjectFactory.CreateSun(Vector2.Zero, Color.Red, Speed * Speed);
             _gameObjectFactory.CreateSun(new Vector2(200, 0), Color.Orange, Speed * Speed);
             _gameObjectFactory.CreateSun(new Vector2(-200, 0), Color.OrangeRed, Speed * Speed);
@@ -224,9 +224,9 @@ namespace DEMW.SpaceWar2
             _drawingManager.DrawGameObjects();
 
             _infoBar.Reset();
-            gameObjects.ForEach<IGameObject, Ship>(_infoBar.DrawShipInfo);
-
-            _infoBar.DrawString("universe", string.Format("width: {0}, height: {1}", _universe.Volume.Width, _universe.Volume.Height));
+            gameObjects.ForEach<IGameObject, IShip>(x => _infoBar.DrawString(x.DebugDetails));
+            var universeDimensions = string.Format("Universe - width: {0}, height: {1}", _universe.Volume.Width, _universe.Volume.Height);
+            _infoBar.DrawString(universeDimensions);
 
             base.Draw(gameTime);
         }

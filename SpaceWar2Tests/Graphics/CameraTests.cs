@@ -1,11 +1,6 @@
-﻿using System;
-using DEMW.SpaceWar2.Graphics;
+﻿using DEMW.SpaceWar2.Graphics;
 using DEMW.SpaceWar2.Physics;
-using DEMW.SpaceWar2.Utils.XnaWrappers;
-using DEMW.SpaceWar2Tests.TestUtils;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using NSubstitute;
 using NUnit.Framework;
 
 namespace DEMW.SpaceWar2Tests.Graphics

@@ -4,5 +4,7 @@ namespace DEMW.SpaceWar2.GameObjects
     {
         float AngularVelocity { get; set; }
         float RequestEnergy(float energyRequired);
+
+        string DebugDetails { get; }
     }
 }
