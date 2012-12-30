@@ -66,7 +66,8 @@ namespace DEMW.SpaceWar2.Graphics
 
         public void ResetCamera(IUniverse universe)
         {
-            ActiveCamera = Camera.GetDefault(universe);
+            var volumeCopy = universe.Volume.Clone();
+            ActiveCamera = new Camera(volumeCopy);
         }
     }
 }

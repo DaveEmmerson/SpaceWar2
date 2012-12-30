@@ -5,56 +5,22 @@ namespace DEMW.SpaceWar2.Physics
 {
     public class Universe : IUniverse
     {
+        private readonly Volume _volume;
         private readonly IList<IGameObject> _managedObjects;
-        
-        public Universe(float minX, float maxX, float minY, float maxY, float minZ, float maxZ)
-        {
-            MinX = minX;
-            MaxX = maxX;
-            MinY = minY;
-            MaxY = maxY;
-            MinZ = minZ;
-            MaxZ = maxZ;
 
+        public Universe(Volume volume)
+        {
+            _volume = volume;
             _managedObjects = new List<IGameObject>();
         }
 
         public static IUniverse GetDefault()
         {
-            return new Universe(-400, 400, -240, 240, -1000, 1000);
+            var volume = new Volume(-400, 400, -240, 240, -1000, 1000);
+            return new Universe(volume);
         }
 
-        public float MinX { get; private set; }
-        public float MaxX { get; private set; }
-        public float MinY { get; private set; }
-        public float MaxY { get; private set; }
-        public float MinZ { get; private set; }
-        public float MaxZ { get; private set; }
-
-        public float Width
-        {
-            get { return MaxX - MinX; }
-        }
-
-        public float Height
-        {
-            get { return MaxY - MinY;  }
-        }
-
-        public void Expand(float verticalAmount)
-        {
-            var horizontalAmount = verticalAmount * Width / Height;
-
-            MinX -= horizontalAmount;
-            MaxX += horizontalAmount;
-            MinY -= verticalAmount;
-            MaxY += verticalAmount;
-        }
-
-        public void Contract(float verticalAmount)
-        {
-            Expand(-verticalAmount);
-        }
+        public Volume Volume { get { return _volume; } }
 
         public void Register(IGameObject managedObject)
         {
@@ -78,10 +44,10 @@ namespace DEMW.SpaceWar2.Physics
         {
             var position = gameObject.Position;
 
-            if (position.X < MinX) { position.X = MaxX - (MinX - position.X) % Width; }
-            if (position.X > MaxX) { position.X = MinX + (position.X - MaxX) % Width; }
-            if (position.Y < MinY) { position.Y = MaxY - (MinY - position.Y) % Height; }
-            if (position.Y > MaxY) { position.Y = MinY + (position.Y - MaxY) % Height; }
+            if (position.X < _volume.MinX) { position.X = _volume.MaxX - (_volume.MinX - position.X) % _volume.Width; }
+            if (position.X > _volume.MaxX) { position.X = _volume.MinX + (position.X - _volume.MaxX) % _volume.Width; }
+            if (position.Y < _volume.MinY) { position.Y = _volume.MaxY - (_volume.MinY - position.Y) % _volume.Height; }
+            if (position.Y > _volume.MaxY) { position.Y = _volume.MinY + (position.Y - _volume.MaxY) % _volume.Height; }
 
             if (position != gameObject.Position)
             {

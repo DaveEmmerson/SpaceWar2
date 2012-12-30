@@ -187,12 +187,12 @@ namespace DEMW.SpaceWar2
 
             if (_keyboardHandler.IsPressed(Keys.I))
             {
-                _universe.Contract(10);
+                _universe.Volume.Contract(10);
             }
 
             if (_keyboardHandler.IsPressed(Keys.K))
             {
-                _universe.Expand(10);
+                _universe.Volume.Expand(10);
             }
 
         }
@@ -225,8 +225,8 @@ namespace DEMW.SpaceWar2
 
             _infoBar.Reset();
             gameObjects.ForEach<IGameObject, Ship>(_infoBar.DrawShipInfo);
-            
-            _infoBar.DrawString("universe", string.Format("width: {0}, height: {1}",_universe.Width, _universe.Height));
+
+            _infoBar.DrawString("universe", string.Format("width: {0}, height: {1}", _universe.Volume.Width, _universe.Volume.Height));
 
             base.Draw(gameTime);
         }

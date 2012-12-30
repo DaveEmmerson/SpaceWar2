@@ -4,16 +4,8 @@ namespace DEMW.SpaceWar2.Physics
 {
     public interface IUniverse
     {
-        float MinX { get; }
-        float MaxX { get; }
-        float MinY { get; }
-        float MaxY { get; }
-        float MinZ { get; }
-        float MaxZ { get; }
-        float Width { get; }
-        float Height { get; }
-        void Expand(float verticalAmount);
-        void Contract(float verticalAmount);
+        Volume Volume { get; }
+        
         void Register(IGameObject managedObject);
         void UnRegister(IGameObject managedObject);
         void Update();
