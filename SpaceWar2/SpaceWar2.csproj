@@ -86,6 +86,8 @@
     <Compile Include="Graphics\IGraphicsFactory.cs" />
     <Compile Include="Physics\Volume.cs" />
     <Compile Include="Physics\IUniverse.cs" />
+    <Compile Include="Utils\XnaWrappers\ISpriteFont.cs" />
+    <Compile Include="Utils\XnaWrappers\ISpriteBatch.cs" />
     <Compile Include="Utils\XnaWrappers\IGraphicsDevice.cs" />
     <Compile Include="Utils\XnaWrappers\GraphicsDeviceWrapper.cs" />
     <Compile Include="Utils\XnaWrappers\IKeyboard.cs" />
@@ -121,6 +123,8 @@
     <Compile Include="Utils\XnaWrappers\IContentManager.cs" />
     <Compile Include="SpaceWar2Game.cs" />
     <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\XnaWrappers\SpriteBatchWrapper.cs" />
+    <Compile Include="Utils\XnaWrappers\SpriteFontWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Game.ico" />

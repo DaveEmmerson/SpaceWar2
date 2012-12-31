@@ -4,35 +4,31 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Graphics
 {
-    class InfoBar
+    public class InfoBar
     {
-        private readonly SpriteBatch _spriteBatch;
-        private readonly SpriteFont _font;
+        private readonly ISpriteBatch _spriteBatch;
+        private readonly ISpriteFont _spriteFont;
+
         private Color FontColor { get; set; }
-        private Vector2 _currentPosition;
-        
-        public InfoBar(SpriteBatch spriteBatch, IContentManager contentManager) 
+
+        public InfoBar(IGraphicsDevice graphicsDevice, ISpriteFont spriteFont)
         {
-            _spriteBatch = spriteBatch;
-            _font = contentManager.Load<SpriteFont>("Fonts/Segoe UI Mono");
+            _spriteBatch = new SpriteBatchWrapper(graphicsDevice);
+            _spriteFont = spriteFont;
+            
             FontColor = Color.LightBlue;
-
-            Reset();
         }
 
-        public void Reset()
-        {
-            _currentPosition = new Vector2(10,10);
-        }
+        public Vector2 CursorPosition { get; set; }
         
         public void DrawString(string message)
         {
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(_font, message, _currentPosition, FontColor);
+            _spriteBatch.DrawString(_spriteFont.Font, message, CursorPosition, FontColor);
             _spriteBatch.End();
 
             var noOfLines = NoOfLines(message);
-            _currentPosition += new Vector2(0, _font.LineSpacing * noOfLines);
+            CursorPosition += new Vector2(0, _spriteFont.Font.LineSpacing * noOfLines);
         }
 
         /// <summary>

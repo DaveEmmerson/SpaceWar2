@@ -12,10 +12,14 @@ namespace DEMW.SpaceWar2.Utils.XnaWrappers
             _graphicsDeviceManager = graphicsDeviceManager;
         }
 
+        public GraphicsDevice GraphicsDevice
+        {
+            get { return ((GraphicsDeviceManager) _graphicsDeviceManager).GraphicsDevice; }
+        }
+
         public void DrawUserPrimitives(PrimitiveType primitiveType, VertexPositionColor[] vertices, int vertexOffset, int primitiveCount)
         {
-            var graphicsDevice = ((GraphicsDeviceManager) _graphicsDeviceManager).GraphicsDevice;
-            graphicsDevice.DrawUserPrimitives(primitiveType, vertices, vertexOffset, primitiveCount);
+            GraphicsDevice.DrawUserPrimitives(primitiveType, vertices, vertexOffset, primitiveCount);
         }
     }
 }

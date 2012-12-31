@@ -106,8 +106,9 @@ namespace DEMW.SpaceWar2
 
             _effect.CurrentTechnique = _effect.Techniques["TestTechnique"];
 
-            var spriteBatch = new SpriteBatch(GraphicsDevice);
-            _infoBar = new InfoBar(spriteBatch, _contentManager);
+            var spriteFont = _contentManager.Load<SpriteFont>("Fonts/Segoe UI Mono");
+            var spriteFontWrapper = new SpriteFontWrapper(spriteFont);
+            _infoBar = new InfoBar(_graphicsDevice, spriteFontWrapper);
         }
 
         /// <summary>
@@ -223,7 +224,7 @@ namespace DEMW.SpaceWar2
 
             _drawingManager.DrawGameObjects();
 
-            _infoBar.Reset();
+            _infoBar.CursorPosition = new Vector2(10,10);
             gameObjects.ForEach<IGameObject, IShip>(x =>
                                                         {
                                                             var debugDetails = x.DebugDetails;
