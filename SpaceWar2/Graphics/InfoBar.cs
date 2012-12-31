@@ -1,6 +1,5 @@
 ﻿using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Graphics
 {
@@ -24,11 +23,11 @@ namespace DEMW.SpaceWar2.Graphics
         public void DrawString(string message)
         {
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(_spriteFont.SpriteFont, message, CursorPosition, FontColor);
+            _spriteBatch.DrawString(_spriteFont, message, CursorPosition, FontColor);
             _spriteBatch.End();
 
             var noOfLines = NoOfLines(message);
-            CursorPosition += new Vector2(0, _spriteFont.SpriteFont.LineSpacing * noOfLines);
+            CursorPosition += new Vector2(0, _spriteFont.LineSpacing * noOfLines);
         }
 
         /// <summary>
@@ -37,7 +36,7 @@ namespace DEMW.SpaceWar2.Graphics
         /// </summary>
         static long NoOfLines(string message)
         {
-            var count = 0;
+            var count = 1;
             var position = -1;
             while ((position = message.IndexOf('\n', position + 1)) != -1) { count++; }
             return count;

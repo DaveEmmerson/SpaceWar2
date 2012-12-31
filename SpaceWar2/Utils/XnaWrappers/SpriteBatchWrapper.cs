@@ -17,9 +17,9 @@ namespace DEMW.SpaceWar2.Utils.XnaWrappers
             _spriteBatch.Begin();
         }
 
-        public void DrawString(SpriteFont spriteFont, string text, Vector2 position, Color color)
+        public void DrawString(ISpriteFont spriteFont, string text, Vector2 position, Color color)
         {
-            _spriteBatch.DrawString(spriteFont, text, position, color);
+            _spriteBatch.DrawString(spriteFont.SpriteFont, text, position, color);
         }
 
         public void End()
