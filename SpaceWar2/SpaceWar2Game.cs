@@ -106,9 +106,11 @@ namespace DEMW.SpaceWar2
 
             _effect.CurrentTechnique = _effect.Techniques["TestTechnique"];
 
+            var spriteBatch = new SpriteBatchWrapper(_graphicsDevice);
             var spriteFont = _contentManager.Load<SpriteFont>("Fonts/Segoe UI Mono");
             var spriteFontWrapper = new SpriteFontWrapper(spriteFont);
-            _infoBar = new InfoBar(_graphicsDevice, spriteFontWrapper);
+            
+            _infoBar = new InfoBar(spriteBatch, spriteFontWrapper);
         }
 
         /// <summary>

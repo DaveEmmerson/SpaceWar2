@@ -11,9 +11,9 @@ namespace DEMW.SpaceWar2.Graphics
 
         private Color FontColor { get; set; }
 
-        public InfoBar(IGraphicsDevice graphicsDevice, ISpriteFont spriteFont)
+        public InfoBar(ISpriteBatch spriteBatch, ISpriteFont spriteFont)
         {
-            _spriteBatch = new SpriteBatchWrapper(graphicsDevice);
+            _spriteBatch = spriteBatch;
             _spriteFont = spriteFont;
             
             FontColor = Color.LightBlue;
@@ -24,11 +24,11 @@ namespace DEMW.SpaceWar2.Graphics
         public void DrawString(string message)
         {
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(_spriteFont.Font, message, CursorPosition, FontColor);
+            _spriteBatch.DrawString(_spriteFont.SpriteFont, message, CursorPosition, FontColor);
             _spriteBatch.End();
 
             var noOfLines = NoOfLines(message);
-            CursorPosition += new Vector2(0, _spriteFont.Font.LineSpacing * noOfLines);
+            CursorPosition += new Vector2(0, _spriteFont.SpriteFont.LineSpacing * noOfLines);
         }
 
         /// <summary>
