@@ -13,8 +13,9 @@ namespace DEMW.SpaceWar2.Graphics
 
         public Camera ActiveCamera { get; private set; }
 
-        internal DrawingManager() 
+        internal DrawingManager(IUniverse universe) 
         {
+            ResetCamera(universe);
             _drawableObjects = new List<IGameObject>();
         }
 
@@ -30,11 +31,6 @@ namespace DEMW.SpaceWar2.Graphics
 
         public void DrawGameObjects()
         {
-            if (ActiveCamera == null)
-            {
-                throw new NullReferenceException("No ActiveCamera set on DrawingManager.");
-            }
-
             _drawableObjects.ForEach(Draw);
         }
 
@@ -66,6 +62,11 @@ namespace DEMW.SpaceWar2.Graphics
 
         public void ResetCamera(IUniverse universe)
         {
+            if (universe == null)
+            {
+                throw new ArgumentException("universe must not be null.");
+            }
+            
             var volumeCopy = universe.Volume.Clone();
             ActiveCamera = new Camera(volumeCopy);
         }

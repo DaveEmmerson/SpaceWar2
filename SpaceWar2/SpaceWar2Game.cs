@@ -42,7 +42,7 @@ namespace DEMW.SpaceWar2
             _graphicsDevice = new GraphicsDeviceWrapper(graphicsDeviceManager);
 
             _universe = Universe.GetDefault();
-            _drawingManager = new DrawingManager();
+            _drawingManager = new DrawingManager(_universe);
             _gravitySimulator = new GravitySimulator();
             _shipComponentFactory = new ShipComponentFactory();
             _graphicsFactory = new GraphicsFactory();
