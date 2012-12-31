@@ -11,6 +11,11 @@ namespace DEMW.SpaceWar2.Utils
             where TBase : class
             where TSubClass : class,TBase
         {
+            if (action == null)
+            {
+                throw new ArgumentException("action must not be null.");
+            }
+
             foreach (var item in items.OfType<TSubClass>())
             {
                 action(item);

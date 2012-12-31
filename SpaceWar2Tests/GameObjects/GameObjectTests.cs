@@ -147,6 +147,12 @@ namespace DEMW.SpaceWar2Tests.GameObjects
         }
         
         [Test]
+        public void ApplyExternalForce_throws_exception_if_force_argument_is_null()
+        {
+            Assert.Throws<ArgumentException>(() => _gameObject.ApplyExternalForce(null));
+        }
+
+        [Test]
         public void ApplyExternalForce_does_nothing_when_zero_force_is_specified()
         {
             var force = new Force(Vector2.Zero, Vector2.One);
