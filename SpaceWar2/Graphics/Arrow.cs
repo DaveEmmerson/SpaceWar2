@@ -49,6 +49,11 @@ namespace DEMW.SpaceWar2.Graphics
 
         public void Draw(IGraphicsDevice graphicsDevice)
         {
+            if (graphicsDevice == null)
+            {
+                throw new ArgumentException("graphicsDevice must not be null.");
+            }
+
             graphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, _vertices, 0, _vertices.Length - 1);
         }
 
