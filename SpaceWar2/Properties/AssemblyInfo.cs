@@ -1,9 +1,12 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
 //using System.Runtime.CompilerServices;
 
 // Allow the tests project to access the internal members of this project
 //[assembly: InternalsVisibleTo("SpaceWar2Tests")]
+
+[assembly: CLSCompliant(true)]
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
