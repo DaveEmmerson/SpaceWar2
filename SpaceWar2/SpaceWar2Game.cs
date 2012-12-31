@@ -224,7 +224,12 @@ namespace DEMW.SpaceWar2
             _drawingManager.DrawGameObjects();
 
             _infoBar.Reset();
-            gameObjects.ForEach<IGameObject, IShip>(x => _infoBar.DrawString(x.DebugDetails));
+            gameObjects.ForEach<IGameObject, IShip>(x =>
+                                                        {
+                                                            var debugDetails = x.DebugDetails;
+                                                            _infoBar.DrawString(debugDetails + "\r\n\r\n\r\n\r\n");
+                                                        });
+
             var universeDimensions = string.Format("Universe - width: {0}, height: {1}", _universe.Volume.Width, _universe.Volume.Height);
             _infoBar.DrawString(universeDimensions);
 

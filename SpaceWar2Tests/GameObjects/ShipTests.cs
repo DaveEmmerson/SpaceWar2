@@ -232,5 +232,34 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             force1Arrow.Received(1).Draw(_graphicsDevice);
             force2Arrow.Received(1).Draw(_graphicsDevice);
         }
+
+        [Test]
+        public void DebugInfo_returns_a_string_containing_information_about_the_Ship()
+        {
+            _shield.Level.Returns(99.9f);
+            _hull.Level.Returns(56f);
+            _energyStore.Level.Returns(72f);
+            _ship.Rotation = 1.3f;
+            _ship.Velocity = new Vector2(1.5f,-2.9f);
+            _ship.AngularVelocity = 0.0001f;
+            
+            var actualMessage = _ship.DebugDetails;
+
+            const string expectedMessage =
+@"TestShip.Position.X: 12
+TestShip.Position.Y: 5.5
+TestShip.Velocity.X: 1.5
+TestShip.Velocity.Y: -2.9
+
+TestShip.Rotation: 1.3
+TestShip.AngularVelocity: 0.0001
+
+TestShip.Shields: 99.9
+TestShip.Armour: 56
+TestShip.Energy: 72
+";
+
+            Assert.AreEqual(expectedMessage, actualMessage);
+        }
     }
 }

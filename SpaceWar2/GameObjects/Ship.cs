@@ -115,30 +115,25 @@ namespace DEMW.SpaceWar2.GameObjects
             {
                 var stringBuilder = new StringBuilder();
 
-                AppendLine(stringBuilder, "{0}.Position.X: {1}", Position.X.ToString(CultureInfo.InvariantCulture));
-                AppendLine(stringBuilder, "{0}.Position.Y: {1}", Position.Y.ToString(CultureInfo.InvariantCulture));
-                AppendLine(stringBuilder, "{0}.Velocity.X: {1}", Velocity.X.ToString(CultureInfo.InvariantCulture));
-                AppendLine(stringBuilder, "{0}.Velocity.Y: {1}", Velocity.Y.ToString(CultureInfo.InvariantCulture));
+                AppendLine(stringBuilder, "{0}.Position.X: {1}", Position.X);
+                AppendLine(stringBuilder, "{0}.Position.Y: {1}", Position.Y);
+                AppendLine(stringBuilder, "{0}.Velocity.X: {1}", Velocity.X);
+                AppendLine(stringBuilder, "{0}.Velocity.Y: {1}", Velocity.Y);
                 stringBuilder.AppendLine();
-                AppendLine(stringBuilder, "{0}.Rotation: {1}", Rotation.ToString(CultureInfo.InvariantCulture));
-                AppendLine(stringBuilder, "{0}.AngularVelocity: {1}", AngularVelocity.ToString(CultureInfo.InvariantCulture));
+                AppendLine(stringBuilder, "{0}.Rotation: {1}", Rotation);
+                AppendLine(stringBuilder, "{0}.AngularVelocity: {1}", AngularVelocity);
                 stringBuilder.AppendLine();
-                AppendLine(stringBuilder, "{0}.Shields: {1}", Shields.ToString(CultureInfo.InvariantCulture));
-                AppendLine(stringBuilder, "{0}.Armour: {1}", Armour.ToString(CultureInfo.InvariantCulture));
-                AppendLine(stringBuilder, "{0}.Energy: {1}", Energy.ToString(CultureInfo.InvariantCulture));
-
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine();
+                AppendLine(stringBuilder, "{0}.Shields: {1}", Shields);
+                AppendLine(stringBuilder, "{0}.Armour: {1}", Armour);
+                AppendLine(stringBuilder, "{0}.Energy: {1}", Energy);
 
                 return stringBuilder.ToString();
             }
         }
 
-        private void AppendLine(StringBuilder stringBuilder, string formatString, string value)
+        private void AppendLine(StringBuilder stringBuilder, string formatString, float value)
         {
-            stringBuilder.AppendFormat(formatString, Name, value);
+            stringBuilder.AppendFormat(formatString, Name, value.ToString(CultureInfo.InvariantCulture));
             stringBuilder.AppendLine();
         }
     }
