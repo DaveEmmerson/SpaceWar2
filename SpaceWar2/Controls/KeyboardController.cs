@@ -26,11 +26,14 @@ namespace DEMW.SpaceWar2.Controls
             _mappings[key] = shipAction;
         }
 
-        public ShipAction GetAction()
+        public ShipAction Action
         {
-            return _mappings
-                .Where(mapping => _keyboardHandler.IsPressed(mapping.Key))
-                .Aggregate(ShipAction.None, (current, mapping) => current | mapping.Value);
+            get
+            {
+                return _mappings
+                    .Where(mapping => _keyboardHandler.IsPressed(mapping.Key))
+                    .Aggregate(ShipAction.None, (current, mapping) => current | mapping.Value);
+            }
         }
     }
 }

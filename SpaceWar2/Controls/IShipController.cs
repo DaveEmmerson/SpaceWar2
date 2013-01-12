@@ -2,6 +2,6 @@
 {
     public interface IShipController
     {
-        ShipAction GetAction();
+        ShipAction Action { get; }
     }
 }

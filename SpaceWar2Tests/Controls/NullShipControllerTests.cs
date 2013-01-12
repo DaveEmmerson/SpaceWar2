@@ -11,7 +11,7 @@ namespace DEMW.SpaceWar2Tests.Controls
         {
             var nullController = new NullShipController();
 
-            var action = nullController.GetAction();
+            var action = nullController.Action;
 
             Assert.AreEqual(ShipAction.None, action);
         }

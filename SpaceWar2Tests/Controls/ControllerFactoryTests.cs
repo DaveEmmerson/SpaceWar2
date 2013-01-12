@@ -36,10 +36,10 @@ namespace DEMW.SpaceWar2Tests.Controls
         {
             _keyboardHandler.IsPressed(Arg.Is(key)).Returns(true);
 
-            var controller1Action = _controller1.GetAction();
+            var controller1Action = _controller1.Action;
             Assert.AreEqual(controller1ExpectedAction, controller1Action);
 
-            var controller2Action = _controller2.GetAction();
+            var controller2Action = _controller2.Action;
             Assert.AreEqual(controller2ExpectedAction, controller2Action);
         }
     }

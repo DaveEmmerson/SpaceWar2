@@ -27,7 +27,7 @@ namespace DEMW.SpaceWar2Tests.Controls
         {
             _keyboardHandler.IsPressed(Keys.B).Returns(true);
             
-            var action = _keyboardController.GetAction();
+            var action = _keyboardController.Action;
 
             Assert.AreEqual(ShipAction.FireProjectile, action, "Expected action (from 'B' key) was not returned");
         }
@@ -38,7 +38,7 @@ namespace DEMW.SpaceWar2Tests.Controls
             _keyboardHandler.IsPressed(Keys.A).Returns(true);
             _keyboardHandler.IsPressed(Keys.B).Returns(true);
 
-            var action = _keyboardController.GetAction();
+            var action = _keyboardController.Action;
 
             Assert.AreEqual(ShipAction.Thrust | ShipAction.FireProjectile, action, "Expected actions (from 'A' and 'B' keys) were not returned");
         }
@@ -48,7 +48,7 @@ namespace DEMW.SpaceWar2Tests.Controls
         {
             _keyboardHandler.IsPressed(Keys.C).Returns(true);
 
-            var action = _keyboardController.GetAction();
+            var action = _keyboardController.Action;
 
             Assert.AreEqual(ShipAction.Thrust | ShipAction.FireProjectile, action, "Expected actions (from 'C' key) were not returned");
         }
@@ -56,7 +56,7 @@ namespace DEMW.SpaceWar2Tests.Controls
         [Test]
         public void GetAction_returns_none_when_no_mapped_keys_pressed()
         {
-            var action = _keyboardController.GetAction();
+            var action = _keyboardController.Action;
 
             Assert.AreEqual(ShipAction.None, action, "Expected no action.");
         }
@@ -67,7 +67,7 @@ namespace DEMW.SpaceWar2Tests.Controls
             _keyboardController.SetMapping(Keys.D, ShipAction.Thrust);
             _keyboardHandler.IsPressed(Keys.A).Returns(true);
 
-            var action = _keyboardController.GetAction();
+            var action = _keyboardController.Action;
             Assert.AreEqual(ShipAction.None, action, "Expected no action.");
         }
 
@@ -77,7 +77,7 @@ namespace DEMW.SpaceWar2Tests.Controls
             _keyboardController.SetMapping(Keys.D, ShipAction.Thrust);
             _keyboardHandler.IsPressed(Keys.D).Returns(true);
 
-            var action = _keyboardController.GetAction();
+            var action = _keyboardController.Action;
             Assert.AreEqual(ShipAction.Thrust, action, "Expected action (from 'D' key) was not returned");
         }
     }
