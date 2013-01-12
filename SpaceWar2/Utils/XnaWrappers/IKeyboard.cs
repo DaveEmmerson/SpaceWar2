@@ -4,6 +4,6 @@ namespace DEMW.SpaceWar2.Utils.XnaWrappers
 {
     public interface IKeyboard
     {
-        KeyboardState GetState();
+        KeyboardState State { get; }
     }
 }

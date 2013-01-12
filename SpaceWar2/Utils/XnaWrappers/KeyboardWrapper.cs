@@ -4,9 +4,9 @@ namespace DEMW.SpaceWar2.Utils.XnaWrappers
 {
     public class KeyboardWrapper : IKeyboard
     {
-        public KeyboardState GetState()
+        public KeyboardState State
         {
-            return Keyboard.GetState();
+            get { return Keyboard.GetState(); }
         }
     }
 }

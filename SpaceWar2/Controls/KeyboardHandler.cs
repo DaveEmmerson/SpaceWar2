@@ -12,14 +12,14 @@ namespace DEMW.SpaceWar2.Controls
         public KeyboardHandler(IKeyboard keyboard)
         {
             _keyboard = keyboard;
-            _keyboardState = _keyboard.GetState();
+            _keyboardState = _keyboard.State;
             _oldKeyboardState = _keyboardState;
         }
 
         public void UpdateKeyboardState() 
         {
             _oldKeyboardState = _keyboardState;
-            _keyboardState = _keyboard.GetState();
+            _keyboardState = _keyboard.State;
         }
 
         public bool IsPressed(Keys key)
