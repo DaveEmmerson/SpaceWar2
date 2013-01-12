@@ -21,7 +21,7 @@ namespace DEMW.SpaceWar2Tests.Physics
         [Test]
         public void GetDefault_creates_a_new_Universe_with_default_dimensions()
         {
-            var defaultUniverse = Universe.GetDefault();
+            var defaultUniverse = Universe.CreateDefault();
             
             Assert.AreEqual(-400f, defaultUniverse.Volume.MinX);
             Assert.AreEqual(400f, defaultUniverse.Volume.MaxX);

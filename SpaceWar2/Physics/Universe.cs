@@ -14,7 +14,7 @@ namespace DEMW.SpaceWar2.Physics
             _managedObjects = new List<IGameObject>();
         }
 
-        public static IUniverse GetDefault()
+        public static IUniverse CreateDefault()
         {
             var volume = new Volume(-400, 400, -240, 240, -1000, 1000);
             return new Universe(volume);
