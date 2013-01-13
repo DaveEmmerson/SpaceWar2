@@ -1,11 +1,12 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Utils.XnaWrappers
 {
-    public class SpriteBatchWrapper : ISpriteBatch
+    public class SpriteBatchWrapper : ISpriteBatch, IDisposable
     {
-        private readonly SpriteBatch _spriteBatch;
+        private SpriteBatch _spriteBatch;
 
         public SpriteBatchWrapper(IGraphicsDevice graphicsDevice)
         {
@@ -25,6 +26,21 @@ namespace DEMW.SpaceWar2.Utils.XnaWrappers
         public void EndBatch()
         {
             _spriteBatch.End();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!disposing) return;
+            if (_spriteBatch == null) return;
+
+            _spriteBatch.Dispose();
+            _spriteBatch = null;
         }
     }
 }
