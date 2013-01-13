@@ -11,10 +11,10 @@ namespace DEMW.SpaceWar2Tests.TestUtils
         {
             var arrowObject = (Arrow) arrow;
 
-            var x0 = arrowObject.Verticies[0].Position.X;
-            var y0 = arrowObject.Verticies[0].Position.Y;
-            var x3 = arrowObject.Verticies[3].Position.X;
-            var y3 = arrowObject.Verticies[3].Position.Y;
+            var x0 = arrowObject.Vertices[0].Position.X;
+            var y0 = arrowObject.Vertices[0].Position.Y;
+            var x3 = arrowObject.Vertices[3].Position.X;
+            var y3 = arrowObject.Vertices[3].Position.Y;
 
             return new Vector2(x3 - x0, y3 - y0).Length();
         }
@@ -23,26 +23,26 @@ namespace DEMW.SpaceWar2Tests.TestUtils
         {
             var arrowObject = (Arrow) arrow;
 
-            Assert.AreEqual(Color.Transparent, arrowObject.Verticies[0].Color);
-            Assert.AreEqual(color, arrowObject.Verticies[1].Color);
-            Assert.AreEqual(color, arrowObject.Verticies[2].Color);
-            Assert.AreEqual(color, arrowObject.Verticies[3].Color);
-            Assert.AreEqual(color, arrowObject.Verticies[4].Color);
-            Assert.AreEqual(color, arrowObject.Verticies[5].Color);
+            Assert.AreEqual(Color.Transparent, arrowObject.Vertices[0].Color);
+            Assert.AreEqual(color, arrowObject.Vertices[1].Color);
+            Assert.AreEqual(color, arrowObject.Vertices[2].Color);
+            Assert.AreEqual(color, arrowObject.Vertices[3].Color);
+            Assert.AreEqual(color, arrowObject.Vertices[4].Color);
+            Assert.AreEqual(color, arrowObject.Vertices[5].Color);
         }
 
         public static Vector2 GetPosition(IArrow arrow)
         {
             var arrowObject = (Arrow)arrow;
 
-            return new Vector2(arrowObject.Verticies[0].Position.X, arrowObject.Verticies[0].Position.Y);
+            return new Vector2(arrowObject.Vertices[0].Position.X, arrowObject.Vertices[0].Position.Y);
         }
 
         public static Vector2 GetDirection(IArrow arrow)
         {
             var arrowObject = (Arrow) arrow;
 
-            var actualDirection = arrowObject.Verticies[1].Position - arrowObject.Verticies[0].Position;
+            var actualDirection = arrowObject.Vertices[1].Position - arrowObject.Vertices[0].Position;
             actualDirection.Normalize();
             
             return actualDirection.DiscardZComponent();

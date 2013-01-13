@@ -30,7 +30,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             var circle = new Circle(radius, _color, lineCount);
 
-            Assert.AreEqual(lineCount, circle.Verticies.Length);
+            Assert.AreEqual(lineCount, circle.Vertices.Length);
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             var circle = new Circle(radius, _color, lineCount);
 
-            foreach (var vertex in circle.Verticies)
+            foreach (var vertex in circle.Vertices)
             {
                 var x = vertex.Position.X;
                 var y = vertex.Position.Y;
@@ -58,7 +58,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             var circle = new Circle(radius, _color, lineCount);
 
-            foreach (var vertex in circle.Verticies)
+            foreach (var vertex in circle.Vertices)
             {
                 Assert.AreEqual(_color, vertex.Color);
             }
@@ -114,7 +114,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             circle.Draw(_graphicsDevice);
 
-            _graphicsDevice.Received(1).DrawUserPrimitives(PrimitiveType.LineStrip, circle.Verticies, 0, 9);
+            _graphicsDevice.Received(1).DrawUserPrimitives(PrimitiveType.LineStrip, circle.Vertices, 0, 9);
         }
     }
 }

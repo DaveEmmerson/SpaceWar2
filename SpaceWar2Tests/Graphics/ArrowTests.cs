@@ -45,7 +45,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             Assert.IsNotNull(arrow);
             var arrowObject = (Arrow) arrow;
 
-            Assert.AreEqual(6, arrowObject.Verticies.Length);
+            Assert.AreEqual(6, arrowObject.Vertices.Length);
         }
 
         [Test]
@@ -124,7 +124,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             arrow.Draw(_graphicsDevice);
 
-            _graphicsDevice.Received(1).DrawUserPrimitives(PrimitiveType.LineStrip, ((Arrow)arrow).Verticies, 0, 5);
+            _graphicsDevice.Received(1).DrawUserPrimitives(PrimitiveType.LineStrip, ((Arrow)arrow).Vertices, 0, 5);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace DEMW.SpaceWar2.Graphics
 
         private Arrow(Vector2 position, Vector2 direction, Color color, float radius)
         {
-            Verticies = new VertexPositionColor[6];
+            Vertices = new VertexPositionColor[6];
             
             var length = 3f * (float)Math.Sqrt(direction.Length());
 
@@ -31,28 +31,28 @@ namespace DEMW.SpaceWar2.Graphics
             var arrowHead = new Vector3(position + (direction * (radius + length)), 0);
             var arrowPoint = new Vector3(position + (direction * (radius + length + arrowHeadSize)), 0);
             
-            Verticies[0].Position = arrowBase;
-            Verticies[1].Position = arrowHead;
-            Verticies[2].Position = arrowHead - (perpendicular * arrowHeadSize);
-            Verticies[3].Position = arrowPoint;
-            Verticies[4].Position = arrowHead + (perpendicular * arrowHeadSize);
-            Verticies[5].Position = arrowHead;
+            Vertices[0].Position = arrowBase;
+            Vertices[1].Position = arrowHead;
+            Vertices[2].Position = arrowHead - (perpendicular * arrowHeadSize);
+            Vertices[3].Position = arrowPoint;
+            Vertices[4].Position = arrowHead + (perpendicular * arrowHeadSize);
+            Vertices[5].Position = arrowHead;
 
             for (var i = 1; i <=5; i++)
             {
-                Verticies[i].Color = color;
+                Vertices[i].Color = color;
             }
-            Verticies[0].Color = Color.Transparent;
+            Vertices[0].Color = Color.Transparent;
         }
 
         public void Draw(IGraphicsDevice graphicsDevice)
         {
             if (graphicsDevice != null)
             {
-                graphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, Verticies, 0, Verticies.Length - 1);
+                graphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, Vertices, 0, Vertices.Length - 1);
             }
         }
 
-        public VertexPositionColor[] Verticies { get; private set; }
+        public VertexPositionColor[] Vertices { get; private set; }
     }
 }

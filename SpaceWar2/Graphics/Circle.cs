@@ -25,27 +25,27 @@ namespace DEMW.SpaceWar2.Graphics
 
         private void CreateVertices(float radius, Color lineColor, int lineCount)
         {
-            Verticies = new VertexPositionColor[lineCount];
+            Vertices = new VertexPositionColor[lineCount];
 
             for (var i = 0; i < lineCount - 1; i++)
             {
                 var angle = (float)(i / (float)(lineCount - 1) * Math.PI * 2);
 
-                Verticies[i].Position = new Vector3((float)Math.Cos(angle) * radius, (float)Math.Sin(angle) * radius, 0);
-                Verticies[i].Color = lineColor;
+                Vertices[i].Position = new Vector3((float)Math.Cos(angle) * radius, (float)Math.Sin(angle) * radius, 0);
+                Vertices[i].Color = lineColor;
             }
 
-            Verticies[lineCount - 1] = Verticies[0];
+            Vertices[lineCount - 1] = Vertices[0];
         }
 
         public void Draw(IGraphicsDevice graphicsDevice)
         {
             if (graphicsDevice != null)
             {
-                graphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, Verticies, 0, Verticies.Length - 1);
+                graphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, Vertices, 0, Vertices.Length - 1);
             }
         }
 
-        public VertexPositionColor[] Verticies { get; private set; }
+        public VertexPositionColor[] Vertices { get; private set; }
     }
 }
