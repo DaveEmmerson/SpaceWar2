@@ -7,7 +7,7 @@ namespace DEMW.SpaceWar2.Graphics
 {
     public class Circle
     {
-        private VertexPositionColor[] _vertices;
+        private readonly VertexPositionColor[] _vertices;
 
         public Circle(float radius, Color lineColor, int lineCount)
         {
@@ -21,14 +21,13 @@ namespace DEMW.SpaceWar2.Graphics
             {
                 throw new ArgumentException("must be greater than 0", "radius");
             }
-            
+
+            _vertices = new VertexPositionColor[lineCount];
             CreateVertices(radius, lineColor, lineCount);
         }
 
         private void CreateVertices(float radius, Color lineColor, int lineCount)
         {
-            _vertices = new VertexPositionColor[lineCount];
-
             for (var i = 0; i < lineCount - 1; i++)
             {
                 var angle = (float)(i / (float)(lineCount - 1) * Math.PI * 2);

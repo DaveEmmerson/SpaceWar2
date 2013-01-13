@@ -7,7 +7,7 @@ namespace DEMW.SpaceWar2.Graphics
 {
     public class Arrow : IArrow
     {
-        private VertexPositionColor[] _vertices;
+        private readonly VertexPositionColor[] _vertices;
 
         public static IArrow CreateArrow(Vector2 position, Vector2 direction, Color color, float radius)
         {
