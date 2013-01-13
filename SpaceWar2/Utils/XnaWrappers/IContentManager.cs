@@ -1,8 +1,6 @@
-using System;
-
 namespace DEMW.SpaceWar2.Utils.XnaWrappers
 {
-    public interface IContentManager : IDisposable
+    public interface IContentManager
     {
         T Load<T>(string assetName);
     }

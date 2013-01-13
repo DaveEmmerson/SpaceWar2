@@ -121,7 +121,6 @@ namespace DEMW.SpaceWar2
         /// </summary>
         protected override void UnloadContent()
         {
-            _contentManager.Dispose();
             // TODO: Unload any non ContentManager content here
         }
 
