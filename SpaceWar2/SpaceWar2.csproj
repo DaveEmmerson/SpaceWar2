@@ -98,7 +98,7 @@
     <Compile Include="Controls\KeyboardHandler.cs" />
     <Compile Include="Utils\XnaWrappers\KeyboardWrapper.cs" />
     <Compile Include="Controls\NullShipController.cs" />
-    <Compile Include="Controls\ShipAction.cs" />
+    <Compile Include="Controls\ShipActions.cs" />
     <Compile Include="GameObjectFactory.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />

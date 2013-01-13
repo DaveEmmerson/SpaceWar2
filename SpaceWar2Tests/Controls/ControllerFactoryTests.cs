@@ -22,25 +22,25 @@ namespace DEMW.SpaceWar2Tests.Controls
             _controller2 = _controllerFactory.Controller2;
         }
 
-        [TestCase(Keys.Up, ShipAction.Thrust, ShipAction.None)]
-        [TestCase(Keys.Left, ShipAction.TurnLeft, ShipAction.None)]
-        [TestCase(Keys.Right, ShipAction.TurnRight, ShipAction.None)]
-        [TestCase(Keys.Down, ShipAction.ReverseThrust, ShipAction.None)]
-        [TestCase(Keys.RightControl, ShipAction.FireProjectile, ShipAction.None)]
-        [TestCase(Keys.W, ShipAction.None, ShipAction.Thrust)]
-        [TestCase(Keys.A, ShipAction.None, ShipAction.TurnLeft)]
-        [TestCase(Keys.D, ShipAction.None, ShipAction.TurnRight)]
-        [TestCase(Keys.S, ShipAction.None, ShipAction.ReverseThrust)]
-        [TestCase(Keys.R, ShipAction.None, ShipAction.FireProjectile)]
-        public void Both_default_controller_properties_return_an_appropriate_controller(Keys key, ShipAction controller1ExpectedAction, ShipAction controller2ExpectedAction)
+        [TestCase(Keys.Up, ShipActions.Thrust, ShipActions.None)]
+        [TestCase(Keys.Left, ShipActions.TurnLeft, ShipActions.None)]
+        [TestCase(Keys.Right, ShipActions.TurnRight, ShipActions.None)]
+        [TestCase(Keys.Down, ShipActions.ReverseThrust, ShipActions.None)]
+        [TestCase(Keys.RightControl, ShipActions.FireProjectile, ShipActions.None)]
+        [TestCase(Keys.W, ShipActions.None, ShipActions.Thrust)]
+        [TestCase(Keys.A, ShipActions.None, ShipActions.TurnLeft)]
+        [TestCase(Keys.D, ShipActions.None, ShipActions.TurnRight)]
+        [TestCase(Keys.S, ShipActions.None, ShipActions.ReverseThrust)]
+        [TestCase(Keys.R, ShipActions.None, ShipActions.FireProjectile)]
+        public void Both_default_controller_properties_return_an_appropriate_controller(Keys key, ShipActions controller1ExpectedActions, ShipActions controller2ExpectedActions)
         {
             _keyboardHandler.IsPressed(Arg.Is(key)).Returns(true);
 
-            var controller1Action = _controller1.Action;
-            Assert.AreEqual(controller1ExpectedAction, controller1Action);
+            var controller1Actions = _controller1.Actions;
+            Assert.AreEqual(controller1ExpectedActions, controller1Actions);
 
-            var controller2Action = _controller2.Action;
-            Assert.AreEqual(controller2ExpectedAction, controller2Action);
+            var controller2Actions = _controller2.Actions;
+            Assert.AreEqual(controller2ExpectedActions, controller2Actions);
         }
     }
 }

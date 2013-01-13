@@ -34,14 +34,14 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
             _backRightThruster = new Thruster(rightOfShip, backthrust, ThrustEnergyCost);
         }
 
-        public void CalculateThrustPattern(ShipAction action)
+        public void CalculateThrustPattern(ShipActions actions)
         {
             ResetThrusters();
 
-            CalculateTargetAngularVelocity(action);
+            CalculateTargetAngularVelocity(actions);
             AchieveTargetAngularVelocity();
 
-            GenerateLinearThrust(action);
+            GenerateLinearThrust(actions);
         }
 
         private void ResetThrusters()
@@ -52,14 +52,14 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
             _backRightThruster.Throttle = 0f;
         }
 
-        private void CalculateTargetAngularVelocity(ShipAction action)
+        private void CalculateTargetAngularVelocity(ShipActions actions)
         {
             _angularVelocityTarget = 0;
-            if (action.HasFlag(ShipAction.TurnLeft))
+            if (actions.HasFlag(ShipActions.TurnLeft))
             {
                 _angularVelocityTarget -= RotationSpeed;
             }
-            if (action.HasFlag(ShipAction.TurnRight))
+            if (actions.HasFlag(ShipActions.TurnRight))
             {
                 _angularVelocityTarget += RotationSpeed;
             }
@@ -84,15 +84,15 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
             }
         }
 
-        private void GenerateLinearThrust(ShipAction action)
+        private void GenerateLinearThrust(ShipActions actions)
         {
             float linearTarget = 0f;
-            if (action.HasFlag(ShipAction.Thrust))
+            if (actions.HasFlag(ShipActions.Thrust))
             {
                 linearTarget += 1f;
             }
 
-            if (action.HasFlag(ShipAction.ReverseThrust))
+            if (actions.HasFlag(ShipActions.ReverseThrust))
             {
                 linearTarget -= 1f;
             }

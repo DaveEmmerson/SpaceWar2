@@ -2,9 +2,9 @@
 {
     public class NullShipController : IShipController
     {
-        public ShipAction Action
+        public ShipActions Actions
         {
-            get { return ShipAction.None; }
+            get { return ShipActions.None; }
         }
     }
 }

@@ -5,18 +5,18 @@ using NUnit.Framework;
 namespace DEMW.SpaceWar2Tests.Controls
 {
     [TestFixture]
-    class ShipActionTests
+    class ShipActionsTests
     {
         [Test]
-        public void ShipAction_none_is_zero()
+        public void ShipActions_none_is_zero()
         {
-            Assert.AreEqual(0, (int)ShipAction.None);
+            Assert.AreEqual(0, (int)ShipActions.None);
         }
 
         [Test]
-        public void ShipAction_has_flags_attribute()
+        public void ShipActions_has_flags_attribute()
         {
-            Assert.IsNotNull(Attribute.GetCustomAttribute(typeof(ShipAction), typeof(FlagsAttribute)));
+            Assert.IsNotNull(Attribute.GetCustomAttribute(typeof(ShipActions), typeof(FlagsAttribute)));
         }
     }
 }

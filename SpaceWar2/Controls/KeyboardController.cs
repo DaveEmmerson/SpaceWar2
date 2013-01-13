@@ -6,33 +6,33 @@ namespace DEMW.SpaceWar2.Controls
 {
     public class KeyboardController : IShipController
     {
-        private readonly IDictionary<Keys, ShipAction> _mappings;
+        private readonly IDictionary<Keys, ShipActions> _mappings;
         private readonly IKeyboardHandler _keyboardHandler;
 
         public KeyboardController(IKeyboardHandler keyboardHandler)
         {
             _keyboardHandler = keyboardHandler;
-            _mappings = new Dictionary<Keys, ShipAction>();
+            _mappings = new Dictionary<Keys, ShipActions>();
         }
 
-        public void SetMapping(Keys key, ShipAction shipAction)
+        public void SetMapping(Keys key, ShipActions shipActions)
         {
-            var existingMappings = _mappings.Where(x=> x.Value == shipAction).ToList();
+            var existingMappings = _mappings.Where(x=> x.Value == shipActions).ToList();
             foreach (var mapping in existingMappings)
             {
                 _mappings.Remove(mapping.Key);
             }
 
-            _mappings[key] = shipAction;
+            _mappings[key] = shipActions;
         }
 
-        public ShipAction Action
+        public ShipActions Actions
         {
             get
             {
                 return _mappings
                     .Where(mapping => _keyboardHandler.IsPressed(mapping.Key))
-                    .Aggregate(ShipAction.None, (current, mapping) => current | mapping.Value);
+                    .Aggregate(ShipActions.None, (current, mapping) => current | mapping.Value);
             }
         }
     }

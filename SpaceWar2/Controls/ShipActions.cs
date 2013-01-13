@@ -3,7 +3,7 @@
 namespace DEMW.SpaceWar2.Controls
 {
     [Flags]
-    public enum ShipAction
+    public enum ShipActions
     {
         None = 0,
         Thrust = 1,

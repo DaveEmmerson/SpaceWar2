@@ -4,7 +4,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 {
     public interface IThrusterArray
     {
-        void CalculateThrustPattern(ShipAction action);
+        void CalculateThrustPattern(ShipActions actions);
         void EngageThrusters();
     }
 }

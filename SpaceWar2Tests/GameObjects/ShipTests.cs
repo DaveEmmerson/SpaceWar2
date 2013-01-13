@@ -109,9 +109,9 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _shield.Received(1).Recharge(0.02f);
             _energyStore.Received(1).Recharge(0.02f);
 
-            var action = _controller.Received(1).Action;
-            Assert.IsNotNull(action);
-            _thrusterArray.ReceivedWithAnyArgs(1).CalculateThrustPattern(Arg.Any<ShipAction>());
+            var actions = _controller.Received(1).Actions;
+            Assert.IsNotNull(actions);
+            _thrusterArray.ReceivedWithAnyArgs(1).CalculateThrustPattern(Arg.Any<ShipActions>());
             _thrusterArray.Received(1).EngageThrusters();
         }
 

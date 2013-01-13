@@ -33,7 +33,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         [Test]
         public void EngageThrusters_does_not_thrust_when_called_with_no_ShipActions()
         {
-            _thrusterArray.CalculateThrustPattern(ShipAction.None);
+            _thrusterArray.CalculateThrustPattern(ShipActions.None);
 
             _ship.Received().AngularVelocity = 0f;
             _ship.DidNotReceive().ApplyInternalForce(Arg.Any<Force>());
@@ -42,7 +42,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         [Test]
         public void EngageThrusters_does_not_thrust_when_thrust_and_reverse_together()
         {
-            _thrusterArray.CalculateThrustPattern(ShipAction.Thrust | ShipAction.ReverseThrust);
+            _thrusterArray.CalculateThrustPattern(ShipActions.Thrust | ShipActions.ReverseThrust);
             _thrusterArray.EngageThrusters();
 
             _ship.Received().AngularVelocity = 0f;
@@ -52,7 +52,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         [Test]
         public void EngageThrusters_does_not_thrust_when_left_and_right_together()
         {
-            _thrusterArray.CalculateThrustPattern(ShipAction.TurnLeft | ShipAction.TurnRight);
+            _thrusterArray.CalculateThrustPattern(ShipActions.TurnLeft | ShipActions.TurnRight);
             _thrusterArray.EngageThrusters();
 
             _ship.Received().AngularVelocity = 0f;
@@ -63,7 +63,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         public void EngageThrusters_applies_forward_force_when_Thrust_pressed()
         {
             _ship.RequestEnergy(0.2f).Returns(0.2f);
-            _thrusterArray.CalculateThrustPattern(ShipAction.Thrust);
+            _thrusterArray.CalculateThrustPattern(ShipActions.Thrust);
             _thrusterArray.EngageThrusters();
 
             var forwardVector = new Vector2(0f, -ThrustPower);
@@ -80,7 +80,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         public void EngageThrusters_applies_backwards_force_when_ReverseThrust_pressed()
         {
             _ship.RequestEnergy(0.2f).Returns(0.2f);
-            _thrusterArray.CalculateThrustPattern(ShipAction.ReverseThrust);
+            _thrusterArray.CalculateThrustPattern(ShipActions.ReverseThrust);
             _thrusterArray.EngageThrusters();
 
             var backwardVector = new Vector2(0f, ThrustPower);
@@ -97,7 +97,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         public void EngageThrusters_applies_suitable_rotational_forces_when_right_pressed()
         {
             _ship.RequestEnergy(0.05f).Returns(0.05f);
-            _thrusterArray.CalculateThrustPattern(ShipAction.TurnRight);
+            _thrusterArray.CalculateThrustPattern(ShipActions.TurnRight);
             _thrusterArray.EngageThrusters();
 
             var forwardVector = new Vector2(0f, -ThrustPower * 0.25f);
@@ -114,7 +114,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         public void EngageThrusters_applies_suitable_forces_when_forward_and_right_pressed()
         {
             _ship.RequestEnergy(Arg.Any<float>()).Returns(0.225f);
-            _thrusterArray.CalculateThrustPattern(ShipAction.Thrust | ShipAction.TurnRight);
+            _thrusterArray.CalculateThrustPattern(ShipActions.Thrust | ShipActions.TurnRight);
             _thrusterArray.EngageThrusters();
 
             var expectedForceFrontLeft = new Force(new Vector2(0f, -ThrustPower), _leftThrusterPosition);
@@ -132,7 +132,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         public void EngageThrusters_applies_suitable_rotational_forces_when_left_pressed()
         {
             _ship.RequestEnergy(0.05f).Returns(0.05f);
-            _thrusterArray.CalculateThrustPattern(ShipAction.TurnLeft);
+            _thrusterArray.CalculateThrustPattern(ShipActions.TurnLeft);
             _thrusterArray.EngageThrusters();
 
             var backwardVector = new Vector2(0f, ThrustPower * 0.25f);
@@ -149,7 +149,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         public void EngageThrusters_scales_back_all_thrusters_evenly_when_under_powered()
         {
             _ship.RequestEnergy(0.2f).Returns(0.1f);
-            _thrusterArray.CalculateThrustPattern(ShipAction.Thrust);
+            _thrusterArray.CalculateThrustPattern(ShipActions.Thrust);
             _thrusterArray.EngageThrusters();
 
             var forwardVector = new Vector2(0f, -ThrustPower * 0.5f);
@@ -166,7 +166,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         public void EngageThrusters_does_not_thrust_when_no_power_is_available()
         {
             _ship.RequestEnergy(0.2f).Returns(0.0f);
-            _thrusterArray.CalculateThrustPattern(ShipAction.ReverseThrust);
+            _thrusterArray.CalculateThrustPattern(ShipActions.ReverseThrust);
             _thrusterArray.EngageThrusters();
 
             _ship.Received().AngularVelocity = 0f;

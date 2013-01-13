@@ -7,13 +7,13 @@ namespace DEMW.SpaceWar2Tests.Controls
 	class NullShipControllerTests
 	{
         [Test]
-        public void GetAction_returns_none()
+        public void Actions_returns_none()
         {
             var nullController = new NullShipController();
 
-            var action = nullController.Action;
+            var actions = nullController.Actions;
 
-            Assert.AreEqual(ShipAction.None, action);
+            Assert.AreEqual(ShipActions.None, actions);
         }
 	}
 }

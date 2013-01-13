@@ -51,8 +51,8 @@ namespace DEMW.SpaceWar2.GameObjects
             _shield.Recharge(deltaT);
             _energyStore.Recharge(deltaT);
 
-            ShipAction action = Controller.Action;
-            _thrusterArray.CalculateThrustPattern(action);
+            ShipActions actions = Controller.Actions;
+            _thrusterArray.CalculateThrustPattern(actions);
             _thrusterArray.EngageThrusters();
         }
         
