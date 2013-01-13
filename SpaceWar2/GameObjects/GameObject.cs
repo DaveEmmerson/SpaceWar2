@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DEMW.SpaceWar2.Physics;
 using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
@@ -46,19 +45,18 @@ namespace DEMW.SpaceWar2.GameObjects
         public void ApplyExternalForce(Force force)
         {
             if (force == null || force.Vector == Vector2.Zero) return;
-
-            //TODO note that this method and the one below do not copy force, so any changes 
-            //to force outside this class will not be without side effects
-            _queuedforces.Add(force);
+            
+            var forceClone = force.Clone();
+            _queuedforces.Add(forceClone);
         }
 
         public void ApplyInternalForce(Force force)
         {
             if (force == null || force.Vector == Vector2.Zero) return;
-            
-            //TODO Should we make a copy of force here instead of changing the original force?
-            force.Rotate(Rotation);
-            _queuedforces.Add(force);
+
+            var forceClone = force.Clone();
+            forceClone.Rotate(Rotation);
+            _queuedforces.Add(forceClone);
         }
 
         public void Teleport(Vector2 destination)

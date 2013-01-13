@@ -23,5 +23,10 @@ namespace DEMW.SpaceWar2.Physics
             Vector = Vector2.Transform(Vector, rotation);
             Displacement = Vector2.Transform(Displacement, rotation);
         }
+
+        internal Force Clone()
+        {
+            return new Force(Vector, Displacement);
+        }
     }
 }

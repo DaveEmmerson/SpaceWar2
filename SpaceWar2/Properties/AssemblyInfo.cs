@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 // Allow the tests project to access the internal members of this project
 [assembly: InternalsVisibleTo("DEMW.SpaceWar2Tests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100230c3cc915b8288fbbc563ef46173f5bdf4477b56a80ecb06e2b716d7f997e30471b2b9706b776af5b686e87338e28c531cf27f30e8e5e733062ce87a589c333da81faa03bc1cfb3d6e2b0cca7bed25e06b5a2e7a0f2d87067854f081848d5dfa35d4fde1e144bc1d29e6c9e49d66ffcb0c2dd05064723052307f5ab7694c49e")]
