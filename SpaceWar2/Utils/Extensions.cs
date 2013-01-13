@@ -7,16 +7,13 @@ namespace DEMW.SpaceWar2.Utils
 {
     public static class Extensions
     {
-        public static void ForEach<TBase, TSubClass>(this IEnumerable<TBase> items, Action<TSubClass> action)
+        public static void ForEach<TBase, TSubclass>(this IEnumerable<TBase> items, Action<TSubclass> action)
             where TBase : class
-            where TSubClass : class,TBase
+            where TSubclass : class,TBase
         {
-            if (action == null)
-            {
-                throw new ArgumentException("action must not be null.");
-            }
+            if (action == null) return;
 
-            foreach (var item in items.OfType<TSubClass>())
+            foreach (var item in items.OfType<TSubclass>())
             {
                 action(item);
             }
