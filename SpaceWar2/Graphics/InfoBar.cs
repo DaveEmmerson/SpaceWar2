@@ -22,9 +22,9 @@ namespace DEMW.SpaceWar2.Graphics
         
         public void DrawString(string message)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.BeginBatch();
             _spriteBatch.DrawString(_spriteFont, message, CursorPosition, FontColor);
-            _spriteBatch.End();
+            _spriteBatch.EndBatch();
 
             var noOfLines = NoOfLines(message);
             CursorPosition += new Vector2(0, _spriteFont.LineSpacing * noOfLines);

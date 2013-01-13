@@ -12,7 +12,7 @@ namespace DEMW.SpaceWar2.Utils.XnaWrappers
             _spriteBatch = new SpriteBatch(graphicsDevice.GraphicsDevice);
         }
 
-        public void Begin()
+        public void BeginBatch()
         {
             _spriteBatch.Begin();
         }
@@ -22,7 +22,7 @@ namespace DEMW.SpaceWar2.Utils.XnaWrappers
             _spriteBatch.DrawString(spriteFont.SpriteFont, text, position, color);
         }
 
-        public void End()
+        public void EndBatch()
         {
             _spriteBatch.End();
         }

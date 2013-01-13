@@ -40,9 +40,9 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             var expectedStartPosition = Vector2.Zero;
 
-            _spriteBatch.Received(1).Begin();
+            _spriteBatch.Received(1).BeginBatch();
             _spriteBatch.Received(1).DrawString(_spriteFont, text, expectedStartPosition, _expectedColor);
-            _spriteBatch.Received(1).End();
+            _spriteBatch.Received(1).EndBatch();
 
             var expectedEndPosition = expectedStartPosition + new Vector2(0, 15);
             Assert.AreEqual(expectedEndPosition, infoBar.CursorPosition);
@@ -62,9 +62,9 @@ On multiple Lines";
 
             var expectedStartPosition = Vector2.Zero;
 
-            _spriteBatch.Received(1).Begin();
+            _spriteBatch.Received(1).BeginBatch();
             _spriteBatch.Received(1).DrawString(_spriteFont, text, expectedStartPosition, _expectedColor);
-            _spriteBatch.Received(1).End();
+            _spriteBatch.Received(1).EndBatch();
 
             const int noOfLines = 3;
             var expectedEndPosition = expectedStartPosition + new Vector2(0, noOfLines * 15);
