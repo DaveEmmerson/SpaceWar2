@@ -68,6 +68,7 @@
     <Compile Include="Graphics\ArrowTests.cs" />
     <Compile Include="Graphics\CameraTests.cs" />
     <Compile Include="Graphics\CircleTests.cs" />
+    <Compile Include="Graphics\DrawingManagerTests.cs" />
     <Compile Include="Graphics\InfoBarTests.cs" />
     <Compile Include="Graphics\NullArrowTest.cs" />
     <Compile Include="Graphics\GraphicsFactoryTests.cs" />
