@@ -7,6 +7,8 @@ namespace DEMW.SpaceWar2.Graphics
 {
     public class Circle
     {
+        private VertexPositionColor[] _vertices;
+
         public Circle(float radius, Color lineColor, int lineCount)
         {
             const int minumumlineCount = 2;
@@ -25,27 +27,30 @@ namespace DEMW.SpaceWar2.Graphics
 
         private void CreateVertices(float radius, Color lineColor, int lineCount)
         {
-            Vertices = new VertexPositionColor[lineCount];
+            _vertices = new VertexPositionColor[lineCount];
 
             for (var i = 0; i < lineCount - 1; i++)
             {
                 var angle = (float)(i / (float)(lineCount - 1) * Math.PI * 2);
 
-                Vertices[i].Position = new Vector3((float)Math.Cos(angle) * radius, (float)Math.Sin(angle) * radius, 0);
-                Vertices[i].Color = lineColor;
+                _vertices[i].Position = new Vector3((float)Math.Cos(angle) * radius, (float)Math.Sin(angle) * radius, 0);
+                _vertices[i].Color = lineColor;
             }
 
-            Vertices[lineCount - 1] = Vertices[0];
+            _vertices[lineCount - 1] = _vertices[0];
         }
 
         public void Draw(IGraphicsDevice graphicsDevice)
         {
             if (graphicsDevice != null)
             {
-                graphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, Vertices, 0, Vertices.Length - 1);
+                graphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, _vertices, 0, _vertices.Length - 1);
             }
         }
 
-        public VertexPositionColor[] Vertices { get; private set; }
+        public VertexPositionColor[] Vertices()
+        {
+            return _vertices;
+        }
     }
 }

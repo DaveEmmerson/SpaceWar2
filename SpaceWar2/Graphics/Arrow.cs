@@ -7,6 +7,8 @@ namespace DEMW.SpaceWar2.Graphics
 {
     public class Arrow : IArrow
     {
+        private VertexPositionColor[] _vertices;
+
         public static IArrow CreateArrow(Vector2 position, Vector2 direction, Color color, float radius)
         {
             if (direction == Vector2.Zero)
@@ -19,7 +21,7 @@ namespace DEMW.SpaceWar2.Graphics
 
         private Arrow(Vector2 position, Vector2 direction, Color color, float radius)
         {
-            Vertices = new VertexPositionColor[6];
+            _vertices = new VertexPositionColor[6];
             
             var length = 3f * (float)Math.Sqrt(direction.Length());
 
@@ -30,29 +32,32 @@ namespace DEMW.SpaceWar2.Graphics
             var arrowBase = new Vector3(position + (direction * radius), 0);
             var arrowHead = new Vector3(position + (direction * (radius + length)), 0);
             var arrowPoint = new Vector3(position + (direction * (radius + length + arrowHeadSize)), 0);
-            
-            Vertices[0].Position = arrowBase;
-            Vertices[1].Position = arrowHead;
-            Vertices[2].Position = arrowHead - (perpendicular * arrowHeadSize);
-            Vertices[3].Position = arrowPoint;
-            Vertices[4].Position = arrowHead + (perpendicular * arrowHeadSize);
-            Vertices[5].Position = arrowHead;
+
+            _vertices[0].Position = arrowBase;
+            _vertices[1].Position = arrowHead;
+            _vertices[2].Position = arrowHead - (perpendicular * arrowHeadSize);
+            _vertices[3].Position = arrowPoint;
+            _vertices[4].Position = arrowHead + (perpendicular * arrowHeadSize);
+            _vertices[5].Position = arrowHead;
 
             for (var i = 1; i <=5; i++)
             {
-                Vertices[i].Color = color;
+                _vertices[i].Color = color;
             }
-            Vertices[0].Color = Color.Transparent;
+            _vertices[0].Color = Color.Transparent;
         }
 
         public void Draw(IGraphicsDevice graphicsDevice)
         {
             if (graphicsDevice != null)
             {
-                graphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, Vertices, 0, Vertices.Length - 1);
+                graphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, _vertices, 0, _vertices.Length - 1);
             }
         }
 
-        public VertexPositionColor[] Vertices { get; private set; }
+        public VertexPositionColor[] Vertices()
+        {
+            return _vertices;
+        }
     }
 }
