@@ -1,3 +1,5 @@
+using System;
+using System.Globalization;
 using System.Linq;
 using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.GameObjects;
@@ -234,7 +236,7 @@ namespace DEMW.SpaceWar2
                                                             _infoBar.DrawString(debugDetails + "\r\n\r\n\r\n\r\n");
                                                         });
 
-            var universeDimensions = string.Format("Universe - width: {0}, height: {1}", _universe.Volume.Width, _universe.Volume.Height);
+            var universeDimensions = String.Format(CultureInfo.InvariantCulture, "Universe - width: {0}, height: {1}", _universe.Volume.Width, _universe.Volume.Height);
             _infoBar.DrawString(universeDimensions);
 
             base.Draw(gameTime);
