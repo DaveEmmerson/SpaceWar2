@@ -79,6 +79,7 @@
     <Compile Include="GameObjects\ShipComponents\IHull.cs" />
     <Compile Include="GameObjects\ShipComponents\IShield.cs" />
     <Compile Include="GameObjects\ShipComponents\IThrusterArray.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Graphics\NullArrow.cs" />
     <Compile Include="Graphics\GraphicsFactory.cs" />
     <Compile Include="Graphics\IArrow.cs" />
