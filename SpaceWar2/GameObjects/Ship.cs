@@ -71,9 +71,9 @@ namespace DEMW.SpaceWar2.GameObjects
             }
         }
 
-        public float RequestEnergy(float energyRequest)
+        public float RequestEnergy(float amountRequested)
         {
-            return _energyStore.RequestEnergy(energyRequest);
+            return _energyStore.RequestEnergy(amountRequested);
         }
 
         public override void Draw(IGraphicsDevice graphicsDevice = null)
