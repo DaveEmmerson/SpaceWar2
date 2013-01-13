@@ -114,13 +114,13 @@ namespace DEMW.SpaceWar2Tests
 
             Assert.IsEmpty(_gameObjectFactory.GameObjects);
 
-            _gravitySimulator.Received(1).UnRegister(ship);
-            _universe.Received(1).UnRegister(ship);
-            _drawingManager.Received(1).UnRegister(ship);
+            _gravitySimulator.Received(1).Unregister(ship);
+            _universe.Received(1).Unregister(ship);
+            _drawingManager.Received(1).Unregister(ship);
 
-            _gravitySimulator.Received(1).UnRegister(sun);
-            _universe.Received(1).UnRegister(sun);
-            _drawingManager.Received(1).UnRegister(sun);
+            _gravitySimulator.Received(1).Unregister(sun);
+            _universe.Received(1).Unregister(sun);
+            _drawingManager.Received(1).Unregister(sun);
         }
 
         [Test]
@@ -133,13 +133,13 @@ namespace DEMW.SpaceWar2Tests
 
             Assert.AreEqual(1, _gameObjectFactory.GameObjects.Count);
 
-            _gravitySimulator.Received(1).UnRegister(ship);
-            _universe.Received(1).UnRegister(ship);
-            _drawingManager.Received(1).UnRegister(ship);
+            _gravitySimulator.Received(1).Unregister(ship);
+            _universe.Received(1).Unregister(ship);
+            _drawingManager.Received(1).Unregister(ship);
 
-            _gravitySimulator.DidNotReceive().UnRegister(sun);
-            _universe.DidNotReceive().UnRegister(sun);
-            _drawingManager.DidNotReceive().UnRegister(sun);
+            _gravitySimulator.DidNotReceive().Unregister(sun);
+            _universe.DidNotReceive().Unregister(sun);
+            _drawingManager.DidNotReceive().Unregister(sun);
         }
     }
 }

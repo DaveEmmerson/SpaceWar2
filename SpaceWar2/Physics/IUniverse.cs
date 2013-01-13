@@ -7,7 +7,7 @@ namespace DEMW.SpaceWar2.Physics
         Volume Volume { get; }
         
         void Register(IGameObject managedObject);
-        void UnRegister(IGameObject managedObject);
+        void Unregister(IGameObject managedObject);
         void Update();
     }
 }

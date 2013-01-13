@@ -7,7 +7,7 @@ namespace DEMW.SpaceWar2.Graphics
     {
         Camera ActiveCamera { get; }
         void Register(IGameObject gameObject);
-        void UnRegister(IGameObject gameObject);
+        void Unregister(IGameObject gameObject);
         void DrawGameObjects();
         void ResetCamera(IUniverse universe);
     }

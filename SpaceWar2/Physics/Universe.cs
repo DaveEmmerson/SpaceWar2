@@ -27,7 +27,7 @@ namespace DEMW.SpaceWar2.Physics
             _managedObjects.Add(managedObject);
         }
 
-        public void UnRegister(IGameObject managedObject)
+        public void Unregister(IGameObject managedObject)
         {
             _managedObjects.Remove(managedObject);
         }

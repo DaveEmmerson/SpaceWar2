@@ -21,7 +21,7 @@ namespace DEMW.SpaceWar2.Physics
             _participants.Add(participant);
         }
 
-        public void UnRegister(IGameObject item)
+        public void Unregister(IGameObject item)
         {
             _participants.Remove(item);
             _sources.Remove(item);

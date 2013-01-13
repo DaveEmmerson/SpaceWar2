@@ -75,7 +75,7 @@ namespace DEMW.SpaceWar2Tests.Physics
             gameObject1.Position.Returns(new Vector2(volume.MinX - 10f, 0f));
 
             universe.Register(gameObject1);
-            universe.UnRegister(gameObject1);
+            universe.Unregister(gameObject1);
 
             universe.Update();
 

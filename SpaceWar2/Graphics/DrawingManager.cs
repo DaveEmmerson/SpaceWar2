@@ -13,7 +13,7 @@ namespace DEMW.SpaceWar2.Graphics
 
         public Camera ActiveCamera { get; private set; }
 
-        internal DrawingManager(IUniverse universe) 
+        public DrawingManager(IUniverse universe) 
         {
             ResetCamera(universe);
             _drawableObjects = new List<IGameObject>();
@@ -24,7 +24,7 @@ namespace DEMW.SpaceWar2.Graphics
             _drawableObjects.Add(gameObject);
         }
 
-        public void UnRegister(IGameObject gameObject) 
+        public void Unregister(IGameObject gameObject) 
         {
             _drawableObjects.Remove(gameObject);
         }

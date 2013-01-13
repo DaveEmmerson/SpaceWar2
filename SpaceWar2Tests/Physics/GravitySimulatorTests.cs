@@ -77,7 +77,7 @@ namespace DEMW.SpaceWar2Tests.Physics
         [Test]
         public void UnRegister_removes_source_GameObject_from_GravitySimulator()
         {
-            _gravitySimulator.UnRegister(_source);
+            _gravitySimulator.Unregister(_source);
             _gravitySimulator.Simulate();
 
             _participant.DidNotReceive().ApplyExternalForce(Arg.Any<Force>());
@@ -90,7 +90,7 @@ namespace DEMW.SpaceWar2Tests.Physics
         [Test]
         public void UnRegister_removes_participant_GameObject_from_GravitySimulator()
         {
-            _gravitySimulator.UnRegister(_participant);
+            _gravitySimulator.Unregister(_participant);
             _gravitySimulator.Simulate();
 
             _participant.DidNotReceive().ApplyExternalForce(Arg.Any<Force>());

@@ -73,9 +73,9 @@ namespace DEMW.SpaceWar2
             
             foreach (var item in itemsToDestory)
             {
-                _gravitySimulator.UnRegister(item);
-                _universe.UnRegister(item);
-                _drawingManager.UnRegister(item);
+                _gravitySimulator.Unregister(item);
+                _universe.Unregister(item);
+                _drawingManager.Unregister(item);
                 GameObjects.Remove(item);
             }
         }
