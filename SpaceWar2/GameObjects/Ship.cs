@@ -60,23 +60,20 @@ namespace DEMW.SpaceWar2.GameObjects
             _shield.Recharge(deltaT);
             _energyStore.Recharge(deltaT);
 
-            ShipActions actions = _controller.Actions;
-            _thrusterArray.CalculateThrustPattern(actions);
+            _thrusterArray.CalculateThrustPattern(_controller.Actions);
             _thrusterArray.EngageThrusters();
         }
 
         internal void Damage(float amount)
         {
             var damageRemaining = _shield.Damage(amount);
+            if (damageRemaining <= 0F) return;
 
-            if (damageRemaining > 0F)
+            _hull.Damage(damageRemaining);
+
+            if (_hull.Level <= 0F)
             {
-                _hull.Damage(damageRemaining);
-
-                if (_hull.Level <= 0F)
-                {
-                    Expired = true;
-                }
+                Expired = true;
             }
         }
 
@@ -85,7 +82,7 @@ namespace DEMW.SpaceWar2.GameObjects
             return _energyStore.RequestEnergy(amountRequested);
         }
 
-        public override void Draw(IGraphicsDevice graphicsDevice = null)
+        public override void Draw(IGraphicsDevice graphicsDevice)
         {
             DrawArrows(graphicsDevice);
         }

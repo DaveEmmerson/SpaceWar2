@@ -42,7 +42,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
                 energyScalingFactor = 1f;
             }
 
-            Vector2 thrust = energyScalingFactor * Throttle * _direction;
+            var thrust = energyScalingFactor * Throttle * _direction;
             return new Force(thrust, _position);
         }
     }

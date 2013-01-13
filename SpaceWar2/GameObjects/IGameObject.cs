@@ -24,6 +24,6 @@ namespace DEMW.SpaceWar2.GameObjects
         
         void Teleport(Vector2 destination);
 
-        void Draw(IGraphicsDevice graphicsDevice = null);
+        void Draw(IGraphicsDevice graphicsDevice);
     }
 }

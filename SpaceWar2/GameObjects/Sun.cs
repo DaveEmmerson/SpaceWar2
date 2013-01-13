@@ -17,7 +17,7 @@ namespace DEMW.SpaceWar2.GameObjects
             //e.g. spin, emit solar storms, grow, explode
         }
 
-        public override void Draw(IGraphicsDevice graphicsDevice = null)
+        public override void Draw(IGraphicsDevice graphicsDevice)
         {
             // TODO: if Matt implements flares or storms, draw them here!
         }

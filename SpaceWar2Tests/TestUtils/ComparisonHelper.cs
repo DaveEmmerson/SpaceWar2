@@ -19,8 +19,7 @@ namespace DEMW.SpaceWar2Tests.TestUtils
         {
             const float EPSILON = 0.00001f;
 
-            bool matchFloat = Math.Abs(expected - actual) < EPSILON;
-            return matchFloat;
+            return Math.Abs(expected - actual) < EPSILON;
         }
 
         public static void AssertAreEqualWithinTolerance(this Force actualForce, Force expectedForce)

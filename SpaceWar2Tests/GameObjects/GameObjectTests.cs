@@ -24,7 +24,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             }
 
             protected override void UpdateInternal(float deltaT) { }
-            public override void Draw(IGraphicsDevice graphicsDevice = null) { }
+            public override void Draw(IGraphicsDevice graphicsDevice) { }
 
             public new IEnumerable<Force> Forces
             {
@@ -62,7 +62,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             Assert.IsEmpty(_gameObject.Forces);
 
             //Just to get 100% coverage
-            _gameObject.Draw();
+            _gameObject.Draw(null);
         }
 
         [Test]

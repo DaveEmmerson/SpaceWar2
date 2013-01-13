@@ -40,7 +40,7 @@ namespace DEMW.SpaceWar2.Graphics
             var transforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(transforms);
 
-            foreach (ModelMesh modelMesh in model.Meshes)
+            foreach (var modelMesh in model.Meshes)
             {
                 foreach (BasicEffect effect in modelMesh.Effects)
                 {

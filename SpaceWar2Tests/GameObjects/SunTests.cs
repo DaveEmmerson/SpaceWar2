@@ -34,7 +34,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             var position = new Vector2(12f, 5.5f);
             var sun = new Sun(position, 30f, Color.Goldenrod, 200f);
 
-            sun.Draw();
+            sun.Draw(null);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DEMW.SpaceWar2.Graphics;
 using DEMW.SpaceWar2.Utils.XnaWrappers;
 using DEMW.SpaceWar2Tests.TestUtils;
@@ -41,11 +42,13 @@ namespace DEMW.SpaceWar2Tests.Graphics
 
             var circle = new Circle(radius, _color, lineCount);
 
-            foreach (var vertex in circle.Vertices())
+            var radii = from vertex in circle.Vertices()
+                        let x = vertex.Position.X
+                        let y = vertex.Position.Y
+                        select (float) Math.Sqrt((x*x) + (y*y));
+
+            foreach (var actualRadius in radii)
             {
-                var x = vertex.Position.X;
-                var y = vertex.Position.Y;
-                var actualRadius = (float)Math.Sqrt((x * x) + (y * y));
                 actualRadius.AssertAreEqualWithinTolerance(radius, 0.000001f);
             }
         }

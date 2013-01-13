@@ -74,7 +74,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
         protected abstract void UpdateInternal(float deltaT);
 
-        public abstract void Draw(IGraphicsDevice graphicsDevice = null);
+        public abstract void Draw(IGraphicsDevice graphicsDevice);
         
         private void SimulateDynamics(float deltaT)
         {

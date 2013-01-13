@@ -86,7 +86,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 
         private void GenerateLinearThrust(ShipActions actions)
         {
-            float linearTarget = 0f;
+            var linearTarget = 0f;
             if (actions.HasFlag(ShipActions.Thrust))
             {
                 linearTarget += 1f;
