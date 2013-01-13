@@ -48,10 +48,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _shipComponentFactory.CreateThrusterArray(Arg.Any<IShip>()).Returns(_thrusterArray);
 
             _position = new Vector2(12f, 5.5f);
-            _ship = new Ship("TestShip", _position, _radius, Color.Goldenrod, _graphicsFactory, _shipComponentFactory)
-            {
-                Controller = _controller
-            };
+            _ship = new Ship("TestShip", _position, _radius, Color.Goldenrod, _graphicsFactory, _shipComponentFactory);
+            _ship.SetController(_controller);
         }
 
         [Test]
@@ -163,7 +161,7 @@ namespace DEMW.SpaceWar2Tests.GameObjects
         [Test]
         public void Draw_does_nothing_if_ShowArrows_is_False()
         {
-            _ship.ShowArrows = false;
+            _ship.SetShowArrows(false);
             _ship.Draw(_graphicsDevice);
 
             _graphicsFactory.DidNotReceiveWithAnyArgs().CreateAccelerationArrow(Arg.Any<Vector2>(), Arg.Any<float>());
@@ -181,8 +179,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _graphicsFactory.CreateAccelerationArrow(Arg.Any<Vector2>(), Arg.Any<float>()).Returns(accelerationArrow);
             _graphicsFactory.CreateVelocityArrow(Arg.Any<Vector2>(), Arg.Any<float>()).Returns(velocityArrow);
             _graphicsFactory.CreateRotationArrow(Arg.Any<float>(), Arg.Any<float>()).Returns(rotationArrow);
-            
-            _ship.ShowArrows = true;
+
+            _ship.SetShowArrows(true);
             _ship.Velocity = new Vector2(1f, 1f);
             _ship.Rotation = 1f;
             _ship.Draw(_graphicsDevice);
@@ -214,8 +212,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _graphicsFactory.CreateRotationArrow(Arg.Any<float>(), Arg.Any<float>()).Returns(rotationArrow);
             _graphicsFactory.CreateForceArrow(force1, Arg.Any<float>()).Returns(force1Arrow);
             _graphicsFactory.CreateForceArrow(force2, Arg.Any<float>()).Returns(force2Arrow);
-            
-            _ship.ShowArrows = true;
+
+            _ship.SetShowArrows(true);
             _ship.ApplyInternalForce(force1);
             _ship.ApplyExternalForce(force2);
             _ship.Update(new GameTime());

@@ -54,10 +54,10 @@ namespace DEMW.SpaceWar2
             var ship = new Ship(name, position, 16, color, _graphicsFactory, _shipComponentFactory)
             {
                 Velocity = velocity,
-                Controller = controller,
-                ShowArrows = true,
                 Model = _contentManager.Load<Model>("Models/Saucer")
             };
+            ship.SetController(controller);
+            ship.SetShowArrows(true);
 
             _gravitySimulator.RegisterParticipant(ship);
             _universe.Register(ship);

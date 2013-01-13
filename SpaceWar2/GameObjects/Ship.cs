@@ -12,8 +12,6 @@ namespace DEMW.SpaceWar2.GameObjects
 {
     public class Ship : GameObject, IShip
     {
-        public IShipController Controller { private get; set; }
-
         private readonly IEnergyStore _energyStore;
         private readonly IShield _shield;
         private readonly IHull _hull;
@@ -21,6 +19,8 @@ namespace DEMW.SpaceWar2.GameObjects
 
         private readonly IGraphicsFactory _graphicsFactory;
         private readonly IList<IArrow> _arrows;
+        private IShipController _controller;
+        private bool _showArrows;
 
         public Ship(string name, Vector2 position, float radius, Color color, IGraphicsFactory graphicsFactory, IShipComponentFactory shipComponentFactory)
             : base (position, radius, 1)
@@ -28,7 +28,7 @@ namespace DEMW.SpaceWar2.GameObjects
             Name = name;
             Color = color;
             
-            Controller = new NullShipController();
+            _controller = new NullShipController();
 
             _energyStore = shipComponentFactory.CreateEnergyStore();
             _shield = shipComponentFactory.CreateShield(this);
@@ -40,18 +40,27 @@ namespace DEMW.SpaceWar2.GameObjects
         }
 
         public string Name { get; private set; }
-        public bool ShowArrows { private get; set; }
-
+        
         public float Energy { get { return _energyStore.Level; } }
         public float Shields { get { return _shield.Level; } }
         public float Armour { get { return _hull.Level; } }       
+
+        public void SetController(IShipController controller)
+        {
+            _controller = controller;
+        }
+
+        public void SetShowArrows(bool showArrows)
+        {
+            _showArrows = showArrows;
+        }
 
         protected override void UpdateInternal(float deltaT)
         {
             _shield.Recharge(deltaT);
             _energyStore.Recharge(deltaT);
 
-            ShipActions actions = Controller.Actions;
+            ShipActions actions = _controller.Actions;
             _thrusterArray.CalculateThrustPattern(actions);
             _thrusterArray.EngageThrusters();
         }
@@ -85,7 +94,7 @@ namespace DEMW.SpaceWar2.GameObjects
         {
             _arrows.Clear();
             
-            if (!ShowArrows)
+            if (!_showArrows)
             {
                 return;
             }
