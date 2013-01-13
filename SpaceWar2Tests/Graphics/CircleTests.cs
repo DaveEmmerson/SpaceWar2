@@ -71,7 +71,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             const int lineCount = 8;
 
             var exception = Assert.Throws<ArgumentException>(() => new Circle(radius, _color, lineCount));
-            Assert.AreEqual("must be greater than 0\r\nParameter name: radius", exception.Message);
+            Assert.AreEqual("Must be greater than 0\r\nParameter name: radius", exception.Message);
         }
 
         [Test]
@@ -81,7 +81,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             const int lineCount = 8;
 
             var exception = Assert.Throws<ArgumentException>(() => new Circle(radius, _color, lineCount));
-            Assert.AreEqual("must be greater than 0\r\nParameter name: radius", exception.Message);
+            Assert.AreEqual("Must be greater than 0\r\nParameter name: radius", exception.Message);
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             const int lineCount = -8;
 
             var exception = Assert.Throws<ArgumentException>(() => new Circle(radius, _color, lineCount));
-            Assert.AreEqual("must be at least 2\r\nParameter name: lineCount", exception.Message);
+            Assert.AreEqual("Must be at least 2\r\nParameter name: lineCount", exception.Message);
         }
 
         [Test]
@@ -101,7 +101,7 @@ namespace DEMW.SpaceWar2Tests.Graphics
             const int lineCount = 0;
 
             var exception = Assert.Throws<ArgumentException>(() => new Circle(radius, _color, lineCount));
-            Assert.AreEqual("must be at least 2\r\nParameter name: lineCount", exception.Message);
+            Assert.AreEqual("Must be at least 2\r\nParameter name: lineCount", exception.Message);
         }
 
         [Test]

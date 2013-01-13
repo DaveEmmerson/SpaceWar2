@@ -19,7 +19,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
         {
             if (amount < 0)
             {
-                throw new ArgumentException("Damage amount must not be negative.");
+                throw new ArgumentException("Must not be negative.", "amount");
             }
 
             if (_ship.Expired)

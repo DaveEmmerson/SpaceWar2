@@ -20,7 +20,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
         {
             if (amountRequested < 0F)
             {
-                throw new ArgumentException("Amount requested must not be negative.");
+                throw new ArgumentException("Must not be negative.", "amountRequested");
             }
 
             if (!(amountRequested > 0F))
@@ -39,7 +39,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
         {
             if (deltaT < 0)
             {
-                throw new ArgumentException("deltaT must not be negative.");
+                throw new ArgumentException("Must not be negative.", "deltaT");
             }
 
             if (!(deltaT > 0))

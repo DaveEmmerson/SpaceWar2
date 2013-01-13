@@ -64,7 +64,7 @@ namespace DEMW.SpaceWar2.Graphics
         {
             if (universe == null)
             {
-                throw new ArgumentException("universe must not be null.");
+                throw new ArgumentNullException("universe", "must not be null.");
             }
             
             var volumeCopy = universe.Volume.Clone();

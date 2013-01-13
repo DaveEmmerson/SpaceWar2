@@ -70,8 +70,9 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         [Test]
         public void Request_energy_with_negative_argument_throws_exception()
         {
-            Assert.Throws<ArgumentException>(() => _energyStore.RequestEnergy(-10F));
+            var exception = Assert.Throws<ArgumentException>(() => _energyStore.RequestEnergy(-10F));
 
+            Assert.AreEqual("Must not be negative.\r\nParameter name: amountRequested", exception.Message);
             Assert.AreEqual(maxLevel, _energyStore.Level);
         }
 
@@ -116,7 +117,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         [Test]
         public void Recharge_with_negative_parameter_throws_exception()
         {
-            Assert.Throws<ArgumentException>(() => _energyStore.Recharge(-10F));
+            var exception = Assert.Throws<ArgumentException>(() => _energyStore.Recharge(-10F));
+            Assert.AreEqual("Must not be negative.\r\nParameter name: deltaT", exception.Message);
         }
     }
 }

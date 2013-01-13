@@ -48,14 +48,10 @@ namespace DEMW.SpaceWar2Tests.GameObjects.ShipComponents
         {
             const float negativeDamage = -10f;
             
-            var damageRemaining = negativeDamage;
-            Assert.Throws<ArgumentException>(()=>
-            {
-                damageRemaining = _shield.Damage(negativeDamage);
-            });
+            var exception = Assert.Throws<ArgumentException>(()=> _shield.Damage(negativeDamage));
 
+            Assert.AreEqual("Must not be negative.\r\nParameter name: amount", exception.Message);
             Assert.AreEqual(shieldStartLevel, _shield.Level);
-            Assert.AreEqual(negativeDamage, damageRemaining);
         }
 
         [Test]

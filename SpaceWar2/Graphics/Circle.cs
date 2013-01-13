@@ -14,12 +14,12 @@ namespace DEMW.SpaceWar2.Graphics
             const int minumumlineCount = 2;
             if (lineCount <= minumumlineCount)
             {
-                throw new ArgumentException("must be at least " + minumumlineCount, "lineCount");
+                throw new ArgumentException("Must be at least " + minumumlineCount, "lineCount");
             }
 
             if (radius <= 0)
             {
-                throw new ArgumentException("must be greater than 0", "radius");
+                throw new ArgumentException("Must be greater than 0", "radius");
             }
 
             _vertices = new VertexPositionColor[lineCount];

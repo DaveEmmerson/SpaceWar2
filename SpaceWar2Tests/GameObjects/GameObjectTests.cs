@@ -147,9 +147,12 @@ namespace DEMW.SpaceWar2Tests.GameObjects
         }
         
         [Test]
-        public void ApplyExternalForce_throws_exception_if_force_argument_is_null()
+        public void ApplyExternalForce_does_nothing_when_force_argument_is_null()
         {
-            Assert.Throws<ArgumentException>(() => _gameObject.ApplyExternalForce(null));
+            _gameObject.ApplyExternalForce(null);
+            _gameObject.Update(_gameTime);
+
+            Assert.IsEmpty(_gameObject.Forces);
         }
 
         [Test]

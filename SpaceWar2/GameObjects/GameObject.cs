@@ -45,17 +45,11 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public void ApplyExternalForce(Force force)
         {
-            if (force == null)
-            {
-                throw new ArgumentException("force must not be null.");
-            }
+            if (force == null || force.Vector == Vector2.Zero) return;
 
             //TODO note that this method and the one below do not copy force, so any changes 
             //to force outside this class will not be without side effects
-            if (force.Vector != Vector2.Zero)
-            {
-                _queuedforces.Add(force);
-            }
+            _queuedforces.Add(force);
         }
 
         public void ApplyInternalForce(Force force)
