@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DEMW.SpaceWar2.Physics;
+using DEMW.SpaceWar2.Core.Physics;
 using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

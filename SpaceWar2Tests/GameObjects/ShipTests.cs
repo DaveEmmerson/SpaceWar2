@@ -1,9 +1,9 @@
 ﻿using System;
 using DEMW.SpaceWar2.Controls;
+using DEMW.SpaceWar2.Core.Physics;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Graphics;
-using DEMW.SpaceWar2.Physics;
 using DEMW.SpaceWar2.Utils.XnaWrappers;
 using DEMW.SpaceWar2Tests.TestUtils;
 using Microsoft.Xna.Framework;

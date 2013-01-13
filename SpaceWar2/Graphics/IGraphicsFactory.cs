@@ -1,4 +1,4 @@
-using DEMW.SpaceWar2.Physics;
+using DEMW.SpaceWar2.Core.Physics;
 using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.Graphics

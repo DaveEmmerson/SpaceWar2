@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 
-namespace DEMW.SpaceWar2.Physics
+namespace DEMW.SpaceWar2.Core.Physics
 {
     public class Force
     {

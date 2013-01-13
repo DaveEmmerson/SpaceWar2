@@ -87,6 +87,10 @@
     <Compile Include="Utils\ExtensionsTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SpaceWar2.Core\SpaceWar2.Core.csproj">
+      <Project>{D3A2CFAC-D273-467F-90C6-F03F84142DB4}</Project>
+      <Name>SpaceWar2.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SpaceWar2\SpaceWar2.csproj">
       <Project>{8595BF4D-D77E-4B0A-9066-2DB01EBB3CD9}</Project>
       <Name>SpaceWar2</Name>
