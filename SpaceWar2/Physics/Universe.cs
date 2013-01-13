@@ -3,18 +3,18 @@ using DEMW.SpaceWar2.GameObjects;
 
 namespace DEMW.SpaceWar2.Physics
 {
-    public class Universe : IUniverse
+    internal class Universe : IUniverse
     {
         private readonly Volume _volume;
         private readonly IList<IGameObject> _managedObjects;
 
-        public Universe(Volume volume)
+        internal Universe(Volume volume)
         {
             _volume = volume;
             _managedObjects = new List<IGameObject>();
         }
 
-        public static IUniverse CreateDefault()
+        internal static IUniverse CreateDefault()
         {
             var volume = new Volume(-400, 400, -240, 240, -1000, 1000);
             return new Universe(volume);

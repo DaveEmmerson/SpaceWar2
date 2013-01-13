@@ -13,14 +13,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DEMW.SpaceWar2
 {
-    public class SpaceWar2Game : Game
+    internal class SpaceWar2Game : Game
     {
         private const float Speed = 100f;
 
         private readonly IContentManager _contentManager;
         private readonly IGraphicsDevice _graphicsDevice;
         private readonly GameObjectFactory _gameObjectFactory;
-        private readonly GravitySimulator _gravitySimulator;
+        private readonly IGravitySimulator _gravitySimulator;
         private readonly IUniverse _universe;
         private readonly IShipComponentFactory _shipComponentFactory;
         private readonly IGraphicsFactory _graphicsFactory;
@@ -36,8 +36,8 @@ namespace DEMW.SpaceWar2
         private Camera _camera;
         		
         private Effect _effect;
-        
-        public SpaceWar2Game()
+
+        internal SpaceWar2Game()
         {
             _contentManager = new ContentManagerWrapper(Content.ServiceProvider, "Content");
             var graphicsDeviceManager = new GraphicsDeviceManager(this);

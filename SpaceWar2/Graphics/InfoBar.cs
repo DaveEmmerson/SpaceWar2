@@ -3,14 +3,14 @@ using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.Graphics
 {
-    public class InfoBar
+    internal class InfoBar
     {
         private readonly ISpriteBatch _spriteBatch;
         private readonly ISpriteFont _spriteFont;
 
         private Color FontColor { get; set; }
 
-        public InfoBar(ISpriteBatch spriteBatch, ISpriteFont spriteFont)
+        internal InfoBar(ISpriteBatch spriteBatch, ISpriteFont spriteFont)
         {
             _spriteBatch = spriteBatch;
             _spriteFont = spriteFont;
@@ -18,15 +18,15 @@ namespace DEMW.SpaceWar2.Graphics
             FontColor = Color.LightBlue;
         }
 
-        public Vector2 CursorPosition { get; set; }
-        
-        public void DrawString(string message)
+        internal Vector2 CursorPosition { get; set; }
+
+        internal void DrawString(string output)
         {
             _spriteBatch.BeginBatch();
-            _spriteBatch.DrawString(_spriteFont, message, CursorPosition, FontColor);
+            _spriteBatch.DrawString(_spriteFont, output, CursorPosition, FontColor);
             _spriteBatch.EndBatch();
 
-            var noOfLines = NoOfLines(message);
+            var noOfLines = NoOfLines(output);
             CursorPosition += new Vector2(0, _spriteFont.LineSpacing * noOfLines);
         }
 
@@ -34,7 +34,7 @@ namespace DEMW.SpaceWar2.Graphics
         /// Nabbed from an article on Codeproject:
         /// http://www.codeproject.com/Tips/312312/Counting-lines-in-a-string
         /// </summary>
-        static long NoOfLines(string message)
+        private static long NoOfLines(string message)
         {
             var count = 1;
             var position = -1;

@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects
 { 
-    public class Sun : GameObject
+    internal class Sun : GameObject
     {      
-        public Sun(Vector2 position, float radius, Color color, float mass)
+        internal Sun(Vector2 position, float radius, Color color, float mass)
             : base (position, radius, mass)
         {
             Color = color;

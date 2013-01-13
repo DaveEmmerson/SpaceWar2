@@ -2,13 +2,13 @@
 
 namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 {
-    public class Hull : IHull
+    internal class Hull : IHull
     {
         private readonly IGameObject _ship;
 
         public float Level { get; private set; }
 
-        public Hull(IGameObject ship, float maxLevel)
+        internal Hull(IGameObject ship, float maxLevel)
         {
             _ship = ship;
 

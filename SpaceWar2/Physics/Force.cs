@@ -4,20 +4,20 @@ namespace DEMW.SpaceWar2.Physics
 {
     public class Force
     {
-        public Force() : this(Vector2.Zero, Vector2.Zero) { }
-        
-        public Force(Vector2 force) : this(force, Vector2.Zero) { }
+        internal Force() : this(Vector2.Zero, Vector2.Zero) { }
 
-        public Force(Vector2 force, Vector2 displacement)
+        internal Force(Vector2 force) : this(force, Vector2.Zero) { }
+
+        internal Force(Vector2 force, Vector2 displacement)
         {
             Vector = force;
             Displacement = displacement;
         }
 
-        public Vector2 Vector { get; private set; }
-        public Vector2 Displacement { get; private set; }
+        internal Vector2 Vector { get; private set; }
+        internal Vector2 Displacement { get; private set; }
 
-        public void Rotate(float angle)
+        internal void Rotate(float angle)
         {
             var rotation = Matrix.CreateRotationZ(angle);
             Vector = Vector2.Transform(Vector, rotation);

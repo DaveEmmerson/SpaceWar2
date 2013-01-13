@@ -2,7 +2,7 @@
 
 namespace DEMW.SpaceWar2.Utils.XnaWrappers
 {
-    public class KeyboardWrapper : IKeyboard
+    internal class KeyboardWrapper : IKeyboard
     {
         public KeyboardState State
         {

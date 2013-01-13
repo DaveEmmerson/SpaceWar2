@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects
 {
-    public class Ship : GameObject, IShip
+    internal class Ship : GameObject, IShip
     {
         private readonly IEnergyStore _energyStore;
         private readonly IShield _shield;
@@ -22,7 +22,7 @@ namespace DEMW.SpaceWar2.GameObjects
         private IShipController _controller;
         private bool _showArrows;
 
-        public Ship(string name, Vector2 position, float radius, Color color, IGraphicsFactory graphicsFactory, IShipComponentFactory shipComponentFactory)
+        internal Ship(string name, Vector2 position, float radius, Color color, IGraphicsFactory graphicsFactory, IShipComponentFactory shipComponentFactory)
             : base (position, radius, 1)
         {
             Name = name;
@@ -39,18 +39,18 @@ namespace DEMW.SpaceWar2.GameObjects
             _arrows = new List<IArrow>();
         }
 
-        public string Name { get; private set; }
-        
-        public float Energy { get { return _energyStore.Level; } }
-        public float Shields { get { return _shield.Level; } }
-        public float Armour { get { return _hull.Level; } }       
+        internal string Name { get; private set; }
 
-        public void SetController(IShipController controller)
+        internal float Energy { get { return _energyStore.Level; } }
+        internal float Shields { get { return _shield.Level; } }
+        internal float Armour { get { return _hull.Level; } }
+
+        internal void SetController(IShipController controller)
         {
             _controller = controller;
         }
 
-        public void SetShowArrows(bool showArrows)
+        internal void SetShowArrows(bool showArrows)
         {
             _showArrows = showArrows;
         }
@@ -64,8 +64,8 @@ namespace DEMW.SpaceWar2.GameObjects
             _thrusterArray.CalculateThrustPattern(actions);
             _thrusterArray.EngageThrusters();
         }
-        
-        public void Damage(float amount)
+
+        internal void Damage(float amount)
         {
             var damageRemaining = _shield.Damage(amount);
 

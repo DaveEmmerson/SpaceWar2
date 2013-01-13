@@ -5,11 +5,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Graphics
 {
-    public class Arrow : IArrow
+    internal class Arrow : IArrow
     {
         private readonly VertexPositionColor[] _vertices;
 
-        public static IArrow CreateArrow(Vector2 position, Vector2 direction, Color color, float radius)
+        internal static IArrow CreateArrow(Vector2 position, Vector2 direction, Color color, float radius)
         {
             if (direction == Vector2.Zero)
             {
@@ -55,7 +55,7 @@ namespace DEMW.SpaceWar2.Graphics
             }
         }
 
-        public VertexPositionColor[] Vertices()
+        internal VertexPositionColor[] Vertices()
         {
             return _vertices;
         }

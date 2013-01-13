@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.Utils
 {
-    public static class Extensions
+    internal static class Extensions
     {
-        public static void ForEach<TBase, TSubclass>(this IEnumerable<TBase> items, Action<TSubclass> action)
+        internal static void ForEach<TBase, TSubclass>(this IEnumerable<TBase> items, Action<TSubclass> action)
             where TBase : class
             where TSubclass : class,TBase
         {
@@ -19,13 +19,13 @@ namespace DEMW.SpaceWar2.Utils
             }
         }
 
-        public static Vector2 Rotate(this Vector2 vector, float rotation)
+        internal static Vector2 Rotate(this Vector2 vector, float rotation)
         {
             var rotationMatrix = Matrix.CreateRotationZ(rotation);
             return Vector2.Transform(vector, rotationMatrix);
         }
 
-        public static Vector2 DiscardZComponent(this Vector3 vector)
+        internal static Vector2 DiscardZComponent(this Vector3 vector)
         {
             return new Vector2(vector.X, vector.Y);
         }

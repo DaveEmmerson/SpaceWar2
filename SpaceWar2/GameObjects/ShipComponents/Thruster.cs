@@ -4,13 +4,13 @@ using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 {
-    public class Thruster
+    internal class Thruster
     {
         private readonly Vector2 _direction;
         private readonly Vector2 _position;
         private readonly float _maxEnergyDraw;
 
-        public Thruster(Vector2 position, Vector2 direction, float maxEnergyDraw)
+        internal Thruster(Vector2 position, Vector2 direction, float maxEnergyDraw)
         {
             _position = position;
             _direction = direction;
@@ -21,16 +21,16 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
             _maxEnergyDraw = maxEnergyDraw;
         }
 
-        public float EnergyRequired { get { return Throttle * _maxEnergyDraw; } }
+        internal float EnergyRequired { get { return Throttle * _maxEnergyDraw; } }
 
         private float _throttle;
-        public float Throttle
+        internal float Throttle
         {
             get { return _throttle; }
             set { _throttle = value < 0f ? 0f : value > 1f ? 1f : value; }
         }
 
-        public Force Engage(float energyScalingFactor)
+        internal Force Engage(float energyScalingFactor)
         {
             if (energyScalingFactor <= 0f)
             {

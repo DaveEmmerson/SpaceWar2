@@ -2,9 +2,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Utils.XnaWrappers
 {
-    public class SpriteFontWrapper : ISpriteFont
+    internal class SpriteFontWrapper : ISpriteFont
     {
-        public SpriteFontWrapper(SpriteFont spriteFont)
+        internal SpriteFontWrapper(SpriteFont spriteFont)
         {
             SpriteFont = spriteFont;
         }

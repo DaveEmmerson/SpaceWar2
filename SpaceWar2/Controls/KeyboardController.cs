@@ -4,18 +4,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DEMW.SpaceWar2.Controls
 {
-    public class KeyboardController : IShipController
+    internal class KeyboardController : IShipController
     {
         private readonly IDictionary<Keys, ShipActions> _mappings;
         private readonly IKeyboardHandler _keyboardHandler;
 
-        public KeyboardController(IKeyboardHandler keyboardHandler)
+        internal KeyboardController(IKeyboardHandler keyboardHandler)
         {
             _keyboardHandler = keyboardHandler;
             _mappings = new Dictionary<Keys, ShipActions>();
         }
 
-        public void SetMapping(Keys key, ShipActions shipActions)
+        internal void SetMapping(Keys key, ShipActions shipActions)
         {
             var existingMappings = _mappings.Where(x=> x.Value == shipActions).ToList();
             foreach (var mapping in existingMappings)

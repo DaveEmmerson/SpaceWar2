@@ -2,7 +2,7 @@ using DEMW.SpaceWar2.GameObjects.ShipComponents;
 
 namespace DEMW.SpaceWar2.GameObjects
 {
-    public class ShipComponentFactory : IShipComponentFactory
+    internal class ShipComponentFactory : IShipComponentFactory
     {
         //Todo consider parameterizing these methods rather than just returning defaults
         public IEnergyStore CreateEnergyStore()

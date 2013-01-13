@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.Physics
 {
-    public class GravitySimulator
+    internal class GravitySimulator : IGravitySimulator
     {
-        public const int GravitationalConstant = 100;
+        internal const int GravitationalConstant = 100;
 
         private readonly IList<IGameObject> _sources = new List<IGameObject>();
         private readonly IList<IGameObject> _participants = new List<IGameObject>();

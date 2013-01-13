@@ -2,7 +2,7 @@
 
 namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 {
-    public class Shield : IShield
+    internal class Shield : IShield
     {
         private readonly IShip _ship;
         private readonly float _maxLevel;
@@ -10,7 +10,7 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 
         public float Level { get; private set; }
 
-        public Shield(IShip ship, float maxLevel, float rechargeRate)
+        internal Shield(IShip ship, float maxLevel, float rechargeRate)
         {
             _ship = ship;
             _maxLevel = maxLevel;
@@ -49,7 +49,6 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
                 var damageRemaining = -Level;
                 Level = 0;
                 return damageRemaining;
-
             }
 
             return 0;

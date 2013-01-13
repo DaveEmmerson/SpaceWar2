@@ -13,7 +13,7 @@ namespace DEMW.SpaceWar2Tests.Physics
     {
         private IGameObject _source;
         private IGameObject _participant;
-        private GravitySimulator _gravitySimulator;
+        private IGravitySimulator _gravitySimulator;
         
         [SetUp]
         public void Setup()

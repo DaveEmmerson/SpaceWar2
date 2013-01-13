@@ -7,31 +7,31 @@ namespace DEMW.SpaceWar2.Physics
         //BoundingBox is a handy struct provided by XNA that contains the properties we need
         private BoundingBox _boundingBox;
 
-        public Volume(float minX, float maxX, float minY, float maxY, float minZ, float maxZ)
+        internal Volume(float minX, float maxX, float minY, float maxY, float minZ, float maxZ)
         {
             var minimumBound = new Vector3(minX, minY, minZ);
             var maximumBound = new Vector3(maxX, maxY, maxZ);
             _boundingBox = new BoundingBox(minimumBound, maximumBound);
         }
 
-        public float MinX { get { return _boundingBox.Min.X; } }
-        public float MaxX { get { return _boundingBox.Max.X; } }
-        public float MinY { get { return _boundingBox.Min.Y; } }
-        public float MaxY { get { return _boundingBox.Max.Y; } }
-        public float MinZ { get { return _boundingBox.Min.Z; } }
-        public float MaxZ { get { return _boundingBox.Max.Z; } }
+        internal float MinX { get { return _boundingBox.Min.X; } }
+        internal float MaxX { get { return _boundingBox.Max.X; } }
+        internal float MinY { get { return _boundingBox.Min.Y; } }
+        internal float MaxY { get { return _boundingBox.Max.Y; } }
+        internal float MinZ { get { return _boundingBox.Min.Z; } }
+        internal float MaxZ { get { return _boundingBox.Max.Z; } }
 
-        public float Width
+        internal float Width
         {
             get { return _boundingBox.Max.X - _boundingBox.Min.X; }
         }
 
-        public float Height
+        internal float Height
         {
             get { return _boundingBox.Max.Y - _boundingBox.Min.Y; }
         }
 
-        public void Expand(float verticalAmount)
+        internal void Expand(float verticalAmount)
         {
             var horizontalAmount = verticalAmount * Width / Height;
             var delta = new Vector3(horizontalAmount, verticalAmount, 0);
@@ -39,12 +39,12 @@ namespace DEMW.SpaceWar2.Physics
             _boundingBox.Max += delta;
         }
 
-        public void Contract(float verticalAmount)
+        internal void Contract(float verticalAmount)
         {
             Expand(-verticalAmount);
         }
 
-        public Volume Clone()
+        internal Volume Clone()
         {
             return new Volume(MinX, MaxX, MinY, MaxY, MinZ, MaxZ);
         }

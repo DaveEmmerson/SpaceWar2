@@ -4,11 +4,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Utils.XnaWrappers
 {
-    public class SpriteBatchWrapper : ISpriteBatch, IDisposable
+    internal class SpriteBatchWrapper : ISpriteBatch, IDisposable
     {
         private SpriteBatch _spriteBatch;
 
-        public SpriteBatchWrapper(IGraphicsDevice graphicsDevice)
+        internal SpriteBatchWrapper(IGraphicsDevice graphicsDevice)
         {
             _spriteBatch = new SpriteBatch(graphicsDevice.GraphicsDevice);
         }
@@ -20,7 +20,10 @@ namespace DEMW.SpaceWar2.Utils.XnaWrappers
 
         public void DrawString(ISpriteFont spriteFont, string text, Vector2 position, Color color)
         {
-            _spriteBatch.DrawString(spriteFont.SpriteFont, text, position, color);
+            if (spriteFont != null)
+            {
+                _spriteBatch.DrawString(spriteFont.SpriteFont, text, position, color);
+            }
         }
 
         public void EndBatch()

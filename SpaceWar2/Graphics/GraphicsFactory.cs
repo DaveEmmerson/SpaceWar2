@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace DEMW.SpaceWar2.Graphics
 {
-    public class GraphicsFactory : IGraphicsFactory
+    internal class GraphicsFactory : IGraphicsFactory
     {
         public IArrow CreateAccelerationArrow(Vector2 acceleration, float radius)
         {
@@ -26,7 +26,9 @@ namespace DEMW.SpaceWar2.Graphics
 
         public IArrow CreateForceArrow(Force force, float radius)
         {
-            return Arrow.CreateArrow(force.Displacement, force.Vector, Color.Yellow, radius);
+            return force != null
+                       ? Arrow.CreateArrow(force.Displacement, force.Vector, Color.Yellow, radius)
+                       : new NullArrow();
         }
     }
 }

@@ -91,6 +91,7 @@
     <Compile Include="Graphics\IArrow.cs" />
     <Compile Include="Graphics\IDrawingManager.cs" />
     <Compile Include="Graphics\IGraphicsFactory.cs" />
+    <Compile Include="Physics\IGravitySimulator.cs" />
     <Compile Include="Physics\Volume.cs" />
     <Compile Include="Physics\IUniverse.cs" />
     <Compile Include="Utils\XnaWrappers\ISpriteFont.cs" />

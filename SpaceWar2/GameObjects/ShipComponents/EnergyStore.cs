@@ -2,14 +2,14 @@
 
 namespace DEMW.SpaceWar2.GameObjects.ShipComponents
 {    
-    public class EnergyStore : IEnergyStore
+    internal class EnergyStore : IEnergyStore
     {
         public float Level { get; private set; }
 
         private readonly float _maxLevel;
         private readonly float _rechargeRate;
 
-        public EnergyStore(float maxLevel, float rechargeRate)
+        internal EnergyStore(float maxLevel, float rechargeRate)
         {
             _maxLevel = maxLevel;
             _rechargeRate = rechargeRate;
@@ -40,13 +40,11 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
             if (deltaT < 0)
             {
                 throw new ArgumentException("deltaT must not be negative.");
-
             }
 
             if (!(deltaT > 0))
             {
                 return;
-
             }
 
             Level += deltaT * _rechargeRate;
@@ -56,7 +54,6 @@ namespace DEMW.SpaceWar2.GameObjects.ShipComponents
                 Level = _maxLevel;
 
             }
-
         }
     }
 }

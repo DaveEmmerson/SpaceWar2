@@ -11,17 +11,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2
 {
-    public class GameObjectFactory
+    internal class GameObjectFactory
     {
         private readonly IList<IGameObject> _gameObjects;
         private readonly IContentManager _contentManager;
         private readonly IGraphicsFactory _graphicsFactory;
-        private readonly GravitySimulator _gravitySimulator;
+        private readonly IGravitySimulator _gravitySimulator;
         private readonly IUniverse _universe;
         private readonly IDrawingManager _drawingManager;
         private readonly IShipComponentFactory _shipComponentFactory;
 
-        public GameObjectFactory(IContentManager contentManager, IGraphicsFactory graphicsFactory, GravitySimulator gravitySimulator, IDrawingManager drawingManager, IUniverse universe, IShipComponentFactory shipComponentFactory)
+        internal GameObjectFactory(IContentManager contentManager, IGraphicsFactory graphicsFactory, IGravitySimulator gravitySimulator, IDrawingManager drawingManager, IUniverse universe, IShipComponentFactory shipComponentFactory)
         {
             _contentManager = contentManager;
             _graphicsFactory = graphicsFactory;
@@ -33,9 +33,9 @@ namespace DEMW.SpaceWar2
             _gameObjects = new List<IGameObject>();
         }
 
-        public IList<IGameObject> GameObjects { get { return _gameObjects; } }
+        internal IList<IGameObject> GameObjects { get { return _gameObjects; } }
 
-        public Sun CreateSun(Vector2 position, Color color, float mass)
+        internal Sun CreateSun(Vector2 position, Color color, float mass)
         {
             var sun = new Sun(position, 25, color, mass)
             {
@@ -49,7 +49,7 @@ namespace DEMW.SpaceWar2
             return sun;
         }
 
-        public Ship CreateShip(string name, Vector2 position, Vector2 velocity, Color color, IShipController controller)
+        internal Ship CreateShip(string name, Vector2 position, Vector2 velocity, Color color, IShipController controller)
         {
             var ship = new Ship(name, position, 16, color, _graphicsFactory, _shipComponentFactory)
             {
@@ -67,7 +67,7 @@ namespace DEMW.SpaceWar2
             return ship;
         }
 
-        public void DestroyAll(Predicate<IGameObject> match)
+        internal void DestroyAll(Predicate<IGameObject> match)
         {
             var itemsToDestory = GameObjects.Where(x => match(x)).ToList();
             

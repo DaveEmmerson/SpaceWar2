@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DEMW.SpaceWar2.Controls
 {
-    public class KeyboardHandler : IKeyboardHandler
+    internal class KeyboardHandler : IKeyboardHandler
     {
         private readonly IKeyboard _keyboard;
         private KeyboardState _oldKeyboardState;
         private KeyboardState _keyboardState;
 
-        public KeyboardHandler(IKeyboard keyboard)
+        internal KeyboardHandler(IKeyboard keyboard)
         {
             _keyboard = keyboard;
             _keyboardState = _keyboard.State;

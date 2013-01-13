@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Utils.XnaWrappers
 {
-    public class GraphicsDeviceWrapper : IGraphicsDevice
+    internal class GraphicsDeviceWrapper : IGraphicsDevice
     {
         private readonly IGraphicsDeviceManager _graphicsDeviceManager;
 
-        public GraphicsDeviceWrapper(IGraphicsDeviceManager graphicsDeviceManager)
+        internal GraphicsDeviceWrapper(IGraphicsDeviceManager graphicsDeviceManager)
         {
             _graphicsDeviceManager = graphicsDeviceManager;
         }

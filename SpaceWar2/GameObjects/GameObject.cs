@@ -7,11 +7,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.GameObjects
 {
-    public abstract class GameObject : IGameObject
+    internal abstract class GameObject : IGameObject
     {
         private readonly IList<Force> _queuedforces;
 
-        protected GameObject (Vector2 position, float radius, float mass)
+        internal protected GameObject(Vector2 position, float radius, float mass)
         {
             Position = position;
             Radius = radius;
@@ -28,7 +28,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public float Mass { get; set; }
         public Vector2 Position { get; set; }
-        public Vector2 Velocity { get; set; }
+        internal Vector2 Velocity { get; set; }
 
         private float MomentOfInertia { get; set; }
         public float Rotation { get; set; }
@@ -37,9 +37,9 @@ namespace DEMW.SpaceWar2.GameObjects
         public float Radius { get; set; }
         public Model Model { get; set; }
         public Color Color { get; set; }
-        
-        public Vector2 TotalForce { get; private set; }
-        public float TotalMoment { get; private set; }
+
+        internal Vector2 TotalForce { get; private set; }
+        internal float TotalMoment { get; private set; }
         
         protected IList<Force> Forces { get; private set; }
 
@@ -60,7 +60,7 @@ namespace DEMW.SpaceWar2.GameObjects
 
         public void ApplyInternalForce(Force force)
         {
-            if (force.Vector == Vector2.Zero) return;
+            if (force == null || force.Vector == Vector2.Zero) return;
             
             //TODO Should we make a copy of force here instead of changing the original force?
             force.Rotate(Rotation);
@@ -72,7 +72,7 @@ namespace DEMW.SpaceWar2.GameObjects
             Position = destination;
         }
 
-        public void Update(GameTime gameTime)
+        internal void Update(GameTime gameTime)
         {
             var deltaT = (float)gameTime.ElapsedGameTime.TotalSeconds;
 

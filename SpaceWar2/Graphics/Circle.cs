@@ -5,11 +5,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Graphics
 {
-    public class Circle
+    internal class Circle
     {
         private readonly VertexPositionColor[] _vertices;
 
-        public Circle(float radius, Color lineColor, int lineCount)
+        internal Circle(float radius, Color lineColor, int lineCount)
         {
             const int minumumlineCount = 2;
             if (lineCount <= minumumlineCount)
@@ -39,7 +39,7 @@ namespace DEMW.SpaceWar2.Graphics
             _vertices[lineCount - 1] = _vertices[0];
         }
 
-        public void Draw(IGraphicsDevice graphicsDevice)
+        internal void Draw(IGraphicsDevice graphicsDevice)
         {
             if (graphicsDevice != null)
             {
@@ -47,7 +47,7 @@ namespace DEMW.SpaceWar2.Graphics
             }
         }
 
-        public VertexPositionColor[] Vertices()
+        internal VertexPositionColor[] Vertices()
         {
             return _vertices;
         }

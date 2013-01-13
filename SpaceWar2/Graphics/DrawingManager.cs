@@ -7,13 +7,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DEMW.SpaceWar2.Graphics
 {
-    public class DrawingManager : IDrawingManager
+    internal class DrawingManager : IDrawingManager
     {
         private readonly List<IGameObject> _drawableObjects;
 
         public Camera ActiveCamera { get; private set; }
 
-        public DrawingManager(IUniverse universe) 
+        internal DrawingManager(IUniverse universe) 
         {
             ResetCamera(universe);
             _drawableObjects = new List<IGameObject>();

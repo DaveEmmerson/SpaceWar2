@@ -9,7 +9,7 @@ namespace DEMW.SpaceWar2.Graphics
         private Vector3 _target;
         private readonly Volume _volume;
 
-        public Camera(Volume volume)
+        internal Camera(Volume volume)
         {
             _position = new Vector3(0, 0, 1);
             _target = Vector3.Zero;
@@ -19,17 +19,17 @@ namespace DEMW.SpaceWar2.Graphics
             UpdateProjection();
         }
 
-        public Matrix View { get; private set; }
-        public Matrix Projection { get; private set; }
+        internal Matrix View { get; private set; }
+        internal Matrix Projection { get; private set; }
 
-        public void Pan(Vector3 vector) 
+        internal void Pan(Vector3 vector) 
         {
             _position += vector;
             _target += vector;
             UpdateView();
         }
 
-        public void Zoom(float amount)
+        internal void Zoom(float amount)
         {
             _volume.Expand(amount);
             UpdateProjection();

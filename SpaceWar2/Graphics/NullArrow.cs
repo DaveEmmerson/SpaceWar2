@@ -2,7 +2,7 @@
 
 namespace DEMW.SpaceWar2.Graphics
 {
-    public class NullArrow : IArrow
+    internal class NullArrow : IArrow
     {
         public void Draw(IGraphicsDevice graphicsDevice) { }
     }
