@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Physics;
 using Microsoft.Xna.Framework;
@@ -12,6 +11,11 @@ namespace DEMW.SpaceWar2.Graphics
         private readonly List<IGameObject> _drawableObjects;
 
         public Camera ActiveCamera { get; private set; }
+
+        public int ObjectCount
+        {
+            get { return _drawableObjects.Count; }
+        }
 
         internal DrawingManager(IUniverse universe) 
         {
@@ -62,11 +66,8 @@ namespace DEMW.SpaceWar2.Graphics
 
         public void ResetCamera(IUniverse universe)
         {
-            if (universe == null)
-            {
-                throw new ArgumentNullException("universe", "must not be null.");
-            }
-            
+            if (universe == null) return;
+
             var volumeCopy = universe.Volume.Clone();
             ActiveCamera = new Camera(volumeCopy);
         }
