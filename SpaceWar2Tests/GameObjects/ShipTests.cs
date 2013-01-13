@@ -5,6 +5,7 @@ using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Graphics;
 using DEMW.SpaceWar2.Physics;
 using DEMW.SpaceWar2.Utils.XnaWrappers;
+using DEMW.SpaceWar2Tests.TestUtils;
 using Microsoft.Xna.Framework;
 using NSubstitute;
 using NUnit.Framework;
@@ -210,8 +211,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _graphicsFactory.CreateAccelerationArrow(Arg.Any<Vector2>(), Arg.Any<float>()).Returns(accelerationArrow);
             _graphicsFactory.CreateVelocityArrow(Arg.Any<Vector2>(), Arg.Any<float>()).Returns(velocityArrow);
             _graphicsFactory.CreateRotationArrow(Arg.Any<float>(), Arg.Any<float>()).Returns(rotationArrow);
-            _graphicsFactory.CreateForceArrow(force1, Arg.Any<float>()).Returns(force1Arrow);
-            _graphicsFactory.CreateForceArrow(force2, Arg.Any<float>()).Returns(force2Arrow);
+            _graphicsFactory.CreateForceArrow(Arg.Is<Force>(x=> x.Matches(force1)), Arg.Any<float>()).Returns(force1Arrow);
+            _graphicsFactory.CreateForceArrow(Arg.Is<Force>(x=> x.Matches(force2)), Arg.Any<float>()).Returns(force2Arrow);
 
             _ship.SetShowArrows(true);
             _ship.ApplyInternalForce(force1);
@@ -222,8 +223,8 @@ namespace DEMW.SpaceWar2Tests.GameObjects
             _graphicsFactory.Received(1).CreateAccelerationArrow(new Vector2(2.6f, 10.0f), _radius);
             _graphicsFactory.Received(1).CreateVelocityArrow(new Vector2(0f, 0f), _radius);
             _graphicsFactory.Received(1).CreateRotationArrow(0f, _radius);
-            _graphicsFactory.Received(1).CreateForceArrow(force1, _radius);
-            _graphicsFactory.Received(1).CreateForceArrow(force2, _radius);
+            _graphicsFactory.Received(1).CreateForceArrow(Arg.Is<Force>(x=> x.Matches(force1)), _radius);
+            _graphicsFactory.Received(1).CreateForceArrow(Arg.Is<Force>(x=> x.Matches(force2)), _radius);
 
             accelerationArrow.Received(1).Draw(_graphicsDevice);
             velocityArrow.Received(1).Draw(_graphicsDevice);
