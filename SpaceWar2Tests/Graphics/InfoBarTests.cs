@@ -1,5 +1,5 @@
-﻿using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
-using DEMW.SpaceWar2.Graphics;
+﻿using DEMW.SpaceWar2.Core.Graphics;
+using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using NSubstitute;
 using NUnit.Framework;

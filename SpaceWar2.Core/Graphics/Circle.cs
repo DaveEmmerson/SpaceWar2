@@ -3,7 +3,7 @@ using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace DEMW.SpaceWar2.Graphics
+namespace DEMW.SpaceWar2.Core.Graphics
 {
     internal class Circle
     {

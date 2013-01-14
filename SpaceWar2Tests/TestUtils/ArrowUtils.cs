@@ -1,6 +1,5 @@
 using DEMW.SpaceWar2.Core.Graphics;
-using DEMW.SpaceWar2.Graphics;
-using DEMW.SpaceWar2.Utils;
+using DEMW.SpaceWar2.Core.Utils;
 using Microsoft.Xna.Framework;
 using NUnit.Framework;
 

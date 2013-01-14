@@ -71,7 +71,6 @@
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
-    <Reference Include="Microsoft.Xna.Framework.GamerServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -79,19 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Graphics\NullArrow.cs" />
-    <Compile Include="Graphics\GraphicsFactory.cs" />
-    <Compile Include="Graphics\IDrawingManager.cs" />
-    <Compile Include="GameObjectFactory.cs" />
-    <Compile Include="Graphics\Arrow.cs" />
-    <Compile Include="Graphics\Camera.cs" />
-    <Compile Include="Graphics\Circle.cs" />
-    <Compile Include="Graphics\DrawingManager.cs" />
-    <Compile Include="Graphics\InfoBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="SpaceWar2Game.cs" />
-    <Compile Include="Utils\Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Game.ico" />

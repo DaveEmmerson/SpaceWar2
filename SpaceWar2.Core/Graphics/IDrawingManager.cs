@@ -1,7 +1,7 @@
 using DEMW.SpaceWar2.Core.GameObjects;
 using DEMW.SpaceWar2.Core.Physics;
 
-namespace DEMW.SpaceWar2.Graphics
+namespace DEMW.SpaceWar2.Core.Graphics
 {
     public interface IDrawingManager
     {

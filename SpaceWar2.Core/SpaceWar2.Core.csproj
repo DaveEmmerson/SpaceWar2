@@ -60,6 +60,7 @@
     <Compile Include="Controls\KeyboardHandler.cs" />
     <Compile Include="Controls\NullShipController.cs" />
     <Compile Include="Controls\ShipActions.cs" />
+    <Compile Include="GameObjectFactory.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\IShip.cs" />
@@ -76,8 +77,17 @@
     <Compile Include="GameObjects\ShipComponents\Thruster.cs" />
     <Compile Include="GameObjects\ShipComponents\ThrusterArray.cs" />
     <Compile Include="GameObjects\Sun.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Graphics\Arrow.cs" />
+    <Compile Include="Graphics\Camera.cs" />
+    <Compile Include="Graphics\Circle.cs" />
+    <Compile Include="Graphics\DrawingManager.cs" />
+    <Compile Include="Graphics\GraphicsFactory.cs" />
     <Compile Include="Graphics\IArrow.cs" />
+    <Compile Include="Graphics\IDrawingManager.cs" />
     <Compile Include="Graphics\IGraphicsFactory.cs" />
+    <Compile Include="Graphics\InfoBar.cs" />
+    <Compile Include="Graphics\NullArrow.cs" />
     <Compile Include="Physics\Force.cs" />
     <Compile Include="Physics\GravitySimulator.cs" />
     <Compile Include="Physics\IGravitySimulator.cs" />
@@ -85,6 +95,7 @@
     <Compile Include="Physics\Universe.cs" />
     <Compile Include="Physics\Volume.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\XnaWrappers\ContentManagerWrapper.cs" />
     <Compile Include="Utils\XnaWrappers\GraphicsDeviceWrapper.cs" />
     <Compile Include="Utils\XnaWrappers\IContentManager.cs" />

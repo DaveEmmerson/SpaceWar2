@@ -6,11 +6,10 @@ using DEMW.SpaceWar2.Core.GameObjects;
 using DEMW.SpaceWar2.Core.Graphics;
 using DEMW.SpaceWar2.Core.Physics;
 using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
-using DEMW.SpaceWar2.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace DEMW.SpaceWar2
+namespace DEMW.SpaceWar2.Core
 {
     internal class GameObjectFactory
     {

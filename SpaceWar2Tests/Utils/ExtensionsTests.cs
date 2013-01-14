@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DEMW.SpaceWar2.Utils;
+using DEMW.SpaceWar2.Core.Utils;
 using NSubstitute;
 using NUnit.Framework;
 

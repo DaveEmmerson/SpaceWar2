@@ -1,7 +1,7 @@
 ﻿using DEMW.SpaceWar2.Core.Physics;
 using Microsoft.Xna.Framework;
 
-namespace DEMW.SpaceWar2.Graphics
+namespace DEMW.SpaceWar2.Core.Graphics
 {
     public class Camera
     {

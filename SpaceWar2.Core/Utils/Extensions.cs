@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 
-namespace DEMW.SpaceWar2.Utils
+namespace DEMW.SpaceWar2.Core.Utils
 {
     internal static class Extensions
     {
