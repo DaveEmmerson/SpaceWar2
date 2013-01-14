@@ -1,7 +1,6 @@
-﻿using DEMW.SpaceWar2.Core.Controls;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 
-namespace DEMW.SpaceWar2.Controls
+namespace DEMW.SpaceWar2.Core.Controls
 {
     internal class ControllerFactory
     {

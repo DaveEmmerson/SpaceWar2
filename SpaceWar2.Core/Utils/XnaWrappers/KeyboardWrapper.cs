@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
-namespace DEMW.SpaceWar2.Utils.XnaWrappers
+namespace DEMW.SpaceWar2.Core.Utils.XnaWrappers
 {
     internal class KeyboardWrapper : IKeyboard
     {

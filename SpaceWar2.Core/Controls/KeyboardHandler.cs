@@ -1,7 +1,7 @@
-﻿using DEMW.SpaceWar2.Utils.XnaWrappers;
+﻿using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using Microsoft.Xna.Framework.Input;
 
-namespace DEMW.SpaceWar2.Controls
+namespace DEMW.SpaceWar2.Core.Controls
 {
     internal class KeyboardHandler : IKeyboardHandler
     {

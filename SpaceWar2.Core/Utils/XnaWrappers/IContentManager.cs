@@ -1,4 +1,4 @@
-namespace DEMW.SpaceWar2.Utils.XnaWrappers
+namespace DEMW.SpaceWar2.Core.Utils.XnaWrappers
 {
     public interface IContentManager
     {

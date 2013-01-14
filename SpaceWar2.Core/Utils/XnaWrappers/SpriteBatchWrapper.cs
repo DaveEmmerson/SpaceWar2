@@ -1,9 +1,8 @@
 using System;
-using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace DEMW.SpaceWar2.Utils.XnaWrappers
+namespace DEMW.SpaceWar2.Core.Utils.XnaWrappers
 {
     internal class SpriteBatchWrapper : ISpriteBatch, IDisposable
     {

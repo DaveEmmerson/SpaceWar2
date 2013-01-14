@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
-namespace DEMW.SpaceWar2.Controls
+namespace DEMW.SpaceWar2.Core.Controls
 {
     public interface IKeyboardHandler
     {

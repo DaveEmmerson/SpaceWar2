@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework.Content;
 
-namespace DEMW.SpaceWar2.Utils.XnaWrappers
+namespace DEMW.SpaceWar2.Core.Utils.XnaWrappers
 {
     internal class ContentManagerWrapper : ContentManager, IContentManager
     {
