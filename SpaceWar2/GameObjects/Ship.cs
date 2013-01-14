@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using DEMW.SpaceWar2.Controls;
+using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Graphics;
 using DEMW.SpaceWar2.Utils.XnaWrappers;

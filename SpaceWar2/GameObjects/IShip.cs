@@ -1,3 +1,5 @@
+using DEMW.SpaceWar2.Core.GameObjects;
+
 namespace DEMW.SpaceWar2.GameObjects
 {
     public interface IShip : IGameObject

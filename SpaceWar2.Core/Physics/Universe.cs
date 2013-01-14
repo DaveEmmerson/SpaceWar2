@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using DEMW.SpaceWar2.GameObjects;
+using System.Collections.Generic;
+using DEMW.SpaceWar2.Core.GameObjects;
 
-namespace DEMW.SpaceWar2.Physics
+namespace DEMW.SpaceWar2.Core.Physics
 {
     internal class Universe : IUniverse
     {

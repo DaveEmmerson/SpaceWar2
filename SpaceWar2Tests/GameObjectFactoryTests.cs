@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using DEMW.SpaceWar2;
 using DEMW.SpaceWar2.Controls;
+using DEMW.SpaceWar2.Core.Physics;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Graphics;
-using DEMW.SpaceWar2.Physics;
 using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

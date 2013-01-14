@@ -1,6 +1,6 @@
-using DEMW.SpaceWar2.GameObjects;
+using DEMW.SpaceWar2.Core.GameObjects;
 
-namespace DEMW.SpaceWar2.Physics
+namespace DEMW.SpaceWar2.Core.Physics
 {
     public interface IUniverse
     {

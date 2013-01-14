@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using DEMW.SpaceWar2.Core.Physics;
-using DEMW.SpaceWar2.GameObjects;
+using System.Collections.Generic;
+using DEMW.SpaceWar2.Core.GameObjects;
 using Microsoft.Xna.Framework;
 
-namespace DEMW.SpaceWar2.Physics
+namespace DEMW.SpaceWar2.Core.Physics
 {
     internal class GravitySimulator : IGravitySimulator
     {

@@ -1,5 +1,6 @@
-﻿using DEMW.SpaceWar2.GameObjects;
-using DEMW.SpaceWar2.Physics;
+﻿using DEMW.SpaceWar2.Core.GameObjects;
+using DEMW.SpaceWar2.Core.Physics;
+using DEMW.SpaceWar2.GameObjects;
 using Microsoft.Xna.Framework;
 using NSubstitute;
 using NUnit.Framework;

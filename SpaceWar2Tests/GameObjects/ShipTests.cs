@@ -1,6 +1,7 @@
 ﻿using System;
 using DEMW.SpaceWar2.Controls;
 using DEMW.SpaceWar2.Core.Physics;
+using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Graphics;
