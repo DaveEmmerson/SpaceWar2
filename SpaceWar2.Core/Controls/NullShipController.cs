@@ -1,6 +1,4 @@
-﻿using DEMW.SpaceWar2.Core.Controls;
-
-namespace DEMW.SpaceWar2.Controls
+namespace DEMW.SpaceWar2.Core.Controls
 {
     internal class NullShipController : IShipController
     {

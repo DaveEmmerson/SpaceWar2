@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,9 +53,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\IShipController.cs" />
+    <Compile Include="Controls\NullShipController.cs" />
     <Compile Include="Controls\ShipActions.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\IShip.cs" />
+    <Compile Include="GameObjects\IShipComponentFactory.cs" />
+    <Compile Include="GameObjects\Ship.cs" />
+    <Compile Include="GameObjects\ShipComponentFactory.cs" />
     <Compile Include="GameObjects\ShipComponents\EnergyStore.cs" />
     <Compile Include="GameObjects\ShipComponents\Hull.cs" />
     <Compile Include="GameObjects\ShipComponents\IEnergyStore.cs" />
@@ -64,7 +71,9 @@
     <Compile Include="GameObjects\ShipComponents\Shield.cs" />
     <Compile Include="GameObjects\ShipComponents\Thruster.cs" />
     <Compile Include="GameObjects\ShipComponents\ThrusterArray.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="GameObjects\Sun.cs" />
+    <Compile Include="Graphics\IArrow.cs" />
+    <Compile Include="Graphics\IGraphicsFactory.cs" />
     <Compile Include="Physics\Force.cs" />
     <Compile Include="Physics\GravitySimulator.cs" />
     <Compile Include="Physics\IGravitySimulator.cs" />

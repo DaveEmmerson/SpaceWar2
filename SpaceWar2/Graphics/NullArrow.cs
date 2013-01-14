@@ -1,5 +1,5 @@
-﻿using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
-using DEMW.SpaceWar2.Utils.XnaWrappers;
+﻿using DEMW.SpaceWar2.Core.Graphics;
+using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 
 namespace DEMW.SpaceWar2.Graphics
 {

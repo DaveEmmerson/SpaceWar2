@@ -1,5 +1,4 @@
 ﻿using DEMW.SpaceWar2.Core.GameObjects;
-using DEMW.SpaceWar2.GameObjects;
 using NSubstitute;
 using NUnit.Framework;
 

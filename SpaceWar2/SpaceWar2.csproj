@@ -79,28 +79,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ControllerFactory.cs" />
-    <Compile Include="GameObjects\IShipComponentFactory.cs" />
-    <Compile Include="GameObjects\ShipComponentFactory.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Graphics\NullArrow.cs" />
     <Compile Include="Graphics\GraphicsFactory.cs" />
-    <Compile Include="Graphics\IArrow.cs" />
     <Compile Include="Graphics\IDrawingManager.cs" />
-    <Compile Include="Graphics\IGraphicsFactory.cs" />
     <Compile Include="Utils\XnaWrappers\ISpriteFont.cs" />
     <Compile Include="Utils\XnaWrappers\ISpriteBatch.cs" />
     <Compile Include="Utils\XnaWrappers\GraphicsDeviceWrapper.cs" />
     <Compile Include="Utils\XnaWrappers\IKeyboard.cs" />
     <Compile Include="Controls\IKeyboardHandler.cs" />
-    <Compile Include="Controls\IShipController.cs" />
     <Compile Include="Controls\KeyboardController.cs" />
     <Compile Include="Controls\KeyboardHandler.cs" />
     <Compile Include="Utils\XnaWrappers\KeyboardWrapper.cs" />
-    <Compile Include="Controls\NullShipController.cs" />
     <Compile Include="GameObjectFactory.cs" />
-    <Compile Include="GameObjects\GameObject.cs" />
-    <Compile Include="GameObjects\Ship.cs" />
-    <Compile Include="GameObjects\Sun.cs" />
     <Compile Include="Graphics\Arrow.cs" />
     <Compile Include="Graphics\Camera.cs" />
     <Compile Include="Graphics\Circle.cs" />

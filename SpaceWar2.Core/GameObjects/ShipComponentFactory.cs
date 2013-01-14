@@ -1,7 +1,6 @@
-using DEMW.SpaceWar2.Core.GameObjects;
 using DEMW.SpaceWar2.Core.GameObjects.ShipComponents;
 
-namespace DEMW.SpaceWar2.GameObjects
+namespace DEMW.SpaceWar2.Core.GameObjects
 {
     internal class ShipComponentFactory : IShipComponentFactory
     {

@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using DEMW.SpaceWar2.Core.GameObjects;
+using System.Collections.Generic;
 using DEMW.SpaceWar2.Core.Physics;
 using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
-using DEMW.SpaceWar2.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace DEMW.SpaceWar2.GameObjects
+namespace DEMW.SpaceWar2.Core.GameObjects
 {
     internal abstract class GameObject : IGameObject
     {

@@ -2,7 +2,6 @@
 using System.Linq;
 using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using DEMW.SpaceWar2.Graphics;
-using DEMW.SpaceWar2.Utils.XnaWrappers;
 using DEMW.SpaceWar2Tests.TestUtils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

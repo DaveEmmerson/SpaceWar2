@@ -1,4 +1,4 @@
-﻿using DEMW.SpaceWar2.GameObjects;
+﻿using DEMW.SpaceWar2.Core.GameObjects;
 using Microsoft.Xna.Framework;
 using NUnit.Framework;
 

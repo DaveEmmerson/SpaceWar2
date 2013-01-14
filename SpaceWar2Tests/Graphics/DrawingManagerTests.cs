@@ -1,6 +1,5 @@
 ﻿using DEMW.SpaceWar2.Core.GameObjects;
 using DEMW.SpaceWar2.Core.Physics;
-using DEMW.SpaceWar2.GameObjects;
 using DEMW.SpaceWar2.Graphics;
 using NSubstitute;
 using NUnit.Framework;

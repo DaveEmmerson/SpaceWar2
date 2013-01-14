@@ -1,7 +1,6 @@
 ﻿using System;
 using DEMW.SpaceWar2.Core.GameObjects;
 using DEMW.SpaceWar2.Core.GameObjects.ShipComponents;
-using DEMW.SpaceWar2.GameObjects;
 using NSubstitute;
 using NUnit.Framework;
 

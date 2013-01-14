@@ -1,3 +1,4 @@
+using DEMW.SpaceWar2.Core.Graphics;
 using DEMW.SpaceWar2.Graphics;
 using DEMW.SpaceWar2.Utils;
 using Microsoft.Xna.Framework;
