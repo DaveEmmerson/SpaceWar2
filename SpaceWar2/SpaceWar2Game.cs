@@ -241,5 +241,10 @@ namespace DEMW.SpaceWar2
 
             base.Draw(gameTime);
         }
+
+        // This method only exists so that a dummy test can call it, which forces this 
+        // assembly to be included in the coverage report. If there's a better way to 
+        // do this, then this method can be removed
+        public static void DummyTestMethod() { }
     }
 }
