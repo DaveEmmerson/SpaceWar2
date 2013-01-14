@@ -52,7 +52,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ShipActions.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
+    <Compile Include="GameObjects\IShip.cs" />
+    <Compile Include="GameObjects\ShipComponents\EnergyStore.cs" />
+    <Compile Include="GameObjects\ShipComponents\Hull.cs" />
+    <Compile Include="GameObjects\ShipComponents\IEnergyStore.cs" />
+    <Compile Include="GameObjects\ShipComponents\IHull.cs" />
+    <Compile Include="GameObjects\ShipComponents\IShield.cs" />
+    <Compile Include="GameObjects\ShipComponents\IThrusterArray.cs" />
+    <Compile Include="GameObjects\ShipComponents\Shield.cs" />
+    <Compile Include="GameObjects\ShipComponents\Thruster.cs" />
+    <Compile Include="GameObjects\ShipComponents\ThrusterArray.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Physics\Force.cs" />
     <Compile Include="Physics\GravitySimulator.cs" />

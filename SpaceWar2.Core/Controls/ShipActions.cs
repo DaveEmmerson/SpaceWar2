@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace DEMW.SpaceWar2.Controls
+namespace DEMW.SpaceWar2.Core.Controls
 {
     [Flags]
     public enum ShipActions

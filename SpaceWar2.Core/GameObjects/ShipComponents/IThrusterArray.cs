@@ -1,6 +1,6 @@
-using DEMW.SpaceWar2.Controls;
+using DEMW.SpaceWar2.Core.Controls;
 
-namespace DEMW.SpaceWar2.GameObjects.ShipComponents
+namespace DEMW.SpaceWar2.Core.GameObjects.ShipComponents
 {
     public interface IThrusterArray
     {

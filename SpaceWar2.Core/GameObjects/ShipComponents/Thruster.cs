@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using DEMW.SpaceWar2.Core.Physics;
 using Microsoft.Xna.Framework;
 
-namespace DEMW.SpaceWar2.GameObjects.ShipComponents
+namespace DEMW.SpaceWar2.Core.GameObjects.ShipComponents
 {
     internal class Thruster
     {

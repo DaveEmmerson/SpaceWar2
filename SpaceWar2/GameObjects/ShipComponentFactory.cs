@@ -1,5 +1,5 @@
 using DEMW.SpaceWar2.Core.GameObjects;
-using DEMW.SpaceWar2.GameObjects.ShipComponents;
+using DEMW.SpaceWar2.Core.GameObjects.ShipComponents;
 
 namespace DEMW.SpaceWar2.GameObjects
 {

@@ -1,5 +1,5 @@
 ﻿using System;
-using DEMW.SpaceWar2.GameObjects.ShipComponents;
+using DEMW.SpaceWar2.Core.GameObjects.ShipComponents;
 using Microsoft.Xna.Framework;
 using NUnit.Framework;
 

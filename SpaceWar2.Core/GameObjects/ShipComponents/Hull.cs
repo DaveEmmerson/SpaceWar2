@@ -1,7 +1,6 @@
-﻿using System;
-using DEMW.SpaceWar2.Core.GameObjects;
+using System;
 
-namespace DEMW.SpaceWar2.GameObjects.ShipComponents
+namespace DEMW.SpaceWar2.Core.GameObjects.ShipComponents
 {
     internal class Hull : IHull
     {

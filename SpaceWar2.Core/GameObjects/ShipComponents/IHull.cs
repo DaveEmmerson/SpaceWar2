@@ -1,4 +1,4 @@
-namespace DEMW.SpaceWar2.GameObjects.ShipComponents
+namespace DEMW.SpaceWar2.Core.GameObjects.ShipComponents
 {
     public interface IHull
     {
