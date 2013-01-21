@@ -30,9 +30,9 @@ namespace DEMW.SpaceWar2
         private readonly ControllerFactory _controllerFactory;
 
         private readonly IDrawingManager _drawingManager;
-		
-        private bool _paused;
 
+        private readonly GameEngine _gameEngine;
+        
         private InfoBar _infoBar;
         private Camera _camera;
         		
@@ -54,6 +54,32 @@ namespace DEMW.SpaceWar2
             
             _keyboardHandler = new KeyboardHandler(new KeyboardWrapper());
             _controllerFactory = new ControllerFactory(_keyboardHandler);
+
+            var actionHandler = SetUpActions();
+
+            _gameEngine = new GameEngine(_keyboardHandler, actionHandler);
+        }
+
+        private ActionHandler SetUpActions()
+        {
+            var actionHandler = new ActionHandler(_keyboardHandler);
+            actionHandler.RegisterTriggerAction(Keys.Escape, ResetGame);
+
+            actionHandler.RegisterTriggerAction(Keys.X, () =>
+            {
+                var ship = _gameObjectFactory.GameObjects.OfType<Ship>().SingleOrDefault(x => x.Name == "ship 1");
+                if (ship != null)
+                {
+                    ship.Damage(10f);
+                }
+            });
+
+            actionHandler.RegisterContinuousAction(Keys.T, () => _camera.Pan(Vector3.Forward));
+            actionHandler.RegisterContinuousAction(Keys.Y, () => _camera.Pan(Vector3.Up));
+            actionHandler.RegisterContinuousAction(Keys.U, () => _camera.Zoom(-10));
+            actionHandler.RegisterContinuousAction(Keys.J, () => _camera.Zoom(10));
+            actionHandler.RegisterContinuousAction(Keys.I, () => _universe.Volume.Contract(10));
+            actionHandler.RegisterContinuousAction(Keys.K, () => _universe.Volume.Expand(10));
         }
 
         private void ResetGame()
@@ -132,11 +158,9 @@ namespace DEMW.SpaceWar2
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            _keyboardHandler.UpdateKeyboardState();
-            CheckNonGameKeys();
-            CheckDebugKeys();
-
-            if (!_paused)
+            _gameEngine.ExecuteGameLoop(gameTime);
+            
+            if (!_gameEngine.Paused)
             {
                 _gameObjectFactory.DestroyAll(obj => obj.Expired);
                 _gravitySimulator.Simulate();
@@ -145,62 +169,6 @@ namespace DEMW.SpaceWar2
             }
 
             base.Update(gameTime);
-        }
-
-        private void CheckNonGameKeys()
-        {
-            if (_keyboardHandler.IsNewlyPressed(Keys.Space))
-            {
-                _paused = !_paused;
-            }
-
-            if (_keyboardHandler.IsNewlyPressed(Keys.Escape))
-            {
-                ResetGame();
-            }
-        }
-
-        private void CheckDebugKeys()
-        {
-            if (_keyboardHandler.IsNewlyPressed(Keys.X))
-            {
-                var ship = _gameObjectFactory.GameObjects.OfType<Ship>().SingleOrDefault(x => x.Name == "ship 1");
-                if (ship != null)
-                {
-                    ship.Damage(10f);
-                }
-            }
-
-            if (_keyboardHandler.IsPressed(Keys.T))
-            {
-                _camera.Pan(Vector3.Forward);
-            }
-            
-            if (_keyboardHandler.IsPressed(Keys.Y))
-            {
-                _camera.Pan(Vector3.Up);
-            }
-
-            if (_keyboardHandler.IsPressed(Keys.U))
-            {
-                _camera.Zoom(-10);
-            }
-
-            if (_keyboardHandler.IsPressed(Keys.J))
-            {
-                _camera.Zoom(10);
-            }
-
-            if (_keyboardHandler.IsPressed(Keys.I))
-            {
-                _universe.Volume.Contract(10);
-            }
-
-            if (_keyboardHandler.IsPressed(Keys.K))
-            {
-                _universe.Volume.Expand(10);
-            }
-
         }
 
         /// <summary>
