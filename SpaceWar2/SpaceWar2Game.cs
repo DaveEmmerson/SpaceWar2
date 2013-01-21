@@ -79,6 +79,7 @@ namespace DEMW.SpaceWar2
             actionHandler.RegisterContinuousAction(Keys.U, () => _camera.Zoom(-10));
             actionHandler.RegisterContinuousAction(Keys.J, () => _camera.Zoom(10));
             actionHandler.RegisterContinuousAction(Keys.I, () => _universe.Volume.Contract(10));
+            actionHandler.RegisterContinuousAction(Keys.K, () => _universe.Volume.Expand(10));
 
             return actionHandler;
         }
