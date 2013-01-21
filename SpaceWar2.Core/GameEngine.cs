@@ -19,9 +19,9 @@ namespace DEMW.SpaceWar2.Core
 
         //private readonly IContentManager _contentManager;
         //private readonly IGraphicsDevice _graphicsDevice;
-        //private readonly GameObjectFactory _gameObjectFactory;
-        //private readonly IGravitySimulator _gravitySimulator;
-        //private readonly IUniverse _universe;
+        private readonly GameObjectFactory _gameObjectFactory;
+        private readonly IGravitySimulator _gravitySimulator;
+        private readonly IUniverse _universe;
         //private readonly IShipComponentFactory _shipComponentFactory;
         //private readonly IGraphicsFactory _graphicsFactory;
         
@@ -40,24 +40,24 @@ namespace DEMW.SpaceWar2.Core
         		
         //private Effect _effect;
 
-        internal GameEngine(IKeyboardHandler keyboardHandler, IActionHandler actionHandler)
+        internal GameEngine(IUniverse universe, IGravitySimulator gravitySimulator, GameObjectFactory gameObjectFactory, IKeyboardHandler keyboardHandler, IActionHandler actionHandler)
         {
         //    _contentManager = new ContentManagerWrapper(Content.ServiceProvider, "Content");
         //    var graphicsDeviceManager = new GraphicsDeviceManager(this);
         //    _graphicsDevice = new GraphicsDeviceWrapper(graphicsDeviceManager);
 
-        //    _universe = Universe.CreateDefault();
+            _universe = universe;
         //    _drawingManager = new DrawingManager(_universe);
-        //    _gravitySimulator = new GravitySimulator();
+            _gravitySimulator = gravitySimulator;
         //    _shipComponentFactory = new ShipComponentFactory();
         //    _graphicsFactory = new GraphicsFactory();
 
-        //    _gameObjectFactory = new GameObjectFactory(_contentManager, _graphicsFactory, _gravitySimulator, _drawingManager, _universe, _shipComponentFactory);
+            _gameObjectFactory = gameObjectFactory;
             
             _keyboardHandler = keyboardHandler;
             _actionHandler = actionHandler;
         //    _controllerFactory = new ControllerFactory(_keyboardHandler);
-            actionHandler.RegisterTriggerAction(Keys.Space, TogglePaused);
+            actionHandler.RegisterTriggerAction(Keys.Space, () => _paused = !_paused);
         }
 
         public bool Paused
@@ -97,78 +97,15 @@ namespace DEMW.SpaceWar2.Core
         {
             _keyboardHandler.UpdateKeyboardState();
             _actionHandler.ProcessActions();
-            //CheckNonGameKeys();
-            //CheckDebugKeys();
 
-        //    if (!_paused)
-        //    {
-        //        _gameObjectFactory.DestroyAll(obj => obj.Expired);
-        //        _gravitySimulator.Simulate();
-        //        _gameObjectFactory.GameObjects.ForEach<IGameObject, GameObject>(x => x.Update(gameTime));
-        //        _universe.Update();
-        //    }
+            if (!_paused)
+            {
+                _gameObjectFactory.DestroyAll(obj => obj.Expired);
+                _gravitySimulator.Simulate();
+                _gameObjectFactory.GameObjects.ForEach<IGameObject, GameObject>(x => x.Update(gameTime));
+                _universe.Update();
+            }
         }
-
-        private void TogglePaused()
-        {
-            _paused = !_paused;
-        }
-
-        //private void CheckNonGameKeys()
-        //{
-        //    if (_keyboardHandler.IsNewlyPressed(Keys.Space))
-        //    {
-        //        _paused = !_paused;
-        //    }
-
-        //    if (_keyboardHandler.IsNewlyPressed(Keys.Escape))
-        //    {
-        //        ResetGame();
-        //    }
-        //}
-
-        //private void CheckDebugKeys()
-        //{
-        //    if (_keyboardHandler.IsNewlyPressed(Keys.X))
-        //    {
-        //        var ship = _gameObjectFactory.GameObjects.OfType<Ship>().SingleOrDefault(x => x.Name == "ship 1");
-        //        if (ship != null)
-        //        {
-        //            ship.Damage(10f);
-        //        }
-        //    }
-
-        //    if (_keyboardHandler.IsPressed(Keys.T))
-        //    {
-        //        _camera.Pan(Vector3.Forward);
-        //    }
-
-        //    if (_keyboardHandler.IsPressed(Keys.Y))
-        //    {
-        //        _camera.Pan(Vector3.Up);
-        //    }
-
-        //    if (_keyboardHandler.IsPressed(Keys.U))
-        //    {
-        //        _camera.Zoom(-10);
-        //    }
-
-        //    if (_keyboardHandler.IsPressed(Keys.J))
-        //    {
-        //        _camera.Zoom(10);
-        //    }
-
-        //    if (_keyboardHandler.IsPressed(Keys.I))
-        //    {
-        //        _universe.Volume.Contract(10);
-        //    }
-
-        //    if (_keyboardHandler.IsPressed(Keys.K))
-        //    {
-        //        _universe.Volume.Expand(10);
-        //    }
-
-        //}
 
         ///// <summary>
         ///// This is called when the game should draw itself.

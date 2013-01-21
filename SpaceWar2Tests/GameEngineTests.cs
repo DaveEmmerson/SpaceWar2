@@ -1,5 +1,6 @@
 ﻿using DEMW.SpaceWar2.Core;
 using DEMW.SpaceWar2.Core.Controls;
+using DEMW.SpaceWar2.Core.Physics;
 using Microsoft.Xna.Framework;
 using NSubstitute;
 using NUnit.Framework;
@@ -10,17 +11,23 @@ namespace DEMW.SpaceWar2Tests
     class GameEngineTests
     {
         private GameEngine _gameEngine;
-        
+
+        private IUniverse _universe;
+        private IGravitySimulator _gravitySimulator;
+        private GameObjectFactory _gameObjectFactory;
         private IKeyboardHandler _keyboardHandler;
         private IActionHandler _actionHandler;
         
         [SetUp]
         public void SetUp()
         {
+            _universe = Substitute.For<IUniverse>();
+            _gravitySimulator = Substitute.For<IGravitySimulator>();
+            _gameObjectFactory = Substitute.For<GameObjectFactory>();
             _keyboardHandler = Substitute.For<IKeyboardHandler>();
             _actionHandler = Substitute.For<IActionHandler>();
 
-            _gameEngine = new GameEngine(_keyboardHandler, _actionHandler);
+            _gameEngine = new GameEngine(_universe, _gravitySimulator, _gameObjectFactory, _keyboardHandler, _actionHandler);
         }
 
         [Test]

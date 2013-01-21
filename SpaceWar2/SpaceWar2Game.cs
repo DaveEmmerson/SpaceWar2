@@ -57,7 +57,7 @@ namespace DEMW.SpaceWar2
 
             var actionHandler = SetUpActions();
 
-            _gameEngine = new GameEngine(_keyboardHandler, actionHandler);
+            _gameEngine = new GameEngine(_universe, _gravitySimulator, _gameObjectFactory, _keyboardHandler, actionHandler);
         }
 
         private ActionHandler SetUpActions()
@@ -162,14 +162,6 @@ namespace DEMW.SpaceWar2
         {
             _gameEngine.ExecuteGameLoop(gameTime);
             
-            if (!_gameEngine.Paused)
-            {
-                _gameObjectFactory.DestroyAll(obj => obj.Expired);
-                _gravitySimulator.Simulate();
-                _gameObjectFactory.GameObjects.ForEach<IGameObject, GameObject>(x => x.Update(gameTime));
-                _universe.Update();
-            }
-
             base.Update(gameTime);
         }
 
