@@ -61,6 +61,7 @@
     <Compile Include="Controls\KeyboardControllerTests.cs" />
     <Compile Include="Controls\KeyboardHandlerTests.cs" />
     <Compile Include="Controls\ShipActionTests.cs" />
+    <Compile Include="GameEngineTests.cs" />
     <Compile Include="SpaceWar2GameTests.cs" />
     <Compile Include="GameObjectFactoryTests.cs" />
     <Compile Include="GameObjects\ShipComponentFactoryTests.cs" />
