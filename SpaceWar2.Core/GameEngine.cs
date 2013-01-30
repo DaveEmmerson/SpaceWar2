@@ -60,11 +60,6 @@ namespace DEMW.SpaceWar2.Core
             actionHandler.RegisterTriggerAction(Keys.Space, () => _paused = !_paused);
         }
 
-        public bool Paused
-        {
-            get { return _paused; }
-        }
-
         //private void ResetGame()
         //{
         //    _gameObjectFactory.DestroyAll(x=>true);

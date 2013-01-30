@@ -1,7 +1,10 @@
-﻿using DEMW.SpaceWar2.Core;
+﻿using System;
+using DEMW.SpaceWar2.Core;
 using DEMW.SpaceWar2.Core.Controls;
+using DEMW.SpaceWar2.Core.GameObjects;
 using DEMW.SpaceWar2.Core.Physics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -31,12 +34,36 @@ namespace DEMW.SpaceWar2Tests
         }
 
         [Test]
-        public void ExecuteGameLoop_updates_keyboard_state()
+        public void ExecuteGameLoop_calls_all_the_components_to_run_the_game()
         {
             _gameEngine.ExecuteGameLoop(new GameTime());
 
             _keyboardHandler.Received(1).UpdateKeyboardState();
             _actionHandler.Received(1).ProcessActions();
+            _gameObjectFactory.Received(1).DestroyAll(Arg.Any<Predicate<IGameObject>>());
+            _gravitySimulator.Received(1).Simulate();
+            _universe.Received(1).Update();
+            var temp = _gameObjectFactory.Received(1).GameObjects;
+            Assert.IsNull(temp);
+        }
+
+        [Test]
+        public void ExecuteGameLoop_when_paused_only_calls_certain_components()
+        {
+            _keyboardHandler.IsNewlyPressed(Keys.Space).Returns(true);
+
+            var actionHandler = new ActionHandler(_keyboardHandler);
+            _gameEngine = new GameEngine(_universe, _gravitySimulator, _gameObjectFactory, _keyboardHandler, actionHandler);
+
+            _gameEngine.ExecuteGameLoop(new GameTime());
+
+            _keyboardHandler.Received(1).UpdateKeyboardState();
+            
+            _gameObjectFactory.DidNotReceive().DestroyAll(Arg.Any<Predicate<IGameObject>>());
+            _gravitySimulator.DidNotReceive().Simulate();
+            _universe.DidNotReceive().Update();
+            var temp = _gameObjectFactory.DidNotReceive().GameObjects;
+            Assert.IsNull(temp);
         }
     }
 }
