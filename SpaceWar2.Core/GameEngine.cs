@@ -19,7 +19,7 @@ namespace DEMW.SpaceWar2.Core
 
         //private readonly IContentManager _contentManager;
         //private readonly IGraphicsDevice _graphicsDevice;
-        private readonly GameObjectFactory _gameObjectFactory;
+        private readonly IGameObjectFactory _gameObjectFactory;
         private readonly IGravitySimulator _gravitySimulator;
         private readonly IUniverse _universe;
         //private readonly IShipComponentFactory _shipComponentFactory;
@@ -40,7 +40,7 @@ namespace DEMW.SpaceWar2.Core
         		
         //private Effect _effect;
 
-        internal GameEngine(IUniverse universe, IGravitySimulator gravitySimulator, GameObjectFactory gameObjectFactory, IKeyboardHandler keyboardHandler, IActionHandler actionHandler)
+        internal GameEngine(IUniverse universe, IGravitySimulator gravitySimulator, IGameObjectFactory gameObjectFactory, IKeyboardHandler keyboardHandler, IActionHandler actionHandler)
         {
         //    _contentManager = new ContentManagerWrapper(Content.ServiceProvider, "Content");
         //    var graphicsDeviceManager = new GraphicsDeviceManager(this);

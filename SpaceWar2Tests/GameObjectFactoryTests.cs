@@ -15,7 +15,7 @@ namespace DEMW.SpaceWar2Tests
     [TestFixture]
     class GameObjectFactoryTests
     {
-        private GameObjectFactory _gameObjectFactory;
+        private IGameObjectFactory _gameObjectFactory;
         private IContentManager _contentManager;
         private IGraphicsFactory _graphicsFactory;
         private IGravitySimulator _gravitySimulator;
@@ -80,7 +80,7 @@ namespace DEMW.SpaceWar2Tests
             var color = Color.Blue;
             var controller = Substitute.For<IShipController>();
 
-            var ship = _gameObjectFactory.CreateShip(name, position, velocity, color, controller);
+            var ship = (Ship) _gameObjectFactory.CreateShip(name, position, velocity, color, controller);
 
             Assert.AreEqual(name, ship.Name);
             Assert.AreEqual(position, ship.Position);

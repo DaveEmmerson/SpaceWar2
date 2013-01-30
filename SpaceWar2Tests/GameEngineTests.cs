@@ -14,7 +14,7 @@ namespace DEMW.SpaceWar2Tests
 
         private IUniverse _universe;
         private IGravitySimulator _gravitySimulator;
-        private GameObjectFactory _gameObjectFactory;
+        private IGameObjectFactory _gameObjectFactory;
         private IKeyboardHandler _keyboardHandler;
         private IActionHandler _actionHandler;
         
@@ -23,7 +23,7 @@ namespace DEMW.SpaceWar2Tests
         {
             _universe = Substitute.For<IUniverse>();
             _gravitySimulator = Substitute.For<IGravitySimulator>();
-            _gameObjectFactory = Substitute.For<GameObjectFactory>();
+            _gameObjectFactory = Substitute.For<IGameObjectFactory>();
             _keyboardHandler = Substitute.For<IKeyboardHandler>();
             _actionHandler = Substitute.For<IActionHandler>();
 

@@ -20,7 +20,7 @@ namespace DEMW.SpaceWar2
 
         private readonly IContentManager _contentManager;
         private readonly IGraphicsDevice _graphicsDevice;
-        private readonly GameObjectFactory _gameObjectFactory;
+        private readonly IGameObjectFactory _gameObjectFactory;
         private readonly IGravitySimulator _gravitySimulator;
         private readonly IUniverse _universe;
         private readonly IShipComponentFactory _shipComponentFactory;
