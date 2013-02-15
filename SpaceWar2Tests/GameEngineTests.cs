@@ -2,6 +2,7 @@
 using DEMW.SpaceWar2.Core;
 using DEMW.SpaceWar2.Core.Controls;
 using DEMW.SpaceWar2.Core.GameObjects;
+using DEMW.SpaceWar2.Core.Graphics;
 using DEMW.SpaceWar2.Core.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -20,7 +21,8 @@ namespace DEMW.SpaceWar2Tests
         private IGameObjectFactory _gameObjectFactory;
         private IKeyboardHandler _keyboardHandler;
         private IActionHandler _actionHandler;
-        
+        private IDrawingManager _drawingManager;
+
         [SetUp]
         public void SetUp()
         {
@@ -29,8 +31,9 @@ namespace DEMW.SpaceWar2Tests
             _gameObjectFactory = Substitute.For<IGameObjectFactory>();
             _keyboardHandler = Substitute.For<IKeyboardHandler>();
             _actionHandler = Substitute.For<IActionHandler>();
+            _drawingManager = Substitute.For<IDrawingManager>();
 
-            _gameEngine = new GameEngine(_universe, _gravitySimulator, _gameObjectFactory, _keyboardHandler, _actionHandler);
+            _gameEngine = new GameEngine(_universe, _gravitySimulator, _gameObjectFactory, _keyboardHandler, _actionHandler, _drawingManager);
         }
 
         [Test]
@@ -53,7 +56,7 @@ namespace DEMW.SpaceWar2Tests
             _keyboardHandler.IsNewlyPressed(Keys.Space).Returns(true);
 
             var actionHandler = new ActionHandler(_keyboardHandler);
-            _gameEngine = new GameEngine(_universe, _gravitySimulator, _gameObjectFactory, _keyboardHandler, actionHandler);
+            _gameEngine = new GameEngine(_universe, _gravitySimulator, _gameObjectFactory, _keyboardHandler, actionHandler, _drawingManager);
 
             _gameEngine.ExecuteGameLoop(new GameTime());
 

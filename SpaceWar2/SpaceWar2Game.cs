@@ -53,7 +53,7 @@ namespace DEMW.SpaceWar2
 
             var actionHandler = SetUpActions();
 
-            _gameEngine = new GameEngine(_universe, _gravitySimulator, _gameObjectFactory, _keyboardHandler, actionHandler);
+            _gameEngine = new GameEngine(_universe, _gravitySimulator, _gameObjectFactory, _keyboardHandler, actionHandler, _drawingManager);
         }
 
         private ActionHandler SetUpActions()
@@ -82,7 +82,6 @@ namespace DEMW.SpaceWar2
 
         private void ResetGame()
         {
-            _drawingManager.ResetCamera(_universe);
             _camera = _drawingManager.ActiveCamera;
             
             if (_effect != null)
