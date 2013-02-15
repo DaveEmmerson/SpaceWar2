@@ -15,7 +15,7 @@ namespace DEMW.SpaceWar2.Core
 {
     internal class GameEngine
     {
-        //private const float Speed = 100f;
+        private const float Speed = 100f;
 
         //private readonly IContentManager _contentManager;
         //private readonly IGraphicsDevice _graphicsDevice;
@@ -26,7 +26,7 @@ namespace DEMW.SpaceWar2.Core
         //private readonly IGraphicsFactory _graphicsFactory;
         
         private readonly IKeyboardHandler _keyboardHandler;
-        //private readonly ControllerFactory _controllerFactory;
+        private readonly ControllerFactory _controllerFactory;
 
         //private readonly IDrawingManager _drawingManager;
 
@@ -34,7 +34,6 @@ namespace DEMW.SpaceWar2.Core
 		
         private bool _paused;
         
-
         //private InfoBar _infoBar;
         //private Camera _camera;
         		
@@ -56,33 +55,33 @@ namespace DEMW.SpaceWar2.Core
             
             _keyboardHandler = keyboardHandler;
             _actionHandler = actionHandler;
-        //    _controllerFactory = new ControllerFactory(_keyboardHandler);
+            _controllerFactory = new ControllerFactory(_keyboardHandler);
             actionHandler.RegisterTriggerAction(Keys.Space, () => _paused = !_paused);
         }
 
-        //private void ResetGame()
-        //{
-        //    _gameObjectFactory.DestroyAll(x=>true);
+        internal void ResetGame()
+        {
+            _gameObjectFactory.DestroyAll(x => true);
 
-        //    _drawingManager.ResetCamera(_universe);
-        //    _camera = _drawingManager.ActiveCamera;
-            
-        //    if (_effect != null)
-        //    {
-        //        _effect.Parameters["Projection"].SetValue(_camera.Projection);
-        //        _effect.Parameters["View"].SetValue(_camera.View);
-        //    }
+            //_drawingManager.ResetCamera(_universe);
+            //_camera = _drawingManager.ActiveCamera;
 
-        //    var initialDistance = new Vector2(0, 100);
-        //    var initialVelocity = new Vector2(Speed, 0);
+            //if (_effect != null)
+            //{
+            //    _effect.Parameters["Projection"].SetValue(_camera.Projection);
+            //    _effect.Parameters["View"].SetValue(_camera.View);
+            //}
 
-        //    _gameObjectFactory.CreateShip("ship 1", initialDistance, initialVelocity, Color.Red, _controllerFactory.Controller1);
-        //    _gameObjectFactory.CreateShip("ship 2", -initialDistance, -initialVelocity, Color.Blue, _controllerFactory.Controller2);
+            var initialDistance = new Vector2(0, 100);
+            var initialVelocity = new Vector2(Speed, 0);
 
-        //    _gameObjectFactory.CreateSun(Vector2.Zero, Color.Red, Speed * Speed);
-        //    _gameObjectFactory.CreateSun(new Vector2(200, 0), Color.Orange, Speed * Speed);
-        //    _gameObjectFactory.CreateSun(new Vector2(-200, 0), Color.OrangeRed, Speed * Speed);
-        //}
+            _gameObjectFactory.CreateShip("ship 1", initialDistance, initialVelocity, Color.Red, _controllerFactory.Controller1);
+            _gameObjectFactory.CreateShip("ship 2", -initialDistance, -initialVelocity, Color.Blue, _controllerFactory.Controller2);
+
+            _gameObjectFactory.CreateSun(Vector2.Zero, Color.Red, Speed * Speed);
+            _gameObjectFactory.CreateSun(new Vector2(200, 0), Color.Orange, Speed * Speed);
+            _gameObjectFactory.CreateSun(new Vector2(-200, 0), Color.OrangeRed, Speed * Speed);
+        }
         
         /// <summary>
         /// Simulates a frame of the game of length gameTime

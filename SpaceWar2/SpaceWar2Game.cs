@@ -16,8 +16,6 @@ namespace DEMW.SpaceWar2
 {
     internal class SpaceWar2Game : Game
     {
-        private const float Speed = 100f;
-
         private readonly IContentManager _contentManager;
         private readonly IGraphicsDevice _graphicsDevice;
         private readonly IGameObjectFactory _gameObjectFactory;
@@ -27,7 +25,6 @@ namespace DEMW.SpaceWar2
         private readonly IGraphicsFactory _graphicsFactory;
         
         private readonly IKeyboardHandler _keyboardHandler;
-        private readonly ControllerFactory _controllerFactory;
 
         private readonly IDrawingManager _drawingManager;
 
@@ -53,7 +50,6 @@ namespace DEMW.SpaceWar2
             _gameObjectFactory = new GameObjectFactory(_contentManager, _graphicsFactory, _gravitySimulator, _drawingManager, _universe, _shipComponentFactory);
             
             _keyboardHandler = new KeyboardHandler(new KeyboardWrapper());
-            _controllerFactory = new ControllerFactory(_keyboardHandler);
 
             var actionHandler = SetUpActions();
 
@@ -86,8 +82,6 @@ namespace DEMW.SpaceWar2
 
         private void ResetGame()
         {
-            _gameObjectFactory.DestroyAll(x=>true);
-
             _drawingManager.ResetCamera(_universe);
             _camera = _drawingManager.ActiveCamera;
             
@@ -97,15 +91,7 @@ namespace DEMW.SpaceWar2
                 _effect.Parameters["View"].SetValue(_camera.View);
             }
 
-            var initialDistance = new Vector2(0, 100);
-            var initialVelocity = new Vector2(Speed, 0);
-
-            _gameObjectFactory.CreateShip("ship 1", initialDistance, initialVelocity, Color.Red, _controllerFactory.Controller1);
-            _gameObjectFactory.CreateShip("ship 2", -initialDistance, -initialVelocity, Color.Blue, _controllerFactory.Controller2);
-
-            _gameObjectFactory.CreateSun(Vector2.Zero, Color.Red, Speed * Speed);
-            _gameObjectFactory.CreateSun(new Vector2(200, 0), Color.Orange, Speed * Speed);
-            _gameObjectFactory.CreateSun(new Vector2(-200, 0), Color.OrangeRed, Speed * Speed);
+            _gameEngine.ResetGame();
         }
 
         /// <summary>
