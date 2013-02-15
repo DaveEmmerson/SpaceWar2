@@ -65,5 +65,17 @@ namespace DEMW.SpaceWar2Tests
             var temp = _gameObjectFactory.DidNotReceive().GameObjects;
             Assert.IsNull(temp);
         }
+
+        [Test]
+        public void ResetGame_destroys_gameObjects_and_creates_new_ones()
+        {
+            _gameEngine.ResetGame();
+
+            //Don't really care about what it calls for now as that will probably be data driven in the future
+            //TODO replace this test with a more specific one when setting up the game world uses some sort of world definition
+            _gameObjectFactory.Received(1).DestroyAll(Arg.Any<Predicate<IGameObject>>());
+            _gameObjectFactory.ReceivedWithAnyArgs().CreateShip("", Vector2.Zero, Vector2.Zero, Color.Transparent, null);
+            _gameObjectFactory.ReceivedWithAnyArgs().CreateSun(Vector2.Zero, Color.Transparent, 0f);
+        }
     }
 }
