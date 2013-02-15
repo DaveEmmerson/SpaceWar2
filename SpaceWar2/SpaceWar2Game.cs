@@ -83,13 +83,6 @@ namespace DEMW.SpaceWar2
         private void ResetGame()
         {
             _camera = _drawingManager.ActiveCamera;
-            
-            if (_effect != null)
-            {
-                _effect.Parameters["Projection"].SetValue(_camera.Projection);
-                _effect.Parameters["View"].SetValue(_camera.View);
-            }
-
             _gameEngine.ResetGame();
         }
 
@@ -113,9 +106,6 @@ namespace DEMW.SpaceWar2
         protected override void LoadContent()
         {
             _effect = _contentManager.Load<Effect>("Effects/HLSLTest");
-
-            _effect.Parameters["View"].SetValue(_camera.View);
-            _effect.Parameters["Projection"].SetValue(_camera.Projection);
 
             _effect.Parameters["AmbientColor"].SetValue(new Vector4(1.0f, 1.0f, 1.0f, 1.0f));
             _effect.Parameters["AmbientProportion"].SetValue(0.5f);
