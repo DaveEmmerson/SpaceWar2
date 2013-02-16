@@ -10,7 +10,7 @@ namespace DEMW.SpaceWar2.Core.Graphics
     {
         private readonly List<IGameObject> _drawableObjects;
 
-        public Camera ActiveCamera { get; private set; }
+        internal Camera ActiveCamera { get; private set; }
 
         public int ObjectCount
         {
@@ -70,6 +70,26 @@ namespace DEMW.SpaceWar2.Core.Graphics
 
             var volumeCopy = universe.Volume.Clone();
             ActiveCamera = new Camera(volumeCopy);
+        }
+
+        public void MoveCamera(Vector3 vector)
+        {
+            ActiveCamera.Pan(vector);
+        }
+
+        public void ZoomCamera(float amount)
+        {
+            ActiveCamera.Zoom(amount);
+        }
+
+        public Matrix CameraView
+        {
+            get { return ActiveCamera.View; }
+        }
+
+        public Matrix CameraProjection
+        {
+            get { return ActiveCamera.Projection; }
         }
     }
 }

@@ -31,7 +31,6 @@ namespace DEMW.SpaceWar2
         private readonly GameEngine _gameEngine;
         
         private InfoBar _infoBar;
-        private Camera _camera;
         		
         private Effect _effect;
 
@@ -70,10 +69,10 @@ namespace DEMW.SpaceWar2
                 }
             });
 
-            actionHandler.RegisterContinuousAction(Keys.T, () => _camera.Pan(Vector3.Forward));
-            actionHandler.RegisterContinuousAction(Keys.Y, () => _camera.Pan(Vector3.Up));
-            actionHandler.RegisterContinuousAction(Keys.U, () => _camera.Zoom(-10));
-            actionHandler.RegisterContinuousAction(Keys.J, () => _camera.Zoom(10));
+            actionHandler.RegisterContinuousAction(Keys.T, () => _drawingManager.MoveCamera(Vector3.Forward));
+            actionHandler.RegisterContinuousAction(Keys.Y, () => _drawingManager.MoveCamera(Vector3.Up));
+            actionHandler.RegisterContinuousAction(Keys.U, () => _drawingManager.ZoomCamera(-10));
+            actionHandler.RegisterContinuousAction(Keys.J, () => _drawingManager.ZoomCamera(10));
             actionHandler.RegisterContinuousAction(Keys.I, () => _universe.Volume.Contract(10));
             actionHandler.RegisterContinuousAction(Keys.K, () => _universe.Volume.Expand(10));
 
@@ -82,7 +81,6 @@ namespace DEMW.SpaceWar2
 
         private void ResetGame()
         {
-            _camera = _drawingManager.ActiveCamera;
             _gameEngine.ResetGame();
         }
 
@@ -150,8 +148,8 @@ namespace DEMW.SpaceWar2
 
             var gameObjects = _gameObjectFactory.GameObjects;
 
-            _effect.Parameters["View"].SetValue(_camera.View);
-            _effect.Parameters["Projection"].SetValue(_camera.Projection);
+            _effect.Parameters["View"].SetValue(_drawingManager.CameraView);
+            _effect.Parameters["Projection"].SetValue(_drawingManager.CameraProjection);
 
             gameObjects.ForEach<IGameObject, IGameObject>(gameObject =>
             {
