@@ -57,6 +57,8 @@ namespace DEMW.SpaceWar2
             SetUpActions(actionHandler);
         }
 
+        //TODO Could set these actions based on key bindings loaded from a file.
+        //Could also be moved into GameEngine or Somewhere else (ActionHandler? BindingsConfigurator?)
         private void SetUpActions(IActionHandler actionHandler)
         {
             actionHandler.RegisterTriggerAction(Keys.Escape, _gameEngine.ResetGame);
