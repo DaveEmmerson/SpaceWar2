@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using DEMW.SpaceWar2.Core;
@@ -50,15 +51,16 @@ namespace DEMW.SpaceWar2
             
             _keyboardHandler = new KeyboardHandler(new KeyboardWrapper());
 
-            var actionHandler = SetUpActions();
+            var actionHandler = new ActionHandler(_keyboardHandler);
 
             _gameEngine = new GameEngine(_universe, _gravitySimulator, _gameObjectFactory, _keyboardHandler, actionHandler, _drawingManager);
+
+            SetUpActions(actionHandler);
         }
 
-        private ActionHandler SetUpActions()
+        private void SetUpActions(IActionHandler actionHandler)
         {
-            var actionHandler = new ActionHandler(_keyboardHandler);
-            actionHandler.RegisterTriggerAction(Keys.Escape, ResetGame);
+            actionHandler.RegisterTriggerAction(Keys.Escape, _gameEngine.ResetGame);
 
             actionHandler.RegisterTriggerAction(Keys.X, () =>
             {
@@ -75,13 +77,6 @@ namespace DEMW.SpaceWar2
             actionHandler.RegisterContinuousAction(Keys.J, () => _drawingManager.ZoomCamera(10));
             actionHandler.RegisterContinuousAction(Keys.I, () => _universe.Volume.Contract(10));
             actionHandler.RegisterContinuousAction(Keys.K, () => _universe.Volume.Expand(10));
-
-            return actionHandler;
-        }
-
-        private void ResetGame()
-        {
-            _gameEngine.ResetGame();
         }
 
         /// <summary>
@@ -92,8 +87,7 @@ namespace DEMW.SpaceWar2
         /// </summary>
         protected override void Initialize()
         {
-            ResetGame();
-
+            _gameEngine.ResetGame();
             base.Initialize();
         }
 
@@ -118,15 +112,6 @@ namespace DEMW.SpaceWar2
         }
 
         /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
-
-        /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
@@ -134,7 +119,6 @@ namespace DEMW.SpaceWar2
         protected override void Update(GameTime gameTime)
         {
             _gameEngine.ExecuteGameLoop(gameTime);
-            
             base.Update(gameTime);
         }
 
@@ -146,12 +130,21 @@ namespace DEMW.SpaceWar2
         {
             GraphicsDevice.Clear(Color.Black);
 
-            var gameObjects = _gameObjectFactory.GameObjects;
-
             _effect.Parameters["View"].SetValue(_drawingManager.CameraView);
             _effect.Parameters["Projection"].SetValue(_drawingManager.CameraProjection);
 
-            gameObjects.ForEach<IGameObject, IGameObject>(gameObject =>
+            //TODO maybe move this into DrawingManager
+            ApplyTranslationsAndEffectsToGameObjects();
+            _drawingManager.DrawGameObjects();
+
+            DrawDebugInfomation();
+
+            base.Draw(gameTime);
+        }
+
+        private void ApplyTranslationsAndEffectsToGameObjects()
+        {
+            _gameObjectFactory.GameObjects.ForEach<IGameObject, IGameObject>(gameObject =>
             {
                 _effect.Parameters["World"].SetValue(Matrix.CreateTranslation(new Vector3(gameObject.Position, 0.0f)));
 
@@ -161,20 +154,21 @@ namespace DEMW.SpaceWar2
                     gameObject.Draw(_graphicsDevice);
                 }
             });
+        }
 
-            _drawingManager.DrawGameObjects();
+        private void DrawDebugInfomation()
+        {
+            _infoBar.CursorPosition = new Vector2(10, 10);
+            _gameObjectFactory.GameObjects.ForEach<IGameObject, IShip>(x =>
+            {
+                var debugDetails = x.DebugDetails;
+                _infoBar.DrawString(debugDetails + "\r\n\r\n\r\n\r\n");
+            });
 
-            _infoBar.CursorPosition = new Vector2(10,10);
-            gameObjects.ForEach<IGameObject, IShip>(x =>
-                                                        {
-                                                            var debugDetails = x.DebugDetails;
-                                                            _infoBar.DrawString(debugDetails + "\r\n\r\n\r\n\r\n");
-                                                        });
+            var universeDimensions = String.Format(CultureInfo.InvariantCulture, "Universe - width: {0}, height: {1}",
+                                                   _universe.Volume.Width, _universe.Volume.Height);
 
-            var universeDimensions = String.Format(CultureInfo.InvariantCulture, "Universe - width: {0}, height: {1}", _universe.Volume.Width, _universe.Volume.Height);
             _infoBar.DrawString(universeDimensions);
-
-            base.Draw(gameTime);
         }
 
         // This method only exists so that a dummy test can call it, which forces this 
