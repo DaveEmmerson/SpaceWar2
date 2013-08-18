@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B5FAD6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWar2.Core", "SpaceWar2.Core\SpaceWar2.Core.csproj", "{D3A2CFAC-D273-467F-90C6-F03F84142DB4}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SpaceWar2.FCore", "SpaceWar2.FCore\SpaceWar2.FCore.fsproj", "{5E7FBBCC-7032-4218-A5A5-94C1D57ECB49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,16 @@ Global
 		{D3A2CFAC-D273-467F-90C6-F03F84142DB4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D3A2CFAC-D273-467F-90C6-F03F84142DB4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D3A2CFAC-D273-467F-90C6-F03F84142DB4}.Release|x86.ActiveCfg = Release|Any CPU
+		{5E7FBBCC-7032-4218-A5A5-94C1D57ECB49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E7FBBCC-7032-4218-A5A5-94C1D57ECB49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E7FBBCC-7032-4218-A5A5-94C1D57ECB49}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5E7FBBCC-7032-4218-A5A5-94C1D57ECB49}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5E7FBBCC-7032-4218-A5A5-94C1D57ECB49}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5E7FBBCC-7032-4218-A5A5-94C1D57ECB49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E7FBBCC-7032-4218-A5A5-94C1D57ECB49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E7FBBCC-7032-4218-A5A5-94C1D57ECB49}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5E7FBBCC-7032-4218-A5A5-94C1D57ECB49}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5E7FBBCC-7032-4218-A5A5-94C1D57ECB49}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,4 @@
-﻿using System;
-using DEMW.SpaceWar2.Core;
+﻿using DEMW.SpaceWar2.Core;
 using DEMW.SpaceWar2.Core.Controls;
 using DEMW.SpaceWar2.Core.GameObjects;
 using DEMW.SpaceWar2.Core.Graphics;
@@ -8,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using NSubstitute;
 using NUnit.Framework;
+using System;
 
 namespace DEMW.SpaceWar2Tests
 {

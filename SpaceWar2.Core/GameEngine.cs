@@ -52,8 +52,6 @@ namespace DEMW.SpaceWar2.Core
             _gameObjectFactory.CreateShip("ship 2", -initialDistance, -initialVelocity, Color.Blue, _controllerFactory.Controller2);
 
             _gameObjectFactory.CreateSun(Vector2.Zero, Color.Red, Speed * Speed);
-            _gameObjectFactory.CreateSun(new Vector2(200, 0), Color.Orange, Speed * Speed);
-            _gameObjectFactory.CreateSun(new Vector2(-200, 0), Color.OrangeRed, Speed * Speed);
         }
         
         /// <summary>

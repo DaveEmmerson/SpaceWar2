@@ -114,6 +114,12 @@
   <ItemGroup>
     <None Include="SpaceWar2.snk" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpaceWar2.FCore\SpaceWar2.FCore.fsproj">
+      <Project>{5e7fbbcc-7032-4218-a5a5-94c1d57ecb49}</Project>
+      <Name>SpaceWar2.FCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

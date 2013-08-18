@@ -1,8 +1,8 @@
-using System.Collections.Generic;
 using DEMW.SpaceWar2.Core.Physics;
 using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace DEMW.SpaceWar2.Core.GameObjects
 {
@@ -45,8 +45,8 @@ namespace DEMW.SpaceWar2.Core.GameObjects
         public void ApplyExternalForce(Force force)
         {
             if (force == null || force.Vector == Vector2.Zero) return;
-            
-            var forceClone = force.Clone();
+
+            var forceClone = new Force(force.Vector, force.Displacement);
             _queuedforces.Add(forceClone);
         }
 
@@ -54,7 +54,7 @@ namespace DEMW.SpaceWar2.Core.GameObjects
         {
             if (force == null || force.Vector == Vector2.Zero) return;
 
-            var forceClone = force.Clone();
+            var forceClone = new Force(force.Vector, force.Displacement);
             forceClone.Rotate(Rotation);
             _queuedforces.Add(forceClone);
         }

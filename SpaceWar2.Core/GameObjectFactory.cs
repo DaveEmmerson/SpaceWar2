@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using DEMW.SpaceWar2.Core.Controls;
 using DEMW.SpaceWar2.Core.GameObjects;
 using DEMW.SpaceWar2.Core.Graphics;
@@ -8,6 +5,9 @@ using DEMW.SpaceWar2.Core.Physics;
 using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DEMW.SpaceWar2.Core
 {

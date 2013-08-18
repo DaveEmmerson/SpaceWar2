@@ -1,5 +1,5 @@
-using System;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace DEMW.SpaceWar2.Core.Controls
 {

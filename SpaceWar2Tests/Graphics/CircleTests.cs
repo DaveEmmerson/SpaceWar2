@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
-using DEMW.SpaceWar2.Core.Graphics;
+﻿using DEMW.SpaceWar2.Core.Graphics;
 using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using DEMW.SpaceWar2Tests.TestUtils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NSubstitute;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace DEMW.SpaceWar2Tests.Graphics
 {

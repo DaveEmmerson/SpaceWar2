@@ -1,12 +1,12 @@
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 using DEMW.SpaceWar2.Core.Controls;
 using DEMW.SpaceWar2.Core.GameObjects.ShipComponents;
 using DEMW.SpaceWar2.Core.Graphics;
 using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
 
 namespace DEMW.SpaceWar2.Core.GameObjects
 {

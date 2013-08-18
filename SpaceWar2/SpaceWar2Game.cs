@@ -1,6 +1,3 @@
-using System;
-using System.Globalization;
-using System.Linq;
 using DEMW.SpaceWar2.Core;
 using DEMW.SpaceWar2.Core.Controls;
 using DEMW.SpaceWar2.Core.GameObjects;
@@ -11,6 +8,9 @@ using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Globalization;
+using System.Linq;
 
 namespace DEMW.SpaceWar2
 {

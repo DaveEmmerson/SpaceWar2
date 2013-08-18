@@ -1,7 +1,7 @@
-using System;
 using DEMW.SpaceWar2.Core.Physics;
 using Microsoft.Xna.Framework;
 using NUnit.Framework;
+using System;
 
 namespace DEMW.SpaceWar2Tests.TestUtils
 {

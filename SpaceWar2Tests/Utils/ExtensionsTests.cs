@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using DEMW.SpaceWar2.Core.Utils;
+﻿using DEMW.SpaceWar2.Core.Utils;
 using NSubstitute;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace DEMW.SpaceWar2Tests.Utils
 {

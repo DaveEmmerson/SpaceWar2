@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using DEMW.SpaceWar2.Core.GameObjects;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace DEMW.SpaceWar2.Core.Physics
 {

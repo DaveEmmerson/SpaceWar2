@@ -1,7 +1,7 @@
-﻿using System;
-using DEMW.SpaceWar2.Core.Physics;
+﻿using DEMW.SpaceWar2.Core.Physics;
 using Microsoft.Xna.Framework;
 using NUnit.Framework;
+using System;
 
 namespace DEMW.SpaceWar2Tests.Physics
 {
@@ -60,20 +60,7 @@ namespace DEMW.SpaceWar2Tests.Physics
 
             Assert.AreEqual(Vector2.Zero, defaultForce.Vector);
             Assert.AreEqual(Vector2.Zero, defaultForce.Displacement);
-        }
+       } 
 
-        [Test]
-        public void Clone_creates_an_exact_copy_of_force()
-        {
-            var direction = new Vector2(0, -1);
-            var disaplacment = new Vector2(1, 0);
-            var force = new Force(direction, disaplacment);
-
-            var forceClone = force.Clone();
-
-            Assert.AreEqual(force.Vector, forceClone.Vector);
-            Assert.AreEqual(force.Displacement, forceClone.Displacement);
-            Assert.AreNotSame(force, forceClone);
-        }
     }
 }

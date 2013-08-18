@@ -1,7 +1,7 @@
-﻿using System;
-using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
+﻿using DEMW.SpaceWar2.Core.Utils.XnaWrappers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace DEMW.SpaceWar2.Core.Graphics
 {

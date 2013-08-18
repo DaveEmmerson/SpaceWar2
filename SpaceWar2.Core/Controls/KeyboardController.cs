@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework.Input;
 
 namespace DEMW.SpaceWar2.Core.Controls
 {

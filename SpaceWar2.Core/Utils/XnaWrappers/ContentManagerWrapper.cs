@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework.Content;
+using System;
 
 namespace DEMW.SpaceWar2.Core.Utils.XnaWrappers
 {

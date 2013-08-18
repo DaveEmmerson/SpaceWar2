@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using DEMW.SpaceWar2.Core.GameObjects;
+using System.Collections.Generic;
 
 namespace DEMW.SpaceWar2.Core.Physics
 {
